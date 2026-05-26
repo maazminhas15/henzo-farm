@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HENZO FARM | Nature's Finest Heritage - Organic Poultry Islamabad</title>
-    <meta name="description" content="Experience organic luxury with Henzo Farm. Premium heritage breeds. Cultivated in Islamabad. Healthy Birds, Healthy Life.">
+    <title>HENZO FARM | Nature's Finest Heritage - Islamabad</title>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -37,496 +31,270 @@
     </script>
 
     <style>
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #FDFCF8; }
-        ::-webkit-scrollbar-thumb { background: #1B3022; border-radius: 4px; }
         .text-gold-gradient { background: linear-gradient(135deg, #F0D47A 0%, #D4AF37 50%, #B89220 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .glass-panel { background: rgba(253, 252, 248, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(27, 48, 34, 0.08); }
         .glass-panel-dark { background: rgba(15, 28, 20, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.15); }
-        .noise-overlay { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E"); }
-        @keyframes pulse-gold { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(2.4); opacity: 0; } }
-        .pulse-ring { animation: pulse-gold 2s cubic-bezier(0.24, 0, 0.38, 1) infinite; }
         .cart-sidebar { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .cart-open .cart-sidebar { transform: translateX(0); }
+        #item-modal { display: none; }
+        .toast { transform: translateY(100px); transition: all 0.5s ease; }
+        .toast.show { transform: translateY(0); opacity: 1; }
     </style>
 </head>
 
 <body class="bg-silk text-forest font-sans overflow-x-hidden antialiased relative selection:bg-forest selection:text-gold">
-    
-    <div class="fixed inset-0 pointer-events-none z-50 noise-overlay"></div>
 
-    <!-- Floating Header -->
-    <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 px-4 py-2 md:py-4">
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] bg-forest text-silk px-6 py-3 rounded-full shadow-2xl flex items-center space-x-3 opacity-0 pointer-events-none toast">
+        <i class="fa-solid fa-circle-check text-gold"></i>
+        <span class="text-xs font-bold uppercase tracking-widest">Added to Cart</span>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-4 py-2 md:py-4">
         <div class="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-sm">
-            <a href="#" class="flex items-center space-x-3 group">
-                <img src="assets/logo.png" alt="Henzo Farm" class="h-8 md:h-10 w-auto rounded-full bg-white p-0.5">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="assets/logo.png" alt="Logo" class="h-8 md:h-10 w-auto rounded-full bg-white p-0.5">
                 <span class="font-serif text-lg md:text-2xl font-bold tracking-widest text-forest">HENZO <span class="text-gold font-light">FARM</span></span>
             </a>
-            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold tracking-widest uppercase">
-                <a href="#philosophy" class="hover:text-gold transition-colors">Our Heritage</a>
-                <a href="#catalog" class="hover:text-gold transition-colors">Registry</a>
-                <a href="#experience" class="hover:text-gold transition-colors">Experience</a>
-                <a href="#trust" class="hover:text-gold transition-colors">Contact</a>
-            </nav>
             <div class="flex items-center space-x-4">
-                <button onclick="toggleCart()" class="relative p-2 text-forest hover:text-gold transition-colors">
+                <button onclick="toggleCart()" class="relative p-2 text-forest">
                     <i class="fa-solid fa-basket-shopping text-xl"></i>
                     <span id="cart-count" class="absolute -top-1 -right-1 bg-gold text-forest text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
                 </button>
-                <a href="#order" class="hidden sm:block text-xs font-semibold tracking-widest uppercase bg-forest text-silk px-5 py-2.5 rounded-full hover:bg-forest-light transition-all">Acquire</a>
             </div>
         </div>
     </header>
 
     <!-- Cart Sidebar -->
-    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-forest/40 backdrop-blur-sm z-[60] opacity-0 pointer-events-none transition-opacity duration-300"></div>
-    <aside class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-md bg-silk shadow-2xl z-[70] p-8 flex flex-col border-l border-forest/5">
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-forest/40 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity"></div>
+    <aside class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-md bg-silk shadow-2xl z-[70] p-8 flex flex-col">
         <div class="flex justify-between items-center mb-8">
-            <h2 class="font-serif text-3xl font-bold text-forest">Acquisition Cart</h2>
-            <button onclick="toggleCart()" class="text-forest hover:rotate-90 transition-transform duration-300"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <h2 class="font-serif text-3xl font-bold">Your Cart</h2>
+            <button onclick="toggleCart()"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
-        
-        <div id="cart-items" class="flex-grow overflow-y-auto space-y-4 pr-2">
-            <!-- Cart items added here via JS -->
-            <div class="text-center py-12 opacity-40">
-                <i class="fa-solid fa-feather-pointed text-4xl mb-4"></i>
-                <p class="text-sm italic">Your cart is empty.</p>
-            </div>
-        </div>
-
-        <div class="border-t border-forest/10 pt-6 mt-6 space-y-4">
-            <div class="flex justify-between items-center font-bold">
-                <span class="uppercase tracking-widest text-xs">Total Valuation</span>
-                <span id="cart-total" class="text-xl text-gold">Rs 0</span>
-            </div>
-            <button onclick="checkoutToForm()" class="w-full py-4 bg-forest text-silk font-bold uppercase tracking-widest text-xs rounded-xl hover:bg-forest-light transition-all">Proceed to Reservation</button>
+        <div id="cart-items" class="flex-grow overflow-y-auto space-y-4"></div>
+        <div class="border-t pt-6 mt-6">
+            <div class="flex justify-between font-bold mb-4"><span>Total</span><span id="cart-total">Rs 0</span></div>
+            <button onclick="scrollToOrder()" class="w-full py-4 bg-forest text-silk font-bold uppercase text-xs rounded-xl">Check Out Now</button>
         </div>
     </aside>
 
-    <!-- Mobile Nav Bar -->
-    <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-sm glass-panel rounded-full shadow-2xl z-40 px-6 py-3 flex justify-between items-center">
-        <a href="#hero" class="flex flex-col items-center text-forest"><i class="fa-solid fa-house text-sm"></i><span class="text-[9px] uppercase mt-1 font-bold">Home</span></a>
-        <a href="#catalog" class="flex flex-col items-center text-forest"><i class="fa-solid fa-award text-sm"></i><span class="text-[9px] uppercase mt-1 font-bold">Breeds</span></a>
-        <button onclick="toggleCart()" class="flex flex-col items-center text-gold"><i class="fa-solid fa-basket-shopping text-sm"></i><span class="text-[9px] uppercase mt-1 font-bold">Cart</span></button>
-        <a href="#order" class="flex flex-col items-center text-forest"><i class="fa-solid fa-file-signature text-sm"></i><span class="text-[9px] uppercase mt-1 font-bold">Order</span></a>
-        <a href="#trust" class="flex flex-col items-center text-forest"><i class="fa-solid fa-map-pin text-sm"></i><span class="text-[9px] uppercase mt-1 font-bold">Visit</span></a>
+    <!-- Quantity Pop-up Modal -->
+    <div id="item-modal" class="fixed inset-0 z-[80] flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-forest/60 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="relative bg-silk w-full max-w-md rounded-3xl p-8 shadow-2xl">
+            <h3 id="modal-title" class="font-serif text-2xl font-bold text-forest mb-2">Item Name</h3>
+            <p id="modal-price" class="text-gold font-bold mb-6">Price Details</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="text-[10px] uppercase font-bold tracking-widest opacity-50">Select Quantity</label>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <button onclick="changeModalQty(-1)" class="w-10 h-10 rounded-full border border-forest/10 hover:bg-forest hover:text-silk">-</button>
+                        <span id="modal-qty" class="text-xl font-bold w-8 text-center">1</span>
+                        <button onclick="changeModalQty(1)" class="w-10 h-10 rounded-full border border-forest/10 hover:bg-forest hover:text-silk">+</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold tracking-widest opacity-50">Delivery Address</label>
+                    <textarea id="modal-address" class="w-full mt-2 p-4 bg-forest/5 rounded-xl border border-forest/10 h-24 outline-none focus:border-gold">Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</textarea>
+                </div>
+                <button onclick="confirmAddToCart()" class="w-full py-4 bg-gold text-forest font-bold uppercase tracking-widest text-xs rounded-xl shadow-lg">Add to Collection</button>
+            </div>
+        </div>
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-forest-dark pt-16">
-            <div class="absolute inset-0 z-0">
-                <img src="assets/hero_chickens.png" class="w-full h-full object-cover opacity-60 scale-100 hero-bg-img">
-                <div class="absolute inset-0 bg-gradient-to-t from-silk via-forest/30 to-forest/80"></div>
-            </div>
-            <div class="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center mt-12">
-                <div class="hero-subtext flex flex-col items-center">
-                    <img src="assets/logo.png" class="h-20 w-auto rounded-full border-2 border-gold/40 shadow-xl bg-white p-1 mb-6">
-                    <span class="text-xs md:text-sm font-semibold tracking-[0.3em] uppercase text-gold-gradient mb-4 block">Est. Islamabad • Premium Heritage Breeds</span>
-                </div>
-                <h1 class="hero-title font-serif text-5xl md:text-8xl lg:text-9xl text-silk font-bold tracking-tight leading-none mb-6">Nature's Finest <br><span class="italic font-normal text-gold-gradient">Heritage</span></h1>
-                <p class="hero-para text-sm md:text-lg font-light tracking-wide text-silk/90 max-w-xl mx-auto mb-10 font-serif italic">"Healthy Birds. Healthy Life." — Pure-bred heritage poultry raised in absolute freedom.</p>
-                <div class="hero-ctas flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#catalog" class="px-8 py-3.5 bg-gold hover:bg-gold-light text-forest font-bold uppercase tracking-wider text-xs rounded-full transition-all">Explore Breeds</a>
-                </div>
+        <!-- Hero -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center bg-forest-dark">
+            <div class="absolute inset-0"><img src="assets/hero_chickens.png" class="w-full h-full object-cover opacity-40"></div>
+            <div class="relative z-10 text-center px-4">
+                <span class="text-gold text-xs font-bold tracking-[0.3em] uppercase">Premium Heritage Breeds</span>
+                <h1 class="font-serif text-6xl md:text-9xl text-silk font-bold mt-4">Henzo Farm</h1>
+                <p class="text-silk/80 italic mt-6">"Healthy Birds. Healthy Life."</p>
             </div>
         </section>
 
-        <!-- Philosophy Section -->
-        <section id="philosophy" class="py-12 md:py-24 bg-silk px-4 md:px-8 border-b border-forest/5 relative">
+        <!-- Breed Registry -->
+        <section id="catalog" class="py-12 md:py-24 bg-silk px-4">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-7 space-y-6 philosophy-text opacity-0 translate-y-10">
-                        <span class="text-xs font-bold tracking-[0.2em] uppercase text-earth">Our Philosophy</span>
-                        <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-tight text-forest leading-tight">Farm-to-Table Transparency, Cultivated with Absolute Care</h2>
-                        <p class="text-sm md:text-base text-forest/75 leading-relaxed font-light">At Henzo Farm, we believe true quality comes from harmony with nature. Our heritage breeds roam freely on lush clover fields in Islamabad, foraging exactly as their ancestors did.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-                            <div class="flex items-start space-x-3"><i class="fa-solid fa-leaf text-gold mt-1"></i><div><h4 class="font-bold text-sm">100% Organic</h4><p class="text-xs opacity-60">Hormone-free grains and fresh greens.</p></div></div>
-                            <div class="flex items-start space-x-3"><i class="fa-solid fa-cloud-sun text-gold mt-1"></i><div><h4 class="font-bold text-sm">Free Range</h4><p class="text-xs opacity-60">Raised in open Islamabad air.</p></div></div>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-5 philosophy-img-container opacity-0 translate-y-10">
-                        <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative">
-                            <img src="assets/farm_pasture.png" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Breed Registry Section -->
-        <section id="catalog" class="py-12 md:py-24 bg-silk-dark px-4 md:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-xs font-bold tracking-[0.25em] uppercase text-earth">Breed Registry</span>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-forest">Acquire Luxury Poultry</h2>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <h2 class="font-serif text-4xl text-center mb-16">Breed Registry</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Australorp -->
-                    <div class="bg-silk rounded-3xl overflow-hidden border border-forest/5 shadow-md flex flex-col justify-between hover:shadow-xl transition-all catalog-card opacity-0 translate-y-10">
-                        <div>
-                            <div class="relative h-64 overflow-hidden">
-                                <img id="img-Australorp" src="assets/australorp_hen.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1 z-20">
-                                    <button onclick="swapBreedImage('Australorp','Chick',event)" class="text-[9px] bg-black/60 text-white px-2 py-0.5 rounded-full uppercase">Chick</button>
-                                    <button onclick="swapBreedImage('Australorp','Hen',event)" class="text-[9px] bg-gold text-forest px-2 py-0.5 rounded-full uppercase">Hen</button>
-                                </div>
-                            </div>
-                            <div class="p-6 space-y-4">
-                                <h3 class="font-serif text-2xl font-bold text-forest">Black Australorp</h3>
-                                <p class="text-xs text-forest/70 font-light">Renowned for spectacular beetle-green sheen and outstanding egg capacity.</p>
-                                <div class="space-y-2">
-                                    <button onclick="addToCart('Australorp', 'Chick', 250)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>Baby Chicks</span><span class="font-bold">Rs 250</span>
-                                    </button>
-                                    <button onclick="addToCart('Australorp', 'Hen', 2500)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>Mature Hens</span><span class="font-bold">Rs 2,500</span>
-                                    </button>
-                                    <button onclick="addToCart('Australorp', '1 Rooster + 5 Hens', 15000)" class="w-full text-left p-3 rounded-xl bg-forest/5 border border-forest/5 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span class="font-bold">1 Rooster + 5 Hens</span><span class="font-bold text-gold">Rs 15,000</span>
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-forest/5 p-6">
+                        <img src="assets/australorp_hen.jpg" class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h3 class="font-serif text-2xl font-bold">Black Australorp</h3>
+                        <div class="mt-6 space-y-3">
+                            <button onclick="openModal('Australorp', 'Baby Chick', 120)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Baby Chick</span><b>Rs 120</b></button>
+                            <button onclick="openModal('Australorp', 'Mature Hen', 2500)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Mature Hen</span><b>Rs 2,500</b></button>
+                            <button onclick="openModal('Australorp', 'Rooster', 3000)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Rooster</span><b>Rs 3,000</b></button>
+                            <button onclick="openModal('Australorp', '1 Rooster + 5 Hens', 14725)" class="w-full p-4 rounded-xl bg-gold/10 border border-gold/20 flex justify-between text-sm"><span>1 Rooster + 5 Hens (5% OFF)</span><b class="text-gold">Rs 14,725</b></button>
                         </div>
                     </div>
 
                     <!-- RIR -->
-                    <div class="bg-silk rounded-3xl overflow-hidden border border-forest/5 shadow-md flex flex-col justify-between hover:shadow-xl transition-all catalog-card opacity-0 translate-y-10">
-                        <div>
-                            <div class="relative h-64 overflow-hidden">
-                                <img id="img-RIR" src="assets/rir_rooster.jpg" class="w-full h-full object-cover">
-                                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1 z-20">
-                                    <button onclick="swapBreedImage('RIR','Chick',event)" class="text-[9px] bg-black/60 text-white px-2 py-0.5 rounded-full uppercase">Chick</button>
-                                    <button onclick="swapBreedImage('RIR','Hen',event)" class="text-[9px] bg-gold text-forest px-2 py-0.5 rounded-full uppercase">Hen</button>
-                                </div>
-                            </div>
-                            <div class="p-6 space-y-4">
-                                <h3 class="font-serif text-2xl font-bold text-forest">Rhode Island Red</h3>
-                                <p class="text-xs text-forest/70 font-light">The classic heritage dual-purpose breed. Hardiness unmatched in Islamabad climate.</p>
-                                <div class="space-y-2">
-                                    <button onclick="addToCart('RIR', 'Chick', 180)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>Baby Chicks</span><span class="font-bold">Rs 180</span>
-                                    </button>
-                                    <button onclick="addToCart('RIR', 'Hen', 1800)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>Mature Hens</span><span class="font-bold">Rs 1,800</span>
-                                    </button>
-                                    <button onclick="addToCart('RIR', '1 Rooster + 5 Hens', 11000)" class="w-full text-left p-3 rounded-xl bg-forest/5 border border-forest/5 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span class="font-bold">1 Rooster + 5 Hens</span><span class="font-bold text-gold">Rs 11,000</span>
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-forest/5 p-6">
+                        <img src="assets/rir_rooster.jpg" class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h3 class="font-serif text-2xl font-bold">Rhode Island Red</h3>
+                        <div class="mt-6 space-y-3">
+                            <button onclick="openModal('RIR', 'Baby Chick', 120)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Baby Chick</span><b>Rs 120</b></button>
+                            <button onclick="openModal('RIR', 'Mature Hen', 2500)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Mature Hen</span><b>Rs 2,500</b></button>
+                            <button onclick="openModal('RIR', 'Rooster', 3000)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Rooster</span><b>Rs 3,000</b></button>
+                            <button onclick="openModal('RIR', '1 Rooster + 5 Hens', 14725)" class="w-full p-4 rounded-xl bg-gold/10 border border-gold/20 flex justify-between text-sm"><span>1 Rooster + 5 Hens (5% OFF)</span><b class="text-gold">Rs 14,725</b></button>
                         </div>
                     </div>
 
                     <!-- Fayoumi -->
-                    <div class="bg-silk rounded-3xl overflow-hidden border border-forest/5 shadow-md flex flex-col justify-between hover:shadow-xl transition-all catalog-card opacity-0 translate-y-10">
-                        <div>
-                            <div class="relative h-64 overflow-hidden">
-                                <img id="img-Fayoumi" src="assets/fayoumi_rooster.jpg" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-6 space-y-4">
-                                <h3 class="font-serif text-2xl font-bold text-forest">Egyptian Fayoumi</h3>
-                                <p class="text-xs text-forest/70 font-light">Ancient Nile lineage. Exotic silver plumage and extremely active for Islamabad farms.</p>
-                                <div class="space-y-2">
-                                    <button onclick="addToCart('Fayoumi', 'Chick', 150)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>Baby Chicks</span><span class="font-bold">Rs 150</span>
-                                    </button>
-                                    <button onclick="addToCart('Fayoumi', 'Hen', 1500)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>Mature Hens</span><span class="font-bold">Rs 1,500</span>
-                                    </button>
-                                    <button onclick="addToCart('Fayoumi', '1 Rooster + 5 Hens', 9000)" class="w-full text-left p-3 rounded-xl bg-forest/5 border border-forest/5 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span class="font-bold">1 Rooster + 5 Hens</span><span class="font-bold text-gold">Rs 9,000</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Eggs -->
-                    <div class="bg-silk rounded-3xl overflow-hidden border border-forest/5 shadow-md flex flex-col justify-between hover:shadow-xl transition-all catalog-card opacity-0 translate-y-10">
-                        <div>
-                            <div class="relative h-64 overflow-hidden">
-                                <img src="assets/pasture_raised_eggs.jpg" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-6 space-y-4">
-                                <h3 class="font-serif text-2xl font-bold text-forest">Organic Eggs</h3>
-                                <p class="text-xs text-forest/70 font-light">Daily harvested golden yolks. High protein, zero chemicals.</p>
-                                <div class="space-y-2">
-                                    <button onclick="addToCart('Eggs', '1 Dozen', 450)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>1 Dozen (12 Eggs)</span><span class="font-bold">Rs 450</span>
-                                    </button>
-                                    <button onclick="addToCart('Eggs', '3 Dozen', 1350)" class="w-full text-left p-3 rounded-xl border border-forest/10 hover:border-gold transition-all flex justify-between items-center text-xs">
-                                        <span>3 Dozen Bulk</span><span class="font-bold">Rs 1,350</span>
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-forest/5 p-6">
+                        <img src="assets/fayoumi_rooster.jpg" class="w-full h-48 object-cover rounded-2xl mb-6">
+                        <h3 class="font-serif text-2xl font-bold">Egyptian Fayoumi</h3>
+                        <div class="mt-6 space-y-3">
+                            <button onclick="openModal('Fayoumi', 'Baby Chick', 100)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Baby Chick</span><b>Rs 100</b></button>
+                            <button onclick="openModal('Fayoumi', 'Mature Hen', 2000)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Mature Hen</span><b>Rs 2,000</b></button>
+                            <button onclick="openModal('Fayoumi', 'Rooster', 2500)" class="w-full p-4 rounded-xl border border-forest/5 hover:border-gold flex justify-between text-sm"><span>Rooster</span><b>Rs 2,500</b></button>
+                            <button onclick="openModal('Fayoumi', '1 Rooster + 5 Hens', 11875)" class="w-full p-4 rounded-xl bg-gold/10 border border-gold/20 flex justify-between text-sm"><span>1 Rooster + 5 Hens (5% OFF)</span><b class="text-gold">Rs 11,875</b></button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Checkout Section -->
-        <section id="order" class="py-12 md:py-24 bg-forest relative overflow-hidden px-4">
-            <div class="max-w-4xl mx-auto relative z-10">
-                <div class="text-center mb-12 text-silk">
-                    <span class="text-xs font-bold tracking-widest uppercase text-gold">Reservation</span>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold mt-2">Complete Acquisition</h2>
-                </div>
-
-                <div class="glass-panel-dark p-8 md:p-12 rounded-3xl border border-gold/20 shadow-2xl order-form-container opacity-0">
-                    <form id="reservationForm" onsubmit="handleFormSubmit(event)" class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div class="space-y-2">
-                                <label class="text-[10px] uppercase tracking-widest text-gold/60 font-bold">Full Name</label>
-                                <input type="text" id="fullName" required placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-silk outline-none focus:border-gold transition-all">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-[10px] uppercase tracking-widest text-gold/60 font-bold">WhatsApp Number</label>
-                                <div class="relative">
-                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-silk/50 text-sm font-semibold">+92</span>
-                                    <input type="tel" id="phoneNumber" required placeholder="3115190548" pattern="[0-9]{9,10}" class="w-full bg-white/5 border border-white/10 rounded-xl pl-14 pr-4 py-3.5 text-silk outline-none focus:border-gold transition-all">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] uppercase tracking-widest text-gold/60 font-bold">Delivery Address</label>
-                            <textarea id="address" required rows="3" placeholder="Shed/House info in Islamabad" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-silk outline-none focus:border-gold transition-all"></textarea>
-                        </div>
-                        
-                        <div class="bg-forest-dark/50 p-6 rounded-2xl border border-white/5">
-                            <h4 class="text-xs uppercase font-bold tracking-widest text-gold mb-4">Cart Summary</h4>
-                            <div id="form-cart-summary" class="space-y-2 text-xs text-silk/70 mb-4">
-                                <!-- Cart list -->
-                            </div>
-                            <div class="flex justify-between items-center pt-4 border-t border-white/10">
-                                <span class="font-serif text-xl font-bold text-gold" id="final-total">Rs 0</span>
-                                <button type="submit" id="submitBtn" class="bg-gold text-forest px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-gold-light transition-all flex items-center space-x-2">
-                                    <span>Reserve via WhatsApp</span><i class="fa-solid fa-paper-plane"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        <!-- Final Checkout Area -->
+        <section id="order" class="py-12 md:py-24 bg-forest text-silk px-4">
+            <div class="max-w-4xl mx-auto glass-panel-dark p-8 md:p-12 rounded-3xl">
+                <h2 class="font-serif text-4xl text-center mb-8">Final Reservation</h2>
+                <form onsubmit="handleFinalSubmit(event)" class="space-y-6">
+                    <input type="text" id="finalName" required placeholder="Full Name" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
+                    <input type="tel" id="finalPhone" required placeholder="WhatsApp Number" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none">
+                    <div id="final-cart-summary" class="bg-black/20 p-6 rounded-xl text-sm space-y-2"></div>
+                    <div class="flex justify-between items-center py-4 border-t border-white/10">
+                        <span class="text-2xl font-bold text-gold" id="final-price">Rs 0</span>
+                        <button type="submit" class="bg-gold text-forest px-8 py-4 rounded-xl font-bold uppercase text-xs">Send Order to WhatsApp</button>
+                    </div>
+                </form>
             </div>
         </section>
 
         <!-- Trust Section -->
-        <section id="trust" class="py-12 md:py-24 bg-silk px-4 md:px-8 border-t border-forest/10">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                    <div class="lg:col-span-6 space-y-6">
-                        <span class="text-xs font-bold tracking-widest uppercase text-earth">Our Sanctuary</span>
-                        <h2 class="font-serif text-3xl font-bold text-forest">Islamabad HQ</h2>
-                        <p class="text-sm text-forest/70 leading-relaxed font-light">Pindorian Shareef, offering a serene, clean environment for our flocks. Visitation by appointment.</p>
-                        
-                        <!-- Map Placeholder -->
-                        <div class="w-full h-64 rounded-3xl bg-forest-dark relative overflow-hidden flex items-center justify-center border border-gold/10">
-                            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                            <div class="relative flex flex-col items-center">
-                                <div class="w-8 h-8 flex items-center justify-center"><div class="absolute inset-0 rounded-full bg-gold/30 pulse-ring"></div><div class="w-3 h-3 bg-gold rounded-full z-10"></div></div>
-                                <span class="text-gold text-[10px] font-bold uppercase tracking-widest mt-2">Henzo Farm Pindorian</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-6 space-y-8">
-                        <div class="bg-forest-dark p-8 rounded-3xl border border-gold/15 text-silk">
-                            <span class="font-serif text-3xl font-bold text-gold italic block">Henzo Standards</span>
-                            <p class="text-sm font-light text-silk/80 italic mt-4">"Every bird from Henzo Farm is raised as a legacy of organic poultry breeding. We do not cage, we do not force-grow."</p>
-                            <hr class="border-gold/20 my-6">
-                            <div class="flex justify-between">
-                                <div><span class="text-[9px] uppercase tracking-widest opacity-50 block">Director of Breeding</span><span class="text-xs font-serif text-gold">Maaz Mustafa Minhas</span></div>
-                                <div class="text-right"><span class="text-[9px] uppercase tracking-widest opacity-50 block">Sanctuary</span><span class="text-xs font-semibold text-green-400">Class-A Certified</span></div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="https://wa.me/923115190548" class="py-4 bg-green-600 text-white font-bold uppercase text-xs rounded-2xl flex items-center justify-center space-x-2"><i class="fa-brands fa-whatsapp text-lg"></i><span>WhatsApp Desk</span></a>
-                            <a href="tel:+923115190548" class="py-4 bg-forest text-silk font-bold uppercase text-xs rounded-2xl flex items-center justify-center space-x-2"><i class="fa-solid fa-phone text-sm"></i><span>Voice Hotline</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-16 pt-8 border-t border-forest/10 flex justify-between items-center text-[10px] opacity-40">
-                    <p>© 2026 HENZO FARM. Islamabad, Pakistan.</p>
+        <section id="trust" class="py-12 bg-silk px-4">
+            <div class="max-w-7xl mx-auto text-center">
+                <div class="bg-forest text-silk p-12 rounded-3xl">
+                    <h3 class="font-serif text-3xl text-gold italic">Maaz Mustafa Minhas</h3>
+                    <p class="text-xs uppercase tracking-widest mt-2 opacity-60">Director of Breeding</p>
+                    <p class="mt-6 italic opacity-80">"Healthy Birds, Healthy Life. We raise our birds with organic integrity."</p>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-        // Shopping Cart Logic
         let cart = [];
-        const waNumber = '923115190548';
+        let modalData = { breed: '', category: '', price: 0, qty: 1 };
 
-        function toggleCart() {
-            document.body.classList.toggle('cart-open');
-            document.getElementById('cart-overlay').classList.toggle('opacity-0');
-            document.getElementById('cart-overlay').classList.toggle('pointer-events-none');
-        }
-
-        function addToCart(breed, category, price) {
-            const existingItem = cart.find(item => item.breed === breed && item.category === category);
-            if (existingItem) {
-                existingItem.qty += 1;
-            } else {
-                cart.push({ breed, category, price, qty: 1 });
-            }
-            updateCartUI();
-            
-            // Animation Feedback
-            gsap.fromTo("#cart-count", { scale: 1.5 }, { scale: 1, duration: 0.3 });
-        }
-
-        function updateQty(index, delta) {
-            cart[index].qty += delta;
-            if (cart[index].qty < 1) cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const container = document.getElementById('cart-items');
-            const summary = document.getElementById('form-cart-summary');
-            let total = 0;
-            let count = 0;
-
-            if (cart.length === 0) {
-                container.innerHTML = `<div class="text-center py-12 opacity-40"><i class="fa-solid fa-feather-pointed text-4xl mb-4"></i><p class="text-sm italic">Your cart is empty.</p></div>`;
-                summary.innerHTML = `<p class="text-[10px] italic">No items selected.</p>`;
-            } else {
-                container.innerHTML = cart.map((item, index) => {
-                    total += (item.price * item.qty);
-                    count += item.qty;
-                    return `
-                        <div class="flex items-center justify-between p-4 bg-forest/5 rounded-xl border border-forest/5">
-                            <div>
-                                <h4 class="font-bold text-sm">${item.breed}</h4>
-                                <p class="text-[10px] text-earth uppercase tracking-widest">${item.category}</p>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="flex items-center space-x-2 bg-white rounded-lg px-2 py-1 shadow-sm">
-                                    <button onclick="updateQty(${index}, -1)" class="w-5 h-5 flex items-center justify-center hover:text-gold">-</button>
-                                    <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
-                                    <button onclick="updateQty(${index}, 1)" class="w-5 h-5 flex items-center justify-center hover:text-gold">+</button>
-                                </div>
-                                <span class="text-xs font-bold">Rs ${(item.price * item.qty).toLocaleString()}</span>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-
-                summary.innerHTML = cart.map(item => `
-                    <div class="flex justify-between">
-                        <span>${item.qty}x ${item.breed} (${item.category})</span>
-                        <span>Rs ${(item.price * item.qty).toLocaleString()}</span>
-                    </div>
-                `).join('');
-            }
-
-            document.getElementById('cart-count').innerText = count;
-            document.getElementById('cart-total').innerText = 'Rs ' + total.toLocaleString();
-            document.getElementById('final-total').innerText = 'Rs ' + total.toLocaleString();
-            document.getElementById('estValuation').innerText = 'Rs ' + total.toLocaleString();
-        }
-
-        function checkoutToForm() {
-            if(cart.length === 0) {
-                alert("Cart is empty.");
-                return;
-            }
-            toggleCart();
-            lenis.scrollTo('#order');
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            if(cart.length === 0) { alert("Please add items to your cart first."); return; }
-
-            const submitBtn = document.getElementById('submitBtn');
-            const originalContent = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<span>Processing...</span>`;
-
-            const name = document.getElementById('fullName').value;
-            const phone = '+92' + document.getElementById('phoneNumber').value;
-            const address = document.getElementById('address').value;
-            const totalVal = document.getElementById('final-total').innerText;
-
-            let cartString = cart.map(item => `${item.qty}x ${item.breed} [${item.category}]`).join(', ');
-
-            // WhatsApp formatting
-            let msg = `🌾 *HENZO FARM ORDER* 🌾\n`;
-            msg += `---------------------------------\n`;
-            msg += `*Name:* ${name}\n`;
-            msg += `*Contact:* ${phone}\n`;
-            msg += `*Address:* ${address}\n\n`;
-            msg += `*ITEMS RESERVED:*\n`;
-            cart.forEach(item => {
-                msg += `• ${item.qty}x ${item.breed} (${item.category}) - Rs ${(item.price * item.qty).toLocaleString()}\n`;
-            });
-            msg += `\n*TOTAL VALUATION:* ${totalVal}\n`;
-            msg += `---------------------------------\n`;
-            msg += `Please confirm stock and delivery methods.`;
-
-            // Google Sheets Webhook
-            const payload = { timestamp: new Date().toISOString(), name, phone, address, cart_details: cartString, total: totalVal };
-            
-            // Your Web App URL
-            const webhookUrl = 'https://script.google.com/macros/s/AKfycbx66860iR9LpX_5h4N-1a6_S_Kz_M7r9M9R9R9R/exec'; 
-
-            fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) })
-            .finally(() => {
-                window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalContent;
-            });
-        }
-
-        // GSAP Initialization
         const lenis = new Lenis();
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
 
-        gsap.registerPlugin(ScrollTrigger);
+        function toggleCart() {
+            document.body.classList.toggle('cart-open');
+            const overlay = document.getElementById('cart-overlay');
+            overlay.classList.toggle('hidden');
+            setTimeout(() => overlay.classList.toggle('opacity-100'), 10);
+        }
 
-        // Header and Hero
-        gsap.to('.hero-title', { opacity: 1, y: 0, duration: 1.2, delay: 0.2 });
-        gsap.to('.hero-subtext', { opacity: 1, y: 0, duration: 1 });
-        gsap.to('.hero-para', { opacity: 1, y: 0, duration: 1, delay: 0.4 });
+        // Modal Logic
+        function openModal(breed, category, price) {
+            modalData = { breed, category, price, qty: 1 };
+            document.getElementById('modal-title').innerText = `${breed} ${category}`;
+            document.getElementById('modal-price').innerText = `Rate: Rs ${price.toLocaleString()}`;
+            document.getElementById('modal-qty').innerText = '1';
+            document.getElementById('item-modal').style.display = 'flex';
+        }
 
-        // Scroll Reveal Animations - FIXED STARTING POINTS
-        gsap.to('.philosophy-text, .philosophy-img-container', {
-            scrollTrigger: { trigger: "#philosophy", start: "top 90%" },
-            opacity: 1, y: 0, duration: 1, stagger: 0.2
-        });
+        function closeModal() {
+            document.getElementById('item-modal').style.display = 'none';
+        }
 
-        gsap.to('.catalog-card', {
-            scrollTrigger: { trigger: "#catalog", start: "top 95%" },
-            opacity: 1, y: 0, duration: 0.8, stagger: 0.1
-        });
+        function changeModalQty(delta) {
+            modalData.qty = Math.max(1, modalData.qty + delta);
+            document.getElementById('modal-qty').innerText = modalData.qty;
+        }
 
-        gsap.to('.order-form-container', {
-            scrollTrigger: { trigger: "#order", start: "top 90%" },
-            opacity: 1, y: 0, duration: 1
-        });
+        function confirmAddToCart() {
+            const address = document.getElementById('modal-address').value;
+            cart.push({ ...modalData, address });
+            updateCartUI();
+            closeModal();
+            showToast();
+        }
 
-        // Breed Image Swapper
-        const breedImages = {
-            'Australorp': { 'Chick': 'assets/australorp_chick.jpg', 'Hen': 'assets/australorp_hen.jpg' },
-            'RIR': { 'Chick': 'assets/rir_chick.jpg', 'Hen': 'assets/rir_hen.jpg' },
-            'Fayoumi': { 'Chick': 'assets/fayoumi_chick.jpg', 'Hen': 'assets/fayoumi_hen.jpg' }
-        };
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show', 'opacity-100');
+            setTimeout(() => toast.classList.remove('show', 'opacity-100'), 3000);
+        }
 
-        function swapBreedImage(breed, cat, e) {
-            e.stopPropagation();
-            const img = document.getElementById('img-' + breed);
-            if(breedImages[breed] && breedImages[breed][cat]) {
-                gsap.to(img, { opacity: 0.2, duration: 0.2, onComplete: () => {
-                    img.src = breedImages[breed][cat];
-                    gsap.to(img, { opacity: 1, duration: 0.4 });
-                }});
-            }
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const summary = document.getElementById('final-cart-summary');
+            let total = 0;
+            let count = 0;
+
+            container.innerHTML = cart.map((item, index) => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                count += item.qty;
+                return `
+                    <div class="p-4 bg-forest/5 rounded-xl flex justify-between items-center border border-forest/5">
+                        <div>
+                            <p class="font-bold text-sm">${item.breed}</p>
+                            <p class="text-[10px] opacity-60">${item.category} x ${item.qty}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-bold">Rs ${subtotal.toLocaleString()}</p>
+                            <button onclick="removeFromCart(${index})" class="text-[9px] text-red-500 uppercase font-bold">Remove</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            summary.innerHTML = cart.map(item => `
+                <div class="flex justify-between"><span>${item.qty}x ${item.breed} (${item.category})</span><span>Rs ${(item.price * item.qty).toLocaleString()}</span></div>
+            `).join('');
+
+            document.getElementById('cart-count').innerText = count;
+            document.getElementById('cart-total').innerText = 'Rs ' + total.toLocaleString();
+            document.getElementById('final-price').innerText = 'Rs ' + total.toLocaleString();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function scrollToOrder() {
+            toggleCart();
+            lenis.scrollTo('#order');
+        }
+
+        function handleFinalSubmit(e) {
+            e.preventDefault();
+            if(cart.length === 0) return alert("Cart is empty");
+
+            const name = document.getElementById('finalName').value;
+            const phone = document.getElementById('finalPhone').value;
+            const total = document.getElementById('final-price').innerText;
+
+            let msg = `🌾 *HENZO FARM ORDER* 🌾\n-------------------\n*Customer:* ${name}\n*Contact:* +92${phone}\n\n*Items:*\n`;
+            cart.forEach(item => {
+                msg += `• ${item.qty}x ${item.breed} (${item.category}) - Rs ${(item.price * item.qty).toLocaleString()}\n`;
+                msg += `  _Address: ${item.address}_\n`;
+            });
+            msg += `\n*TOTAL:* ${total}\n-------------------\nConfirmed from Website.`;
+
+            window.open(`https://wa.me/923115190548?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
 </body>
