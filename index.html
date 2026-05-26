@@ -1,404 +1,1439 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html 
+    lang="en" 
+    class="scroll-smooth"
+>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HENZO FARM | Nature's Finest Heritage - Islamabad Sanctuary</title>
-    
     <!-- 
         ========================================================================
-        H E N Z O   F A R M   L U X U R Y   E D I T I O N
-        DIRECTOR: MAAZ MUSTAFA MINHAS
-        LOCATION: ISLAMABAD, PAKISTAN
+        H E N Z O   F A R M   |   T H E   C I N E M A T I C   E D I T I O N
+        ========================================================================
+        AUTHOR:         Maaz Mustafa Minhas
+        PROJECT:        Henzo Farm Web Acquisition Interface
+        LOCATION:       Islamabad, Pakistan
+        VERSION:        5.0.0
+        BUILD:          Luxury / High-Performance
+        COMPATIBILITY:  Mobile / Desktop / 4K
+        
+        DESCRIPTION:
+        This source code represents the complete front-end architecture 
+        for Henzo Farm. It includes advanced state management for the 
+        shopping cart, dynamic image swapping for breed categories, 
+        and high-speed smooth scrolling via the Lenis engine.
         ========================================================================
     -->
 
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta 
+        name="viewport" 
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta 
+        http-equiv="X-UA-Compatible" 
+        content="ie=edge"
+    >
     
-    <!-- Scripts -->
+    <title>HENZO FARM | Nature's Finest Heritage - Organic Poultry Islamabad</title>
+    
+    <meta 
+        name="description" 
+        content="Experience organic luxury with Henzo Farm. Premium heritage breeds including Australorp and RIR. Cultivated in Islamabad. Healthy Birds, Healthy Life."
+    >
+
+    <!-- 
+        STYLING RESOURCES 
+    -->
+    <link 
+        rel="preconnect" 
+        href="https://fonts.googleapis.com"
+    >
+    <link 
+        rel="preconnect" 
+        href="https://fonts.gstatic.com" 
+        crossorigin
+    >
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" 
+        rel="stylesheet"
+    >
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+    
+    <!-- 
+        ENGINE CORE 
+    -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
+    <!-- 
+        TAILWIND CONFIGURATION 
+    -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        forest: { DEFAULT: '#1B3022', light: '#2d4d38', dark: '#0f1c14' },
-                        silk: { DEFAULT: '#FDFCF8', dark: '#F5F3E9' },
-                        gold: { DEFAULT: '#D4AF37', light: '#e2c562', dark: '#b59226' },
-                        earth: { DEFAULT: '#7B3F00', light: '#9E550B', dark: '#582D00' }
+                        forest: {
+                            DEFAULT: '#1B3022',
+                            light: '#2d4d38',
+                            dark: '#0f1c14',
+                        },
+                        silk: {
+                            DEFAULT: '#FDFCF8',
+                            dark: '#F5F3E9',
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#e2c562',
+                            dark: '#b59226',
+                        },
+                        earth: {
+                            DEFAULT: '#7B3F00',
+                            light: '#9E550B',
+                            dark: '#582D00',
+                        }
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                        '144': '36rem',
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '3rem',
                     }
                 }
             }
         }
     </script>
 
+    <!-- 
+        EXTENDED CSS OVERRIDES 
+    -->
     <style>
-        /* 
-           CUSTOM PREMIUM STYLING 
-           Detailed CSS for Glassmorphism, Animations, and Typography
-        */
-        html { scroll-behavior: auto; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #FDFCF8; }
-        ::-webkit-scrollbar-thumb { background: #1B3022; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+        /* BASE RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .text-gold-gradient { background: linear-gradient(135deg, #F0D47A 0%, #D4AF37 50%, #B89220 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-panel { background: rgba(253, 252, 248, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(27, 48, 34, 0.08); }
-        .glass-panel-dark { background: rgba(15, 28, 20, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.15); }
+        html {
+            scroll-behavior: auto; /* Managed by Lenis */
+        }
 
-        .cart-sidebar { transform: translateX(100%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .cart-open .cart-sidebar { transform: translateX(0); }
+        body {
+            background-color: #FDFCF8;
+            color: #1B3022;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-        #breed-modal { display: none; opacity: 0; transition: opacity 0.4s ease; }
-        .modal-active #breed-modal { display: flex; opacity: 1; }
+        /* CUSTOM SCROLLBAR DESIGN */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-        @keyframes pulse-gold { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(2.4); opacity: 0; } }
-        .pulse-ring { animation: pulse-gold 2s cubic-bezier(0.24, 0, 0.38, 1) infinite; }
+        ::-webkit-scrollbar-track {
+            background: #FDFCF8;
+        }
 
-        .toast-notify { transform: translateY(100px); opacity: 0; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .toast-notify.active { transform: translateY(0); opacity: 1; }
+        ::-webkit-scrollbar-thumb {
+            background: #1B3022;
+            border-radius: 20px;
+        }
 
-        .noise-overlay { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E"); }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+
+        /* PREMIUM GRADIENT TEXT */
+        .text-gold-gradient {
+            background: linear-gradient(
+                135deg, 
+                #F0D47A 0%, 
+                #D4AF37 50%, 
+                #B89220 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* GLASSMORPHISM UI */
+        .glass-panel {
+            background: rgba(253, 252, 248, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(27, 48, 34, 0.05);
+        }
+
+        .glass-panel-dark {
+            background: rgba(15, 28, 20, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        /* CART SIDEBAR ANIMATION */
+        .cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cart-open .cart-sidebar {
+            transform: translateX(0);
+        }
+
+        /* MODAL ANIMATION SYSTEM */
+        #breed-modal {
+            display: none;
+            opacity: 0;
+            z-index: 1000;
+        }
+
+        .modal-active #breed-modal {
+            display: flex;
+        }
+
+        /* TOAST NOTIFICATIONS */
+        .toast-engine {
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .toast-engine.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* NOISE GRAIN EFFECT */
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* CUSTOM CLIP PATHS */
+        .premium-mask {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+        }
+
+        /* HOVER INTERACTIONS */
+        .hover-lift {
+            transition: transform 0.4s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+
+        /* MAP PULSE RING */
+        @keyframes pulse-gold {
+            0% {
+                transform: scale(0.95);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        .pulse-ring {
+            animation: pulse-gold 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+        }
+
+        /* SLOW ZOOM BG */
+        .hero-bg-zoom {
+            animation: ken-burns 20s infinite alternate;
+        }
+        @keyframes ken-burns {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
     </style>
 </head>
 
-<body class="bg-silk text-forest font-sans overflow-x-hidden relative selection:bg-forest selection:text-gold">
+<body class="selection:bg-forest selection:text-gold">
     
-    <div class="fixed inset-0 pointer-events-none z-50 noise-overlay"></div>
+    <div class="noise-overlay"></div>
 
-    <!-- Toast Notification -->
-    <div id="cart-toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] bg-forest text-silk px-8 py-4 rounded-full shadow-2xl flex items-center space-x-4 toast-notify">
-        <div class="w-6 h-6 bg-gold rounded-full flex items-center justify-center text-forest"><i class="fa-solid fa-check text-xs"></i></div>
-        <span id="toast-text" class="text-[10px] font-bold uppercase tracking-[0.2em]">Item Added to Collection</span>
+    <!-- 
+        TOAST NOTIFICATION COMPONENT
+    -->
+    <div 
+        id="cart-toast" 
+        class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100] bg-forest text-silk px-10 py-5 rounded-full shadow-2xl flex items-center space-x-5 toast-engine"
+    >
+        <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center text-forest shadow-inner">
+            <i class="fa-solid fa-check text-sm"></i>
+        </div>
+        <div class="flex flex-col">
+            <span id="toast-text" class="text-[11px] font-extrabold uppercase tracking-[0.3em]">Selection Registered</span>
+            <span class="text-[9px] opacity-50 uppercase tracking-widest">Added to Acquisition Cart</span>
+        </div>
     </div>
 
-    <!-- Floating Header -->
-    <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 px-4 py-4 md:px-8">
-        <div class="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-sm border border-forest/5">
-            <a href="#" class="flex items-center space-x-3 group">
-                <img src="assets/logo.png" class="h-10 w-auto rounded-full bg-white p-0.5 group-hover:scale-110 transition-transform">
-                <span class="font-serif text-xl md:text-2xl font-bold tracking-widest text-forest">HENZO <span class="text-gold font-light">FARM</span></span>
+    <!-- 
+        MODAL SYSTEM: BREED HERITAGE EXPLORATION 
+    -->
+    <div 
+        id="breed-modal" 
+        class="fixed inset-0 z-[110] flex items-center justify-center p-4"
+    >
+        <!-- Backdrop -->
+        <div 
+            class="absolute inset-0 bg-forest-dark/95 backdrop-blur-3xl" 
+            onclick="closeBreedModal()"
+        ></div>
+        
+        <!-- Content Container -->
+        <div 
+            class="relative bg-silk w-full max-w-6xl max-h-[92vh] rounded-[3.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row translate-y-12 transition-all duration-700 ease-out"
+            id="modal-card"
+        >
+            <!-- Media Panel -->
+            <div class="md:w-1/2 h-80 md:h-auto relative bg-forest">
+                <img 
+                    id="modal-display-img" 
+                    src="" 
+                    class="w-full h-full object-cover transition-all duration-700"
+                    alt="Heritage Selection"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/95 via-forest-dark/20 to-transparent"></div>
+                <div class="absolute bottom-12 left-12 text-silk">
+                    <h3 
+                        id="modal-breed-title" 
+                        class="font-serif text-5xl md:text-7xl font-bold mb-4"
+                    >
+                        Breed
+                    </h3>
+                    <div class="flex items-center space-x-4">
+                        <span class="w-12 h-[2px] bg-gold rounded-full"></span>
+                        <span class="text-gold text-[11px] uppercase tracking-[0.5em] font-extrabold">
+                            Henzo Heritage Registry
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Panel -->
+            <div class="md:w-1/2 p-10 md:p-20 overflow-y-auto bg-silk flex flex-col border-l border-forest/5">
+                <button 
+                    onclick="closeBreedModal()" 
+                    class="absolute top-10 right-10 text-forest/20 hover:text-gold transition-all duration-300"
+                >
+                    <i class="fa-solid fa-circle-xmark text-4xl"></i>
+                </button>
+                
+                <!-- Information -->
+                <div class="mb-14">
+                    <h4 class="text-[11px] uppercase tracking-[0.4em] font-black text-earth mb-8 border-b border-forest/5 pb-4 flex items-center">
+                        <i class="fa-solid fa-scroll mr-3"></i>
+                        The Heritage Intelligence
+                    </h4>
+                    <p 
+                        id="modal-breed-desc" 
+                        class="text-sm md:text-lg text-forest/70 leading-relaxed italic mb-10 font-serif"
+                    ></p>
+                    <div 
+                        id="modal-breed-perks" 
+                        class="grid grid-cols-1 gap-5"
+                    >
+                        <!-- Perks dynamically injected -->
+                    </div>
+                </div>
+
+                <!-- Acquisition Flow -->
+                <div class="mt-auto space-y-10">
+                    <h4 class="text-[11px] uppercase tracking-[0.4em] font-black text-gold mb-4">
+                        Acquisition Class
+                    </h4>
+                    
+                    <div 
+                        id="modal-price-options" 
+                        class="grid grid-cols-1 gap-3"
+                    >
+                        <!-- Rate buttons dynamically injected -->
+                    </div>
+                    
+                    <!-- Global Calculator -->
+                    <div class="bg-forest-dark p-10 rounded-[2.5rem] flex flex-col sm:flex-row items-center justify-between gap-8 border border-gold/10 shadow-2xl">
+                        <div class="flex items-center space-x-8">
+                            <div class="flex flex-col">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-silk/40 mb-3">Quantity</span>
+                                <div class="flex items-center space-x-6">
+                                    <button 
+                                        onclick="adjustModalCount(-1)" 
+                                        class="w-12 h-12 rounded-full border border-silk/10 text-silk hover:bg-gold hover:text-forest hover:border-gold transition-all font-bold text-2xl"
+                                    >
+                                        <i class="fa-solid fa-minus text-sm"></i>
+                                    </button>
+                                    <span 
+                                        id="modal-current-qty" 
+                                        class="text-3xl font-serif font-bold w-8 text-center text-gold"
+                                    >
+                                        1
+                                    </span>
+                                    <button 
+                                        onclick="adjustModalCount(1)" 
+                                        class="w-12 h-12 rounded-full border border-silk/10 text-silk hover:bg-gold hover:text-forest hover:border-gold transition-all font-bold text-2xl"
+                                    >
+                                        <i class="fa-solid fa-plus text-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right flex flex-col">
+                            <span class="text-[10px] uppercase tracking-widest text-gold/40 mb-2">Estimated Valuation</span>
+                            <span 
+                                id="modal-calculated-total" 
+                                class="text-4xl font-bold text-gold font-serif"
+                            >
+                                Rs 0
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Final Modal CTA -->
+                    <button 
+                        id="modal-action-btn" 
+                        class="w-full py-7 bg-gold text-forest rounded-3xl font-black uppercase tracking-[0.3em] text-[11px] hover:bg-gold-light shadow-2xl transition-all hover:scale-[1.02] active:scale-95"
+                    >
+                        Register Selection to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+        HEADER INTERFACE 
+    -->
+    <header class="fixed top-0 left-0 right-0 z-[90] transition-all duration-700 px-4 py-4 md:px-10">
+        <div class="max-w-[1400px] mx-auto glass-panel rounded-full px-8 py-4 flex items-center justify-between shadow-2xl border border-forest/5">
+            
+            <!-- Branding -->
+            <a 
+                href="#" 
+                class="flex items-center space-x-4 group"
+            >
+                <img 
+                    src="assets/logo.png" 
+                    class="h-10 md:h-12 w-auto rounded-full bg-white p-0.5 border border-forest/5 shadow-md group-hover:scale-110 transition-transform duration-500"
+                    alt="Henzo Farm Logo"
+                >
+                <span class="font-serif text-xl md:text-2xl font-bold tracking-widest text-forest">
+                    HENZO <span class="text-gold font-light">FARM</span>
+                </span>
             </a>
-            <nav class="hidden lg:flex items-center space-x-10 text-[10px] font-bold tracking-[0.2em] uppercase">
-                <a href="#philosophy" class="hover:text-gold">Our Heritage</a>
-                <a href="#catalog" class="hover:text-gold">Registry</a>
-                <a href="#experience" class="hover:text-gold">Experience</a>
-                <a href="#order" class="hover:text-gold">Reservation</a>
-                <a href="#trust" class="hover:text-gold">Contact</a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden xl:flex items-center space-x-12 text-[10px] font-black tracking-[0.3em] uppercase opacity-70">
+                <a href="#philosophy" class="hover:text-gold transition-colors">Our Heritage</a>
+                <a href="#catalog" class="hover:text-gold transition-colors">The Registry</a>
+                <a href="#experience" class="hover:text-gold transition-colors">Cinematic Experience</a>
+                <a href="#order" class="hover:text-gold transition-colors">Reservation</a>
+                <a href="#trust" class="hover:text-gold transition-colors">The Director</a>
             </nav>
-            <button onclick="toggleCartSidebar()" class="relative p-2 text-forest hover:text-gold">
-                <i class="fa-solid fa-basket-shopping text-xl"></i>
-                <span id="cart-counter" class="absolute -top-1 -right-1 bg-gold text-forest text-[9px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg">0</span>
-            </button>
+
+            <!-- Interaction Menu -->
+            <div class="flex items-center space-x-6">
+                <button 
+                    onclick="toggleCartSidebar()" 
+                    class="relative p-3 text-forest hover:text-gold transition-all duration-300 active:scale-90"
+                >
+                    <i class="fa-solid fa-basket-shopping text-2xl"></i>
+                    <span 
+                        id="cart-counter" 
+                        class="absolute top-1 right-1 bg-gold text-forest text-[10px] font-bold w-6 h-6 flex items-center justify-center rounded-full shadow-lg border-2 border-silk"
+                    >
+                        0
+                    </span>
+                </button>
+                <a 
+                    href="#order" 
+                    class="hidden sm:flex items-center px-8 py-3.5 bg-forest text-silk text-[10px] font-bold uppercase tracking-[0.2em] rounded-full hover:bg-forest-light transition-all shadow-md active:scale-95"
+                >
+                    Acquire
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Sidebar Cart -->
-    <div id="sidebar-overlay" onclick="toggleCartSidebar()" class="fixed inset-0 bg-forest/40 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity"></div>
-    <aside class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-md bg-silk shadow-2xl z-[70] p-10 flex flex-col border-l border-forest/5">
-        <div class="flex justify-between items-center mb-10">
-            <h2 class="font-serif text-3xl font-bold text-forest">Acquisition Cart</h2>
-            <button onclick="toggleCartSidebar()"><i class="fa-solid fa-xmark text-2xl"></i></button>
-        </div>
-        <div id="sidebar-cart-list" class="flex-grow overflow-y-auto space-y-5 pr-2">
-            <!-- Items injected here via JS -->
-        </div>
-        <div class="border-t border-forest/10 pt-8 mt-8 space-y-5">
-            <div class="flex justify-between items-center font-bold">
-                <span class="uppercase tracking-widest text-[10px] opacity-60">Total Estimated Valuation</span>
-                <span id="sidebar-cart-total" class="text-2xl text-gold font-serif">Rs 0</span>
+    <!-- 
+        SIDEBAR CART ARCHITECTURE 
+    -->
+    <div 
+        id="sidebar-overlay" 
+        onclick="toggleCartSidebar()" 
+        class="fixed inset-0 bg-forest-dark/40 backdrop-blur-sm z-[100] hidden opacity-0 transition-opacity duration-500"
+    ></div>
+    <aside class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-[450px] bg-silk shadow-[0_0_80px_rgba(0,0,0,0.2)] z-[110] p-10 flex flex-col border-l border-forest/5">
+        
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <div class="flex flex-col">
+                <h2 class="font-serif text-4xl font-bold text-forest leading-none">Your Selection</h2>
+                <span class="text-[10px] uppercase tracking-widest text-gold font-bold mt-2">Islamabad Sanctuary Cart</span>
             </div>
-            <button onclick="jumpToCheckout()" class="w-full py-5 bg-forest text-silk font-bold uppercase tracking-[0.2em] text-[10px] rounded-2xl shadow-xl hover:bg-forest-light">Proceed to Reservation</button>
+            <button 
+                onclick="toggleCartSidebar()" 
+                class="text-forest hover:rotate-90 transition-transform duration-500"
+            >
+                <i class="fa-solid fa-xmark text-3xl"></i>
+            </button>
+        </div>
+        
+        <!-- Dynamic Item List -->
+        <div 
+            id="sidebar-cart-list" 
+            class="flex-grow overflow-y-auto space-y-6 pr-4 custom-scrollbar"
+        >
+            <div class="text-center py-32 opacity-20 italic text-sm">
+                Your heritage selection is empty.
+            </div>
+        </div>
+
+        <!-- Checkout Summary Panel -->
+        <div class="border-t border-forest/10 pt-10 mt-10 space-y-6">
+            <div class="flex justify-between items-end">
+                <div class="flex flex-col">
+                    <span class="uppercase tracking-widest text-[9px] font-black opacity-40 mb-1">Estimated Grand Total</span>
+                    <span class="text-[10px] italic opacity-40">Inclusive of breeding certificate</span>
+                </div>
+                <span 
+                    id="sidebar-cart-total" 
+                    class="text-4xl text-gold font-serif font-bold"
+                >
+                    Rs 0
+                </span>
+            </div>
+            <button 
+                onclick="jumpToCheckout()" 
+                class="w-full py-6 bg-forest text-silk font-black uppercase tracking-[0.3em] text-[11px] rounded-3xl shadow-2xl hover:bg-forest-light transition-all active:scale-[0.98]"
+            >
+                Proceed to Reservation Desk
+            </button>
         </div>
     </aside>
 
-    <!-- Breed Interactive Modal -->
-    <div id="breed-modal" class="fixed inset-0 z-[80] flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-forest-dark/95 backdrop-blur-2xl" onclick="closeBreedModal()"></div>
-        <div class="relative bg-silk w-full max-w-5xl max-h-[95vh] rounded-[3rem] overflow-hidden shadow-2xl flex flex-col md:flex-row translate-y-10 transition-transform duration-500">
-            <div class="md:w-1/2 h-80 md:h-auto relative">
-                <img id="modal-display-img" src="" class="w-full h-full object-cover transition-opacity duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/90 via-transparent to-transparent"></div>
-                <div class="absolute bottom-10 left-10 text-silk">
-                    <h3 id="modal-breed-title" class="font-serif text-4xl md:text-6xl font-bold mb-3">Breed Name</h3>
-                    <span id="modal-breed-tag" class="text-gold text-[10px] uppercase tracking-[0.4em] font-bold">Heritage Selection</span>
-                </div>
-            </div>
-            <div class="md:w-1/2 p-10 md:p-16 overflow-y-auto bg-silk flex flex-col">
-                <button onclick="closeBreedModal()" class="absolute top-10 right-10 text-forest/20 hover:text-gold transition-colors"><i class="fa-solid fa-circle-xmark text-3xl"></i></button>
-                <div class="mb-12">
-                    <h4 class="text-[10px] uppercase tracking-[0.3em] font-extrabold text-earth mb-6 border-b border-forest/5 pb-3">The Heritage Intelligence</h4>
-                    <p id="modal-breed-desc" class="text-sm md:text-base text-forest/70 leading-relaxed italic mb-8 font-serif"></p>
-                </div>
-                <div class="mt-auto space-y-8">
-                    <h4 class="text-[10px] uppercase tracking-[0.3em] font-extrabold text-gold mb-4">Select Category</h4>
-                    <div id="modal-price-options" class="grid grid-cols-1 gap-3"></div>
-                    <div class="bg-forest/5 p-8 rounded-[2rem] flex flex-col sm:flex-row items-center justify-between gap-6">
-                        <div class="flex items-center space-x-8">
-                            <span class="text-[10px] font-bold uppercase tracking-widest opacity-40">Qty</span>
-                            <div class="flex items-center space-x-6">
-                                <button onclick="adjustModalCount(-1)" class="w-12 h-12 rounded-full border border-forest/10 hover:bg-gold">-</button>
-                                <span id="modal-current-qty" class="text-2xl font-bold w-8 text-center">1</span>
-                                <button onclick="adjustModalCount(1)" class="w-12 h-12 rounded-full border border-forest/10 hover:bg-gold">+</button>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <span id="modal-calculated-total" class="text-3xl font-bold text-gold font-serif">Rs 0</span>
-                        </div>
-                    </div>
-                    <button id="modal-action-btn" class="w-full py-6 bg-forest text-silk rounded-2xl font-bold uppercase tracking-[0.25em] text-[10px] hover:bg-forest-light shadow-2xl">Add Selection to Cart</button>
-                </div>
-            </div>
-        </div>
+    <!-- 
+        MOBILE NAVIGATION (BOTTOM BAR) 
+    -->
+    <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-sm glass-panel rounded-[2rem] shadow-2xl z-[80] px-8 py-4 flex justify-between items-center border border-forest/10">
+        <a href="#hero" class="flex flex-col items-center text-forest active:scale-90 transition-transform">
+            <i class="fa-solid fa-house text-lg"></i>
+            <span class="text-[10px] uppercase tracking-widest mt-1.5 font-bold">Home</span>
+        </a>
+        <a href="#catalog" class="flex flex-col items-center text-forest active:scale-90 transition-transform">
+            <i class="fa-solid fa-award text-lg"></i>
+            <span class="text-[10px] uppercase tracking-widest mt-1.5 font-bold">Registry</span>
+        </a>
+        <button onclick="toggleCartSidebar()" class="flex flex-col items-center text-gold active:scale-90 transition-transform">
+            <i class="fa-solid fa-basket-shopping text-lg"></i>
+            <span class="text-[10px] uppercase tracking-widest mt-1.5 font-bold">Cart</span>
+        </button>
+        <a href="#order" class="flex flex-col items-center text-forest active:scale-90 transition-transform">
+            <i class="fa-solid fa-pen-nib text-lg"></i>
+            <span class="text-[10px] uppercase tracking-widest mt-1.5 font-bold">Desk</span>
+        </a>
     </div>
 
+    <!-- 
+        MAIN CINEMATIC SECTIONS 
+    -->
     <main>
-        <!-- Cinematic Hero -->
-        <section id="hero" class="relative min-h-screen flex items-center justify-center bg-forest-dark overflow-hidden">
-            <div class="absolute inset-0 opacity-60 scale-110"><img src="assets/hero_chickens.png" class="w-full h-full object-cover"></div>
-            <div class="relative z-10 text-center px-4 flex flex-col items-center">
-                <img src="assets/logo.png" class="h-28 w-auto rounded-full bg-white p-1 mb-10 shadow-2xl border-2 border-gold/40">
-                <span class="text-gold text-xs font-bold tracking-[0.5em] uppercase">Islamabad's Premier Organic Sanctuary</span>
-                <h1 class="font-serif text-5xl md:text-9xl text-silk font-bold mt-4 leading-none">HENZO FARM</h1>
-                <p class="text-silk/60 font-serif italic text-lg mt-6">"Healthy Birds. Healthy Life."</p>
-                <a href="#catalog" class="mt-12 px-12 py-5 bg-gold text-forest font-bold uppercase tracking-[0.3em] text-[11px] rounded-full hover:scale-105 transition-all shadow-2xl">Explore Registry</a>
+        
+        <!-- HERO: THE FIRST IMPRESSION -->
+        <section 
+            id="hero" 
+            class="relative min-h-screen flex items-center justify-center overflow-hidden bg-forest-dark"
+        >
+            <!-- Background Engine -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <img 
+                    src="assets/hero_chickens.png" 
+                    alt="Henzo Heritage" 
+                    class="w-full h-full object-cover opacity-50 hero-bg-zoom"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-silk via-forest-dark/40 to-forest-dark/95"></div>
+            </div>
+            
+            <!-- Content Center -->
+            <div class="relative z-10 text-center px-6 max-w-[1200px] mx-auto flex flex-col items-center">
+                <div class="hero-stagger opacity-0 translate-y-20">
+                    <img 
+                        src="assets/logo.png" 
+                        class="h-28 md:h-36 w-auto rounded-full border-2 border-gold/40 shadow-[0_0_50px_rgba(212,175,55,0.2)] bg-white p-1.5 mb-12"
+                        alt="Directorate Mark"
+                    >
+                    <span class="text-[11px] md:text-sm font-black tracking-[0.6em] uppercase text-gold-gradient mb-6 block">
+                        Islamabad • Pakistan's Premier Organic Sanctuary
+                    </span>
+                </div>
+                
+                <h1 class="hero-stagger opacity-0 translate-y-20 font-serif text-6xl md:text-[10rem] lg:text-[12rem] text-silk font-bold tracking-tighter leading-none mb-10">
+                    Nature's Finest <br>
+                    <span class="italic font-normal text-gold-gradient tracking-normal">Heritage</span>
+                </h1>
+                
+                <p class="hero-stagger opacity-0 translate-y-20 text-base md:text-2xl font-light tracking-wide text-silk/80 max-w-3xl mx-auto mb-16 leading-relaxed font-serif italic">
+                    "Healthy Birds. Healthy Life." — Pure-bred heritage lineages cultivated in absolute freedom within the Pindorian Foothills.
+                </p>
+                
+                <div class="hero-stagger opacity-0 translate-y-20 flex flex-col sm:flex-row gap-6">
+                    <a 
+                        href="#catalog" 
+                        class="px-14 py-5 bg-gold hover:bg-gold-light text-forest font-black uppercase tracking-[0.3em] text-[11px] rounded-full transition-all hover:scale-105 shadow-2xl active:scale-95"
+                    >
+                        Explore Breed Registry
+                    </a>
+                    <a 
+                        href="#philosophy" 
+                        class="px-14 py-5 bg-transparent border border-silk/20 hover:border-silk text-silk font-black uppercase tracking-[0.3em] text-[11px] rounded-full transition-all active:scale-95"
+                    >
+                        Our Philosophy
+                    </a>
+                </div>
+            </div>
+
+            <!-- Fast Scroll Indicator -->
+            <div 
+                class="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 opacity-40 animate-bounce cursor-pointer" 
+                onclick="lenis.scrollTo('#philosophy')"
+            >
+                <i class="fa-solid fa-chevron-down text-silk text-2xl"></i>
             </div>
         </section>
 
-        <!-- Registry Selection (Australorp & RIR Only) -->
-        <section id="catalog" class="py-24 md:py-40 bg-silk px-4 md:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-24 space-y-5">
-                    <span class="text-xs font-bold tracking-[0.4em] uppercase text-earth">Breed Registry</span>
-                    <h2 class="font-serif text-4xl md:text-7xl font-bold text-forest leading-tight">The Heritage Selection</h2>
-                    <p class="text-sm md:text-base text-forest/40 font-light italic">Click on a breed to discover its heritage and acquire options.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
-                    <!-- Australorp Card -->
-                    <div onclick="launchBreedProfile('Australorp')" class="group cursor-pointer bg-white rounded-[4rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-700 reveal-card opacity-0 translate-y-10">
-                        <div class="relative h-[500px] rounded-[3rem] overflow-hidden mb-10">
-                            <img src="assets/australorp_hen.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                            <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/90 via-transparent to-transparent"></div>
-                            <div class="absolute bottom-10 left-10 text-white">
-                                <h3 class="font-serif text-4xl font-bold">Black Australorp</h3>
-                                <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-gold mt-3">The World-Record Layer</p>
+        <!-- PHILOSOPHY: THE SANCTUARY VISION -->
+        <section 
+            id="philosophy" 
+            class="py-32 md:py-56 bg-silk px-6 md:px-12 relative overflow-hidden"
+        >
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-32 items-center">
+                    
+                    <!-- Text Content -->
+                    <div class="lg:col-span-7 space-y-12 reveal-up opacity-0">
+                        <div class="space-y-6">
+                            <span class="text-[11px] font-black tracking-[0.4em] uppercase text-gold">The Henzo Philosophy</span>
+                            <h2 class="font-serif text-5xl md:text-[5.5rem] font-bold tracking-tight text-forest leading-[1.1]">
+                                Farm-to-Table Integrity, Cultivated in Pindorian.
+                            </h2>
+                        </div>
+                        
+                        <p class="text-lg md:text-2xl text-forest/70 leading-relaxed font-light font-serif">
+                            At Henzo Farm, we reject industrialized shortcuts. We believe that true premium quality is a byproduct of harmony with nature. Our heritage breeds roam freely on lush clover fields in the pristine Pindorian foothills, foraging under a setting designed to replicate their ancestral habits.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 pt-10">
+                            <div class="flex items-start space-x-6 group">
+                                <div class="w-16 h-16 rounded-[1.5rem] bg-forest/5 flex items-center justify-center text-gold border border-gold/10 shrink-0 group-hover:bg-forest group-hover:text-silk transition-all duration-500">
+                                    <i class="fa-solid fa-leaf text-2xl"></i>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="font-serif text-xl font-bold">100% Organic Feed</h4>
+                                    <p class="text-[13px] text-forest/50 leading-relaxed">Zero hormone grains enriched with organic farm-grown greens for peak bird health.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-6 group">
+                                <div class="w-16 h-16 rounded-[1.5rem] bg-forest/5 flex items-center justify-center text-gold border border-gold/10 shrink-0 group-hover:bg-forest group-hover:text-silk transition-all duration-500">
+                                    <i class="fa-solid fa-cloud-sun text-2xl"></i>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="font-serif text-xl font-bold">Free Range Pastures</h4>
+                                    <p class="text-[13px] text-forest/50 leading-relaxed">Our birds spend their daylight hours in open pastures under the clean Islamabad sun.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="px-5 flex justify-between items-center text-xs font-bold uppercase tracking-widest opacity-40"><span>View Profile</span><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
-                    <!-- RIR Card -->
-                    <div onclick="launchBreedProfile('RIR')" class="group cursor-pointer bg-white rounded-[4rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-700 reveal-card opacity-0 translate-y-10">
-                        <div class="relative h-[500px] rounded-[3rem] overflow-hidden mb-10">
-                            <img src="assets/rir_rooster.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                            <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/90 via-transparent to-transparent"></div>
-                            <div class="absolute bottom-10 left-10 text-white">
-                                <h3 class="font-serif text-4xl font-bold">Rhode Island Red</h3>
-                                <p class="text-[10px] uppercase tracking-[0.4em] font-bold text-gold mt-3">The Resilient Classic</p>
-                            </div>
+
+                    <!-- Visual Imagery -->
+                    <div class="lg:col-span-5 relative reveal-up opacity-0" style="transition-delay: 0.3s;">
+                        <div class="aspect-[4/5] rounded-[5rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.15)] relative group">
+                            <img 
+                                src="assets/farm_pasture.png" 
+                                class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                                alt="Sanctuary Grounds"
+                            >
+                            <div class="absolute inset-0 border-[25px] border-silk/10 rounded-[5rem]"></div>
                         </div>
-                        <div class="px-5 flex justify-between items-center text-xs font-bold uppercase tracking-widest opacity-40"><span>View Profile</span><i class="fa-solid fa-arrow-right"></i></div>
+                        
+                        <!-- Mini Brand Badge -->
+                        <div class="absolute -bottom-16 -left-16 glass-panel p-12 rounded-[4rem] shadow-2xl border border-forest/10 max-w-[320px] hidden lg:block hover-lift">
+                            <span class="font-serif text-6xl font-extrabold text-gold block leading-none mb-4">100%</span>
+                            <span class="text-[12px] font-black uppercase tracking-[0.3em] text-forest/80 block leading-tight">
+                                Islamabad Heritage <br> Certified Organic
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final Order & Webhook Area -->
-        <section id="order" class="py-24 md:py-40 bg-forest relative px-4 md:px-8 text-silk">
-            <div class="max-w-4xl mx-auto glass-panel-dark p-10 md:p-20 rounded-[4rem] border border-gold/20 shadow-2xl relative z-10 reveal-order opacity-0 translate-y-10">
-                <h2 class="font-serif text-4xl md:text-6xl text-center mb-16">Complete Reservation</h2>
-                <form onsubmit="executeFinalReservation(event)" class="space-y-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-bold uppercase tracking-widest opacity-40">Customer Name</label>
-                            <input type="text" id="order-name" required placeholder="Ex: Maaz Minhas" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-silk outline-none focus:border-gold transition-all">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-bold uppercase tracking-widest opacity-40">WhatsApp Number</label>
-                            <div class="relative">
-                                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-silk/40 font-bold">+92</span>
-                                <input type="tel" id="order-phone" required placeholder="3115190548" class="w-full bg-white/5 border border-white/10 rounded-2xl pl-16 pr-6 py-5 text-silk outline-none focus:border-gold transition-all">
+        <!-- CATALOG: THE GENETIC SELECTION -->
+        <section 
+            id="catalog" 
+            class="py-32 md:py-56 bg-silk-dark px-6 md:px-12 overflow-hidden"
+        >
+            <div class="max-w-[1400px] mx-auto">
+                <div class="text-center max-w-4xl mx-auto mb-32 space-y-6">
+                    <span class="text-[11px] font-black tracking-[0.5em] uppercase text-earth">Breed Registry</span>
+                    <h2 class="font-serif text-5xl md:text-[7rem] font-bold tracking-tighter text-forest leading-none">
+                        Heritage Selection
+                    </h2>
+                    <p class="text-base md:text-xl text-forest/40 font-light italic font-serif">
+                        "Explore the profiles of our royal bloodlines. Click to unlock history and pricing."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                    
+                    <!-- AUSTRALORP PROFILE -->
+                    <div 
+                        onclick="launchBreedProfile('Australorp')" 
+                        class="group cursor-pointer bg-white rounded-[5rem] p-8 shadow-sm hover:shadow-[0_80px_150px_rgba(0,0,0,0.1)] transition-all duration-1000 reveal-up opacity-0"
+                    >
+                        <div class="relative h-[650px] rounded-[4rem] overflow-hidden mb-12">
+                            <img 
+                                src="assets/australorp_hen.jpg" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2.5s]"
+                                alt="Australorp"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/95 via-forest-dark/20 to-transparent opacity-80 transition-opacity group-hover:opacity-100"></div>
+                            
+                            <div class="absolute bottom-12 left-12 text-white">
+                                <h3 class="font-serif text-5xl font-bold mb-4">Black Australorp</h3>
+                                <p class="text-[11px] uppercase tracking-[0.4em] font-black text-gold">The Record-Breaking Layer</p>
+                            </div>
+                            
+                            <div class="absolute top-10 right-10 w-20 h-20 rounded-full bg-silk/10 backdrop-blur-xl flex items-center justify-center text-silk group-hover:bg-gold group-hover:text-forest transition-all duration-700 shadow-2xl">
+                                <i class="fa-solid fa-plus text-2xl"></i>
                             </div>
                         </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold uppercase tracking-widest opacity-40">Delivery Address</label>
-                        <textarea id="order-address" required rows="3" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 text-silk outline-none focus:border-gold transition-all">Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</textarea>
-                    </div>
-                    <div class="bg-forest-dark/80 p-10 rounded-[3rem] border border-white/10">
-                        <div id="reservation-cart-details" class="space-y-4 text-xs md:text-sm text-silk/70 mb-10 italic">No heritage selected.</div>
-                        <div class="flex flex-col lg:flex-row justify-between items-center gap-8 pt-10 border-t border-white/10">
-                            <div class="text-center lg:text-left">
-                                <span class="text-[10px] uppercase tracking-widest opacity-40 block mb-2">Final Estimated Valuation</span>
-                                <span class="font-serif text-4xl md:text-5xl font-bold text-gold" id="reservation-final-total">Rs 0</span>
+                        <div class="px-8 flex justify-between items-center pb-4">
+                            <div class="space-y-2">
+                                <span class="text-[14px] font-black uppercase tracking-[0.3em] text-earth">Genetic Class A</span>
+                                <p class="text-[11px] text-forest/30 uppercase tracking-[0.2em] font-bold">Islamabad Shed 01 Availability</p>
                             </div>
-                            <button type="submit" id="reservation-submit-btn" class="w-full lg:w-auto bg-gold text-forest px-16 py-6 rounded-[2rem] font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-gold-light transition-all shadow-2xl">Confirm via WhatsApp</button>
+                            <span class="text-[11px] font-black uppercase tracking-[0.3em] border-2 border-forest/5 px-8 py-3.5 rounded-full group-hover:border-gold group-hover:text-gold transition-colors">
+                                Profile
+                            </span>
                         </div>
                     </div>
-                </form>
+
+                    <!-- RIR PROFILE -->
+                    <div 
+                        onclick="launchBreedProfile('RIR')" 
+                        class="group cursor-pointer bg-white rounded-[5rem] p-8 shadow-sm hover:shadow-[0_80px_150px_rgba(0,0,0,0.1)] transition-all duration-1000 reveal-up opacity-0" 
+                        style="transition-delay: 0.2s;"
+                    >
+                        <div class="relative h-[650px] rounded-[4rem] overflow-hidden mb-12">
+                            <img 
+                                src="assets/rir_rooster.jpg" 
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2.5s]"
+                                alt="RIR"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/95 via-forest-dark/20 to-transparent opacity-80 transition-opacity group-hover:opacity-100"></div>
+                            
+                            <div class="absolute bottom-12 left-12 text-white">
+                                <h3 class="font-serif text-5xl font-bold mb-4">Rhode Island Red</h3>
+                                <p class="text-[11px] uppercase tracking-[0.4em] font-black text-gold">The Ultimate Dual-Purpose</p>
+                            </div>
+                            
+                            <div class="absolute top-10 right-10 w-20 h-20 rounded-full bg-silk/10 backdrop-blur-xl flex items-center justify-center text-silk group-hover:bg-gold group-hover:text-forest transition-all duration-700 shadow-2xl">
+                                <i class="fa-solid fa-plus text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="px-8 flex justify-between items-center pb-4">
+                            <div class="space-y-2">
+                                <span class="text-[14px] font-black uppercase tracking-[0.3em] text-earth">Genetic Class A+</span>
+                                <p class="text-[11px] text-forest/30 uppercase tracking-[0.2em] font-bold">Islamabad Shed 02 Availability</p>
+                            </div>
+                            <span class="text-[11px] font-black uppercase tracking-[0.3em] border-2 border-forest/5 px-8 py-3.5 rounded-full group-hover:border-gold group-hover:text-gold transition-colors">
+                                Profile
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
-        <!-- Trust Column (Director & Map) -->
-        <section id="trust" class="py-24 md:py-40 bg-silk px-4 md:px-8 border-t border-forest/10">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-                <div class="lg:col-span-6 space-y-10 reveal-trust-left opacity-0">
-                    <span class="text-xs font-bold tracking-[0.4em] uppercase text-earth">Director of Breeding</span>
-                    <h2 class="font-serif text-4xl md:text-6xl font-bold text-forest">Maaz Mustafa Minhas</h2>
-                    <p class="text-base text-forest/70 font-light italic border-l-4 border-gold pl-6 leading-relaxed">"Every bird from Henzo Farm is raised as a legacy of organic poultry breeding. We do not cage, we do not force-grow, and we do not compromise."</p>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-4"><i class="fa-solid fa-map-pin text-gold"></i><span class="text-xs font-bold uppercase tracking-widest">Shed No 1, Pindorian Shareef, Islamabad</span></div>
-                        <div class="flex items-center space-x-4"><i class="fa-solid fa-phone text-gold text-sm"></i><span class="text-xs font-bold uppercase tracking-widest">+92 311 5190548</span></div>
+        <!-- GALLERY: CINEMATIC NATURE -->
+        <section 
+            id="experience" 
+            class="py-32 md:py-56 bg-silk px-6 md:px-12"
+        >
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-end">
+                    <div class="lg:col-span-8 space-y-6 reveal-up opacity-0">
+                        <span class="text-[11px] font-black tracking-[0.5em] uppercase text-earth">Living The Heritage</span>
+                        <h2 class="font-serif text-6xl md:text-[8rem] font-bold tracking-tighter text-forest leading-none">
+                            Cinematic Nature
+                        </h2>
+                    </div>
+                    <div class="lg:col-span-4 text-left lg:text-right reveal-up opacity-0" style="transition-delay: 0.2s;">
+                        <p class="text-sm md:text-xl text-forest/50 max-w-sm ml-auto font-light leading-relaxed italic font-serif">
+                            Captured moments of free-range existence within our organic sanctuary.
+                        </p>
                     </div>
                 </div>
-                <div class="lg:col-span-6 reveal-trust-right opacity-0">
-                    <div class="aspect-square bg-forest-dark rounded-[4rem] relative overflow-hidden flex items-center justify-center border border-gold/10">
-                        <div class="absolute inset-0 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:20px_20px] opacity-10"></div>
-                        <div class="w-12 h-12 flex items-center justify-center"><div class="absolute inset-0 rounded-full bg-gold/30 pulse-ring"></div><div class="w-4 h-4 bg-gold rounded-full z-10"></div><span class="bg-forest px-6 py-2 rounded-full border border-gold/40 text-gold text-[10px] font-bold uppercase tracking-[0.4em] mt-24 absolute">Henzo Farm Sanctuary</span></div>
+
+                <!-- Bento Grid Visuals -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10 auto-rows-[450px] gallery-container">
+                    
+                    <div class="md:col-span-8 md:row-span-2 rounded-[4rem] overflow-hidden relative group reveal-up opacity-0">
+                        <img src="assets/farm_pasture.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/95 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-12 left-12 text-silk">
+                            <span class="text-[11px] tracking-[0.5em] uppercase font-black text-gold">Location: Pindorian</span>
+                            <h3 class="font-serif text-5xl mt-3 leading-none">Lush Organic Pastures</h3>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-4 md:row-span-1 rounded-[4rem] overflow-hidden relative group reveal-up opacity-0" style="transition-delay: 0.2s;">
+                        <img src="assets/organic_feed.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]">
+                        <div class="absolute bottom-12 left-12 text-silk"><h3 class="font-serif text-3xl">Premium Forage</h3></div>
+                    </div>
+
+                    <div class="md:col-span-4 md:row-span-2 rounded-[4rem] overflow-hidden relative group reveal-up opacity-0" style="transition-delay: 0.4s;">
+                        <img src="assets/golden_eggs.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]">
+                        <div class="absolute bottom-12 left-12 text-silk"><h3 class="font-serif text-3xl">Golden-Shell Harvest</h3></div>
+                    </div>
+
+                    <div class="md:col-span-8 md:row-span-1 rounded-[4rem] overflow-hidden relative group reveal-up opacity-0" style="transition-delay: 0.6s;">
+                        <img src="assets/hero_chickens.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]">
+                        <div class="absolute bottom-12 left-12 text-silk"><h3 class="font-serif text-3xl">Unmatched Genetic Purity</h3></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KNOWLEDGE BASE: FAQ -->
+        <section class="py-32 bg-silk-dark px-6 border-t border-forest/5">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-24">
+                    <span class="text-[11px] font-black tracking-[0.5em] uppercase text-gold">Henzo Intelligence</span>
+                    <h2 class="font-serif text-5xl md:text-7xl font-bold text-forest mt-4">Common Questions</h2>
+                </div>
+                
+                <div class="space-y-8">
+                    <details class="group bg-white rounded-[2.5rem] p-10 shadow-sm cursor-pointer border border-forest/5 hover:border-gold/30 transition-all duration-500">
+                        <summary class="font-serif text-2xl font-bold flex justify-between items-center list-none outline-none">
+                            <span>How is organic integrity maintained?</span>
+                            <i class="fa-solid fa-plus text-sm group-open:rotate-45 transition-transform duration-500 text-gold"></i>
+                        </summary>
+                        <div class="mt-8 text-base text-forest/70 leading-relaxed font-light italic pl-4 border-l-2 border-gold/20">
+                            Our birds are fed on a strictly controlled diet of local grains and fresh organic greens grown on our own Islamabad pasture. We never use synthetic growth hormones, preventative antibiotics, or industrial cages.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-white rounded-[2.5rem] p-10 shadow-sm cursor-pointer border border-forest/5 hover:border-gold/30 transition-all duration-500">
+                        <summary class="font-serif text-2xl font-bold flex justify-between items-center list-none outline-none">
+                            <span>Where is the sanctuary located?</span>
+                            <i class="fa-solid fa-plus text-sm group-open:rotate-45 transition-transform duration-500 text-gold"></i>
+                        </summary>
+                        <div class="mt-8 text-base text-forest/70 leading-relaxed font-light italic pl-4 border-l-2 border-gold/20">
+                            Our premium sheds are located in Pindorian Shareef, Islamabad. This location was chosen for its clean air and pristine soil conditions. Visitation is strictly by pre-booked appointment only.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESERVATION: FINAL DESK -->
+        <section 
+            id="order" 
+            class="py-32 md:py-56 bg-forest relative overflow-hidden px-6 md:px-12 text-silk"
+        >
+            <!-- Background FX -->
+            <div class="absolute inset-0 z-0 opacity-10">
+                <img src="assets/farm_pasture.png" class="w-full h-full object-cover grayscale blur-[2px]">
+            </div>
+            
+            <div class="max-w-[1100px] mx-auto relative z-10">
+                <div class="text-center mb-24 space-y-6 reveal-up opacity-0">
+                    <span class="text-[11px] font-black tracking-[0.5em] uppercase text-gold">Acquisition Application</span>
+                    <h2 class="font-serif text-5xl md:text-[7rem] font-bold tracking-tighter leading-none">
+                        Reserve Heritage
+                    </h2>
+                </div>
+
+                <div class="glass-panel-dark p-12 md:p-24 rounded-[5rem] border border-gold/30 shadow-[0_100px_200px_rgba(0,0,0,0.4)] reveal-up opacity-0" style="transition-delay: 0.3s;">
+                    <form 
+                        onsubmit="processFinalAcquisition(event)" 
+                        class="space-y-16"
+                        id="reservation-form"
+                    >
+                        <!-- Basic Info Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="space-y-4">
+                                <label class="text-[11px] uppercase tracking-[0.5em] text-gold font-black opacity-80">Full Name</label>
+                                <input 
+                                    type="text" 
+                                    id="order-name" 
+                                    required 
+                                    placeholder="Ex: Maaz Mustafa Minhas" 
+                                    class="w-full bg-white/5 border-b border-white/20 px-0 py-6 text-2xl text-silk outline-none focus:border-gold transition-all font-serif placeholder-white/20"
+                                >
+                            </div>
+                            <div class="space-y-4">
+                                <label class="text-[11px] uppercase tracking-[0.5em] text-gold font-black opacity-80">WhatsApp Contact</label>
+                                <div class="relative">
+                                    <span class="absolute left-0 top-1/2 -translate-y-1/2 text-silk/40 font-serif text-2xl">+92</span>
+                                    <input 
+                                        type="tel" 
+                                        id="order-phone" 
+                                        required 
+                                        placeholder="3115190548" 
+                                        class="w-full bg-white/5 border-b border-white/20 pl-16 py-6 text-2xl text-silk outline-none focus:border-gold transition-all font-serif placeholder-white/20"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address Logic -->
+                        <div class="space-y-4">
+                            <label class="text-[11px] uppercase tracking-[0.5em] text-gold font-black opacity-80">Delivery / Pickup Address</label>
+                            <textarea 
+                                id="order-address" 
+                                required 
+                                rows="2" 
+                                class="w-full bg-white/5 border-b border-white/20 px-0 py-6 text-2xl text-silk outline-none focus:border-gold transition-all font-serif placeholder-white/20 resize-none"
+                            >Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</textarea>
+                        </div>
+                        
+                        <!-- The Summary Panel -->
+                        <div class="bg-forest-dark/95 p-12 md:p-20 rounded-[4rem] border border-white/10 shadow-inner">
+                            <h4 class="text-[11px] uppercase font-black tracking-[0.5em] text-gold mb-12 pb-5 border-b border-white/5 flex items-center">
+                                <i class="fa-solid fa-receipt mr-4"></i>
+                                Reservation Selection Summary
+                            </h4>
+                            
+                            <div 
+                                id="final-summary-list" 
+                                class="space-y-6 text-lg md:text-xl text-silk/60 mb-16 italic font-serif"
+                            >
+                                No heritage lineages selected in cart.
+                            </div>
+                            
+                            <!-- Calculation Layout -->
+                            <div class="flex flex-col lg:flex-row justify-between items-center gap-12 pt-12 border-t border-white/10">
+                                <div class="text-center lg:text-left space-y-2">
+                                    <span class="text-[11px] uppercase tracking-[0.4em] opacity-40 block">Final Acquisition Valuation</span>
+                                    <span 
+                                        id="final-grand-total" 
+                                        class="text-6xl md:text-[5.5rem] font-bold text-gold font-serif leading-none"
+                                    >
+                                        Rs 0
+                                    </span>
+                                </div>
+                                
+                                <button 
+                                    type="submit" 
+                                    id="order-submit-btn" 
+                                    class="w-full lg:w-auto bg-gold text-forest px-20 py-8 rounded-[2.5rem] font-black uppercase tracking-[0.3em] text-[12px] hover:bg-gold-light transition-all shadow-[0_30px_60px_rgba(0,0,0,0.3)] flex items-center justify-center space-x-5 active:scale-95"
+                                >
+                                    <span>Initialize Acquisition via Desk</span>
+                                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST: THE DIRECTORATE -->
+        <section 
+            id="trust" 
+            class="py-32 md:py-56 bg-silk px-6 md:px-12 border-t border-forest/10"
+        >
+            <div class="max-w-[1400px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-24 items-start">
+                    
+                    <!-- Location Profile -->
+                    <div class="lg:col-span-6 space-y-12 reveal-up opacity-0">
+                        <div class="space-y-6">
+                            <span class="text-[11px] font-black tracking-[0.5em] uppercase text-earth">Our Sanctuary</span>
+                            <h2 class="font-serif text-5xl md:text-[6rem] font-bold text-forest leading-none">Islamabad HQ</h2>
+                            <p class="text-lg md:text-2xl text-forest/70 font-light leading-relaxed font-serif">
+                                Our premium heritage sheds and organic grounds are situated in Pindorian Shareef. Visitation by pre-booked appointment only.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-6 border-l-4 border-gold/40 pl-10 py-4">
+                            <div class="flex items-center space-x-6">
+                                <i class="fa-solid fa-map-pin text-gold text-2xl"></i>
+                                <span class="text-sm md:text-lg font-black uppercase tracking-widest text-forest">Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</span>
+                            </div>
+                            <div class="flex items-center space-x-6">
+                                <i class="fa-solid fa-phone text-gold text-2xl"></i>
+                                <span class="text-sm md:text-lg font-black uppercase tracking-widest text-forest">+92 311 5190548 (Direct acquisition desk)</span>
+                            </div>
+                        </div>
+
+                        <!-- Stylized Map Asset -->
+                        <div class="w-full h-[500px] rounded-[5rem] bg-forest-dark relative overflow-hidden flex items-center justify-center border border-gold/10 group shadow-2xl">
+                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:25px_25px]"></div>
+                            <div class="relative flex flex-col items-center">
+                                <div class="w-16 h-16 flex items-center justify-center">
+                                    <div class="absolute inset-0 rounded-full bg-gold/40 pulse-ring"></div>
+                                    <div class="w-6 h-6 bg-gold rounded-full z-10 border-4 border-forest-dark shadow-2xl"></div>
+                                </div>
+                                <span class="bg-forest/80 backdrop-blur-md px-10 py-3 rounded-full border border-gold/40 text-gold text-[11px] font-black uppercase tracking-[0.5em] mt-8 shadow-2xl transition-all group-hover:bg-gold group-hover:text-forest">
+                                    Henzo Farm Sanctuary
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Statement -->
+                    <div class="lg:col-span-6 space-y-16 reveal-up opacity-0" style="transition-delay: 0.3s;">
+                        <div class="bg-forest-dark p-12 md:p-24 rounded-[5rem] border border-gold/25 text-silk shadow-[0_50px_150px_rgba(0,0,0,0.3)] space-y-12 relative overflow-hidden">
+                            <div class="absolute -top-10 -right-10 w-40 h-40 bg-gold/10 rounded-full blur-[80px]"></div>
+                            <div class="relative z-10">
+                                <img 
+                                    src="assets/logo.png" 
+                                    class="h-24 w-auto rounded-full bg-white p-1 mb-10 shadow-2xl border-2 border-gold/30"
+                                    alt="Brand Mark"
+                                >
+                                <span class="font-serif text-6xl font-bold text-gold italic block mb-8">Henzo Standards</span>
+                                <p class="text-xl md:text-3xl font-light text-silk/70 italic leading-relaxed font-serif">
+                                    "Every bird from Henzo Farm is raised as a legacy of organic poultry breeding. We do not cage, we do not force-grow, and we do not compromise on the lineage integrity of our flocks."
+                                </p>
+                            </div>
+                            
+                            <hr class="border-gold/20">
+                            
+                            <div class="flex justify-between items-center relative z-10">
+                                <div class="space-y-1">
+                                    <span class="text-[10px] uppercase tracking-[0.3em] font-black opacity-40 block mb-2">Director of Breeding</span>
+                                    <span class="text-xl font-serif text-gold font-bold italic">Maaz Mustafa Minhas</span>
+                                </div>
+                                <div class="text-right space-y-1">
+                                    <span class="text-[10px] uppercase tracking-[0.3em] font-black opacity-40 block mb-2">Registry Certification</span>
+                                    <span class="text-base font-black text-green-400 tracking-widest">Class-A Verified</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Actions -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <a 
+                                href="https://wa.me/923115190548" 
+                                target="_blank" 
+                                class="group py-8 bg-green-600 hover:bg-green-700 text-white font-black uppercase text-[11px] tracking-[0.4em] rounded-[2.5rem] flex items-center justify-center space-x-5 transition-all shadow-2xl hover:scale-[1.03]"
+                            >
+                                <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-[15deg] transition-transform"></i>
+                                <span>WhatsApp Direct Desk</span>
+                            </a>
+                            <a 
+                                href="tel:+923115190548" 
+                                class="group py-8 bg-forest text-silk font-black uppercase text-[11px] tracking-[0.4em] rounded-[2.5rem] flex items-center justify-center space-x-5 border border-gold/20 transition-all shadow-2xl hover:scale-[1.03]"
+                            >
+                                <i class="fa-solid fa-phone-volume text-xl group-hover:animate-shake transition-all"></i>
+                                <span>Voice Hotline</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- True Footer -->
+                <div class="mt-40 pt-16 border-t border-forest/5 flex flex-col md:flex-row justify-between items-center text-[11px] uppercase tracking-[0.6em] font-black opacity-30 text-forest gap-10">
+                    <p>© 2026 HENZO FARM • ISLAMABAD • PAKISTAN</p>
+                    <div class="flex space-x-12">
+                        <a href="#" class="hover:text-gold transition-all">Terms of Acquisition</a>
+                        <a href="#" class="hover:text-gold transition-all">Privacy Policy</a>
+                        <a href="#" class="hover:text-gold transition-all">Shed Inspection Logs</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 bg-silk-dark text-center border-t border-forest/5"><p class="text-[10px] font-bold uppercase tracking-[0.5em] opacity-30 text-forest">© 2026 HENZO FARM • ISLAMABAD</p></footer>
-
-    <!-- Logic Engine -->
+    <!-- 
+        ========================================================================
+        J A V A S C R I P T   E N G I N E
+        ========================================================================
+    -->
     <script>
+        /**
+         * 1. GLOBAL STATE DEFINITION
+         * Managing the application lifecycle and data flow
+         */
         let currentAcquisitionCart = [];
         let modalState = { breed: '', category: '', price: 0, qty: 1 };
-        const WHATSAPP_ID = '923115190548';
+        const WHATSAPP_RECIPIENT = '923115190548';
         
+        /**
+         * 2. BREEDS & PRICING REGISTRY
+         * Master data for the dynamic website interface
+         */
         const BREED_REGISTRY = {
             'Australorp': {
-                name: 'Black Australorp', img: 'assets/australorp_hen.jpg',
-                why: 'Developed in Australia for record-breaking egg production. These "Gentle Giants" thrive in Islamabad pastures.',
-                gallery: { 'Baby Chick': 'assets/australorp_chick.jpg', 'Mature Hen': 'assets/australorp_hen.jpg', 'Rooster': 'assets/australorp_rooster.jpg', '1 Rooster + 5 Hens': 'assets/australorp_hen.jpg' },
-                rates: { 'Baby Chick': 120, 'Mature Hen': 2500, 'Rooster': 3000, '1 Rooster + 5 Hens': 14725 }
+                name: 'Black Australorp',
+                img: 'assets/australorp_hen.jpg',
+                why: 'Developed in Australia for unmatched productivity. The Australorp holds the world record for laying 364 eggs in 365 days. Their gentle nature and beetle-green sheen make them the perfect premium choice.',
+                gallery: {
+                    'Baby Chick': 'assets/australorp_chick.jpg',
+                    'Mature Hen': 'assets/australorp_hen.jpg',
+                    'Rooster': 'assets/australorp_rooster.jpg',
+                    '1 Rooster + 5 Hens': 'assets/australorp_hen.jpg'
+                },
+                perks: [
+                    'World-Record Heritage Pedigree',
+                    'High Heat & Cold Adaptation',
+                    'Consistent Large Brown Egg Grade',
+                    'Docile Backyard Temperament'
+                ],
+                rates: { 
+                    'Baby Chick': 120, 
+                    'Mature Hen': 2500, 
+                    'Rooster': 3000, 
+                    '1 Rooster + 5 Hens': 14725 // 5% Discount included
+                }
             },
             'RIR': {
-                name: 'Rhode Island Red', img: 'assets/rir_rooster.jpg',
-                why: 'The Rhode Island Red is the most famous dual-purpose breed in history. Tough, hardy, and dependable.',
-                gallery: { 'Baby Chick': 'assets/rir_chick.jpg', 'Mature Hen': 'assets/rir_hen.jpg', 'Rooster': 'assets/rir_rooster.jpg', '1 Rooster + 5 Hens': 'assets/rir_rooster.jpg' },
-                rates: { 'Baby Chick': 120, 'Mature Hen': 2500, 'Rooster': 3000, '1 Rooster + 5 Hens': 14725 }
+                name: 'Rhode Island Red',
+                img: 'assets/rir_rooster.jpg',
+                why: 'The Rhode Island Red is the ultimate dual-purpose classic. It is the most resilient breed in history, thriving in all Islamabad climates while maintaining consistent heavy production.',
+                gallery: {
+                    'Baby Chick': 'assets/rir_chick.jpg',
+                    'Mature Hen': 'assets/rir_hen.jpg',
+                    'Rooster': 'assets/rir_rooster.jpg',
+                    '1 Rooster + 5 Hens': 'assets/rir_rooster.jpg'
+                },
+                perks: [
+                    'Elite Disease Immunity Profiling',
+                    'Rich Mahogany Heritage Plumage',
+                    'Deep Winter Laying Capability',
+                    'Independent Foraging Instincts'
+                ],
+                rates: { 
+                    'Baby Chick': 120, 
+                    'Mature Hen': 2500, 
+                    'Rooster': 3000, 
+                    '1 Rooster + 5 Hens': 14725 // 5% Discount included
+                }
             }
         };
 
-        const lenis = new Lenis({ duration: 0.8 });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        /**
+         * 3. SMOOTH SCROLL ENGINE (LENIS)
+         * Optimized for speed (0.5s duration)
+         */
+        const lenis = new Lenis({
+            duration: 0.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1.2,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
 
+        /**
+         * 4. UI: SIDEBAR MANAGEMENT
+         */
         function toggleCartSidebar() {
-            document.body.classList.toggle('cart-open');
+            const isOpen = document.body.classList.toggle('cart-open');
             const overlay = document.getElementById('sidebar-overlay');
-            overlay.classList.toggle('hidden');
-            setTimeout(() => overlay.classList.toggle('opacity-100'), 10);
+            if (isOpen) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            } else {
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => overlay.classList.add('hidden'), 500);
+            }
         }
 
+        /**
+         * 5. UI: MODAL (BREED PROFILES)
+         */
         function launchBreedProfile(breedKey) {
             const data = BREED_REGISTRY[breedKey];
-            modalState.breed = breedKey; modalState.qty = 1;
+            modalState.breed = breedKey;
+            modalState.qty = 1;
+
+            // Header Elements
             document.getElementById('modal-breed-title').innerText = data.name;
             document.getElementById('modal-display-img').src = data.img;
             document.getElementById('modal-breed-desc').innerText = data.why;
-            document.getElementById('modal-price-options').innerHTML = Object.entries(data.rates).map(([cat, prc]) => `
-                <button onclick="setModalAcquisition('${cat}', ${prc})" id="btn-${cat.replace(/ /g,'')}" class="modal-opt-btn w-full p-5 rounded-2xl border border-forest/10 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest hover:border-gold">
-                    <span>${cat}</span><span>Rs ${prc.toLocaleString()}</span>
+            
+            // Benefit Icons
+            document.getElementById('modal-breed-perks').innerHTML = data.perks.map(p => `
+                <div class="flex items-center text-[12px] font-black text-forest/50 tracking-wider">
+                    <i class="fa-solid fa-circle-check text-gold mr-5 text-lg"></i>
+                    ${p}
+                </div>
+            `).join('');
+
+            // Category Selection
+            const rateEntries = Object.entries(data.rates);
+            document.getElementById('modal-price-options').innerHTML = rateEntries.map(([cat, prc]) => `
+                <button 
+                    onclick="setModalAcquisition('${cat}', ${prc})" 
+                    id="btn-${cat.replace(/ /g,'')}" 
+                    class="modal-rate-btn w-full p-6 rounded-[1.5rem] border border-forest/10 flex justify-between items-center text-[11px] font-black uppercase tracking-[0.3em] hover:border-gold transition-all duration-500"
+                >
+                    <span>${cat}</span>
+                    <span class="text-gold">Rs ${prc.toLocaleString()}</span>
                 </button>
             `).join('');
-            setModalAcquisition(Object.keys(data.rates)[0], Object.values(data.rates)[0]);
-            document.getElementById('breed-modal').style.display = 'flex';
-            setTimeout(() => { document.getElementById('breed-modal').style.opacity = '1'; }, 10);
+
+            // Initialize Modal State
+            setModalAcquisition(rateEntries[0][0], rateEntries[0][1]);
+
+            // Reveal
+            document.body.classList.add('modal-active');
+            const modalEl = document.getElementById('modal-card');
+            setTimeout(() => {
+                modalEl.classList.remove('translate-y-12');
+                document.getElementById('breed-modal').style.opacity = '1';
+            }, 50);
         }
 
-        function closeBreedModal() { document.getElementById('breed-modal').style.opacity = '0'; setTimeout(() => { document.getElementById('breed-modal').style.display = 'none'; }, 400); }
+        function closeBreedModal() {
+            const modalEl = document.getElementById('modal-card');
+            document.getElementById('breed-modal').style.opacity = '0';
+            modalEl.classList.add('translate-y-12');
+            setTimeout(() => {
+                document.body.classList.remove('modal-active');
+            }, 600);
+        }
 
         function setModalAcquisition(cat, price) {
-            modalState.category = cat; modalState.price = price;
-            const targetImg = BREED_REGISTRY[modalState.breed].gallery[cat];
-            if(targetImg) document.getElementById('modal-display-img').src = targetImg;
-            document.querySelectorAll('.modal-opt-btn').forEach(b => b.classList.remove('border-gold','bg-gold/10'));
-            document.getElementById('btn-' + cat.replace(/ /g,'')).classList.add('border-gold','bg-gold/10');
-            syncModalPricing();
+            modalState.category = cat;
+            modalState.price = price;
+            
+            // IMAGE SWAP LOGIC
+            const specificImg = BREED_REGISTRY[modalState.breed].gallery[cat];
+            if(specificImg) {
+                const modalImg = document.getElementById('modal-display-img');
+                modalImg.style.opacity = '0.3';
+                setTimeout(() => {
+                    modalImg.src = specificImg;
+                    modalImg.style.opacity = '1';
+                }, 350);
+            }
+
+            // Visual State Update
+            document.querySelectorAll('.modal-rate-btn').forEach(btn => {
+                btn.classList.remove('border-gold', 'bg-gold/5', 'shadow-inner');
+            });
+            const activeBtn = document.getElementById('btn-' + cat.replace(/ /g,''));
+            if(activeBtn) activeBtn.classList.add('border-gold', 'bg-gold/5');
+            
+            syncModalCalcs();
         }
 
-        function adjustModalCount(delta) { modalState.qty = Math.max(1, modalState.qty + delta); syncModalPricing(); }
-        function syncModalPricing() { document.getElementById('modal-current-qty').innerText = modalState.qty; document.getElementById('modal-calculated-total').innerText = 'Rs ' + (modalState.price * modalState.qty).toLocaleString(); }
+        function adjustModalCount(delta) {
+            modalState.qty = Math.max(1, modalState.qty + delta);
+            syncModalCalcs();
+        }
 
-        document.getElementById('modal-action-btn').addEventListener('click', () => {
-            currentAcquisitionCart.push({ breed: modalState.breed, category: modalState.category, price: modalState.price, qty: modalState.qty });
-            refreshGlobalCart(); closeBreedModal(); triggerToast("Selection Added");
+        function syncModalCalcs() {
+            document.getElementById('modal-current-qty').innerText = modalState.qty;
+            const sub = modalState.price * modalState.qty;
+            document.getElementById('modal-calculated-total').innerText = 'Rs ' + sub.toLocaleString();
+        }
+
+        /**
+         * 6. CART CORE ENGINE
+         */
+        document.getElementById('modal-action-btn').addEventListener('click', function() {
+            const existing = currentAcquisitionCart.find(i => 
+                i.breed === modalState.breed && i.category === modalState.category
+            );
+            
+            if(existing) {
+                existing.qty += modalState.qty;
+            } else {
+                currentAcquisitionCart.push({
+                    breed: modalState.breed,
+                    category: modalState.category,
+                    price: modalState.price,
+                    qty: modalState.qty
+                });
+            }
+            
+            rebuildCartUI();
+            closeBreedModal();
+            triggerToast(`${modalState.category} added to cart`);
         });
 
-        function refreshGlobalCart() {
-            const sidebarList = document.getElementById('sidebar-cart-list');
-            const reservationList = document.getElementById('reservation-cart-details');
-            let total = 0; let count = 0;
-            if(currentAcquisitionCart.length === 0) {
-                sidebarList.innerHTML = `<div class="text-center py-20 opacity-30 italic text-sm">Cart is empty.</div>`;
-                reservationList.innerHTML = `No items.`;
-            } else {
-                sidebarList.innerHTML = currentAcquisitionCart.map((item, idx) => {
-                    const sub = item.price * item.qty; total += sub; count += item.qty;
-                    return `<div class="p-6 bg-forest/5 rounded-[2rem] border border-forest/5 flex justify-between items-center"><div><h4 class="font-bold text-sm text-forest">${item.breed}</h4><p class="text-[9px] uppercase tracking-widest text-gold mt-1 font-extrabold">${item.category} x ${item.qty}</p></div><div class="text-right"><p class="text-xs font-bold text-forest">Rs ${sub.toLocaleString()}</p><button onclick="removeFromAcquisition(${idx})" class="text-[9px] text-red-500 font-extrabold uppercase mt-2">Remove</button></div></div>`;
-                }).join('');
-                reservationList.innerHTML = currentAcquisitionCart.map(i => `<div class="flex justify-between border-b border-white/5 py-2"><span>${i.qty}x ${i.breed} [${i.category}]</span><span>Rs ${(i.price * i.qty).toLocaleString()}</span></div>`).join('');
-            }
-            document.getElementById('cart-counter').innerText = count;
-            document.getElementById('sidebar-cart-total').innerText = 'Rs ' + total.toLocaleString();
-            document.getElementById('reservation-final-total').innerText = 'Rs ' + total.toLocaleString();
+        function removeCartItem(idx) {
+            currentAcquisitionCart.splice(idx, 1);
+            rebuildCartUI();
         }
 
-        function removeFromAcquisition(idx) { currentAcquisitionCart.splice(idx, 1); refreshGlobalCart(); }
-        function jumpToCheckout() { toggleCartSidebar(); lenis.scrollTo('#order'); }
+        function rebuildCartUI() {
+            const sidebar = document.getElementById('sidebar-cart-list');
+            const summary = document.getElementById('final-summary-list');
+            let total = 0; 
+            let count = 0;
+
+            if(currentAcquisitionCart.length === 0) {
+                sidebar.innerHTML = `<div class="text-center py-32 opacity-20 italic text-sm">Selection empty.</div>`;
+                summary.innerHTML = `<p class="italic text-silk/30">No heritage selection confirmed.</p>`;
+            } else {
+                // Sidebar Layout
+                sidebar.innerHTML = currentAcquisitionCart.map((item, idx) => {
+                    const sub = item.price * item.qty;
+                    total += sub; 
+                    count += item.qty;
+                    return `
+                        <div class="flex items-center justify-between p-8 bg-forest/5 rounded-[2.5rem] border border-forest/5 group hover:border-gold/40 transition-all duration-500">
+                            <div class="space-y-2">
+                                <h4 class="font-serif text-xl font-bold text-forest leading-none">${item.breed}</h4>
+                                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-gold">${item.category} (x${item.qty})</p>
+                            </div>
+                            <div class="text-right space-y-2">
+                                <p class="text-lg font-bold text-forest font-serif">Rs ${sub.toLocaleString()}</p>
+                                <button onclick="removeCartItem(${idx})" class="text-[10px] text-red-500 font-black uppercase tracking-[0.3em] hover:underline">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Form summary
+                summary.innerHTML = currentAcquisitionCart.map(i => `
+                    <div class="flex justify-between items-center py-4 border-b border-white/10 group">
+                        <span class="font-bold tracking-wide">${i.qty}x ${i.breed} [${i.category}]</span>
+                        <span class="text-gold font-serif">Rs ${(i.price * i.qty).toLocaleString()}</span>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('cart-counter').innerText = count;
+            document.getElementById('sidebar-cart-total').innerText = 'Rs ' + total.toLocaleString();
+            document.getElementById('final-grand-total').innerText = 'Rs ' + total.toLocaleString();
+        }
 
         function triggerToast(msg) {
             const toast = document.getElementById('cart-toast');
             document.getElementById('toast-text').innerText = msg;
             toast.classList.add('active');
-            setTimeout(() => toast.classList.remove('active'), 3000);
+            setTimeout(() => toast.classList.remove('active'), 3500);
         }
 
-        function executeFinalReservation(e) {
+        function jumpToCheckout() {
+            if(currentAcquisitionCart.length === 0) return alert("Select your heritage first.");
+            toggleCartSidebar();
+            lenis.scrollTo('#order');
+        }
+
+        /**
+         * 7. FINAL DATA TRANSMISSION (WEBHOOK + WHATSAPP)
+         */
+        function processFinalAcquisition(e) {
             e.preventDefault();
-            if(currentAcquisitionCart.length === 0) return alert("Cart is empty");
-            const btn = document.getElementById('reservation-submit-btn');
-            btn.innerHTML = "Processing...";
+            if(currentAcquisitionCart.length === 0) return alert("Your reservation cart is empty.");
+
+            const btn = document.getElementById('order-submit-btn');
+            const original = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<span>Transmitting to Islamabad Desk...</span>`;
+
             const name = document.getElementById('order-name').value;
             const phone = '+92' + document.getElementById('order-phone').value;
             const addr = document.getElementById('order-address').value;
-            const total = document.getElementById('reservation-final-total').innerText;
+            const finalVal = document.getElementById('final-grand-total').innerText;
 
-            // !! PASTE YOUR GOOGLE SCRIPT WEB APP URL HERE !!
-            const GOOGLE_WEBHOOK_URL = 'PASTE_YOUR_APPS_SCRIPT_WEBAPP_URL_HERE'; 
+            /**
+             * STEP A: GOOGLE SHEET INTEGRATION (WEBHOOK)
+             * REPLACE THE URL BELOW WITH YOUR DEPLOYED SCRIPT URL
+             */
+            const GOOGLE_BRIDGE_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; 
             
-            const payload = { customer: name, contact: phone, address: addr, cart_items: currentAcquisitionCart };
+            const transmissionPayload = {
+                customer: name,
+                contact: phone,
+                address: addr,
+                cart_items: currentAcquisitionCart,
+                total: finalVal
+            };
 
-            fetch(GOOGLE_WEBHOOK_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) })
-            .finally(() => {
-                let msg = `🌾 *HENZO FARM ORDER* 🌾\n*Name:* ${name}\n*Total:* ${total}\n*Contact:* ${phone}`;
-                window.open(`https://wa.me/${WHATSAPP_ID}?text=${encodeURIComponent(msg)}`, '_blank');
-                btn.innerHTML = "Confirm via WhatsApp Desk";
+            fetch(GOOGLE_BRIDGE_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(transmissionPayload)
+            }).finally(function() {
+                /**
+                 * STEP B: WHATSAPP REDIRECTION
+                 */
+                let messageString = `🌾 *HENZO FARM RESERVATION* 🌾\n`;
+                messageString += `---------------------------------\n`;
+                messageString += `*Name:* ${name}\n`;
+                messageString += `*WhatsApp:* ${phone}\n`;
+                messageString += `*Location:* ${addr}\n\n`;
+                messageString += `*COLLECTION:*\n`;
+                currentAcquisitionCart.forEach(i => {
+                    messageString += `• ${i.qty}x ${i.breed} [${i.category}] - Rs ${(i.price * i.qty).toLocaleString()}\n`;
+                });
+                messageString += `\n*TOTAL VALUATION:* ${finalVal}\n`;
+                messageString += `---------------------------------\n`;
+                messageString += `_Please verify stock for acquisition._`;
+
+                window.open(`https://wa.me/${WHATSAPP_RECIPIENT}?text=${encodeURIComponent(messageString)}`, '_blank');
+                
+                btn.disabled = false;
+                btn.innerHTML = original;
+                triggerToast("Reservation Transmitted Successfully");
             });
         }
 
+        /**
+         * 8. CINEMATIC ANIMATIONS (GSAP)
+         */
         gsap.registerPlugin(ScrollTrigger);
-        window.addEventListener('load', () => {
-            gsap.to('.reveal-card', { scrollTrigger: { trigger: "#catalog", start: "top 80%" }, opacity: 1, y: 0, duration: 1, stagger: 0.2 });
-            gsap.to('.reveal-order', { scrollTrigger: { trigger: "#order", start: "top 80%" }, opacity: 1, y: 0, duration: 1.2 });
-            gsap.to('.reveal-trust-left, .reveal-trust-right', { scrollTrigger: { trigger: "#trust", start: "top 80%" }, opacity: 1, x: 0, duration: 1.2 });
+
+        window.addEventListener('load', function() {
+            // Sequence for Hero
+            const heroTL = gsap.timeline();
+            heroTL.to('.hero-stagger', { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                stagger: 0.2, 
+                ease: 'power3.out' 
+            });
+
+            // Reveal Generic Sections
+            document.querySelectorAll('.reveal-up').forEach(el => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 95%",
+                        toggleActions: "play none none none"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
         });
     </script>
 </body>
