@@ -1,578 +1,447 @@
 <!DOCTYPE html>
-<html 
-    lang="en" 
-    class="scroll-smooth"
->
+<html lang="en" class="scroll-smooth">
 <head>
-    <!-- 
-        ========================================================================
-        H E N Z O   F A R M   |   D I G I T A L   A R C H I T E C T U R E
-        ========================================================================
-        ENGINEER:       Global Elite Web Systems
-        DIRECTOR:       Maaz Mustafa Minhas
-        LOCATION:       Shed No 1, Pindorian Shareef, Islamabad
-        VERSION:        10.0.0 (The Minimalist Masterpiece)
-        PERFORMANCE:    Grade A+ Native Rendering
-        ROW COUNT:      1400+ Rows of Detailed Engineering
-        
-        TYPOGRAPHY:     Outfit (Sans) + Cormorant Garamond (Serif)
-        PALETTE:        Silk, Forest-Black, Deep-Gold
-        ========================================================================
-    -->
-
     <meta charset="UTF-8">
-    <meta 
-        name="viewport" 
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
-    <meta 
-        http-equiv="X-UA-Compatible" 
-        content="ie=edge"
-    >
-    
-    <title>HENZO FARM | Luxury Heritage Poultry Islamabad</title>
-    
-    <!-- CORPORATE SEO -->
-    <meta 
-        name="description" 
-        content="Islamabad's premier organic poultry sanctuary. Heritage breeds and organic eggs cultivated with integrity by Maaz Mustafa Minhas."
-    >
-    <meta 
-        name="author" 
-        content="Maaz Mustafa Minhas"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- ASSET PIPELINE -->
-    <link 
-        rel="preconnect" 
-        href="https://fonts.googleapis.com"
-    >
-    <link 
-        rel="preconnect" 
-        href="https://fonts.gstatic.com" 
-        crossorigin
-    >
-    <link 
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@100;200;300;400;600;800&display=swap" 
-        rel="stylesheet"
-    >
-    <link 
-        rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    >
-    
-    <!-- CORE ANIMATION ENGINE -->
+    <title>HENZO FARM | Luxury Heritage Poultry & Organic Eggs Islamabad</title>
+
+    <meta name="description" content="Islamabad's premier organic poultry sanctuary. Heritage breeds and organic eggs cultivated with integrity by Maaz Mustafa Minhas.">
+    <meta name="author" content="Maaz Mustafa Minhas">
+    <meta name="theme-color" content="#1B3022">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- CUSTOM TAILWIND DESIGN SYSTEM -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        forest: {
-                            DEFAULT: '#0F1C14',
-                            light: '#1B3022',
-                            accent: '#2D4D38',
-                        },
-                        silk: {
-                            DEFAULT: '#FDFCF8',
-                            dark: '#F5F3E9',
-                        },
-                        gold: {
-                            DEFAULT: '#B89220',
-                            light: '#D4AF37',
-                            dark: '#8C6D15',
-                        }
+                        forest: { DEFAULT: '#1B3022', light: '#2d4d38', dark: '#0f1c14' },
+                        silk: { DEFAULT: '#FDFCF8', dark: '#F5F3E9' },
+                        gold: { DEFAULT: '#D4AF37', light: '#e2c562', dark: '#b59226' },
+                        earth: { DEFAULT: '#7B3F00', light: '#9E550B', dark: '#582D00' }
                     },
                     fontFamily: {
-                        serif: [
-                            '"Cormorant Garamond"', 
-                            'serif'
-                        ],
-                        sans: [
-                            '"Outfit"', 
-                            'sans-serif'
-                        ],
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
-                    letterSpacing: {
-                        'ultra': '0.4em',
-                        'mega': '0.6em',
-                    }
+                    borderRadius: { '4xl': '2rem', '5xl': '2.5rem', '6xl': '3.5rem' }
                 }
             }
         }
     </script>
 
-    <!-- 
-        ========================================================================
-        HIGH-FIDELITY CSS (UN-ROLLED)
-        Writing each property on a new line for maximum professional detail.
-        ========================================================================
-    -->
     <style>
-        /* 1. DOCUMENT RESET */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-            -webkit-font-smoothing: antialiased;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth !important; overflow-x: hidden; background-color: #FDFCF8; }
+        body { background-color: #FDFCF8; color: #1B3022; overflow-x: hidden; width: 100%; font-size: 15px; }
 
-        html {
-            /* NATIVE PERFORMANCE SCROLL */
-            scroll-behavior: smooth !important;
-            overflow-x: hidden;
-            background-color: #FDFCF8;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FDFCF8; }
+        ::-webkit-scrollbar-thumb { background: #1B3022; border-radius: 10px; }
 
-        body {
-            background-color: #FDFCF8;
-            color: #0F1C14;
-            font-family: "Outfit", sans-serif;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* 2. SCROLLBAR INTERFACE */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #FDFCF8;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #0F1C14;
-            border-radius: 0px;
-        }
-
-        /* 3. PREMIUM TYPOGRAPHY */
         .text-gold-gradient {
-            background: linear-gradient(
-                135deg, 
-                #8C6D15 0%, 
-                #D4AF37 50%, 
-                #B89220 100%
-            );
+            background: linear-gradient(135deg, #F0D47A 0%, #D4AF37 50%, #B89220 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .heading-serif {
-            font-family: "Cormorant Garamond", serif;
-            font-weight: 300;
-            font-style: italic;
+        .glass-header {
+            background: rgba(253, 252, 248, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(27, 48, 34, 0.04);
         }
 
-        /* 4. GLASSMORPHISM MODULES */
-        .glass-nav {
-            background: rgba(253, 252, 248, 0.7);
+        .glass-panel-dark {
+            background: rgba(15, 28, 20, 0.96);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(15, 28, 20, 0.03);
         }
 
-        .glass-dark {
-            background: rgba(15, 28, 20, 0.98);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-        }
-
-        /* 5. SIDEBAR ENGINE */
         .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 100%;
-            max-width: 400px;
-            background-color: #FDFCF8;
-            z-index: 500;
-            transform: translateX(100%);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            border-left: 1px solid rgba(15, 28, 20, 0.05);
+            position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 420px;
+            background-color: #FDFCF8; z-index: 500; transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -20px 0 50px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column;
         }
 
-        .cart-open .cart-sidebar {
-            transform: translateX(0);
-        }
+        .cart-open .cart-sidebar { transform: translateX(0); }
 
         .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 28, 20, 0.3);
-            backdrop-filter: blur(10px);
-            z-index: 490;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.6s ease;
+            position: fixed; inset: 0; background: rgba(15, 28, 20, 0.4);
+            backdrop-filter: blur(10px); z-index: 490; display: none; opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        /* 6. MODAL INTERFACE (REFINED) */
         #breed-modal {
-            display: none;
-            opacity: 0;
-            z-index: 600;
-            position: fixed;
-            inset: 0;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: none; opacity: 0; z-index: 600; position: fixed; inset: 0;
+            align-items: center; justify-content: center; padding: 20px;
+            transition: opacity 0.4s ease;
         }
 
-        .modal-active #breed-modal {
-            display: flex;
-            opacity: 1;
-        }
+        .modal-active #breed-modal { display: flex; opacity: 1; }
 
         .modal-container {
-            transform: translateY(20px) scale(0.98);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .modal-active .modal-container {
-            transform: translateY(0) scale(1);
-        }
+        .modal-active .modal-container { transform: scale(1); }
 
-        /* 7. REFINED BUTTONS */
-        .btn-minimal {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
+        .btn-luxury { transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .btn-luxury:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(27, 48, 34, 0.1); }
+        .btn-luxury:active { transform: translateY(0px); }
 
-        .btn-minimal:hover {
-            letter-spacing: 0.5em;
-            background-color: #0F1C14;
-            color: #FDFCF8;
-        }
-
-        /* 8. PERFORMANCE ANIMATIONS */
         .noise-layer {
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 1000;
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1000;
         }
 
-        /* 9. NOTIFICATION ENGINE */
         .toast-system {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%) translateY(120px);
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%) translateY(100px); z-index: 1000; opacity: 0;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .toast-system.active {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+        .toast-system.active { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        .card-img-zoom { transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .group:hover .card-img-zoom { transform: scale(1.08); }
+
+        .spinner { border: 2px solid rgba(212, 175, 55, 0.2); border-top-color: #D4AF37; border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== FIX 1: Hero logo positioning ===== */
+        .hero-logo-wrap {
+            position: relative;
+            z-index: 20;
+            margin-bottom: 2rem;
         }
 
-        /* 10. FIXED PRICE LOGIC */
-        .price-display-fixed {
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            min-width: 140px;
+        .hero-logo-wrap img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: white;
+            padding: 4px;
+            object-fit: cover;
         }
 
-        .category-btn.active {
-            border-color: #B89220;
-            background-color: rgba(184, 146, 32, 0.05);
+        /* ===== FIX 2: Card image sizing - proportional, not too big ===== */
+        .breed-card-img {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;  /* Portrait ratio - looks professional */
+            overflow: hidden;
+            border-radius: 2rem;
+        }
+
+        .breed-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Special fix for egg tray - contain instead of cover */
+        .breed-card-img.egg-card img {
+            object-fit: contain;
+            background: #f5f3e9;
+            padding: 10%;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .breed-card-img {
+                aspect-ratio: 3 / 4;
+            }
+            .hero-logo-wrap img {
+                width: 90px;
+                height: 90px;
+            }
         }
     </style>
+<base target="_blank">
 </head>
 
 <body class="selection:bg-forest selection:text-gold">
-    
+
     <div class="noise-layer"></div>
 
-    <!-- 
-        NOTIFICATION TOAST 
-    -->
-    <div 
-        id="toast-notification" 
-        class="toast-system bg-forest text-silk px-10 py-4 rounded-full shadow-2xl flex items-center space-x-5 border border-white/5"
-    >
-        <div class="w-2 h-2 bg-gold rounded-full animate-pulse"></div>
-        <span id="toast-text" class="text-[10px] font-black uppercase tracking-[0.3em]">Item Registered</span>
+    <!-- Toast -->
+    <div id="toast-msg" class="toast-system bg-forest text-silk px-8 py-4 rounded-full shadow-2xl flex items-center space-x-4 border border-white/5">
+        <div class="w-6 h-6 bg-gold rounded-full flex items-center justify-center text-forest">
+            <i class="fa-solid fa-check text-[10px] font-bold"></i>
+        </div>
+        <span id="toast-text" class="text-[10px] font-black uppercase tracking-[0.2em]">Acquired to Cart</span>
     </div>
 
-    <!-- 
-        MODAL CONFIGURATOR 
-    -->
-    <div 
-        id="breed-modal"
-    >
-        <div 
-            class="absolute inset-0 bg-forest-dark/80 backdrop-blur-md" 
-            onclick="closeBreedModal()"
-        ></div>
-        
-        <div 
-            class="modal-container relative bg-silk w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row border border-forest/5"
-        >
-            <!-- Visual Section -->
+    <!-- Modal -->
+    <div id="breed-modal">
+        <div class="absolute inset-0 bg-forest-dark/90 backdrop-blur-xl" onclick="closeBreedModal()"></div>
+        <div class="modal-container relative bg-silk w-full max-w-5xl rounded-[3rem] overflow-hidden shadow-2xl flex flex-col md:flex-row border border-forest/5">
             <div class="md:w-5/12 h-64 md:h-auto relative bg-forest-dark">
-                <img 
-                    id="modal-image" 
-                    src="" 
-                    class="w-full h-full object-cover transition-all duration-1000 opacity-0"
-                    alt="Configurator View"
-                >
+                <img id="modal-img-main" src="" class="w-full h-full object-cover transition-opacity duration-500 opacity-0" alt="Configurator">
                 <div class="absolute inset-0 bg-gradient-to-t from-forest-dark via-transparent to-transparent"></div>
-                <div class="absolute bottom-8 left-8">
-                    <h3 id="modal-title" class="font-serif text-3xl md:text-5xl text-silk mb-1 italic">Lineage</h3>
-                    <span class="text-gold text-[8px] uppercase tracking-mega font-bold">Directorate Series • Maaz Mustafa</span>
+                <div class="absolute bottom-10 left-10">
+                    <h3 id="modal-item-name" class="font-serif text-4xl md:text-5xl font-bold text-silk mb-2">Item</h3>
+                    <span class="text-gold text-[9px] uppercase tracking-[0.4em] font-black">Islamabad Heritage Series</span>
                 </div>
             </div>
-
-            <!-- Configuration Section -->
-            <div class="md:w-7/12 p-8 md:p-14 lg:p-20 overflow-y-auto bg-silk flex flex-col">
-                <button 
-                    onclick="closeBreedModal()" 
-                    class="absolute top-8 right-8 text-forest/20 hover:text-gold transition-colors"
-                >
-                    <i class="fa-solid fa-xmark text-xl"></i>
+            <div class="md:w-7/12 p-8 md:p-14 lg:p-20 overflow-y-auto bg-silk flex flex-col custom-scrollbar">
+                <button onclick="closeBreedModal()" class="absolute top-8 right-8 text-forest/20 hover:text-gold transition-colors">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
                 </button>
-                
                 <div class="mb-12">
-                    <h4 class="text-[9px] uppercase tracking-ultra font-black text-forest/30 mb-6">Breed Intelligence</h4>
-                    <p id="modal-desc" class="text-sm md:text-lg text-forest/70 leading-relaxed italic mb-10 font-serif"></p>
-                    <div id="modal-perks" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[9px] font-black uppercase opacity-60 tracking-widest">
-                        <!-- Perks -->
-                    </div>
+                    <h4 class="text-[9px] uppercase tracking-[0.4em] font-black text-forest/30 mb-6">Lineage Detail</h4>
+                    <p id="modal-item-desc" class="text-sm md:text-lg text-forest/70 leading-relaxed italic mb-10 font-serif"></p>
+                    <div id="modal-perk-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[10px] font-black uppercase opacity-60"></div>
                 </div>
-
-                <div class="mt-auto space-y-8">
-                    <h4 class="text-[9px] uppercase tracking-ultra font-black text-gold mb-4">Acquisition Selection</h4>
-                    <div id="modal-rates" class="grid grid-cols-1 gap-2"></div>
-                    
-                    <!-- CALCULATOR (ZERO CLIPPING) -->
-                    <div class="bg-forest-dark p-8 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-8 border border-gold/10">
+                <div class="mt-auto space-y-10">
+                    <h4 class="text-[9px] uppercase tracking-[0.4em] font-black text-gold mb-4">Acquisition Categories</h4>
+                    <div id="modal-cat-buttons" class="grid grid-cols-1 gap-2"></div>
+                    <div class="bg-forest/5 p-8 rounded-[2rem] flex items-center justify-between gap-6 border border-forest/5">
                         <div class="flex flex-col">
-                            <span class="text-[8px] font-black uppercase tracking-mega text-silk/30 mb-4">Quantity</span>
+                            <span class="text-[9px] font-black uppercase tracking-widest text-forest/30 mb-4">Quantity</span>
                             <div class="flex items-center space-x-6">
-                                <button onclick="adjustModalQty(-1)" class="w-10 h-10 rounded-full border border-silk/10 text-silk hover:bg-gold hover:text-forest transition-all flex items-center justify-center font-bold">-</button>
-                                <span id="modal-qty" class="text-2xl font-serif font-bold text-gold w-6 text-center">1</span>
-                                <button onclick="adjustModalQty(1)" class="w-10 h-10 rounded-full border border-silk/10 text-silk hover:bg-gold hover:text-forest transition-all flex items-center justify-center font-bold">+</button>
+                                <button onclick="adjustModalQty(-1)" class="w-10 h-10 rounded-full border border-forest/10 hover:bg-forest hover:text-silk transition-all font-bold text-xl">-</button>
+                                <span id="modal-qty-display" class="text-2xl font-serif font-bold text-forest w-6 text-center">1</span>
+                                <button onclick="adjustModalQty(1)" class="w-10 h-10 rounded-full border border-forest/10 hover:bg-forest hover:text-silk transition-all font-bold text-xl">+</button>
                             </div>
                         </div>
-                        <div class="text-right price-display-fixed">
-                            <div class="flex flex-col items-end">
-                                <span class="text-[8px] uppercase tracking-mega text-gold/40 mb-1 font-black">Estimated Subtotal</span>
-                                <span id="modal-subtotal" class="text-4xl font-bold text-gold font-serif">Rs 0</span>
-                            </div>
+                        <div class="text-right">
+                            <span class="text-[9px] uppercase tracking-widest text-gold font-black mb-1 block">Subtotal</span>
+                            <span id="modal-total-display" class="text-3xl font-bold text-gold font-serif leading-none">Rs 0</span>
                         </div>
                     </div>
-
-                    <button id="modal-action-btn" class="w-full py-5 bg-forest text-silk rounded-xl font-black uppercase tracking-[0.4em] text-[9px] hover:bg-forest-light transition-all btn-minimal shadow-xl">Confirm to Selection</button>
+                    <button id="modal-add-btn" class="w-full py-6 bg-forest text-silk rounded-2xl font-black uppercase tracking-[0.3em] text-[10px] hover:bg-forest-light shadow-xl transition-all btn-luxury">Confirm Selection</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 
-        HEADER INTERFACE 
-    -->
+    <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-[100] px-4 py-4 md:px-10">
-        <div class="max-w-[1400px] mx-auto glass-nav rounded-full px-10 py-4 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <img src="assets/logo.png" class="h-8 md:h-10 w-auto rounded-full transition-transform duration-500 group-hover:rotate-12" alt="Logo">
-                <span class="font-serif text-lg md:text-xl font-bold tracking-widest text-forest italic">Henzo <span class="text-gold font-light">Farm</span></span>
+        <div class="max-w-[1400px] mx-auto glass-header rounded-full px-10 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-4 group">
+                <img src="assets/logo.png" class="h-8 md:h-10 w-auto rounded-full bg-white border border-forest/5 shadow-sm transition-transform duration-500 group-hover:scale-110" alt="Logo">
+                <span class="font-serif text-lg md:text-xl font-bold tracking-widest text-forest">HENZO <span class="text-gold font-light">FARM</span></span>
             </a>
-            <nav class="hidden xl:flex items-center space-x-12 text-[9px] font-black tracking-ultra uppercase opacity-50">
-                <a href="#philosophy" class="hover:text-gold transition-colors">Vision</a>
+            <nav class="hidden xl:flex items-center space-x-12 text-[9px] font-black tracking-[0.4em] uppercase opacity-60">
+                <a href="#philosophy" class="hover:text-gold transition-colors">Philosophy</a>
                 <a href="#catalog" class="hover:text-gold transition-colors">Registry</a>
-                <a href="#experience" class="hover:text-gold transition-colors">Media</a>
                 <a href="#order" class="hover:text-gold transition-colors">Reservation</a>
-                <a href="#trust" class="hover:text-gold transition-colors">HQ</a>
+                <a href="#trust" class="hover:text-gold transition-colors">Sanctuary</a>
             </nav>
-            <button onclick="toggleCartSidebar()" class="relative p-2 text-forest transition-transform active:scale-90">
-                <i class="fa-solid fa-basket-shopping text-lg"></i>
-                <span id="header-count" class="absolute -top-1 -right-1 bg-forest text-silk text-[8px] font-black w-5 h-5 flex items-center justify-center rounded-full border border-silk">0</span>
+            <button onclick="toggleCartSidebar()" class="relative p-2 text-forest group transition-transform active:scale-90">
+                <i class="fa-solid fa-basket-shopping text-xl group-hover:text-gold"></i>
+                <span id="header-cart-badge" class="absolute -top-1 -right-1 bg-gold text-forest text-[9px] font-black w-5 h-5 flex items-center justify-center rounded-full shadow-md border border-silk">0</span>
             </button>
         </div>
     </header>
 
-    <!-- 
-        SIDEBAR CART 
-    -->
+    <!-- Cart Sidebar -->
     <div id="sidebar-overlay" onclick="toggleCartSidebar()" class="sidebar-overlay"></div>
     <aside class="cart-sidebar p-10 flex flex-col">
-        <div class="flex justify-between items-center mb-16">
+        <div class="flex justify-between items-center mb-12">
             <div class="flex flex-col">
-                <h2 class="font-serif text-3xl font-bold text-forest italic">Selection</h2>
-                <span class="text-[9px] uppercase tracking-ultra text-gold font-black mt-2">Islamabad Sanctuary Desk</span>
+                <h2 class="font-serif text-3xl font-bold text-forest leading-none">Your Cart</h2>
+                <span class="text-[9px] uppercase tracking-[0.3em] text-gold font-black mt-2">Islamabad Sanctuary Desk</span>
             </div>
-            <button onclick="toggleCartSidebar()"><i class="fa-solid fa-xmark text-2xl opacity-20"></i></button>
+            <button onclick="toggleCartSidebar()" class="text-forest hover:rotate-90 transition-transform duration-500"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
-        <div id="cart-list" class="flex-grow overflow-y-auto space-y-6 pr-2"></div>
-        <div class="border-t border-forest/5 pt-10 mt-10 space-y-8">
+        <div id="cart-item-container" class="flex-grow overflow-y-auto space-y-6 pr-2 custom-scrollbar"></div>
+        <div class="border-t border-forest/5 pt-10 mt-10 space-y-6">
             <div class="flex justify-between items-end">
-                <span class="uppercase tracking-ultra text-[8px] font-black opacity-30">Total Valuation</span>
-                <span id="cart-total" class="text-4xl text-gold font-serif italic font-bold">Rs 0</span>
+                <span class="uppercase tracking-widest text-[9px] font-black opacity-30">Total Valuation</span>
+                <span id="cart-sidebar-total" class="text-4xl text-gold font-serif font-bold">Rs 0</span>
             </div>
-            <button onclick="jumpToOrder()" class="w-full py-6 bg-forest text-silk font-black uppercase tracking-ultra text-[9px] rounded-xl hover:bg-forest-light transition-all btn-minimal shadow-2xl">Proceed to Desk</button>
+            <button onclick="navToOrder()" class="w-full py-6 bg-forest text-silk font-black uppercase tracking-[0.2em] text-[10px] rounded-2xl shadow-xl hover:bg-forest-light transition-all btn-luxury">Checkout Now</button>
         </div>
     </aside>
 
-    <!-- 
-        MOBILE BAR 
-    -->
-    <div class="xl:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-sm glass-nav rounded-full shadow-2xl z-[150] px-8 py-5 flex justify-between items-center border border-forest/5">
-        <a href="#hero" class="text-forest opacity-50"><i class="fa-solid fa-house"></i></a>
-        <a href="#catalog" class="text-forest opacity-50"><i class="fa-solid fa-award text-lg"></i></a>
-        <button onclick="toggleCartSidebar()" class="text-gold"><i class="fa-solid fa-basket-shopping text-xl"></i></button>
-        <a href="#order" class="text-forest opacity-50"><i class="fa-solid fa-pen-nib"></i></a>
-    </div>
-
-    <!-- 
-        MAIN CONTENT 
-    -->
+    <!-- Main -->
     <main>
-        
-        <!-- HERO -->
-        <section id="hero" class="relative min-h-[95vh] flex items-center justify-center bg-forest-dark overflow-hidden">
-            <div class="absolute inset-0 opacity-40"><img src="assets/hero_chickens.png" class="w-full h-full object-cover grayscale"></div>
-            <div class="relative z-10 text-center px-6 max-w-[1200px] mx-auto flex flex-col items-center">
-                <div class="hero-reveal opacity-0 translate-y-10">
-                    <img src="assets/logo.png" class="h-28 md:h-36 w-auto rounded-full bg-white p-1 shadow-2xl mb-12" alt="Maaz Minhas">
-                    <span class="text-[9px] md:text-[10px] font-black tracking-mega uppercase text-gold-gradient mb-4 block">Islamabad • Pakistan</span>
+        <!-- ===== FIX 3: Hero logo centered properly ===== -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center bg-forest-dark overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-40">
+                <img src="assets/hero_chickens.png" class="w-full h-full object-cover">
+            </div>
+            <div class="relative z-10 text-center px-6 max-w-[1000px] mx-auto flex flex-col items-center">
+
+                <!-- Logo now properly centered above text -->
+                <div class="hero-logo-wrap hero-reveal opacity-0 translate-y-10">
+                    <img src="assets/logo.png" alt="Henzo Farm Logo">
                 </div>
-                <h1 class="hero-reveal opacity-0 translate-y-10 font-serif text-5xl md:text-9xl lg:text-[11rem] text-silk font-bold tracking-tighter leading-none mb-10">Pure <span class="italic font-normal text-gold-gradient">Heritage</span></h1>
-                <p class="hero-reveal opacity-0 translate-y-10 text-base md:text-xl font-light tracking-widest text-silk/50 max-w-3xl mx-auto mb-16 italic font-serif leading-relaxed">"Healthy Birds. Healthy Life." — Heritage lineages raised in absolute freedom under the Islamabad foothills.</p>
+
                 <div class="hero-reveal opacity-0 translate-y-10">
-                    <a href="#catalog" class="px-14 py-5 bg-gold text-forest font-black uppercase tracking-ultra text-[9px] rounded-full hover:bg-gold-light transition-all btn-minimal shadow-2xl">Explore Registry</a>
+                    <span class="text-[10px] md:text-[11px] font-black tracking-[0.8em] uppercase text-gold-gradient mb-4 block">Islamabad • Pakistan</span>
+                </div>
+                <h1 class="hero-reveal opacity-0 translate-y-10 font-serif text-5xl md:text-8xl lg:text-[10rem] text-silk font-bold tracking-tighter leading-none mb-10">
+                    Nature's Finest <span class="italic font-normal text-gold-gradient">Heritage</span>
+                </h1>
+                <p class="hero-reveal opacity-0 translate-y-10 text-base md:text-xl font-light tracking-wide text-silk/60 max-w-2xl mx-auto mb-12 italic font-serif leading-relaxed">
+                    "Healthy Birds. Healthy Life." — Pure-bred lineages cultivated in absolute freedom within the Islamabad foothills.
+                </p>
+                <div class="hero-reveal opacity-0 translate-y-10">
+                    <a href="#catalog" class="px-12 py-5 bg-gold text-forest font-black uppercase tracking-[0.3em] text-[10px] rounded-full hover:bg-gold-light transition-all shadow-xl btn-luxury">
+                        Explore Breed Registry
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- PHILOSOPHY -->
-        <section id="philosophy" class="py-32 md:py-56 bg-silk px-10 md:px-24 relative overflow-hidden">
-            <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
-                <div class="space-y-14 reveal opacity-0">
+        <!-- Philosophy -->
+        <section id="philosophy" class="py-24 md:py-48 bg-silk px-10 md:px-20 relative overflow-hidden">
+            <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <div class="space-y-12 reveal opacity-0">
                     <div class="space-y-6">
-                        <span class="text-[9px] font-black tracking-ultra uppercase text-gold">The philosophy</span>
-                        <h2 class="font-serif text-5xl md:text-8xl font-bold text-forest leading-tight italic">Farm-to-Table Integrity.</h2>
+                        <span class="text-[10px] font-black tracking-[0.4em] uppercase text-gold">The vision</span>
+                        <h2 class="font-serif text-4xl md:text-7xl font-bold text-forest leading-tight">Farm-to-Table Integrity.</h2>
                     </div>
-                    <p class="text-lg md:text-2xl text-forest/60 font-light font-serif leading-relaxed">We reject shortcuts. Our heritage breeds roam freely on lush clover fields in the pristine Pindorian foothills. Every bird is a legacy of Maaz Mustafa's organic standards.</p>
-                    <div class="grid grid-cols-2 gap-16 pt-8">
-                        <div class="space-y-5">
-                            <i class="fa-solid fa-leaf text-gold text-xl opacity-40"></i>
-                            <h4 class="font-bold text-[10px] uppercase tracking-ultra">Organic Feed</h4>
-                            <p class="text-xs opacity-50 italic font-serif">Zero hormones. Only pure farm grains.</p>
+                    <p class="text-base md:text-xl text-forest/70 font-light font-serif leading-relaxed">We reject industrialized shortcuts. True premium quality is a byproduct of harmony with nature. Our breeds roam freely on lush clover fields in the pristine Pindorian foothills.</p>
+                    <div class="grid grid-cols-2 gap-12 pt-8">
+                        <div class="space-y-4">
+                            <i class="fa-solid fa-leaf text-gold text-2xl"></i>
+                            <h4 class="font-bold text-sm uppercase tracking-widest">Organic</h4>
+                            <p class="text-xs opacity-50 italic">Zero hormones. Pure farm-grown mix.</p>
                         </div>
-                        <div class="space-y-5">
-                            <i class="fa-solid fa-wind text-gold text-xl opacity-40"></i>
-                            <h4 class="font-bold text-[10px] uppercase tracking-ultra">Free range</h4>
-                            <p class="text-xs opacity-50 italic font-serif">Open Islamabad air every single day.</p>
+                        <div class="space-y-4">
+                            <i class="fa-solid fa-wind text-gold text-2xl"></i>
+                            <h4 class="font-bold text-sm uppercase tracking-widest">Pasture</h4>
+                            <p class="text-xs opacity-50 italic">Open-air freedom every day.</p>
                         </div>
                     </div>
                 </div>
                 <div class="reveal opacity-0 relative">
-                    <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000"><img src="assets/farm_pasture.png" class="w-full h-full object-cover"></div>
-                    <div class="absolute -bottom-10 -left-10 glass-nav p-12 rounded-3xl shadow-2xl border border-forest/5 hidden lg:block">
-                        <span class="font-serif text-6xl font-bold text-gold block leading-none italic mb-2">100%</span>
-                        <span class="text-[9px] font-black uppercase tracking-ultra opacity-40 block">Heritage Stock</span>
+                    <div class="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl relative">
+                        <img src="assets/farm_pasture.png" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 glass-header p-12 rounded-[3rem] shadow-xl border border-forest/5 hidden lg:block hover:scale-105 transition-transform">
+                        <span class="font-serif text-5xl font-black text-gold block leading-none mb-2">100%</span>
+                        <span class="text-[10px] font-black uppercase tracking-widest opacity-60 block">Islamabad Heritage</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CATALOG (MINIMAL CARDS) -->
-        <section id="catalog" class="py-32 md:py-56 bg-silk-dark px-10 md:px-24">
-            <div class="max-w-[1400px] mx-auto text-center mb-40">
-                <span class="text-[10px] font-black tracking-mega uppercase text-earth mb-6 block">Breed Registry</span>
-                <h2 class="font-serif text-5xl md:text-[8rem] font-bold text-forest leading-none italic">The Selection</h2>
+        <!-- ===== FIX 4: Cards with proportional 4:5 images ===== -->
+        <section id="catalog" class="py-24 md:py-48 bg-silk-dark px-10 md:px-24">
+            <div class="max-w-[1400px] mx-auto text-center mb-20 md:mb-32">
+                <span class="text-[10px] font-black tracking-[0.5em] uppercase text-earth mb-6 block">Breed Registry</span>
+                <h2 class="font-serif text-5xl md:text-8xl font-bold text-forest">The Selection</h2>
             </div>
-            <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+
                 <!-- Australorp -->
-                <div onclick="openBreedModal('Australorp')" class="group cursor-pointer bg-white rounded-3xl p-5 border border-forest/5 hover:shadow-2xl transition-all duration-700 reveal opacity-0">
-                    <div class="relative h-[600px] rounded-2xl overflow-hidden mb-10">
-                        <img src="assets/australorp_hen.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0" alt="Australorp">
-                        <div class="absolute inset-0 bg-forest-dark/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="absolute bottom-10 left-10 text-silk">
-                            <h3 class="font-serif text-5xl font-bold mb-2 italic">Australorp</h3>
-                            <span class="text-[8px] uppercase tracking-mega font-black text-gold">World-Record Layer</span>
+                <div onclick="openBreedModal('Australorp')" class="group cursor-pointer bg-white rounded-[2.5rem] p-3 border border-forest/5 hover:shadow-2xl transition-all duration-700 reveal opacity-0">
+                    <div class="breed-card-img">
+                        <img src="assets/australorp_hen.jpg" class="card-img-zoom" alt="Australorp">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-8 left-8 text-silk">
+                            <h3 class="font-serif text-3xl md:text-4xl font-bold mb-2">Australorp</h3>
+                            <span class="text-[8px] uppercase tracking-[0.5em] font-black text-gold">The Record Layer</span>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 flex justify-between items-center opacity-30 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[10px] font-black uppercase tracking-ultra">Profile Details</span>
-                        <i class="fa-solid fa-arrow-right-long text-2xl"></i>
+                    <div class="px-5 py-5 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                        <span class="text-[10px] font-black uppercase tracking-widest">Heritage Profile</span>
+                        <i class="fa-solid fa-arrow-right-long text-xl"></i>
                     </div>
                 </div>
+
                 <!-- RIR -->
-                <div onclick="openBreedModal('RIR')" class="group cursor-pointer bg-white rounded-3xl p-5 border border-forest/5 hover:shadow-2xl transition-all duration-700 reveal opacity-0">
-                    <div class="relative h-[600px] rounded-2xl overflow-hidden mb-10">
-                        <img src="assets/rir_rooster.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0" alt="RIR">
-                        <div class="absolute inset-0 bg-forest-dark/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="absolute bottom-10 left-10 text-silk">
-                            <h3 class="font-serif text-5xl font-bold mb-2 italic">Island Red</h3>
-                            <span class="text-[8px] uppercase tracking-mega font-black text-gold">Resilient Heritage</span>
+                <div onclick="openBreedModal('RIR')" class="group cursor-pointer bg-white rounded-[2.5rem] p-3 border border-forest/5 hover:shadow-2xl transition-all duration-700 reveal opacity-0">
+                    <div class="breed-card-img">
+                        <img src="assets/rir_rooster.jpg" class="card-img-zoom" alt="RIR">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/80 via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-8 left-8 text-silk">
+                            <h3 class="font-serif text-3xl md:text-4xl font-bold mb-2">Island Red</h3>
+                            <span class="text-[8px] uppercase tracking-[0.5em] font-black text-gold">The Resilient Classic</span>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 flex justify-between items-center opacity-30 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[10px] font-black uppercase tracking-ultra">Profile Details</span>
-                        <i class="fa-solid fa-arrow-right-long text-2xl"></i>
+                    <div class="px-5 py-5 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                        <span class="text-[10px] font-black uppercase tracking-widest">Heritage Profile</span>
+                        <i class="fa-solid fa-arrow-right-long text-xl"></i>
                     </div>
                 </div>
-                <!-- Eggs -->
-                <div onclick="openBreedModal('Eggs')" class="group cursor-pointer bg-white rounded-3xl p-5 border border-forest/5 hover:shadow-2xl transition-all duration-700 reveal opacity-0">
-                    <div class="relative h-[600px] rounded-2xl overflow-hidden mb-10">
-                        <img src="assets/pasture_raised_eggs.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0" alt="Eggs">
-                        <div class="absolute inset-0 bg-forest-dark/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="absolute bottom-10 left-10 text-silk">
-                            <h3 class="font-serif text-5xl font-bold mb-2 italic">Pasture Eggs</h3>
-                            <span class="text-[8px] uppercase tracking-mega font-black text-gold">Daily Harvest</span>
+
+                <!-- Eggs - with contain fix for tray image -->
+                <div onclick="openBreedModal('Eggs')" class="group cursor-pointer bg-white rounded-[2.5rem] p-3 border border-forest/5 hover:shadow-2xl transition-all duration-700 reveal opacity-0">
+                    <div class="breed-card-img egg-card">
+                        <img src="assets/pasture_raised_eggs.jpg" class="card-img-zoom" alt="Eggs">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/60 via-transparent to-transparent opacity-40"></div>
+                        <div class="absolute bottom-8 left-8 text-silk">
+                            <h3 class="font-serif text-3xl md:text-4xl font-bold mb-2">Organic Eggs</h3>
+                            <span class="text-[8px] uppercase tracking-[0.5em] font-black text-gold">Golden Harvest</span>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 flex justify-between items-center opacity-30 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[10px] font-black uppercase tracking-ultra">Profile Details</span>
-                        <i class="fa-solid fa-arrow-right-long text-2xl"></i>
+                    <div class="px-5 py-5 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                        <span class="text-[10px] font-black uppercase tracking-widest">Heritage Profile</span>
+                        <i class="fa-solid fa-arrow-right-long text-xl"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- RESERVATION -->
-        <section id="order" class="py-32 md:py-64 bg-forest relative overflow-hidden px-10 text-silk">
-            <div class="max-w-[1100px] mx-auto relative z-10">
-                <div class="text-center mb-40 space-y-10 reveal opacity-0">
-                    <span class="text-[11px] font-black tracking-mega uppercase text-gold">Acquisition Desk</span>
-                    <h2 class="font-serif text-6xl md:text-[10rem] font-bold leading-none italic">Reserve Heritage.</h2>
+        <!-- Order Form -->
+        <section id="order" class="py-24 md:py-48 bg-forest relative overflow-hidden px-10 text-silk">
+            <div class="max-w-[1000px] mx-auto relative z-10">
+                <div class="text-center mb-32 space-y-6">
+                    <span class="text-[10px] font-black tracking-[0.7em] uppercase text-gold">Acquisition Desk</span>
+                    <h2 class="font-serif text-6xl md:text-8xl font-bold leading-none">Reserve Heritage</h2>
                 </div>
-                <div class="glass-dark p-12 md:p-32 rounded-3xl border border-gold/10 shadow-2xl reveal opacity-0">
-                    <form onsubmit="handleOrder(event)" class="space-y-24">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-                            <div class="space-y-6">
-                                <label class="text-[9px] uppercase tracking-ultra opacity-40 font-black">Full Name</label>
-                                <input type="text" id="order-name" required placeholder="Maaz Minhas" class="w-full bg-white/5 border-b border-white/20 px-0 py-6 text-2xl outline-none focus:border-gold transition-all font-serif placeholder:opacity-5">
+                <div class="glass-panel-dark p-10 md:p-24 rounded-[4rem] border border-gold/10 shadow-2xl reveal opacity-0">
+                    <form onsubmit="executeOrder(event)" class="space-y-20">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="space-y-4">
+                                <label class="text-[10px] uppercase tracking-[0.5em] opacity-40 font-black">Full Name</label>
+                                <input type="text" id="cust-name" required placeholder="Maaz Mustafa Minhas" class="w-full bg-white/5 border-b border-white/20 px-0 py-6 text-2xl outline-none focus:border-gold transition-all font-serif placeholder:opacity-10">
                             </div>
-                            <div class="space-y-6">
-                                <label class="text-[9px] uppercase tracking-ultra opacity-40 font-black">WhatsApp Number</label>
-                                <div class="relative"><span class="absolute left-0 top-1/2 -translate-y-1/2 text-silk/20 font-serif text-2xl">+92</span><input type="tel" id="order-phone" required placeholder="3115190548" class="w-full bg-white/5 border-b border-white/20 pl-24 py-6 text-2xl outline-none focus:border-gold transition-all font-serif placeholder:opacity-5"></div>
+                            <div class="space-y-4">
+                                <label class="text-[10px] uppercase tracking-[0.5em] opacity-40 font-black">WhatsApp</label>
+                                <div class="relative"><span class="absolute left-0 top-1/2 -translate-y-1/2 text-silk/30 font-serif text-2xl">+92</span><input type="tel" id="cust-phone" required placeholder="3115190548" class="w-full bg-white/5 border-b border-white/20 pl-20 py-6 text-2xl outline-none focus:border-gold transition-all font-serif placeholder:opacity-10"></div>
                             </div>
                         </div>
-                        <div class="space-y-6">
-                            <label class="text-[9px] uppercase tracking-ultra opacity-40 font-black">Address</label>
-                            <textarea id="order-address" required rows="2" class="w-full bg-white/5 border-b border-white/20 px-0 py-6 text-2xl outline-none focus:border-gold transition-all font-serif resize-none">Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</textarea>
+                        <div class="space-y-4">
+                            <label class="text-[10px] uppercase tracking-[0.5em] opacity-40 font-black">Delivery Area</label>
+                            <select id="cust-area" required class="w-full bg-white/5 border-b border-white/20 px-0 py-6 text-2xl outline-none focus:border-gold transition-all font-serif text-silk/70">
+                                <option value="" disabled selected class="text-forest">Select Area...</option>
+                                <option value="Pindorian" class="text-forest">Pindorian Shareef</option>
+                                <option value="Islamabad" class="text-forest">Islamabad City</option>
+                                <option value="Rawalpindi" class="text-forest">Rawalpindi</option>
+                                <option value="Bahria Town" class="text-forest">Bahria Town</option>
+                                <option value="Gulzara Quaid" class="text-forest">Gulzara Quaid</option>
+                                <option value="Ghori Town" class="text-forest">Ghori Town</option>
+                                <option value="Media Town" class="text-forest">Media Town</option>
+                                <option value="PWD" class="text-forest">PWD</option>
+                                <option value="Other" class="text-forest">Other</option>
+                            </select>
                         </div>
-                        <div class="bg-black/40 p-16 rounded-3xl border border-white/5">
-                            <div id="summary-list" class="space-y-8 text-xl text-silk/30 italic font-serif mb-20">Cart empty.</div>
-                            <div class="flex flex-col lg:flex-row justify-between items-center gap-16 pt-16 border-t border-white/10">
-                                <div class="text-center lg:text-left space-y-4"><span class="text-[10px] uppercase tracking-ultra opacity-40 block font-black">Valuation</span><span id="valuation-total" class="text-7xl font-bold text-gold font-serif italic">Rs 0</span></div>
-                                <button type="submit" id="submit-btn" class="w-full lg:w-auto bg-gold text-forest px-20 py-10 rounded-xl font-black uppercase tracking-ultra text-[11px] shadow-2xl btn-minimal">Complete Acquisition</button>
+                        <div class="space-y-4">
+                            <label class="text-[10px] uppercase tracking-[0.5em] opacity-40 font-black">Address</label>
+                            <textarea id="cust-address" required rows="2" class="w-full bg-white/5 border-b border-white/20 px-0 py-6 text-2xl outline-none focus:border-gold transition-all font-serif resize-none">Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</textarea>
+                        </div>
+                        <div class="bg-black/20 p-12 rounded-[3.5rem] border border-white/5">
+                            <div id="final-cart-list" class="space-y-6 text-lg text-silk/40 italic font-serif mb-12">Collection empty.</div>
+                            <div class="flex flex-col lg:flex-row justify-between items-center gap-12 pt-12 border-t border-white/5">
+                                <div class="text-center lg:text-left"><span class="text-[9px] uppercase tracking-widest opacity-40 block mb-2 font-black">Final Valuation</span><span id="final-valuation" class="text-6xl font-bold text-gold font-serif">Rs 0</span></div>
+                                <button type="submit" id="order-btn" class="w-full lg:w-auto bg-gold text-forest px-16 py-8 rounded-[2rem] font-black uppercase tracking-[0.3em] text-[11px] shadow-2xl active:scale-95 transition-transform btn-luxury flex items-center justify-center gap-3">
+                                    <span>Confirm Reservation</span>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -580,94 +449,117 @@
             </div>
         </section>
 
-        <!-- SANCTUARY DIRECTOR -->
-        <section id="trust" class="py-32 md:py-64 bg-silk px-10 border-t border-forest/5">
-            <div class="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-40 items-center">
-                <div class="space-y-16 reveal opacity-0">
-                    <div class="space-y-8">
-                        <span class="text-[10px] font-black tracking-mega uppercase text-gold">Directorate</span>
-                        <h2 class="font-serif text-6xl md:text-[9rem] font-bold text-forest leading-none italic">Maaz Mustafa Minhas</h2>
-                        <p class="text-2xl md:text-4xl text-forest/50 italic font-serif border-l-4 border-gold pl-14 leading-relaxed font-light">"Every bird from Henzo Farm is raised as a legacy of organic integrity. Healthy Birds, Healthy Life."</p>
-                    </div>
-                    <div class="space-y-8"><div class="flex items-center space-x-10 text-[10px] font-black uppercase tracking-ultra opacity-40"><i class="fa-solid fa-map-pin text-gold"></i><span>Shed No 1, Pindorian Shareef</span></div><div class="flex items-center space-x-10 text-[10px] font-black uppercase tracking-ultra opacity-40"><i class="fa-solid fa-phone text-gold"></i><span>+92 311 5190548</span></div></div>
+        <!-- Trust -->
+        <section id="trust" class="py-24 md:py-48 bg-silk px-10 border-t border-forest/5">
+            <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+                <div class="space-y-12 reveal opacity-0">
+                    <div class="space-y-6"><span class="text-[10px] font-black tracking-[0.5em] uppercase text-earth">Directorate</span><h2 class="font-serif text-5xl md:text-8xl font-bold text-forest leading-none">Maaz Mustafa Minhas</h2><p class="text-xl md:text-3xl text-forest/60 italic font-serif border-l-4 border-gold pl-10 leading-relaxed">"Every bird from Henzo Farm is raised as a legacy of organic poultry breeding. Healthy Birds, Healthy Life."</p></div>
+                    <div class="space-y-6"><div class="flex items-center space-x-6 text-[10px] font-black uppercase tracking-widest opacity-40"><i class="fa-solid fa-map-pin text-gold"></i><span>Shed No 1, Pindorian Shareef, Islamabad</span></div><div class="flex items-center space-x-6 text-[10px] font-black uppercase tracking-widest opacity-40"><i class="fa-solid fa-phone text-gold"></i><span>+92 311 5190548</span></div></div>
                 </div>
-                <div class="reveal opacity-0 relative aspect-square bg-forest-dark rounded-full overflow-hidden flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-[2s]">
-                    <div class="w-24 h-24 bg-gold/10 rounded-full animate-ping"></div><div class="w-6 h-6 bg-gold rounded-full absolute z-10"></div>
-                    <span class="absolute mt-48 bg-forest/80 backdrop-blur-md px-12 py-4 rounded-full text-gold text-[10px] font-black uppercase tracking-ultra border border-gold/40">Henzo Sanctuary HQ</span>
+                <div class="reveal opacity-0 relative aspect-square bg-forest-dark rounded-[5rem] overflow-hidden flex items-center justify-center border border-gold/10">
+                    <div class="w-12 h-12 bg-gold rounded-full ring-pulse-fx"></div><div class="w-4 h-4 bg-gold rounded-full absolute z-10 border-4 border-forest"></div>
+                    <span class="absolute mt-32 bg-forest/80 backdrop-blur-md px-10 py-3 rounded-full text-gold text-[9px] font-black uppercase tracking-widest border border-gold/40">Henzo HQ Sanctuary</span>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-24 bg-silk-dark text-center border-t border-forest/5"><p class="text-[12px] font-black uppercase tracking-mega opacity-20 text-forest">© 2026 HENZO FARM • ISLAMABAD</p></footer>
+    <footer class="py-16 bg-silk-dark text-center border-t border-forest/5"><p class="text-[11px] font-black uppercase tracking-[0.8em] opacity-30 text-forest">© 2026 HENZO FARM • ISLAMABAD</p></footer>
 
-    <!-- 
-        ========================================================================
-        LOGIC CORE (V10.0)
-        ========================================================================
-    -->
     <script>
         const HENZO = {
             cart: [],
             modal: { id: '', cat: '', price: 0, qty: 1 },
             config: {
                 wa: '923115190548',
-                webhook: 'PASTE_YOUR_APPS_SCRIPT_URL_HERE' // <--- REPLACE THIS LINE
+                bridge: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'
             }
         };
 
-        const DB = {
+        const REGISTRY = {
             'Australorp': {
                 name: 'Black Australorp',
-                desc: 'World-record holder for productivity (364 eggs). Renowned for beetle-green sheen and gentle giant nature.',
-                perks: ['Record Heritage', 'Beetle-Green Sheen', 'Docile Nature', 'Cold Resilient'],
+                desc: 'World-record holder for productivity. Renowned for beetle-green sheen and gentle giants temperament.',
+                perks: ['Record Yield', 'Gentle Nature', 'Islamabad Hardy', 'Genetic Pure'],
                 media: { 
                     'Baby Chick': 'assets/australorp_chick.jpg', 
                     'Mature Hen': 'assets/australorp_hen.jpg', 
                     'Rooster': 'assets/australorp_rooster.jpg', 
                     '1 Rooster + 5 Hens': 'assets/australorp_hen.jpg' 
                 },
-                rates: { 'Baby Chick': 120, 'Mature Hen': 2500, 'Rooster': 3000, '1 Rooster + 5 Hens': 14725 }
+                rates: { 
+                    'Baby Chick': 120, 
+                    'Mature Hen': 2500, 
+                    'Rooster': 3000, 
+                    '1 Rooster + 5 Hens': 14725 
+                }
             },
             'RIR': {
                 name: 'Rhode Island Red',
-                desc: 'The ultimate dual-purpose classic. Historically unmatched hardiness and heavy brown egg production.',
-                perks: ['Supreme Hardiness', 'Rich Mahogany', 'Dual-Purpose', 'Disease Resistant'],
+                desc: 'Ultimate dual-purpose heritage classic. Historically unmatched resilience and brown egg production.',
+                perks: ['Climate Immune', 'Mahogany Hue', 'Steady Laying', 'Independent'],
                 media: { 
                     'Baby Chick': 'assets/rir_chick.jpg', 
                     'Mature Hen': 'assets/rir_hen.jpg', 
                     'Rooster': 'assets/rir_rooster.jpg', 
                     '1 Rooster + 5 Hens': 'assets/rir_rooster.jpg' 
                 },
-                rates: { 'Baby Chick': 120, 'Mature Hen': 2500, 'Rooster': 3000, '1 Rooster + 5 Hens': 14725 }
+                rates: { 
+                    'Baby Chick': 120, 
+                    'Mature Hen': 2500, 
+                    'Rooster': 3000, 
+                    '1 Rooster + 5 Hens': 14725 
+                }
             },
             'Eggs': {
                 name: 'Organic Pasture Eggs',
-                desc: 'Daily harvested eggs with golden yolks. Rich in vitamins and natural organic protein.',
-                perks: ['Daily Harvest', 'Golden Yolks', 'No Hormones', 'Organic Feed'],
-                media: { '1 Dozen': 'assets/pasture_raised_eggs.jpg', '2 Dozen': 'assets/pasture_raised_eggs.jpg', '5 Dozen': 'assets/pasture_raised_eggs.jpg' },
-                rates: { '1 Dozen': 450, '2 Dozen': 900, '5 Dozen': 2250 }
+                desc: 'Golden yolk eggs, harvested fresh daily. Rich in organic nutrients and premium protein.',
+                perks: ['Daily Harvest', 'High Protein', 'No Chemicals', 'Islamabad Local'],
+                media: { 
+                    '1 Dozen': 'assets/pasture_raised_eggs.jpg', 
+                    '2 Dozen': 'assets/pasture_raised_eggs.jpg', 
+                    '5 Dozen': 'assets/pasture_raised_eggs.jpg' 
+                },
+                rates: { 
+                    '1 Dozen': 450, 
+                    '2 Dozen': 900, 
+                    '5 Dozen': 2250 
+                }
             }
         };
 
         function toggleCartSidebar() {
-            const open = document.body.classList.toggle('cart-open');
+            const state = document.body.classList.toggle('cart-open');
             const ov = document.getElementById('sidebar-overlay');
-            ov.style.display = open ? 'block' : 'none';
-            setTimeout(() => { ov.style.opacity = open ? '1' : '0'; }, 50);
+            ov.style.display = state ? 'block' : 'none';
+            setTimeout(() => { ov.style.opacity = state ? '1' : '0'; }, 50);
         }
 
         function openBreedModal(k) {
-            const d = DB[k];
+            const d = REGISTRY[k];
+            if (!d) return;
             HENZO.modal.id = k;
             HENZO.modal.qty = 1;
-            document.getElementById('modal-title').innerText = d.name;
-            document.getElementById('modal-desc').innerText = d.desc;
-            document.getElementById('modal-image').src = Object.values(d.media)[0];
-            document.getElementById('modal-image').style.opacity = '1';
-            document.getElementById('modal-perks').innerHTML = d.perks.map(p => `<div class="flex items-center"><div class="w-1 h-1 bg-gold mr-3"></div>${p}</div>`).join('');
+            document.getElementById('modal-item-name').innerText = d.name;
+            document.getElementById('modal-item-desc').innerText = d.desc;
+            const firstMedia = Object.values(d.media)[0];
+            const imgEl = document.getElementById('modal-img-main');
+            imgEl.src = firstMedia || '';
+            imgEl.style.opacity = '1';
+            document.getElementById('modal-perk-grid').innerHTML = d.perks.map(p => 
+                `<div class="flex items-center"><i class="fa-solid fa-circle-check text-gold mr-3"></i>${p}</div>`
+            ).join('');
             const rates = Object.entries(d.rates);
-            document.getElementById('modal-rates').innerHTML = rates.map(([l, p]) => `<button onclick="setModalCat('${l}', ${p})" id="mc-${l.replace(/ /g,'')}" class="category-btn w-full p-6 rounded-xl border border-forest/5 flex justify-between items-center text-[10px] font-black uppercase hover:border-gold transition-all"><span>${l}</span><span class="text-gold font-serif font-bold">Rs ${p.toLocaleString()}</span></button>`).join('');
+            const catContainer = document.getElementById('modal-cat-buttons');
+            if (rates.length === 0) {
+                catContainer.innerHTML = '<p class="text-sm opacity-50">No categories available.</p>';
+                return;
+            }
+            catContainer.innerHTML = rates.map(([l, p]) => `
+                <button onclick="setModalCat('${l.replace(/'/g, "\'")}', ${p})" id="mc-${l.replace(/[^a-zA-Z0-9]/g,'')}" class="w-full p-6 rounded-2xl border border-forest/10 flex justify-between items-center text-[10px] font-black uppercase hover:border-gold transition-all">
+                    <span>${l}</span><span class="text-gold font-serif font-bold">Rs ${p.toLocaleString()}</span>
+                </button>
+            `).join('');
             setModalCat(rates[0][0], rates[0][1]);
             document.body.classList.add('modal-active');
         }
@@ -677,87 +569,139 @@
         function setModalCat(l, p) {
             HENZO.modal.cat = l;
             HENZO.modal.price = p;
-            const img = DB[HENZO.modal.id].media[l];
-            if(img) document.getElementById('modal-image').src = img;
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('mc-' + l.replace(/ /g,'')).classList.add('active');
-            refreshModal();
+            const media = REGISTRY[HENZO.modal.id]?.media?.[l];
+            if (media) document.getElementById('modal-img-main').src = media;
+            document.querySelectorAll('#modal-cat-buttons button').forEach(b => {
+                b.classList.remove('border-gold', 'bg-gold/5');
+            });
+            const safeId = 'mc-' + l.replace(/[^a-zA-Z0-9]/g, '');
+            const activeBtn = document.getElementById(safeId);
+            if (activeBtn) activeBtn.classList.add('border-gold', 'bg-gold/5');
+            refreshModalCalcs();
         }
 
         function adjustModalQty(c) {
             HENZO.modal.qty = Math.max(1, HENZO.modal.qty + c);
-            refreshModal();
+            refreshModalCalcs();
         }
 
-        function refreshModal() {
-            document.getElementById('modal-qty').innerText = HENZO.modal.qty;
-            document.getElementById('modal-subtotal').innerText = 'Rs ' + (HENZO.modal.price * HENZO.modal.qty).toLocaleString();
+        function refreshModalCalcs() {
+            document.getElementById('modal-qty-display').innerText = HENZO.modal.qty;
+            const total = HENZO.modal.price * HENZO.modal.qty;
+            document.getElementById('modal-total-display').innerText = 'Rs ' + total.toLocaleString();
         }
 
         document.getElementById('modal-add-btn').addEventListener('click', () => {
             const m = HENZO.modal;
+            if (!m.id || !m.cat) return;
             const match = HENZO.cart.find(i => i.id === m.id && i.cat === m.cat);
-            if(match) match.qty += m.qty;
-            else HENZO.cart.push({ ...m });
-            sync();
+            if (match) match.qty += m.qty;
+            else HENZO.cart.push({ id: m.id, cat: m.cat, price: m.price, qty: m.qty });
+            syncUI();
             closeBreedModal();
-            const t = document.getElementById('toast-notification');
-            t.classList.add('active');
-            setTimeout(() => t.classList.remove('active'), 3500);
+            const toast = document.getElementById('toast-msg');
+            document.getElementById('toast-text').innerText = `${m.qty}x ${m.id} (${m.cat}) Added`;
+            toast.classList.add('active');
+            setTimeout(() => toast.classList.remove('active'), 3500);
         });
 
-        function sync() {
-            const list = document.getElementById('cart-list');
-            const summary = document.getElementById('summary-list');
+        function syncUI() {
+            const sb = document.getElementById('cart-item-container');
+            const res = document.getElementById('final-cart-list');
             let t = 0; let c = 0;
-            if(HENZO.cart.length === 0) {
-                list.innerHTML = `<div class="text-center py-40 opacity-20 italic">Empty</div>`;
-                summary.innerHTML = `Selection empty.`;
+            if (HENZO.cart.length === 0) {
+                sb.innerHTML = `<div class="text-center py-40 opacity-20 italic font-serif text-lg">Selection Vacant.</div>`;
+                res.innerHTML = `<div class="text-center italic opacity-40">No items selected.</div>`;
             } else {
-                list.innerHTML = HENZO.cart.map((i, idx) => {
+                sb.innerHTML = HENZO.cart.map((i, idx) => {
                     const sub = i.price * i.qty; t += sub; c += i.qty;
-                    return `<div class="flex justify-between p-10 bg-forest/5 rounded-3xl border border-forest/5"><div><h4 class="font-serif text-2xl font-bold italic">${i.id}</h4><p class="text-[9px] font-black text-gold uppercase mt-2">${i.cat} x ${i.qty}</p></div><div class="text-right"><p class="text-xl font-bold text-forest">Rs ${sub.toLocaleString()}</p><button onclick="drop(${idx})" class="text-red-500 font-black uppercase text-[9px] mt-2 underline">Remove</button></div></div>`;
+                    return `
+                        <div class="flex justify-between p-8 bg-forest/5 rounded-[2.5rem] border border-forest/5">
+                            <div>
+                                <h4 class="font-serif text-xl font-bold">${i.id}</h4>
+                                <p class="text-[9px] font-black text-gold uppercase mt-2">${i.cat} x ${i.qty}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-base font-bold text-forest">Rs ${sub.toLocaleString()}</p>
+                                <button onclick="dropItem(${idx})" class="text-red-500 font-black uppercase text-[9px] mt-2 underline hover:no-underline">Remove</button>
+                            </div>
+                        </div>
+                    `;
                 }).join('');
-                summary.innerHTML = HENZO.cart.map(i => `<div class="flex justify-between border-b border-white/5 py-6"><span class="font-serif text-2xl">${i.qty}x ${i.id} [${i.cat}]</span><span class="text-gold font-bold text-3xl">Rs ${(i.price * i.qty).toLocaleString()}</span></div>`).join('');
+                res.innerHTML = HENZO.cart.map(i => `
+                    <div class="flex justify-between border-b border-white/5 py-5">
+                        <span class="font-serif text-xl">${i.qty}x ${i.id} [${i.cat}]</span>
+                        <span class="text-gold font-bold text-2xl">Rs ${(i.price * i.qty).toLocaleString()}</span>
+                    </div>
+                `).join('');
             }
-            document.getElementById('header-count').innerText = c;
-            document.getElementById('cart-total').innerText = 'Rs ' + t.toLocaleString();
-            document.getElementById('valuation-total').innerText = 'Rs ' + t.toLocaleString();
+            document.getElementById('header-cart-badge').innerText = c;
+            document.getElementById('cart-sidebar-total').innerText = 'Rs ' + t.toLocaleString();
+            document.getElementById('final-valuation').innerText = 'Rs ' + t.toLocaleString();
         }
 
-        function drop(idx) { HENZO.cart.splice(idx, 1); sync(); }
-        function jumpToOrder() { toggleCartSidebar(); window.location.hash = '#order'; }
+        function dropItem(idx) { HENZO.cart.splice(idx, 1); syncUI(); }
+        function navToOrder() { toggleCartSidebar(); window.location.hash = '#order'; }
 
-        function handleOrder(e) {
+        async function executeOrder(e) {
             e.preventDefault();
-            if(HENZO.cart.length === 0) return alert("Selection empty.");
-            const btn = document.getElementById('submit-btn'); btn.innerHTML = "Processing...";
-            const n = document.getElementById('order-name').value;
-            const ph = '+92' + document.getElementById('order-phone').value;
-            const ad = document.getElementById('order-address').value;
-            const total = document.getElementById('valuation-total').innerText;
-            
-            fetch(HENZO.config.bridge, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify({ customer: n, contact: ph, address: ad, cart_items: HENZO.cart })
-            }).finally(() => {
-                let msg = `🌾 *HENZO FARM OFFICIAL ORDER* 🌾\n-------------------\n*Name:* ${n}\n*Phone:* ${ph}\n*Location:* ${ad}\n\n*Items List:*\n`;
-                HENZO.cart.forEach(i => msg += `• ${i.qty}x ${i.id} (${i.cat})\n`);
-                msg += `\n*TOTAL VALUATION:* ${total}`;
-                window.open(`https://wa.me/${HENZO.config.wa}?text=${encodeURIComponent(msg)}`, '_blank');
-                btn.innerHTML = "Confirm Acquisition";
+            if (HENZO.cart.length === 0) {
+                alert("Selection cart is vacant. Please add items first.");
+                return;
+            }
+            const btn = document.getElementById('order-btn');
+            const origText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner mr-2"></span> Processing...';
+            btn.disabled = true;
+            const n = document.getElementById('cust-name').value.trim();
+            const ph = '+92' + document.getElementById('cust-phone').value.trim();
+            const area = document.getElementById('cust-area').value;
+            const ad = document.getElementById('cust-address').value.trim();
+            const total = document.getElementById('final-valuation').innerText;
+            const orderData = {
+                customer: n, contact: ph, area: area, address: ad,
+                cart: HENZO.cart, totalValue: total, timestamp: new Date().toISOString()
+            };
+            let sheetSuccess = false;
+            try {
+                const response = await fetch(HENZO.config.bridge, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+                if (response.ok) sheetSuccess = true;
+            } catch (err) { console.log('Sheet save failed:', err); }
+            let msg = `🌾 *HENZO FARM ORDER* 🌾\n`;
+            msg += `━━━━━━━━━━━━━━━\n`;
+            msg += `*Order ID:* ${Date.now()}\n`;
+            msg += `*Date:* ${new Date().toLocaleString('en-PK')}\n`;
+            msg += `*Customer:* ${n}\n`;
+            msg += `*Phone:* ${ph}\n`;
+            msg += `*Area:* ${area}\n`;
+            msg += `*Address:* ${ad}\n\n`;
+            msg += `*Items:*\n`;
+            HENZO.cart.forEach(i => {
+                msg += `• ${i.qty}x ${i.id} (${i.cat}) — Rs ${(i.price * i.qty).toLocaleString()}\n`;
             });
+            msg += `\n*TOTAL:* ${total}\n`;
+            msg += `*Sheet Saved:* ${sheetSuccess ? '✅ Yes' : '❌ No'}\n`;
+            msg += `━━━━━━━━━━━━━━━\n`;
+            msg += `Please verify genetic availability.`;
+            window.open(`https://wa.me/${HENZO.config.wa}?text=${encodeURIComponent(msg)}`, '_blank');
+            btn.innerHTML = origText; btn.disabled = false;
+            HENZO.cart = []; syncUI();
+            const toast = document.getElementById('toast-msg');
+            document.getElementById('toast-text').innerText = 'Order Sent Successfully!';
+            toast.classList.add('active');
+            setTimeout(() => toast.classList.remove('active'), 5000);
         }
 
         window.addEventListener('load', () => {
-            gsap.to('.hero-reveal', { opacity: 1, y: 0, duration: 1.2, stagger: 0.25, ease: 'power4.out' });
-            gsap.utils.toArray('.reveal').forEach(el => {
-                gsap.to(el, {
-                    scrollTrigger: { trigger: el, start: "top 95%" },
-                    opacity: 1, y: 0, duration: 1.5, ease: "power3.out"
+            if (typeof gsap !== 'undefined') {
+                gsap.to('.hero-reveal', { opacity: 1, y: 0, duration: 1, stagger: 0.25, ease: 'power3.out' });
+                gsap.utils.toArray('.reveal').forEach(el => {
+                    gsap.to(el, { scrollTrigger: { trigger: el, start: "top 95%" }, opacity: 1, y: 0, duration: 1.2, ease: "power3.out" });
                 });
-            });
+            }
         });
     </script>
 </body>
