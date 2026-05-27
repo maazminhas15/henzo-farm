@@ -741,7 +741,7 @@
     <script>
         // ==================== CONFIG ====================
         const CONFIG = {
-            SHEET_API: 'https://script.google.com/macros/s/AKfycbzdADdjVxs1LSU1GPwOaOTbJ1efkRVbryFc5tXt61mLrjzKX_WBuNszJBgTQVLIYk31dQ/exec',
+            SHEET_API: 'https://script.google.com/macros/s/AKfycbzdADdjVxs1LSU1GPwOaiOTbJ1efkRVbryFc5tXt61mLrjzKX_WBuNszJBgTQVLIYk31dQ/exec',
             WHATSAPP: '923115190548'
         };
 
@@ -999,12 +999,11 @@
         function updateDelivery() { updateSheet(); }
 
         // ==================== ORDER SUBMIT ====================
-        async function handleOrder(e) {
+        function handleOrder(e) {
             e.preventDefault();
             if (cart.length === 0) { showToast('Cart is empty!'); return; }
 
             const btn = document.getElementById('submit-btn');
-            const originalBtnHtml = btn.innerHTML;
             btn.disabled = true;
             btn.innerHTML = '<span style="display:inline-block;width:20px;height:20px;border:2px solid rgba(255,255,255,0.3);border-top-color:#D4AF37;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:10px;"></span> Saving Order...';
 
@@ -1015,38 +1014,38 @@
             const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
             const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
             const total = subtotal + delivery;
-
-            let sheetSaved = false;
-            let orderId = 'HZ-' + Date.now();
-
-            // Try to save to Google Sheets first
-            try {
-                const response = await fetch(CONFIG.SHEET_API, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        customer: name, 
-                        contact: phone, 
-                        area: area, 
-                        address: address, 
-                        cart: cart, 
-                        subtotal: subtotal, 
-                        delivery: delivery, 
-                        total: total 
-                    })
-                });
-                sheetSaved = true;
-                console.log('Order saved to Google Sheets');
-            } catch(err) { 
-                console.log('Sheet save failed (expected with no-cors):', err);
-                // With no-cors, we can't read the response, but the request still goes through
-                sheetSaved = true;
-            }
+            const orderId = 'HZ-' + Date.now();
 
             // Build WhatsApp message
             const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
-            const msg = `🌾 *HENZO FARM ORDER*%0A━━━━━━━━━━━━━━━%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal.toLocaleString()}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total.toLocaleString()}%0A*Sheet Saved:* ${sheetSaved ? '✅ Yes' : '❌ No'}%0A━━━━━━━━━━━━━━━`;
+            const msg = `🌾 *HENZO FARM ORDER*%0A━━━━━━━━━━━━━━━%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal.toLocaleString()}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total.toLocaleString()}%0A━━━━━━━━━━━━━━━`;
+
+            // Create a hidden form to submit to Google Sheets
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = CONFIG.SHEET_API;
+            form.target = 'gsheet-frame';
+            form.style.display = 'none';
+
+            const fields = {
+                customer: name,
+                contact: phone,
+                area: area,
+                address: address,
+                cart: JSON.stringify(cart)
+            };
+
+            for (let key in fields) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = fields[key];
+                form.appendChild(input);
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
 
             // Open WhatsApp
             window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
@@ -1063,7 +1062,7 @@
 
             // Reset button
             btn.disabled = false;
-            btn.innerHTML = originalBtnHtml;
+            btn.innerHTML = '<span>Place Order</span><i class="fa-brands fa-whatsapp text-xl"></i>';
         }
 
         function closeSuccess() {
