@@ -364,9 +364,7 @@
         </div>
     </header>
 
-    <!-- ============================================ -->
-    <!-- 1. PRODUCTS (FIRST - MOST IMPORTANT) -->
-    <!-- ============================================ -->
+    <!-- 1. PRODUCTS SECTION -->
     <section id="products">
         <div class="text-center py-8">
             <h2 class="font-serif text-2xl font-bold text-forest">Our Products</h2>
@@ -384,7 +382,7 @@
 
         <div class="product-grid" id="product-grid">
 
-            <!-- ===== EGGS FIRST ===== -->
+            <!-- EGGS -->
             <div class="product-card" data-category="eggs">
                 <div class="product-img-wrap">
                     <img src="assets/pasture_raised_eggs.jpg" alt="Organic Eggs" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🥚</span>'">
@@ -411,20 +409,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="eggs">
-                <div class="product-img-wrap">
-                    <img src="assets/pasture_raised_eggs.jpg" alt="5 Dozen Eggs" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>📦</span>'">
-                    <span class="product-badge" style="background:#22c55e;">Bulk</span>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">5 Dozen Bulk</h3>
-                    <p class="product-desc">60 Eggs • Restaurant Pack</p>
-                    <span class="product-price">Rs 2,250</span>
-                    <div id="btn-eggs-5"><button onclick="addToCart('Organic Eggs (5 Dozen)', 2250, 'eggs-5')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <!-- ===== AUSTRALORP SECOND ===== -->
+            <!-- AUSTRALORP -->
             <div class="product-card" data-category="australorp">
                 <div class="product-img-wrap">
                     <img src="assets/australorp_chick.jpg" alt="Australorp Chick" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐣</span>'">
@@ -449,19 +434,7 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="australorp">
-                <div class="product-img-wrap">
-                    <img src="assets/australorp_rooster.jpg" alt="Australorp Rooster" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐓</span>'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Australorp Rooster</h3>
-                    <p class="product-desc">Breeding Male • Strong</p>
-                    <span class="product-price">Rs 3,000</span>
-                    <div id="btn-aus-roo"><button onclick="addToCart('Australorp Rooster', 3000, 'aus-roo')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <!-- ===== RIR THIRD ===== -->
+            <!-- RIR -->
             <div class="product-card" data-category="rir">
                 <div class="product-img-wrap">
                     <img src="assets/rir_chick.jpg" alt="RIR Chick" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐣</span>'">
@@ -485,141 +458,43 @@
                     <div id="btn-rir-hen"><button onclick="addToCart('RIR Hen', 2500, 'rir-hen')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
                 </div>
             </div>
-
-            <div class="product-card" data-category="rir">
-                <div class="product-img-wrap">
-                    <img src="assets/rir_rooster.jpg" alt="RIR Rooster" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐓</span>'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">RIR Rooster</h3>
-                    <p class="product-desc">Breeding Male • Strong</p>
-                    <span class="product-price">Rs 3,000</span>
-                    <div id="btn-rir-roo"><button onclick="addToCart('RIR Rooster', 3000, 'rir-roo')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <!-- ===== COMBO DEALS ===== -->
-            <div class="product-card" data-category="combo" style="grid-column: 1 / -1;">
-                <div class="p-5 bg-gradient-to-r from-gold/10 to-gold/5 border-2 border-gold rounded-2xl">
-                    <div class="flex items-center gap-4 mb-3">
-                        <span class="text-4xl">⭐</span>
-                        <div>
-                            <h3 class="font-bold text-lg">Australorp Breeding Pair</h3>
-                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <span class="text-2xl font-black text-forest">Rs 14,725</span>
-                            <span class="text-sm text-green-600 font-bold ml-2">Save Rs 875</span>
-                        </div>
-                        <div id="btn-combo-aus"><button onclick="addToCart('Australorp Pair (1R+5H)', 14725, 'combo-aus')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="combo" style="grid-column: 1 / -1;">
-                <div class="p-5 bg-gradient-to-r from-gold/10 to-gold/5 border-2 border-gold rounded-2xl">
-                    <div class="flex items-center gap-4 mb-3">
-                        <span class="text-4xl">⭐</span>
-                        <div>
-                            <h3 class="font-bold text-lg">RIR Breeding Pair</h3>
-                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <span class="text-2xl font-black text-forest">Rs 14,725</span>
-                            <span class="text-sm text-green-600 font-bold ml-2">Save Rs 875</span>
-                        </div>
-                        <div id="btn-combo-rir"><button onclick="addToCart('RIR Pair (1R+5H)', 14725, 'combo-rir')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 2. ABOUT HENZO FARM (SECOND) -->
-    <!-- ============================================ -->
+    <!-- 2. ABOUT SECTION -->
     <section id="about-henzo" class="info-section" style="background: white; margin: 20px; border-radius: 24px;">
         <h2>About Henzo Farm</h2>
         <p>Henzo Farm was founded by <strong>Maaz Mustafa Minhas</strong> with a simple mission: to bring back the tradition of pure, heritage poultry breeding in Islamabad.</p>
         <p>Located in the pristine foothills of <strong>Pindorian Shareef</strong>, our farm specializes in two world-class heritage breeds — the record-breaking <strong>Black Australorp</strong> and the resilient <strong>Rhode Island Red</strong>.</p>
-        <p>From day-old chicks to mature laying hens, from breeding pairs to farm-fresh organic eggs, we deliver quality you can taste and trust. Every egg has a golden yolk. Every bird is raised with integrity.</p>
+        <p>From day-old chicks to mature laying hens, from breeding pairs to farm-fresh organic eggs, we deliver quality you can taste and trust.</p>
         <p style="font-style: italic; color: #D4AF37; font-weight: 600; margin-top: 20px;">"Healthy Birds. Healthy Life."</p>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 3. WHY CHOOSE HENZO FARM (THIRD) -->
-    <!-- ============================================ -->
+    <!-- 3. WHY CHOOSE US -->
     <section id="why-henzo" class="info-section">
         <h2>Why Choose Henzo Farm?</h2>
-        <p>We are Islamabad's trusted source for premium heritage poultry and organic eggs. Every bird is raised with care, fed organic grain, and given open pasture access.</p>
         <div class="feature-grid">
-            <div class="feature-card">
-                <i class="fa-solid fa-leaf"></i>
-                <h4>100% Organic Feed</h4>
-                <p>No chemicals, no hormones, pure natural diet</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-sun"></i>
-                <h4>Pasture Raised</h4>
-                <p>Open air freedom every day in Pindorian</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-shield-heart"></i>
-                <h4>Vaccinated & Healthy</h4>
-                <p>All chicks vaccinated, all birds health-checked</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-truck-fast"></i>
-                <h4>Free Delivery</h4>
-                <p>Free in Pindorian. Rs 200 for other areas under Rs 1,999</p>
-            </div>
+            <div class="feature-card"><i class="fa-solid fa-leaf"></i><h4>100% Organic</h4><p>No chemicals, pure natural diet</p></div>
+            <div class="feature-card"><i class="fa-solid fa-sun"></i><h4>Pasture Raised</h4><p>Open air freedom in Pindorian</p></div>
+            <div class="feature-card"><i class="fa-solid fa-shield-heart"></i><h4>Healthy</h4><p>Vaccinated and health-checked</p></div>
+            <div class="feature-card"><i class="fa-solid fa-truck-fast"></i><h4>Fast Delivery</h4><p>Free delivery on orders over Rs 1,999</p></div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 4. FOOTER / CONTACT US (LAST) -->
-    <!-- ============================================ -->
+    <!-- 4. FOOTER -->
     <footer id="contact-footer" class="app-footer">
         <div class="footer-grid">
             <div class="footer-block">
-                <h4><i class="fa-solid fa-location-dot"></i>Address</h4>
-                <p><strong>Henzo Farm</strong></p>
-                <p>Shed No 1, Minhas Street</p>
-                <p>Pindorian Shareef</p>
-                <p>Islamabad, Pakistan</p>
+                <h4>Address</h4>
+                <p>Henzo Farm, Minhas Street, Pindorian Shareef, Islamabad</p>
             </div>
             <div class="footer-block">
-                <h4><i class="fa-solid fa-phone"></i>Contact</h4>
-                <a href="tel:+923115190548"><i class="fa-solid fa-mobile-screen"></i>+92 311 5190548</a>
-                <a href="https://wa.me/923115190548"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
-                <p style="margin-top:8px; font-size:12px; opacity:0.5;">Mon-Sat: 7AM - 7PM</p>
-                <p style="font-size:12px; opacity:0.5;">Sunday: 8AM - 2PM</p>
-            </div>
-            <div class="footer-block">
-                <h4><i class="fa-solid fa-truck"></i>Delivery Areas</h4>
-                <p>✓ Pindorian Shareef (FREE)</p>
-                <p>✓ All Islamabad Sectors</p>
-                <p>✓ Bahria Town</p>
-                <p>✓ DHA Islamabad</p>
-                <p>✓ Rawalpindi City</p>
-                <p>✓ Adiala Road</p>
-                <p>✓ Westridge</p>
-                <p style="margin-top:8px; font-size:11px; color:#D4AF37;">Free delivery on orders over Rs 1,999</p>
+                <h4>Contact</h4>
+                <p>+92 311 5190548</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 HENZO FARM ISLAMABAD • PREMIUM HERITAGE POULTRY</p>
-        </div>
+        <div class="footer-bottom"><p>© 2026 HENZO FARM ISLAMABAD</p></div>
     </footer>
-
-    <!-- Floating Contact Button -->
-    <a href="tel:+923115190548" class="contact-float" aria-label="Call Henzo Farm">
-        <i class="fa-solid fa-phone"></i>
-    </a>
 
     <!-- Cart Bar -->
     <div id="cart-bar" class="cart-bar">
@@ -633,17 +508,16 @@
         <button onclick="openSheet()" class="cart-bar-btn">View Cart <i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
+    <!-- SCRIPT SECTION -->
     <script>
         const CONFIG = {
-            SHEET_API: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec',
+            SHEET_API: 'https://script.google.com/macros/s/AKfycbyDEW3LUF-NmwoE4iVpv1X70Lr5yz1aExq4mlo_NiVbrTllEIz0PSFh_YLSzVIXUGmZ/exec',
             WHATSAPP: '923115190548'
         };
 
         let cart = JSON.parse(localStorage.getItem('henzo_cart_v4')) || [];
 
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
 
         function showToast(msg) {
             const toast = document.getElementById('toast');
@@ -654,8 +528,9 @@
 
         function addToCart(name, price, btnId) {
             const existing = cart.find(i => i.name === name);
-            if (existing) { existing.qty++; showToast(`${name} (${existing.qty}x)`); }
-            else { cart.push({ name, price, qty: 1 }); showToast(`${name} added`); }
+            if (existing) { existing.qty++; }
+            else { cart.push({ name, price, qty: 1 }); }
+            showToast(name + " added");
             saveCart(); updateUI(); updateButton(btnId, name);
         }
 
@@ -665,19 +540,14 @@
             item.qty += delta;
             if (item.qty < 1) cart = cart.filter(i => i.name !== name);
             saveCart(); updateUI(); updateSheet();
-            const btnMap = {
-                'Organic Eggs (1 Dozen)': 'eggs-1', 'Organic Eggs (2 Dozen)': 'eggs-2', 'Organic Eggs (5 Dozen)': 'eggs-5',
-                'Australorp Chick': 'aus-chick', 'Australorp Hen': 'aus-hen', 'Australorp Rooster': 'aus-roo',
-                'RIR Chick': 'rir-chick', 'RIR Hen': 'rir-hen', 'RIR Rooster': 'rir-roo',
-                'Australorp Pair (1R+5H)': 'combo-aus', 'RIR Pair (1R+5H)': 'combo-rir'
-            };
-            if (btnMap[name]) updateButton(btnMap[name], name);
+            refreshAllButtons();
         }
 
         function saveCart() { localStorage.setItem('henzo_cart_v4', JSON.stringify(cart)); }
 
         function updateButton(btnId, name) {
             const container = document.getElementById('btn-' + btnId);
+            if (!container) return;
             const item = cart.find(i => i.name === name);
             if (item) {
                 container.innerHTML = `<div class="qty-stepper"><button onclick="updateQty('${name}', -1)">−</button><span>${item.qty}</span><button onclick="updateQty('${name}', 1)">+</button></div>`;
@@ -688,8 +558,13 @@
         }
 
         function getPrice(name) {
-            const prices = { 'Organic Eggs (1 Dozen)': 450, 'Organic Eggs (2 Dozen)': 900, 'Organic Eggs (5 Dozen)': 2250, 'Australorp Chick': 120, 'Australorp Hen': 2500, 'Australorp Rooster': 3000, 'RIR Chick': 120, 'RIR Hen': 2500, 'RIR Rooster': 3000, 'Australorp Pair (1R+5H)': 14725, 'RIR Pair (1R+5H)': 14725 };
-            return prices[name] || 0;
+            const p = { 'Organic Eggs (1 Dozen)': 450, 'Organic Eggs (2 Dozen)': 900, 'Australorp Chick': 120, 'Australorp Hen': 2500, 'RIR Chick': 120, 'RIR Hen': 2500 };
+            return p[name] || 0;
+        }
+
+        function refreshAllButtons() {
+            const map = { 'eggs-1': 'Organic Eggs (1 Dozen)', 'eggs-2': 'Organic Eggs (2 Dozen)', 'aus-chick': 'Australorp Chick', 'aus-hen': 'Australorp Hen', 'rir-chick': 'RIR Chick', 'rir-hen': 'RIR Hen' };
+            Object.entries(map).forEach(([id, name]) => updateButton(id, name));
         }
 
         function updateUI() {
@@ -721,15 +596,10 @@
 
             document.getElementById('summary-subtotal').innerText = 'Rs ' + subtotal.toLocaleString();
             document.getElementById('summary-delivery').innerText = delivery === 0 ? 'FREE' : 'Rs ' + delivery;
-            document.getElementById('summary-delivery').className = delivery === 0 ? 'text-green-600 font-bold' : 'font-bold';
             document.getElementById('summary-total').innerText = 'Rs ' + total.toLocaleString();
 
-            if (cart.length === 0) { container.innerHTML = '<p class="text-center text-gray-400 py-8">Your cart is empty</p>'; return; }
-
-            container.innerHTML = cart.map(item => {
-                const emoji = item.name.includes('Egg') ? '🥚' : item.name.includes('Chick') ? '🐣' : item.name.includes('Hen') ? '🐔' : '🐓';
-                return `<div class="sheet-item"><div class="sheet-item-img">${emoji}</div><div class="sheet-item-info"><div class="sheet-item-name">${item.name}</div><div class="sheet-item-price">Rs ${item.price.toLocaleString()} x ${item.qty}</div></div><div class="qty-stepper" style="width:auto;"><button onclick="updateQty('${item.name}', -1)">−</button><span>${item.qty}</span><button onclick="updateQty('${item.name}', 1)">+</button></div></div>`;
-            }).join('');
+            if (cart.length === 0) { container.innerHTML = '<p class="text-center py-8">Empty</p>'; return; }
+            container.innerHTML = cart.map(item => `<div class="sheet-item"><div class="sheet-item-info"><b>${item.name}</b><br>Rs ${item.price} x ${item.qty}</div><div class="qty-stepper"><button onclick="updateQty('${item.name}', -1)">−</button><span>${item.qty}</span><button onclick="updateQty('${item.name}', 1)">+</button></div></div>`).join('');
         }
 
         function updateDelivery() { updateSheet(); }
@@ -744,57 +614,44 @@
 
         async function handleOrder(e) {
             e.preventDefault();
-            if (cart.length === 0) { showToast('Cart is empty!'); return; }
-
             const btn = document.getElementById('submit-btn');
             btn.disabled = true;
-            btn.innerHTML = '<span style="display:inline-block;width:20px;height:20px;border:2px solid rgba(255,255,255,0.3);border-top-color:#D4AF37;border-radius:50%;animation:spin 0.8s linear infinite;"></span> Sending...';
+            btn.innerHTML = 'Sending...';
 
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
             const area = document.getElementById('area').value;
-            const address = document.getElementById('address').value.trim();
+            const address = document.getElementById('address').value;
             const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
             const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
             const total = subtotal + delivery;
 
-            let sheetSaved = false;
             try {
-                if (!CONFIG.SHEET_API.includes('YOUR_SCRIPT_ID')) {
-                    await fetch(CONFIG.SHEET_API, {
-                        method: 'POST', headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ customer: name, contact: phone, area, address, cart, subtotal, delivery, total, timestamp: new Date().toISOString() })
-                    });
-                    sheetSaved = true;
-                }
-            } catch(err) { console.log('Sheet error:', err); }
+                await fetch(CONFIG.SHEET_API, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    cache: 'no-cache',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ customer: name, contact: phone, area: area, address: address, cart: cart, grandTotal: total, delivery: delivery })
+                });
+            } catch(err) { console.log(err); }
 
             const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
-            const msg = `🌾 *HENZO FARM ORDER*%0A━━━━━━━━━━━━━━━%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal.toLocaleString()}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total.toLocaleString()}%0A━━━━━━━━━━━━━━━`;
-
+            const msg = `🌾 *HENZO FARM ORDER*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Total:* Rs ${total.toLocaleString()}`;
             window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
 
-            document.getElementById('success-order-id').innerText = 'HZ-' + Date.now();
+            document.getElementById('success-order-id').innerText = 'HZ-' + Date.now().toString().slice(-6);
             document.getElementById('success-screen').classList.add('show');
-
             cart = []; saveCart(); updateUI(); closeSheet();
-            btn.disabled = false;
-            btn.innerHTML = '<span>Place Order</span><i class="fa-brands fa-whatsapp text-xl"></i>';
+            btn.disabled = false; btn.innerHTML = 'Place Order';
         }
 
         function closeSuccess() {
             document.getElementById('success-screen').classList.remove('show');
-            document.getElementById('order-form').reset();
-            document.getElementById('address').value = 'Shed No 1, Minhas Street, Pindorian Shareef, Islamabad';
-            const btnMap = { 'eggs-1': 'Organic Eggs (1 Dozen)', 'eggs-2': 'Organic Eggs (2 Dozen)', 'eggs-5': 'Organic Eggs (5 Dozen)', 'aus-chick': 'Australorp Chick', 'aus-hen': 'Australorp Hen', 'aus-roo': 'Australorp Rooster', 'rir-chick': 'RIR Chick', 'rir-hen': 'RIR Hen', 'rir-roo': 'RIR Rooster', 'combo-aus': 'Australorp Pair (1R+5H)', 'combo-rir': 'RIR Pair (1R+5H)' };
-            Object.entries(btnMap).forEach(([id, name]) => updateButton(id, name));
+            refreshAllButtons();
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            updateUI();
-            const btnMap = { 'eggs-1': 'Organic Eggs (1 Dozen)', 'eggs-2': 'Organic Eggs (2 Dozen)', 'eggs-5': 'Organic Eggs (5 Dozen)', 'aus-chick': 'Australorp Chick', 'aus-hen': 'Australorp Hen', 'aus-roo': 'Australorp Rooster', 'rir-chick': 'RIR Chick', 'rir-hen': 'RIR Hen', 'rir-roo': 'RIR Rooster', 'combo-aus': 'Australorp Pair (1R+5H)', 'combo-rir': 'RIR Pair (1R+5H)' };
-            Object.entries(btnMap).forEach(([id, name]) => updateButton(id, name));
-        });
+        window.addEventListener('DOMContentLoaded', () => { updateUI(); refreshAllButtons(); });
     </script>
 </body>
 </html>
