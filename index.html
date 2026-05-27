@@ -95,8 +95,10 @@
 
         .product-card {
             background: white; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06); position: relative;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06); position: relative; cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
         .product-img-wrap {
             width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #faf8f0, #f0ebe0);
             display: flex; align-items: center; justify-content: center; position: relative;
@@ -253,11 +255,137 @@
         }
         .contact-float:active { transform: scale(0.9); }
 
-        /* Section divider */
         .section-divider {
             height: 8px; background: linear-gradient(90deg, #D4AF37, #1B3022, #D4AF37);
             margin: 0 auto; max-width: 100px; border-radius: 99px;
             opacity: 0.3;
+        }
+
+        /* ===== BREED MODAL (from File 2 logic, styled to match File 1) ===== */
+        .breed-modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px); z-index: 400; display: none; opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .breed-modal-overlay.show { display: block; opacity: 1; }
+
+        .breed-modal {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95);
+            background: white; border-radius: 24px; z-index: 410;
+            width: 92%; max-width: 480px; max-height: 85vh; overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: none;
+        }
+        .breed-modal.show { display: block; transform: translate(-50%, -50%) scale(1); }
+
+        .breed-modal-header {
+            position: relative; height: 200px; border-radius: 24px 24px 0 0; overflow: hidden;
+            background: linear-gradient(135deg, #1B3022, #2d4d38);
+        }
+        .breed-modal-header img {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
+        }
+        .breed-modal-header .header-content {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 24px; background: linear-gradient(transparent, rgba(27,48,34,0.9));
+            color: white;
+        }
+        .breed-modal-header .header-content h3 {
+            font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
+        }
+        .breed-modal-header .header-content span {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: #D4AF37;
+        }
+        .breed-modal-close {
+            position: absolute; top: 16px; right: 16px;
+            width: 36px; height: 36px; background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 18px; cursor: pointer; border: none;
+        }
+
+        .breed-modal-body { padding: 24px; }
+        .breed-desc {
+            font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 20px;
+        }
+        .breed-perks {
+            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+        }
+        .breed-perk {
+            background: #f5f5f5; padding: 6px 14px; border-radius: 99px;
+            font-size: 11px; font-weight: 700; color: #1B3022;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .breed-perk i { color: #D4AF37; font-size: 10px; }
+
+        .cat-selector {
+            display: grid; gap: 8px; margin-bottom: 20px;
+        }
+        .cat-option {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 16px; border: 2px solid #eee; border-radius: 16px;
+            cursor: pointer; transition: all 0.2s;
+            background: white;
+        }
+        .cat-option:hover { border-color: #D4AF37; background: #fffdf5; }
+        .cat-option.active {
+            border-color: #D4AF37; background: linear-gradient(135deg, #fffdf5, #fff9e6);
+            box-shadow: 0 2px 12px rgba(212,175,55,0.15);
+        }
+        .cat-option .cat-label {
+            font-size: 14px; font-weight: 700; color: #1B3022;
+        }
+        .cat-option .cat-price {
+            font-size: 16px; font-weight: 800; color: #D4AF37;
+        }
+
+        .modal-qty-row {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #f5f5f5; border-radius: 16px; padding: 12px 16px; margin-bottom: 20px;
+        }
+        .modal-qty-row .qty-label { font-size: 13px; font-weight: 700; color: #888; }
+        .modal-qty-controls {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .modal-qty-controls button {
+            width: 36px; height: 36px; border-radius: 10px; border: none;
+            background: white; font-size: 18px; font-weight: 700;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-qty-controls button:active { background: #1B3022; color: white; }
+        .modal-qty-controls span {
+            font-size: 18px; font-weight: 800; min-width: 30px; text-align: center;
+        }
+
+        .modal-total-row {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 16px;
+        }
+        .modal-total-row .total-label { font-size: 13px; font-weight: 700; color: #888; text-transform: uppercase; }
+        .modal-total-row .total-price { font-size: 28px; font-weight: 800; color: #1B3022; font-family: 'Playfair Display', serif; }
+
+        .modal-add-btn {
+            width: 100%; padding: 16px;
+            background: linear-gradient(135deg, #1B3022, #2d4d38);
+            color: #D4AF37; border: none; border-radius: 16px;
+            font-size: 14px; font-weight: 800; text-transform: uppercase;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            letter-spacing: 0.05em;
+        }
+        .modal-add-btn:active { transform: scale(0.98); }
+
+        /* Hero section enhancements */
+        .hero-section {
+            background: linear-gradient(135deg, #1B3022 0%, #2d4d38 50%, #1B3022 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 1;
         }
     </style>
 <base target="_blank">
@@ -282,7 +410,7 @@
     <!-- Sheet Overlay -->
     <div id="sheet-overlay" class="sheet-overlay" onclick="closeSheet()"></div>
 
-    <!-- Bottom Sheet -->
+    <!-- Bottom Sheet (Cart/Checkout) -->
     <div id="bottom-sheet" class="bottom-sheet">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
@@ -338,6 +466,40 @@
         </div>
     </div>
 
+    <!-- ===== BREED MODAL (New - from File 2 logic) ===== -->
+    <div id="breed-modal-overlay" class="breed-modal-overlay" onclick="closeBreedModal()"></div>
+    <div id="breed-modal" class="breed-modal">
+        <div class="breed-modal-header">
+            <img id="modal-img" src="" alt="">
+            <button class="breed-modal-close" onclick="closeBreedModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="header-content">
+                <span id="modal-subtitle">Heritage Breed</span>
+                <h3 id="modal-title">Breed Name</h3>
+            </div>
+        </div>
+        <div class="breed-modal-body">
+            <p id="modal-desc" class="breed-desc">Description goes here.</p>
+            <div id="modal-perks" class="breed-perks"></div>
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 12px;">Select Category</div>
+            <div id="modal-categories" class="cat-selector"></div>
+            <div class="modal-qty-row">
+                <span class="qty-label">Quantity</span>
+                <div class="modal-qty-controls">
+                    <button onclick="adjustModalQty(-1)">−</button>
+                    <span id="modal-qty">1</span>
+                    <button onclick="adjustModalQty(1)">+</button>
+                </div>
+            </div>
+            <div class="modal-total-row">
+                <span class="total-label">Total</span>
+                <span id="modal-total" class="total-price">Rs 0</span>
+            </div>
+            <button onclick="confirmModalAdd()" class="modal-add-btn">
+                <i class="fa-solid fa-plus"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="app-header text-white">
         <div class="px-5 pt-4 pb-3">
@@ -364,8 +526,23 @@
         </div>
     </header>
 
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-section text-white py-16 px-5 text-center relative">
+        <div class="relative z-10 max-w-xl mx-auto">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-1 bg-gold/20 border border-gold/30 rounded-full text-xs font-bold tracking-widest uppercase text-gold mb-4">Islamabad's Finest</span>
+            </div>
+            <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">Heritage Poultry<br>& Organic Eggs</h2>
+            <p class="text-white/70 text-sm mb-8 leading-relaxed">Pure-bred Australorp & Rhode Island Red. Farm-fresh organic eggs delivered to your doorstep in Islamabad & Rawalpindi.</p>
+            <a href="#products" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-forest font-bold rounded-2xl text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all">
+                Shop Now <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F0E6] to-transparent"></div>
+    </section>
+
     <!-- ============================================ -->
-    <!-- 1. PRODUCTS (FIRST - MOST IMPORTANT) -->
+    <!-- 1. PRODUCTS -->
     <!-- ============================================ -->
     <section id="products">
         <div class="text-center py-8">
@@ -384,107 +561,45 @@
 
         <div class="product-grid" id="product-grid">
 
-            <!-- ===== EGGS FIRST ===== -->
-            <div class="product-card" data-category="eggs">
+            <!-- ===== EGGS ===== -->
+            <div class="product-card" data-category="eggs" onclick="openBreedModal('Eggs')">
                 <div class="product-img-wrap">
-                    <img src="assets/pasture_raised_eggs.jpg" alt="Organic Eggs 12 pieces" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🥚</span>'">
-                    <span class="product-badge">Fresh</span>
+                    <img src="assets/pasture_raised_eggs.jpg" alt="Organic Eggs" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🥚</span>'">
+                    <span class="product-badge">Fresh Daily</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Organic Eggs</h3>
-                    <p class="product-desc">12 Eggs • Farm Fresh Daily</p>
-                    <span class="product-price">Rs 450</span>
-                    <div id="btn-eggs-1"><button onclick="addToCart('Organic Eggs (12 pcs)', 450, 'eggs-1')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
+                    <h3 class="product-name">Organic Pasture Eggs</h3>
+                    <p class="product-desc">Golden yolk • Multiple sizes</p>
+                    <span class="product-price">From Rs 450</span>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Eggs')"><i class="fa-solid fa-plus"></i> Select Options</button>
                 </div>
             </div>
 
-            <div class="product-card" data-category="eggs">
+            <!-- ===== AUSTRALORP ===== -->
+            <div class="product-card" data-category="australorp" onclick="openBreedModal('Australorp')">
                 <div class="product-img-wrap">
-                    <img src="assets/pasture_raised_eggs.jpg" alt="30 Egg Tray" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>📦</span>'">
-                    <span class="product-badge" style="background:#22c55e;">Save 5%</span>
+                    <img src="assets/australorp_hen.jpg" alt="Black Australorp" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐔</span>'">
+                    <span class="product-badge" style="background:#22c55e;">Record Layer</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">30 Egg Tray</h3>
-                    <p class="product-desc">30 Eggs • 5% Discount Applied</p>
-                    <div class="flex items-baseline gap-2 mb-2">
-                        <span class="product-price">Rs 1,068</span>
-                        <span class="text-sm text-gray-400 line-through">Rs 1,125</span>
-                    </div>
-                    <div id="btn-eggs-30"><button onclick="addToCart('Organic Eggs (30 pcs)', 1068, 'eggs-30')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
+                    <h3 class="product-name">Black Australorp</h3>
+                    <p class="product-desc">Chicks • Hens • Roosters • Pairs</p>
+                    <span class="product-price">From Rs 120</span>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Australorp')"><i class="fa-solid fa-plus"></i> Select Options</button>
                 </div>
             </div>
 
-            <!-- ===== AUSTRALORP SECOND ===== -->
-            <div class="product-card" data-category="australorp">
+            <!-- ===== RIR ===== -->
+            <div class="product-card" data-category="rir" onclick="openBreedModal('RIR')">
                 <div class="product-img-wrap">
-                    <img src="assets/australorp_chick.jpg" alt="Australorp Chick" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐣</span>'">
+                    <img src="assets/rir_rooster.jpg" alt="Rhode Island Red" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐓</span>'">
+                    <span class="product-badge" style="background:#e11d48;">Heritage</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Australorp Chick</h3>
-                    <p class="product-desc">Day-Old • Vaccinated</p>
-                    <span class="product-price">Rs 120</span>
-                    <div id="btn-aus-chick"><button onclick="addToCart('Australorp Chick', 120, 'aus-chick')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="australorp">
-                <div class="product-img-wrap">
-                    <img src="assets/australorp_hen.jpg" alt="Australorp Hen" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐔</span>'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Australorp Hen</h3>
-                    <p class="product-desc">Mature • Ready to Lay</p>
-                    <span class="product-price">Rs 2,500</span>
-                    <div id="btn-aus-hen"><button onclick="addToCart('Australorp Hen', 2500, 'aus-hen')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="australorp">
-                <div class="product-img-wrap">
-                    <img src="assets/australorp_rooster.jpg" alt="Australorp Rooster" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐓</span>'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Australorp Rooster</h3>
-                    <p class="product-desc">Breeding Male • Strong</p>
-                    <span class="product-price">Rs 3,000</span>
-                    <div id="btn-aus-roo"><button onclick="addToCart('Australorp Rooster', 3000, 'aus-roo')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <!-- ===== RIR THIRD ===== -->
-            <div class="product-card" data-category="rir">
-                <div class="product-img-wrap">
-                    <img src="assets/rir_chick.jpg" alt="RIR Chick" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐣</span>'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">RIR Chick</h3>
-                    <p class="product-desc">Day-Old • Vaccinated</p>
-                    <span class="product-price">Rs 120</span>
-                    <div id="btn-rir-chick"><button onclick="addToCart('RIR Chick', 120, 'rir-chick')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="rir">
-                <div class="product-img-wrap">
-                    <img src="assets/rir_hen.jpg" alt="RIR Hen" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐔</span>'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">RIR Hen</h3>
-                    <p class="product-desc">Mature • Ready to Lay</p>
-                    <span class="product-price">Rs 2,500</span>
-                    <div id="btn-rir-hen"><button onclick="addToCart('RIR Hen', 2500, 'rir-hen')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="rir">
-                <div class="product-img-wrap">
-                    <img src="assets/rir_rooster.jpg" alt="RIR Rooster" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐓</span>'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">RIR Rooster</h3>
-                    <p class="product-desc">Breeding Male • Strong</p>
-                    <span class="product-price">Rs 3,000</span>
-                    <div id="btn-rir-roo"><button onclick="addToCart('RIR Rooster', 3000, 'rir-roo')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button></div>
+                    <h3 class="product-name">Rhode Island Red</h3>
+                    <p class="product-desc">Chicks • Hens • Roosters • Pairs</p>
+                    <span class="product-price">From Rs 120</span>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('RIR')"><i class="fa-solid fa-plus"></i> Select Options</button>
                 </div>
             </div>
 
@@ -495,13 +610,13 @@
                         <span class="text-4xl">⭐</span>
                         <div>
                             <h3 class="font-bold text-lg">Australorp Breeding Pair</h3>
-                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens</p>
+                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens • Save Rs 875</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="text-2xl font-black text-forest">Rs 14,725</span>
-                            <span class="text-sm text-green-600 font-bold ml-2">Save Rs 875</span>
+                            <span class="text-sm text-gray-400 line-through ml-2">Rs 15,600</span>
                         </div>
                         <div id="btn-combo-aus"><button onclick="addToCart('Australorp Pair (1R+5H)', 14725, 'combo-aus')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
                     </div>
@@ -514,13 +629,13 @@
                         <span class="text-4xl">⭐</span>
                         <div>
                             <h3 class="font-bold text-lg">RIR Breeding Pair</h3>
-                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens</p>
+                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens • Save Rs 875</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="text-2xl font-black text-forest">Rs 14,725</span>
-                            <span class="text-sm text-green-600 font-bold ml-2">Save Rs 875</span>
+                            <span class="text-sm text-gray-400 line-through ml-2">Rs 15,600</span>
                         </div>
                         <div id="btn-combo-rir"><button onclick="addToCart('RIR Pair (1R+5H)', 14725, 'combo-rir')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
                     </div>
@@ -530,7 +645,7 @@
     </section>
 
     <!-- ============================================ -->
-    <!-- 2. ABOUT HENZO FARM (SECOND) -->
+    <!-- 2. ABOUT HENZO FARM -->
     <!-- ============================================ -->
     <section id="about-henzo" class="info-section" style="background: white; margin: 20px; border-radius: 24px;">
         <h2>About Henzo Farm</h2>
@@ -541,7 +656,7 @@
     </section>
 
     <!-- ============================================ -->
-    <!-- 3. WHY CHOOSE HENZO FARM (THIRD) -->
+    <!-- 3. WHY CHOOSE HENZO FARM -->
     <!-- ============================================ -->
     <section id="why-henzo" class="info-section">
         <h2>Why Choose Henzo Farm?</h2>
@@ -571,7 +686,7 @@
     </section>
 
     <!-- ============================================ -->
-    <!-- 4. FOOTER / CONTACT US (LAST) -->
+    <!-- 4. FOOTER / CONTACT US -->
     <!-- ============================================ -->
     <footer id="contact-footer" class="app-footer">
         <div class="footer-grid">
@@ -624,17 +739,64 @@
     </div>
 
     <script>
+        // ==================== CONFIG ====================
         const CONFIG = {
             SHEET_API: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec',
             WHATSAPP: '923115190548'
         };
 
-        let cart = JSON.parse(localStorage.getItem('henzo_cart_v4')) || [];
+        // ==================== DATA REGISTRY (from File 2) ====================
+        const REGISTRY = {
+            'Australorp': {
+                name: 'Black Australorp',
+                subtitle: 'The Record Layer',
+                desc: 'World-record holder for egg productivity. Renowned for their beetle-green sheen and gentle temperament. Perfect for both backyard and commercial setups in Islamabad climate.',
+                perks: ['Record Egg Yield', 'Gentle Nature', 'Islamabad Hardy', 'Genetically Pure'],
+                media: 'assets/australorp_hen.jpg',
+                categories: {
+                    'Baby Chick (Day-Old)': 120,
+                    'Mature Hen (Ready to Lay)': 2500,
+                    'Breeding Rooster': 3000,
+                    'Breeding Pair (1R + 5H)': 14725
+                }
+            },
+            'RIR': {
+                name: 'Rhode Island Red',
+                subtitle: 'The Resilient Classic',
+                desc: 'The ultimate dual-purpose heritage breed. Historically unmatched resilience and excellent brown egg production. Thrives in Pakistani climate with minimal care.',
+                perks: ['Climate Immune', 'Mahogany Plumage', 'Steady Laying', 'Low Maintenance'],
+                media: 'assets/rir_rooster.jpg',
+                categories: {
+                    'Baby Chick (Day-Old)': 120,
+                    'Mature Hen (Ready to Lay)': 2500,
+                    'Breeding Rooster': 3000,
+                    'Breeding Pair (1R + 5H)': 14725
+                }
+            },
+            'Eggs': {
+                name: 'Organic Pasture Eggs',
+                subtitle: 'Golden Harvest Daily',
+                desc: 'Golden yolk eggs harvested fresh every morning from our free-range heritage flocks. Rich in organic nutrients, omega-3, and premium protein. No chemicals, no hormones.',
+                perks: ['Daily Fresh Harvest', 'High Omega-3', 'Zero Chemicals', 'Islamabad Local'],
+                media: 'assets/pasture_raised_eggs.jpg',
+                categories: {
+                    '1 Dozen (12 Eggs)': 450,
+                    '2 Dozen (24 Eggs)': 900,
+                    '5 Dozen (60 Eggs)': 2250
+                }
+            }
+        };
 
+        // ==================== STATE ====================
+        let cart = JSON.parse(localStorage.getItem('henzo_cart_v5')) || [];
+        let modalState = { breed: '', category: '', price: 0, qty: 1 };
+
+        // ==================== NAVIGATION ====================
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
+        // ==================== TOAST ====================
         function showToast(msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-msg').innerText = msg;
@@ -642,11 +804,101 @@
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
 
-        function addToCart(name, price, btnId) {
+        // ==================== CATEGORY FILTER ====================
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+            });
+        }
+
+        // ==================== BREED MODAL (from File 2 logic, File 1 styling) ====================
+        function openBreedModal(breedKey) {
+            const data = REGISTRY[breedKey];
+            if (!data) return;
+
+            modalState = { breed: breedKey, category: '', price: 0, qty: 1 };
+
+            // Header
+            document.getElementById('modal-img').src = data.media;
+            document.getElementById('modal-title').innerText = data.name;
+            document.getElementById('modal-subtitle').innerText = data.subtitle;
+
+            // Body
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-perks').innerHTML = data.perks.map(p =>
+                `<div class="breed-perk"><i class="fa-solid fa-circle-check"></i>${p}</div>`
+            ).join('');
+
+            // Categories
+            const catContainer = document.getElementById('modal-categories');
+            const cats = Object.entries(data.categories);
+            catContainer.innerHTML = cats.map(([label, price]) => `
+                <div class="cat-option" onclick="selectModalCat('${label.replace(/'/g, "\'")}', ${price}, this)">
+                    <span class="cat-label">${label}</span>
+                    <span class="cat-price">Rs ${price.toLocaleString()}</span>
+                </div>
+            `).join('');
+
+            // Auto-select first
+            if (cats.length > 0) {
+                selectModalCat(cats[0][0], cats[0][1], catContainer.children[0]);
+            }
+
+            // Show modal
+            document.getElementById('breed-modal-overlay').classList.add('show');
+            document.getElementById('breed-modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBreedModal() {
+            document.getElementById('breed-modal-overlay').classList.remove('show');
+            document.getElementById('breed-modal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function selectModalCat(label, price, el) {
+            modalState.category = label;
+            modalState.price = price;
+            modalState.qty = 1;
+
+            document.querySelectorAll('.cat-option').forEach(opt => opt.classList.remove('active'));
+            el.classList.add('active');
+
+            updateModalTotal();
+        }
+
+        function adjustModalQty(delta) {
+            modalState.qty = Math.max(1, modalState.qty + delta);
+            updateModalTotal();
+        }
+
+        function updateModalTotal() {
+            document.getElementById('modal-qty').innerText = modalState.qty;
+            const total = modalState.price * modalState.qty;
+            document.getElementById('modal-total').innerText = 'Rs ' + total.toLocaleString();
+        }
+
+        function confirmModalAdd() {
+            const breedData = REGISTRY[modalState.breed];
+            const itemName = `${breedData.name} — ${modalState.category}`;
+            addToCart(itemName, modalState.price, null, modalState.qty);
+            closeBreedModal();
+        }
+
+        // ==================== CART CORE ====================
+        function addToCart(name, price, btnId, qty = 1) {
             const existing = cart.find(i => i.name === name);
-            if (existing) { existing.qty++; showToast(`${name} (${existing.qty}x)`); }
-            else { cart.push({ name, price, qty: 1 }); showToast(`${name} added`); }
-            saveCart(); updateUI(); updateButton(btnId, name);
+            if (existing) {
+                existing.qty += qty;
+                showToast(`${name} (${existing.qty}x)`);
+            } else {
+                cart.push({ name, price, qty });
+                showToast(`${name} added`);
+            }
+            saveCart(); updateUI();
+            if (btnId) updateButton(btnId, name);
         }
 
         function updateQty(name, delta) {
@@ -655,30 +907,37 @@
             item.qty += delta;
             if (item.qty < 1) cart = cart.filter(i => i.name !== name);
             saveCart(); updateUI(); updateSheet();
+
+            // Update combo buttons if needed
             const btnMap = {
-                'Organic Eggs (1 Dozen)': 'eggs-1', 'Organic Eggs (2 Dozen)': 'eggs-2', 'Organic Eggs (5 Dozen)': 'eggs-5',
-                'Australorp Chick': 'aus-chick', 'Australorp Hen': 'aus-hen', 'Australorp Rooster': 'aus-roo',
-                'RIR Chick': 'rir-chick', 'RIR Hen': 'rir-hen', 'RIR Rooster': 'rir-roo',
-                'Australorp Pair (1R+5H)': 'combo-aus', 'RIR Pair (1R+5H)': 'combo-rir'
+                'Australorp Pair (1R+5H)': 'combo-aus',
+                'RIR Pair (1R+5H)': 'combo-rir'
             };
             if (btnMap[name]) updateButton(btnMap[name], name);
         }
 
-        function saveCart() { localStorage.setItem('henzo_cart_v4', JSON.stringify(cart)); }
+        function saveCart() {
+            localStorage.setItem('henzo_cart_v5', JSON.stringify(cart));
+        }
 
         function updateButton(btnId, name) {
+            if (!btnId) return;
             const container = document.getElementById('btn-' + btnId);
+            if (!container) return;
             const item = cart.find(i => i.name === name);
             if (item) {
-                container.innerHTML = `<div class="qty-stepper"><button onclick="updateQty('${name}', -1)">−</button><span>${item.qty}</span><button onclick="updateQty('${name}', 1)">+</button></div>`;
+                container.innerHTML = `<div class="qty-stepper"><button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\'")}', -1)">−</button><span>${item.qty}</span><button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\'")}', 1)">+</button></div>`;
             } else {
                 const price = getPrice(name);
-                container.innerHTML = `<button onclick="addToCart('${name}', ${price}, '${btnId}')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button>`;
+                container.innerHTML = `<button onclick="event.stopPropagation(); addToCart('${name.replace(/'/g, "\'")}', ${price}, '${btnId}')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button>`;
             }
         }
 
         function getPrice(name) {
-            const prices = { 'Organic Eggs (12 pcs)': 450, 'Organic Eggs (30 pcs)': 1068, 'Australorp Chick': 120, 'Australorp Hen': 2500, 'Australorp Rooster': 3000, 'RIR Chick': 120, 'RIR Hen': 2500, 'RIR Rooster': 3000, 'Australorp Pair (1R+5H)': 14725, 'RIR Pair (1R+5H)': 14725 };
+            const prices = {
+                'Australorp Pair (1R+5H)': 14725,
+                'RIR Pair (1R+5H)': 14725
+            };
             return prices[name] || 0;
         }
 
@@ -691,6 +950,7 @@
             document.getElementById('cart-bar').classList.toggle('show', count > 0);
         }
 
+        // ==================== BOTTOM SHEET ====================
         function openSheet() {
             document.getElementById('sheet-overlay').classList.add('show');
             document.getElementById('bottom-sheet').classList.add('show');
@@ -714,24 +974,31 @@
             document.getElementById('summary-delivery').className = delivery === 0 ? 'text-green-600 font-bold' : 'font-bold';
             document.getElementById('summary-total').innerText = 'Rs ' + total.toLocaleString();
 
-            if (cart.length === 0) { container.innerHTML = '<p class="text-center text-gray-400 py-8">Your cart is empty</p>'; return; }
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400 py-8">Your cart is empty</p>';
+                return;
+            }
 
             container.innerHTML = cart.map(item => {
                 const emoji = item.name.includes('Egg') ? '🥚' : item.name.includes('Chick') ? '🐣' : item.name.includes('Hen') ? '🐔' : '🐓';
-                return `<div class="sheet-item"><div class="sheet-item-img">${emoji}</div><div class="sheet-item-info"><div class="sheet-item-name">${item.name}</div><div class="sheet-item-price">Rs ${item.price.toLocaleString()} x ${item.qty}</div></div><div class="qty-stepper" style="width:auto;"><button onclick="updateQty('${item.name}', -1)">−</button><span>${item.qty}</span><button onclick="updateQty('${item.name}', 1)">+</button></div></div>`;
+                return `<div class="sheet-item">
+                    <div class="sheet-item-img">${emoji}</div>
+                    <div class="sheet-item-info">
+                        <div class="sheet-item-name">${item.name}</div>
+                        <div class="sheet-item-price">Rs ${item.price.toLocaleString()} x ${item.qty}</div>
+                    </div>
+                    <div class="qty-stepper" style="width:auto;">
+                        <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', -1)">−</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', 1)">+</button>
+                    </div>
+                </div>`;
             }).join('');
         }
 
         function updateDelivery() { updateSheet(); }
 
-        function filterCategory(cat, btn) {
-            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
-            btn.classList.add('active');
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
-            });
-        }
-
+        // ==================== ORDER SUBMIT ====================
         async function handleOrder(e) {
             e.preventDefault();
             if (cart.length === 0) { showToast('Cart is empty!'); return; }
@@ -776,14 +1043,16 @@
             document.getElementById('success-screen').classList.remove('show');
             document.getElementById('order-form').reset();
             document.getElementById('address').value = 'Shed No 1, Minhas Street, Pindorian Shareef, Islamabad';
-            const btnMap = { 'eggs-1': 'Organic Eggs (12 pcs)', 'eggs-30': 'Organic Eggs (30 pcs)', 'aus-chick': 'Australorp Chick', 'aus-hen': 'Australorp Hen', 'aus-roo': 'Australorp Rooster', 'rir-chick': 'RIR Chick', 'rir-hen': 'RIR Hen', 'rir-roo': 'RIR Rooster', 'combo-aus': 'Australorp Pair (1R+5H)', 'combo-rir': 'RIR Pair (1R+5H)' };
-            Object.entries(btnMap).forEach(([id, name]) => updateButton(id, name));
+            // Reset combo buttons
+            updateButton('combo-aus', 'Australorp Pair (1R+5H)');
+            updateButton('combo-rir', 'RIR Pair (1R+5H)');
         }
 
+        // ==================== INIT ====================
         window.addEventListener('DOMContentLoaded', () => {
             updateUI();
-            const btnMap = { 'eggs-1': 'Organic Eggs (12 pcs)', 'eggs-30': 'Organic Eggs (30 pcs)', 'aus-chick': 'Australorp Chick', 'aus-hen': 'Australorp Hen', 'aus-roo': 'Australorp Rooster', 'rir-chick': 'RIR Chick', 'rir-hen': 'RIR Hen', 'rir-roo': 'RIR Rooster', 'combo-aus': 'Australorp Pair (1R+5H)', 'combo-rir': 'RIR Pair (1R+5H)' };
-            Object.entries(btnMap).forEach(([id, name]) => updateButton(id, name));
+            updateButton('combo-aus', 'Australorp Pair (1R+5H)');
+            updateButton('combo-rir', 'RIR Pair (1R+5H)');
         });
     </script>
 </body>
