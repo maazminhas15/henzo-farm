@@ -27,51 +27,54 @@
         html { scroll-behavior: smooth; }
         body { background: #FDFCF8; color: #1B3022; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
 
+        /* Cinematic Hero Background */
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&q=80&w=2000');
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                        url('assets/hero_farm.jpg');
             background-size: cover; background-position: center;
         }
 
         .floating-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
 
-        .premium-card { border: 1px solid #f0f0f0; transition: all 0.4s ease; }
+        .premium-card { border: 1px solid #f2f2f2; transition: all 0.4s ease; border-radius: 32px; overflow: hidden; background: white; }
+        .product-img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #f9f9f9; transition: transform 0.6s ease; }
+        .premium-card:hover .product-img { transform: scale(1.05); }
         
-        .add-btn { width: 100%; padding: 12px; background: #1B3022; color: #D4AF37; border-radius: 12px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .add-btn { width: 100%; padding: 12px; background: #1B3022; color: #D4AF37; border-radius: 12px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; }
+        .add-btn:active { transform: scale(0.95); }
         
-        .qty-stepper { display: flex; align-items: center; justify-content: space-between; background: #f8f8f8; border-radius: 12px; padding: 4px; }
-        .qty-stepper button { width: 32px; height: 32px; border-radius: 50%; background: white; shadow: 0 2px 5px rgba(0,0,0,0.1); font-weight: bold; }
+        .qty-stepper { display: flex; align-items: center; justify-content: space-between; background: #f0f0f0; border-radius: 12px; padding: 4px; }
+        .qty-stepper button { width: 32px; height: 32px; border-radius: 50%; background: white; font-weight: bold; color: #1B3022; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
-        .cart-bar { background: #1B3022; color: white; transition: transform 0.4s ease; }
+        .cart-bar { background: #1B3022; color: white; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 32px 32px 0 0; }
 
-        .input-dark { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 14px; border-radius: 12px; width: 100%; }
-        
         .bottom-sheet { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-radius: 32px 32px 0 0; z-index: 1000; transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .bottom-sheet.show { transform: translateY(0); }
         .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 900; display: none; backdrop-filter: blur(4px); }
+        
+        .section-title { font-family: 'Playfair Display', serif; position: relative; display: inline-block; padding-bottom: 10px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: #D4AF37; }
     </style>
 </head>
 <body>
 
-    <div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 bg-forest text-gold px-8 py-3 rounded-full text-xs font-bold z-[2000] opacity-0 transition-all pointer-events-none shadow-2xl">Selection Updated</div>
+    <div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 bg-forest text-gold px-8 py-3 rounded-full text-xs font-bold z-[2000] opacity-0 transition-all pointer-events-none shadow-2xl">Updated</div>
 
     <!-- Success Screen -->
     <div id="success-screen" class="fixed inset-0 bg-forest z-[3000] hidden flex-col items-center justify-center text-center p-10">
         <div class="w-20 h-20 bg-gold text-forest rounded-full flex items-center justify-center text-3xl mb-6"><i class="fa-solid fa-check"></i></div>
-        <h2 class="font-serif text-4xl text-silk mb-4">Reservation Sent</h2>
-        <p class="text-gold opacity-70 mb-10 max-w-xs">Your request is logged. We are opening WhatsApp for final confirmation.</p>
-        <button onclick="location.reload()" class="bg-gold text-forest px-10 py-4 rounded-full font-bold text-xs uppercase tracking-widest">Return to Farm</button>
+        <h2 class="font-serif text-4xl text-silk mb-4">Reservation Recorded</h2>
+        <p class="text-gold opacity-70 mb-10 max-w-xs">Heritage selection confirmed. Opening WhatsApp...</p>
+        <button onclick="location.reload()" class="bg-gold text-forest px-10 py-4 rounded-full font-bold text-xs uppercase tracking-widest">Back to Farm</button>
     </div>
 
     <!-- Floating Nav -->
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-xl z-[500] floating-nav rounded-full px-6 py-3 flex items-center justify-between shadow-xl">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-forest rounded-full flex items-center justify-center text-gold text-[10px] font-bold">HF</div>
-            <span class="font-serif font-bold text-sm tracking-tighter">HENZO FARM</span>
+            <img src="assets/logo.png" class="w-8 h-8 rounded-full" onerror="this.src='https://ui-avatars.com/api/?name=HF&background=1B3022&color=D4AF37'">
+            <span class="font-serif font-bold text-sm tracking-tight">HENZO FARM</span>
         </div>
         <div class="flex gap-4 items-center">
-            <a href="tel:+923115190548" class="text-forest opacity-40"><i class="fa-solid fa-phone"></i></a>
-            <div class="w-[1px] h-4 bg-gray-200"></div>
             <button onclick="openSheet()" class="relative">
                 <i class="fa-solid fa-basket-shopping text-forest"></i>
                 <span id="nav-count" class="absolute -top-2 -right-2 bg-gold text-forest text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
@@ -80,191 +83,115 @@
     </nav>
 
     <!-- Hero -->
-    <section class="h-[90vh] hero-bg flex flex-col items-center justify-center text-center px-6">
+    <section class="h-[95vh] hero-bg flex flex-col items-center justify-center text-center px-6">
         <p class="text-gold text-[10px] uppercase tracking-[0.5em] mb-6 font-bold">Islamabad Heritage</p>
-        <h1 class="font-serif text-6xl text-white mb-6 leading-tight">Nature's Finest <br><span class="italic font-normal text-gold">Heritage</span></h1>
-        <p class="text-white/70 text-xs font-light tracking-wide max-w-xs mx-auto mb-10 leading-relaxed italic">Cultivating pure-bred lineages in absolute freedom within the Islamabad foothills.</p>
+        <h1 class="font-serif text-5xl md:text-7xl text-white mb-6 leading-tight">Nature's Finest <br><span class="italic font-normal text-gold">Heritage</span></h1>
+        <p class="text-white/80 text-xs font-light tracking-wide max-w-xs mx-auto mb-10 leading-relaxed italic">Cultivating pure-bred lineages in absolute freedom within the Islamabad foothills.</p>
         <a href="#products" class="bg-gold text-forest px-10 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest">Browse Registry</a>
     </section>
 
-    <!-- Grouped Collection -->
-    <section id="products" class="py-20 px-6 max-w-7xl mx-auto">
+    <!-- Collection Grid -->
+    <section id="products" class="py-24 px-6 max-w-7xl mx-auto">
         
         <!-- EGGS -->
-        <div class="mb-20">
-            <div class="flex items-center gap-4 mb-10">
-                <h2 class="font-serif text-3xl">Premium Eggs</h2>
-                <div class="flex-1 h-[1px] bg-stone"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Egg 1 -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">Organic Eggs</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">1 Dozen • Farm Fresh</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 450</span>
-                        <div id="btn-egg-1" class="flex-1"></div>
+        <div class="mb-24 text-center">
+            <h2 class="section-title text-4xl mb-12">The Egg Collection</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+                <div class="premium-card p-4">
+                    <img src="assets/organic_eggs.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4 flex justify-between items-end text-left">
+                        <div>
+                            <h3 class="font-serif text-2xl mb-1">Organic Eggs</h3>
+                            <p class="text-[10px] opacity-40 uppercase">1 Dozen • Farm Fresh</p>
+                            <span class="font-bold text-xl block mt-2 text-forest">Rs 450</span>
+                        </div>
+                        <div id="btn-egg-1" class="w-32"></div>
                     </div>
                 </div>
-                <!-- Egg 2 -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1516142646274-9549f3e49811?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">2 Dozen Pack</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">Family Pack • Fresh</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 900</span>
-                        <div id="btn-egg-2" class="flex-1"></div>
+                <div class="premium-card p-4 text-left">
+                    <img src="assets/organic_eggs.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4 flex justify-between items-end">
+                        <div>
+                            <h3 class="font-serif text-2xl mb-1">2 Dozen Pack</h3>
+                            <p class="text-[10px] opacity-40 uppercase">Heritage Selection</p>
+                            <span class="font-bold text-xl block mt-2 text-forest">Rs 900</span>
+                        </div>
+                        <div id="btn-egg-2" class="w-32"></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- AUSTRALORP -->
-        <div class="mb-20">
-            <div class="flex items-center gap-4 mb-10">
-                <h2 class="font-serif text-3xl">Black Australorp</h2>
-                <div class="flex-1 h-[1px] bg-stone"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Aus Chick -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">Australorp Chick</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">Day-Old • Vaccinated</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 120</span>
-                        <div id="btn-aus-c" class="flex-1"></div>
-                    </div>
+        <div class="mb-24 text-center">
+            <h2 class="section-title text-4xl mb-12">Black Australorp</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+                <div class="premium-card p-4 text-left">
+                    <img src="assets/australorp_chick.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4"><h3 class="font-serif text-xl mb-4">Chick</h3><div class="flex justify-between items-center"><span class="font-bold">Rs 120</span><div id="btn-aus-c" class="w-24"></div></div></div>
                 </div>
-                <!-- Aus Hen -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1612170153139-6f881ff067e0?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">Australorp Hen</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">Mature • Ready to Lay</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 2,500</span>
-                        <div id="btn-aus-h" class="flex-1"></div>
-                    </div>
+                <div class="premium-card p-4 text-left">
+                    <img src="assets/australorp_hen.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4"><h3 class="font-serif text-xl mb-4">Hen</h3><div class="flex justify-between items-center"><span class="font-bold">Rs 2,500</span><div id="btn-aus-h" class="w-24"></div></div></div>
                 </div>
-                <!-- Aus Rooster -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1594391829624-ec5726207f59?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">Australorp Rooster</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">Large • Breeding Male</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 3,000</span>
-                        <div id="btn-aus-r" class="flex-1"></div>
-                    </div>
+                <div class="premium-card p-4 text-left">
+                    <img src="assets/australorp_rooster.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4"><h3 class="font-serif text-xl mb-4">Rooster</h3><div class="flex justify-between items-center"><span class="font-bold">Rs 3,000</span><div id="btn-aus-r" class="w-24"></div></div></div>
                 </div>
             </div>
         </div>
 
         <!-- RIR -->
-        <div class="mb-20">
-            <div class="flex items-center gap-4 mb-10">
-                <h2 class="font-serif text-3xl">Rhode Island Red</h2>
-                <div class="flex-1 h-[1px] bg-stone"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- RIR Chick -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1627916607164-7b20241db935?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">RIR Chick</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">Day-Old • Heritage</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 120</span>
-                        <div id="btn-rir-c" class="flex-1"></div>
-                    </div>
+        <div class="mb-24 text-center">
+            <h2 class="section-title text-4xl mb-12">Rhode Island Red</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+                <div class="premium-card p-4 text-left">
+                    <img src="assets/rir_chick.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4"><h3 class="font-serif text-xl mb-4">Chick</h3><div class="flex justify-between items-center"><span class="font-bold">Rs 120</span><div id="btn-rir-c" class="w-24"></div></div></div>
                 </div>
-                <!-- RIR Hen -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1530513475970-f2c00bc29319?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">RIR Hen</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">Mature • Heritage</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 2,500</span>
-                        <div id="btn-rir-h" class="flex-1"></div>
-                    </div>
+                <div class="premium-card p-4 text-left">
+                    <img src="assets/rir_hen.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4"><h3 class="font-serif text-xl mb-4">Hen</h3><div class="flex justify-between items-center"><span class="font-bold">Rs 2,500</span><div id="btn-rir-h" class="w-24"></div></div></div>
                 </div>
-                <!-- RIR Rooster -->
-                <div class="premium-card bg-white rounded-[32px] p-4">
-                    <div class="aspect-square rounded-[24px] bg-stone mb-6 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1614620028827-024383617300?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-serif text-xl mb-1">RIR Rooster</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-4">Breeding Male</p>
-                    <div class="flex items-center justify-between gap-4">
-                        <span class="font-bold text-lg">Rs 3,000</span>
-                        <div id="btn-rir-r" class="flex-1"></div>
-                    </div>
+                <div class="premium-card p-4 text-left">
+                    <img src="assets/rir_rooster.jpg" class="product-img rounded-[24px]">
+                    <div class="p-4"><h3 class="font-serif text-xl mb-4">Rooster</h3><div class="flex justify-between items-center"><span class="font-bold">Rs 3,000</span><div id="btn-rir-r" class="w-24"></div></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BREEDING DEALS -->
+    <!-- BREEDING PACKS -->
     <section id="deals" class="py-24 px-6 bg-forest text-white">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-            <h2 class="font-serif text-4xl mb-4">Heritage Breeding Deals</h2>
-            <p class="opacity-60 text-xs uppercase tracking-widest">Start your lineage with a 10% discount</p>
-        </div>
-        <div class="max-w-xl mx-auto bg-white/5 border border-white/10 rounded-[40px] p-10 backdrop-blur-sm">
-            <div class="flex justify-between items-start mb-8">
-                <div>
-                    <h3 class="font-serif text-2xl text-gold mb-1">Breeding Pack (1R + 5H)</h3>
-                    <p class="text-xs opacity-50">1 Mature Rooster + 5 Mature Hens</p>
-                </div>
-                <span class="bg-gold text-forest text-[10px] font-black px-3 py-1 rounded-full uppercase">10% OFF</span>
-            </div>
-            <div class="flex items-center gap-6 mb-10">
-                <span class="text-4xl font-serif text-white">Rs 13,950</span>
+        <div class="max-w-xl mx-auto bg-white/5 border border-white/10 rounded-[40px] p-10 text-center backdrop-blur-md">
+            <span class="bg-gold text-forest text-[10px] font-black px-4 py-1 rounded-full uppercase mb-4 inline-block tracking-widest">10% Off Dealer Deal</span>
+            <h3 class="font-serif text-3xl text-gold mb-6">Breeding Pack (1R + 5H)</h3>
+            <div class="flex items-center justify-center gap-6 mb-10">
+                <span class="text-4xl font-serif">Rs 13,950</span>
                 <span class="line-through opacity-30 text-lg">Rs 15,500</span>
             </div>
             <div id="btn-deal-1"></div>
         </div>
     </section>
 
-    <!-- ABOUT SECTION (CENTERED) -->
-    <section class="py-32 px-6 text-center bg-silk">
-        <div class="max-w-2xl mx-auto">
-            <p class="text-gold text-[10px] uppercase tracking-widest font-bold mb-8">Directorate</p>
+    <!-- About Section (Centered) -->
+    <section id="about" class="py-32 px-6 text-center bg-stone">
+        <div class="max-w-3xl mx-auto">
+            <p class="text-gold text-[10px] uppercase tracking-widest font-bold mb-8">The Directorate</p>
             <h2 class="font-serif text-5xl mb-8">Maaz Mustafa Minhas</h2>
             <p class="font-serif italic text-xl text-gray-500 leading-relaxed mb-12">"Every bird from Henzo Farm is raised as a legacy of organic poultry breeding. Healthy Birds, Healthy Life."</p>
-            <div class="w-12 h-[1px] bg-gold mx-auto mb-12"></div>
-            <p class="text-[10px] opacity-40 uppercase tracking-widest">Henzo Farm Sanctuary • Islamabad</p>
+            <div class="w-12 h-[1px] bg-gold mx-auto mb-6"></div>
+            <p class="text-[10px] opacity-40 uppercase tracking-[0.4em]">Henzo Farm Sanctuary • Islamabad</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="pb-40 pt-10 text-center text-[9px] uppercase tracking-[0.3em] opacity-30">
-        Henzo Farm Heritage • Islamabad • Rawalpindi
-    </footer>
-
     <!-- Cart Bar -->
-    <div id="cart-bar" class="fixed bottom-0 left-0 right-0 z-[800] p-6 cart-bar translate-y-full flex items-center justify-between shadow-2xl rounded-t-[32px]">
-        <div class="flex items-center gap-4">
+    <div id="cart-bar" class="fixed bottom-0 left-0 right-0 z-[800] p-6 cart-bar translate-y-full flex items-center justify-between shadow-2xl">
+        <div class="flex items-center gap-4 text-left">
             <div class="w-12 h-12 bg-gold text-forest rounded-full flex items-center justify-center font-black text-lg" id="bar-count">0</div>
-            <div>
-                <p class="text-[10px] opacity-60 uppercase font-bold" id="bar-items">0 Selection</p>
-                <p class="text-xl font-serif text-gold" id="bar-total">Rs 0</p>
-            </div>
+            <div><p class="text-[10px] opacity-60 uppercase font-bold tracking-widest">Valuation</p><p class="text-xl font-serif text-gold" id="bar-total">Rs 0</p></div>
         </div>
-        <button onclick="openSheet()" class="bg-gold text-forest px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Reserve Items</button>
+        <button onclick="openSheet()" class="bg-gold text-forest px-10 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Reserve Heritage</button>
     </div>
 
     <!-- Check Out Sheet -->
@@ -272,35 +199,23 @@
     <div id="sheet" class="bottom-sheet">
         <div class="w-12 h-1 bg-gray-200 rounded-full mx-auto mt-4 mb-6"></div>
         <div class="p-8 max-h-[80vh] overflow-y-auto">
-            <h3 class="font-serif text-3xl mb-8">Your Reserve</h3>
-            <div id="sheet-items" class="space-y-6 mb-10"></div>
-            
-            <form onsubmit="handleOrder(event)" class="bg-stone p-8 rounded-[32px]">
-                <div class="mb-6">
-                    <label class="text-[10px] uppercase font-bold text-gray-400 mb-2 block">Full Name</label>
-                    <input type="text" id="name" class="w-full p-4 rounded-xl border-none" required>
-                </div>
-                <div class="mb-6">
-                    <label class="text-[10px] uppercase font-bold text-gray-400 mb-2 block">WhatsApp Number</label>
-                    <input type="tel" id="phone" class="w-full p-4 rounded-xl border-none" required>
-                </div>
-                <div class="mb-6">
-                    <label class="text-[10px] uppercase font-bold text-gray-400 mb-2 block">Area</label>
-                    <select id="area" class="w-full p-4 rounded-xl border-none bg-white" onchange="updateUI()">
+            <h3 class="font-serif text-3xl mb-8">Your Collection</h3>
+            <div id="sheet-items" class="space-y-4 mb-10"></div>
+            <form onsubmit="handleOrder(event)" class="bg-stone p-8 rounded-[32px] space-y-4 text-left">
+                <div><label class="text-[9px] font-bold opacity-40 mb-1 block uppercase tracking-widest">Full Name</label><input type="text" id="name" class="w-full p-4 rounded-xl border-none shadow-sm" required></div>
+                <div><label class="text-[9px] font-bold opacity-40 mb-1 block uppercase tracking-widest">WhatsApp</label><input type="tel" id="phone" class="w-full p-4 rounded-xl border-none shadow-sm" required></div>
+                <div><label class="text-[9px] font-bold opacity-40 mb-1 block uppercase tracking-widest">Area</label>
+                    <select id="area" class="w-full p-4 rounded-xl border-none bg-white shadow-sm" onchange="updateUI()">
                         <option value="Pindorian Shareef">Pindorian Shareef (FREE)</option>
                         <option value="Islamabad Sectors">Islamabad Sectors</option>
                         <option value="DHA / Bahria">DHA / Bahria Town</option>
                         <option value="Rawalpindi City">Rawalpindi City</option>
                     </select>
                 </div>
-                <div class="mb-8">
-                    <label class="text-[10px] uppercase font-bold text-gray-400 mb-2 block">Address</label>
-                    <textarea id="address" class="w-full p-4 rounded-xl border-none bg-white" rows="2" required></textarea>
-                </div>
-
-                <div class="flex justify-between items-center mb-8 pt-4 border-t border-black/5">
-                    <div><p class="text-[10px] opacity-40 uppercase">Total Valuation</p><h4 class="text-3xl font-serif" id="sum-total">Rs 0</h4></div>
-                    <button type="submit" id="submit-btn" class="bg-forest text-gold px-10 py-5 rounded-full font-black text-[10px] uppercase tracking-widest">Confirm <i class="fa-brands fa-whatsapp ml-2"></i></button>
+                <div><label class="text-[9px] font-bold opacity-40 mb-1 block uppercase tracking-widest">Address</label><textarea id="address" class="w-full p-4 rounded-xl border-none bg-white shadow-sm" rows="2" required></textarea></div>
+                <div class="flex justify-between items-center pt-6 border-t border-black/5">
+                    <h4 class="text-3xl font-serif text-forest" id="sum-total">Rs 0</h4>
+                    <button type="submit" id="submit-btn" class="bg-forest text-gold px-12 py-5 rounded-full font-black uppercase text-[10px] tracking-widest">Confirm</button>
                 </div>
             </form>
         </div>
@@ -319,7 +234,8 @@
             if (item) item.qty++; else cart.push({ name, price, qty: 1, btnId });
             updateUI();
             const t = document.getElementById('toast');
-            t.style.opacity = '1'; setTimeout(() => t.style.opacity = '0', 2000);
+            t.style.opacity = '1'; t.innerText = 'Added to Collection';
+            setTimeout(() => t.style.opacity = '0', 2000);
         }
 
         function updateQty(name, delta) {
@@ -332,92 +248,56 @@
 
         function updateUI() {
             const count = cart.reduce((a, i) => a + i.qty, 0);
-            const total = cart.reduce((a, i) => a + (i.price * i.qty), 0);
+            const sub = cart.reduce((a, i) => a + (i.price * i.qty), 0);
             const area = document.getElementById('area').value;
-            const del = (area === 'Pindorian Shareef' || total >= 1999) ? 0 : 200;
-            const grandTotal = total + del;
+            const del = (area === 'Pindorian Shareef' || sub >= 1999) ? 0 : 200;
+            const total = sub + del;
 
-            // Update Bar
             document.getElementById('nav-count').innerText = count;
             document.getElementById('bar-count').innerText = count;
-            document.getElementById('bar-total').innerText = 'Rs ' + grandTotal.toLocaleString();
-            document.getElementById('bar-items').innerText = count + ' Selection';
+            document.getElementById('bar-total').innerText = 'Rs ' + total.toLocaleString();
             document.getElementById('cart-bar').style.transform = count > 0 ? 'translateY(0)' : 'translateY(100%)';
-            document.getElementById('sum-total').innerText = 'Rs ' + grandTotal.toLocaleString();
+            document.getElementById('sum-total').innerText = 'Rs ' + total.toLocaleString();
 
-            // Refresh Product Buttons
-            const prods = [
-                {id: 'egg-1', name: 'Organic Eggs (1 Dozen)', price: 450},
-                {id: 'egg-2', name: '2 Dozen Pack', price: 900},
-                {id: 'aus-c', name: 'Australorp Chick', price: 120},
-                {id: 'aus-h', name: 'Australorp Hen', price: 2500},
-                {id: 'aus-r', name: 'Australorp Rooster', price: 3000},
-                {id: 'rir-c', name: 'RIR Chick', price: 120},
-                {id: 'rir-h', name: 'RIR Hen', price: 2500},
-                {id: 'rir-r', name: 'RIR Rooster', price: 3000},
-                {id: 'deal-1', name: 'Starter Breeding Pack (1R+5H)', price: 13950}
+            const pList = [
+                {id: 'egg-1', name: 'Organic Eggs (1 Dozen)', p: 450}, {id: 'egg-2', name: '2 Dozen Pack', p: 900},
+                {id: 'aus-c', name: 'Australorp Chick', p: 120}, {id: 'aus-h', name: 'Australorp Hen', p: 2500}, {id: 'aus-r', name: 'Australorp Rooster', p: 3000},
+                {id: 'rir-c', name: 'RIR Chick', p: 120}, {id: 'rir-h', name: 'RIR Hen', p: 2500}, {id: 'rir-r', name: 'RIR Rooster', p: 3000},
+                {id: 'deal-1', name: 'Starter Breeding Pack (1R+5H)', p: 13950}
             ];
 
-            prods.forEach(p => {
+            pList.forEach(p => {
                 const el = document.getElementById('btn-' + p.id);
                 if (!el) return;
                 const item = cart.find(i => i.name === p.name);
                 if (item) {
-                    el.innerHTML = `<div class="qty-stepper"><button onclick="updateQty('${item.name}', -1)">−</button><span class="font-bold">${item.qty}</span><button onclick="updateQty('${item.name}', 1)">+</button></div>`;
+                    el.innerHTML = `<div class="qty-stepper"><button onclick="updateQty('${item.name}', -1)">−</button><span class="font-bold text-xs">${item.qty}</span><button onclick="updateQty('${item.name}', 1)">+</button></div>`;
                 } else {
-                    const style = p.id === 'deal-1' ? 'w-full bg-gold text-forest py-5 rounded-2xl font-black uppercase text-xs tracking-widest' : 'add-btn';
-                    el.innerHTML = `<button onclick="addToCart('${p.name}', ${p.price}, '${p.id}')" class="${style}">+ Add</button>`;
+                    const style = p.id === 'deal-1' ? 'w-full bg-gold text-forest py-5 rounded-2xl font-black uppercase text-[10px] tracking-widest' : 'add-btn';
+                    el.innerHTML = `<button onclick="addToCart('${p.name}', ${p.p}, '${p.id}')" class="${style}">+ Add</button>`;
                 }
             });
 
-            // Update Sheet Items
             const sheetItems = document.getElementById('sheet-items');
-            sheetItems.innerHTML = cart.map(i => `
-                <div class="flex justify-between items-center bg-stone p-6 rounded-[24px]">
-                    <div><p class="font-bold text-sm">${i.name}</p><p class="text-xs text-gold font-bold">Rs ${i.price} x ${i.qty}</p></div>
-                    <div class="qty-stepper" style="margin:0"><button onclick="updateQty('${i.name}', -1)">−</button><span class="mx-3 font-bold">${i.qty}</span><button onclick="updateQty('${i.name}', 1)">+</button></div>
-                </div>
-            `).join('');
+            sheetItems.innerHTML = cart.map(i => `<div class="flex justify-between items-center bg-stone p-6 rounded-[24px]"><div><p class="font-serif text-lg">${i.name}</p><p class="text-[10px] text-gold font-bold uppercase tracking-widest">Rs ${i.price} x ${i.qty}</p></div><div class="qty-stepper" style="margin:0"><button onclick="updateQty('${i.name}', -1)">−</button><span class="mx-3 font-bold">${i.qty}</span><button onclick="updateQty('${i.name}', 1)">+</button></div></div>`).join('');
         }
 
-        function openSheet() { 
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('sheet').classList.add('show');
-        }
-        function closeSheet() { 
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('sheet').classList.remove('show');
-        }
+        function openSheet() { document.getElementById('overlay').style.display = 'block'; document.getElementById('sheet').classList.add('show'); }
+        function closeSheet() { document.getElementById('overlay').style.display = 'none'; document.getElementById('sheet').classList.remove('show'); }
 
         async function handleOrder(e) {
             e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true; btn.innerText = 'Valuing...';
+            const btn = document.getElementById('submit-btn'); btn.disabled = true;
             const area = document.getElementById('area').value;
             const sub = cart.reduce((a, i) => a + (i.price * i.qty), 0);
             const del = (area === 'Pindorian Shareef' || sub >= 1999) ? 0 : 200;
 
-            const payload = {
-                customer: document.getElementById('name').value,
-                contact: document.getElementById('phone').value,
-                area: area,
-                address: document.getElementById('address').value,
-                cart: cart,
-                delivery: del,
-                grandTotal: (sub + del)
-            };
-
-            try {
-                await fetch(CONFIG.SHEET_API, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-            } catch(err) { console.log(err); }
-
+            const payload = { customer: document.getElementById('name').value, contact: document.getElementById('phone').value, area: area, address: document.getElementById('address').value, cart: cart, delivery: del, grandTotal: (sub+del) };
+            try { await fetch(CONFIG.SHEET_API, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) }); } catch(err) { }
             const itemsStr = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
-            const msg = `🌾 *HENZO FARM RESERVE*%0A━━━━━━━━━━━━━━━%0A*Name:* ${payload.customer}%0A*Area:* ${payload.area}%0A%0A*Heritage Selection:*%0A${itemsStr}%0A━━━━━━━━━━━━━━━`;
-            window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
+            window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=🌾 *HENZO FARM RESERVE*%0A━━━━━━━━━━━━━━━%0A*Name:* ${payload.customer}%0A*Heritage Selection:*%0A${itemsStr}`, '_blank');
             document.getElementById('success-screen').classList.remove('hidden');
         }
-
-        // Initialize UI
         window.onload = updateUI;
     </script>
 </body>
