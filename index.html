@@ -389,6 +389,7 @@
         }
     </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -739,11 +740,12 @@
     </div>
 
     <script>
+
         // ==================== CONFIG ====================
-        const CONFIG = {
-            SHEET_API: 'https://script.google.com/macros/s/AKfycbzdADdjVxs1LSU1GPwOaiOTbJ1efkRVbryFc5tXt61mLrjzKX_WBuNszJBgTQVLIYk31dQ/exec',
-            WHATSAPP: '923115190548'
-        };
+       const CONFIG = {
+    SHEET_API: 'https://script.google.com/macros/s/AKfycbzFlBOgrHo4QM1o_UCHXAf43eKFAlM0q1OcjAwP6TmsghyF1H0pc8p_HxGCCtBtTupiGQ/exec',
+    WHATSAPP: '923115190548'
+};
 
         // ==================== DATA REGISTRY (from File 2) ====================
         const REGISTRY = {
@@ -999,82 +1001,64 @@
         function updateDelivery() { updateSheet(); }
 
         // ==================== ORDER SUBMIT ====================
-        function handleOrder(e) {
-            e.preventDefault();
-            if (cart.length === 0) { showToast('Cart is empty!'); return; }
+function handleOrder(e) {
+    e.preventDefault();
+    if (cart.length === 0) { 
+        showToast('Cart is empty!'); 
+        return; 
+    }
 
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            btn.innerHTML = '<span style="display:inline-block;width:20px;height:20px;border:2px solid rgba(255,255,255,0.3);border-top-color:#D4AF37;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:10px;"></span> Saving Order...';
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const area = document.getElementById('area').value;
+    const address = document.getElementById('address').value.trim();
+    const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
+    const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
+    const total = subtotal + delivery;
+    const orderId = 'HZ-' + Date.now();
 
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const area = document.getElementById('area').value;
-            const address = document.getElementById('address').value.trim();
-            const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
-            const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
-            const total = subtotal + delivery;
-            const orderId = 'HZ-' + Date.now();
+    // Build WhatsApp message
+    const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
+    const msg = `🌾 *HENZO FARM ORDER*%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total}`;
 
-            // Build WhatsApp message
-            const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
-            const msg = `🌾 *HENZO FARM ORDER*%0A━━━━━━━━━━━━━━━%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal.toLocaleString()}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total.toLocaleString()}%0A━━━━━━━━━━━━━━━`;
+    // Send to Google Sheet
+    fetch(CONFIG.SHEET_API, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            customer: name,
+            contact: phone,
+            area: area,
+            address: address,
+            cart: JSON.stringify(cart)
+        })
+    });
 
-            // Create a hidden form to submit to Google Sheets
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = CONFIG.SHEET_API;
-            form.target = 'gsheet-frame';
-            form.style.display = 'none';
+    // Open WhatsApp
+    window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
 
-            const fields = {
-                customer: name,
-                contact: phone,
-                area: area,
-                address: address,
-                cart: JSON.stringify(cart)
-            };
+    // Show success
+    document.getElementById('success-order-id').innerText = orderId;
+    document.getElementById('success-screen').classList.add('show');
 
-            for (let key in fields) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = fields[key];
-                form.appendChild(input);
-            }
+    // Clear cart
+    cart = []; 
+    saveCart(); 
+    updateUI(); 
+    closeSheet();
+}
 
-            document.body.appendChild(form);
-            form.submit();
-            document.body.removeChild(form);
+function closeSuccess() {
+    document.getElementById('success-screen').classList.remove('show');
+    document.getElementById('order-form').reset();
+    document.getElementById('address').value = 'Shed No 1, Minhas Street, Pindorian Shareef, Islamabad';
+    // Reset combo buttons
+    updateButton('combo-aus', 'Australorp Pair (1R+5H)');
+    updateButton('combo-rir', 'RIR Pair (1R+5H)');
+}
 
-            // Open WhatsApp
-            window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
-
-            // Show success screen
-            document.getElementById('success-order-id').innerText = orderId;
-            document.getElementById('success-screen').classList.add('show');
-
-            // Clear cart
-            cart = []; 
-            saveCart(); 
-            updateUI(); 
-            closeSheet();
-
-            // Reset button
-            btn.disabled = false;
-            btn.innerHTML = '<span>Place Order</span><i class="fa-brands fa-whatsapp text-xl"></i>';
-        }
-
-        function closeSuccess() {
-            document.getElementById('success-screen').classList.remove('show');
-            document.getElementById('order-form').reset();
-            document.getElementById('address').value = 'Shed No 1, Minhas Street, Pindorian Shareef, Islamabad';
-            // Reset combo buttons
-            updateButton('combo-aus', 'Australorp Pair (1R+5H)');
-            updateButton('combo-rir', 'RIR Pair (1R+5H)');
-        }
-
-        // ==================== INIT ====================
+// ==================== INIT ====================
         window.addEventListener('DOMContentLoaded', () => {
             updateUI();
             updateButton('combo-aus', 'Australorp Pair (1R+5H)');
