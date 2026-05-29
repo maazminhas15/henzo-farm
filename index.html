@@ -401,6 +401,17 @@
 <base target="_blank">
 </head>
 <body>
+<!-- AUTO CACHE BUSTER -->
+<script>
+(function(){
+    // If no version in URL, add one based on file modification (use date)
+    if(!location.search.includes('v=')){
+        var url = new URL(location.href);
+        url.searchParams.set('v', '2026-05-29');
+        history.replaceState(null, '', url.toString());
+    }
+})();
+</script>
 
     <!-- Toast -->
     <div id="toast" class="toast">
@@ -545,7 +556,7 @@
             </div>
             <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">Heritage Poultry<br>& Organic Eggs</h2>
             <p class="text-white/70 text-sm mb-8 leading-relaxed">Pure-bred Australorp & Rhode Island Red. Farm-fresh organic eggs delivered to your doorstep in Islamabad & Rawalpindi.</p>
-            <button onclick="scrollToSection('products')" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-forest font-bold rounded-2xl text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer border-none">
+            <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-forest font-bold rounded-2xl text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer border-none">
                 Shop Now <i class="fa-solid fa-arrow-down"></i>
             </button>
         </div>
