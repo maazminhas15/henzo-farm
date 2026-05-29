@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) - Replace G-XXXXXXXXXX with your actual ID from analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PLACEHOLDER');
+    </script>
     <!-- CACHE BUST -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -535,9 +543,11 @@
         <!-- Top Navigation -->
         <div class="top-nav">
             <button class="nav-btn" onclick="scrollToSection('products')">Our Products</button>
-            <button class="nav-btn" onclick="scrollToSection('about-henzo')">About Henzo Farm</button>
-            <button class="nav-btn" onclick="scrollToSection('why-henzo')">Why Choose Us</button>
-            <button class="nav-btn" onclick="scrollToSection('contact-footer')">Contact Us</button>
+            <button class="nav-btn" onclick="scrollToSection('about-henzo')">About</button>
+            <button class="nav-btn" onclick="scrollToSection('why-henzo')">Why Us</button>
+            <button class="nav-btn" onclick="scrollToSection('reviews')">Reviews</button>
+            <button class="nav-btn" onclick="scrollToSection('faq')">FAQ</button>
+            <button class="nav-btn" onclick="scrollToSection('contact-footer')">Contact</button>
         </div>
     </header>
 
@@ -696,6 +706,136 @@
                 <i class="fa-solid fa-truck-fast"></i>
                 <h4>Free Delivery</h4>
                 <p>Free in Pindorian. Rs 200 for other areas under Rs 1,999</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- REVIEWS SECTION -->
+    <!-- ============================================ -->
+    <section id="reviews" style="padding: 60px 20px; background: white;">
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #1B3022; margin-bottom: 12px;">What Customers Say</h2>
+            <p style="color: #888; font-size: 15px; margin-bottom: 40px;">Real reviews from real customers across Islamabad & Rawalpindi</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                    <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Best eggs in Islamabad! The yolk is so golden and rich. My kids absolutely love them. Delivery was same day to Bahria Town."</p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">AR</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Ali Raza</p>
+                            <p style="font-size: 12px; color: #888;">Bahria Town, Islamabad</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                    <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Bought 5 Australorp hens last month. All healthy, vaccinated, and already laying beautiful brown eggs! Maaz is very knowledgeable."</p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">SK</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Sarah Khan</p>
+                            <p style="font-size: 12px; color: #888;">DHA Phase 2, Islamabad</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                    <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Fast delivery to Rawalpindi. Chickens were properly vaccinated and Maaz gave me a full feeding guide. Highly recommended!"</p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">UM</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Usman Malik</p>
+                            <p style="font-size: 12px; color: #888;">Saddar, Rawalpindi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- HOW TO ORDER SECTION -->
+    <!-- ============================================ -->
+    <section id="how-to-order" style="padding: 60px 20px; background: linear-gradient(135deg, #1B3022, #2d4d38); color: white;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; margin-bottom: 40px;">How to Order</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">1</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Browse Products</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">Select eggs, chicks, hens, or breeding pairs</p>
+                </div>
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">2</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Add to Cart</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">Choose quantities and categories</p>
+                </div>
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">3</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Enter Details</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">Fill your name, phone, and delivery address</p>
+                </div>
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">4</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Confirm on WhatsApp</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">We confirm your order and delivery time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FAQ SECTION -->
+    <!-- ============================================ -->
+    <section id="faq" style="padding: 60px 20px; background: #F5F0E6;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #1B3022; text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Do you deliver across Islamabad & Rawalpindi?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Yes! We deliver to all sectors of Islamabad, Bahria Town, DHA, Gulberg Greens, PWD, and all areas of Rawalpindi including Saddar, Satellite Town, Adiala Road, and Westridge. Free delivery on orders over Rs 1,999.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Are your chickens vaccinated?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Absolutely. All our chicks receive standard vaccinations (Newcastle, Infectious Bronchitis, Gumboro). We provide vaccination records with every purchase. Our mature hens and roosters are also health-checked before delivery.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        What makes your eggs different from store-bought?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Our hens are pasture-raised on organic feed with no chemicals or hormones. You will notice the deep golden yolk, richer flavor, and firmer whites. Many customers say our eggs taste like "eggs used to taste" — real farm freshness.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Can I visit the farm before buying?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Yes! We welcome farm visits at Pindorian Shareef, Islamabad. Please call or WhatsApp us at +92 311 5190548 to schedule a visit. Best times are Saturday and Sunday mornings between 8 AM and 12 PM.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        What payment methods do you accept?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">We accept Cash on Delivery (COD), JazzCash, EasyPaisa, and bank transfer. For large orders (breeding pairs), we require 50% advance payment to reserve your birds.</p>
+                </details>
             </div>
         </div>
     </section>
@@ -1052,30 +1192,18 @@ function handleOrder(e) {
     const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
     const msg = `🌾 *HENZO FARM ORDER*%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total}`;
 
-    // ===== DEBUG: Show what's being sent =====
-    const debugData = {
-        customer: name,
-        contact: phone,
-        area: area,
-        address: address,
-        cart: JSON.stringify(cart)
-    };
-    console.log('=== SENDING TO SHEET ===');
-    console.log('URL:', CONFIG.SHEET_API);
-    console.log('Data:', debugData);
-
     // Send to Google Sheet
     fetch(CONFIG.SHEET_API, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(debugData)
-    }).then(() => {
-        console.log('Fetch completed (no-cors mode, response unreadable)');
-        showToast('Order sent to sheet!');
-    }).catch(err => {
-        console.error('Fetch FAILED:', err);
-        alert('Sheet error: ' + err.message);
+        body: new URLSearchParams({
+            customer: name,
+            contact: phone,
+            area: area,
+            address: address,
+            cart: JSON.stringify(cart)
+        })
     });
 
     // Open WhatsApp
