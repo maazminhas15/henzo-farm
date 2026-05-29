@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) - Replace G-XXXXXXXXXX with your actual ID from analytics.google.com -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-PLACEHOLDER');
-    </script>
-    <!-- CACHE BUST -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta name="version" content="v2-2026-05-29">
+    <!-- ================================================
+         HENZO FARM — v3-2026-05-29
+         Improvements: OG tags, JSON-LD, phone validation,
+         favicon, removed duplicate cache tags, removed
+         placeholder GA, added area required validation,
+         canonial URL, robots meta
+    ================================================ -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="version" content="v3-2026-05-29">
     <meta name="theme-color" content="#1B3022">
-    <meta name="description" content="Henzo Farm - Fresh organic eggs and heritage poultry delivered in Islamabad & Rawalpindi">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Henzo Farm - Organic Eggs & Heritage Poultry</title>
 
+    <!-- SEO -->
+    <meta name="description" content="Henzo Farm — Fresh pasture-raised organic eggs and heritage poultry delivered across Islamabad & Rawalpindi. Pure Australorp & Rhode Island Red breeds.">
+    <meta name="keywords" content="organic eggs Islamabad, desi eggs, heritage poultry, Australorp, Rhode Island Red, farm fresh eggs, Pindorian Shareef">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://maazminhas15.github.io/henzo-farm/">
+
+    <!-- Open Graph — WhatsApp / Instagram / Facebook preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maazminhas15.github.io/henzo-farm/">
+    <meta property="og:title" content="Henzo Farm — Organic Eggs & Heritage Poultry, Islamabad">
+    <meta property="og:description" content="Pasture-raised desi eggs with deep golden yolks. Pure Australorp & RIR heritage breeds. Delivered across Islamabad & Rawalpindi.">
+    <meta property="og:image" content="https://maazminhas15.github.io/henzo-farm/assets/pasture_raised_eggs.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_PK">
+    <meta property="og:site_name" content="Henzo Farm">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Henzo Farm — Organic Eggs Islamabad">
+    <meta name="twitter:description" content="Pasture-raised desi eggs with deep golden yolks. Pure Australorp & RIR delivered to your door.">
+    <meta name="twitter:image" content="https://maazminhas15.github.io/henzo-farm/assets/pasture_raised_eggs.jpg">
+
+    <title>Henzo Farm - Organic Eggs & Heritage Poultry | Islamabad</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -52,9 +73,7 @@
         .top-nav {
             display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px;
             background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.1);
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch; scroll-behavior: smooth; scrollbar-width: none;
         }
         .top-nav::-webkit-scrollbar { display: none; }
         .nav-btn {
@@ -62,37 +81,19 @@
             background: rgba(255,255,255,0.1); color: white;
             font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
             white-space: nowrap; cursor: pointer; transition: all 0.2s;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
+            -webkit-tap-highlight-color: transparent; user-select: none;
         }
         .nav-btn:active { background: #D4AF37; color: #1B3022; }
 
-        .info-section {
-            padding: 40px 20px; max-width: 800px; margin: 0 auto;
-        }
-        .info-section h2 {
-            font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
-            margin-bottom: 20px; color: #1B3022;
-        }
-        .info-section p {
-            font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 16px;
-        }
-        .feature-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px;
-        }
-        .feature-card {
-            background: white; padding: 20px; border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .feature-card i {
-            font-size: 24px; color: #D4AF37; margin-bottom: 12px;
-        }
-        .feature-card h4 {
-            font-size: 14px; font-weight: 700; margin-bottom: 6px;
-        }
-        .feature-card p {
-            font-size: 12px; color: #888; margin: 0;
-        }
+        .info-section { padding: 40px 20px; max-width: 800px; margin: 0 auto; }
+        .info-section h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 20px; color: #1B3022; }
+        .info-section p { font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 16px; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+        .feature-card { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .feature-card i { font-size: 24px; color: #D4AF37; margin-bottom: 12px; }
+        .feature-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .feature-card p { font-size: 12px; color: #888; margin: 0; }
 
         .category-scroll {
             display: flex; gap: 12px; overflow-x: auto; padding: 16px;
@@ -104,7 +105,7 @@
             background: white; border: 2px solid transparent;
             font-size: 13px; font-weight: 700; white-space: nowrap;
             scroll-snap-align: start; transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer;
         }
         .category-pill.active { background: #1B3022; color: #D4AF37; border-color: #D4AF37; }
 
@@ -131,7 +132,6 @@
             font-size: 10px; font-weight: 800; padding: 4px 10px;
             border-radius: 99px; text-transform: uppercase;
         }
-
         .product-info { padding: 14px; }
         .product-name { font-size: 15px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
         .product-desc { font-size: 12px; color: #888; margin-bottom: 10px; }
@@ -152,8 +152,8 @@
             margin-top: 10px; background: #f5f5f5; border-radius: 12px; padding: 4px;
         }
         .qty-stepper button {
-            width: 36px; height: 36px; border-radius: 10px;
-            border: none; background: white; font-size: 18px; font-weight: 700;
+            width: 36px; height: 36px; border-radius: 10px; border: none;
+            background: white; font-size: 18px; font-weight: 700;
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 1px 4px rgba(0,0,0,0.1); cursor: pointer;
         }
@@ -186,14 +186,17 @@
         .sheet-overlay.show { display: block; opacity: 1; }
         .bottom-sheet {
             position: fixed; bottom: 0; left: 0; right: 0;
-            background: white; border-radius: 24px 24px 0 0;
-            z-index: 310; transform: translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: white; border-radius: 24px 24px 0 0; z-index: 310;
+            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             max-height: 85vh; overflow-y: auto;
         }
         .bottom-sheet.show { transform: translateY(0); }
         .sheet-handle { width: 40px; height: 4px; background: #ddd; border-radius: 99px; margin: 12px auto 0; }
-        .sheet-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: white; z-index: 10; }
+        .sheet-header {
+            padding: 20px; border-bottom: 1px solid #eee; display: flex;
+            justify-content: space-between; align-items: center;
+            position: sticky; top: 0; background: white; z-index: 10;
+        }
 
         .form-field { margin-bottom: 20px; }
         .form-field label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 8px; }
@@ -202,6 +205,9 @@
             font-size: 16px; font-family: inherit; background: #fafafa; outline: none;
         }
         .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: #D4AF37; background: white; }
+        .form-field input.error, .form-field select.error, .form-field textarea.error { border-color: #dc2626; }
+        .field-error { font-size: 11px; color: #dc2626; margin-top: 4px; display: none; }
+        .field-error.show { display: block; }
 
         .sheet-item { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
         .sheet-item-img { width: 60px; height: 60px; border-radius: 12px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; font-size: 28px; }
@@ -222,15 +228,17 @@
             margin-top: 20px;
         }
         .submit-btn:active { transform: scale(0.98); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         .toast {
             position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px);
             background: #1B3022; color: white; padding: 14px 24px; border-radius: 99px;
             font-size: 14px; font-weight: 700; z-index: 500; opacity: 0; transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px;
+            max-width: 90vw; text-align: center;
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-        .toast-icon { width: 24px; height: 24px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1B3022; font-size: 12px; }
+        .toast-icon { width: 24px; height: 24px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1B3022; font-size: 12px; flex-shrink: 0; }
 
         .success-screen {
             position: fixed; inset: 0; background: #1B3022; z-index: 400;
@@ -238,191 +246,99 @@
             text-align: center; padding: 40px; color: white;
         }
         .success-screen.show { display: flex; }
-        .success-icon { width: 100px; height: 100px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 50px; color: #1B3022; margin-bottom: 30px; animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .success-icon {
+            width: 100px; height: 100px; background: #D4AF37; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 50px; color: #1B3022; margin-bottom: 30px;
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
         @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
 
-        .app-footer {
-            background: #1B3022; color: white; padding: 48px 20px 100px;
-        }
-        .footer-grid {
-            display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 800px; margin: 0 auto;
-        }
+        .app-footer { background: #1B3022; color: white; padding: 48px 20px 100px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 800px; margin: 0 auto; }
         @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
-
-        .footer-block h4 {
-            font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
-            color: #D4AF37; margin-bottom: 16px;
-        }
-        .footer-block p, .footer-block a {
-            font-size: 14px; color: rgba(255,255,255,0.7); line-height: 2;
-            text-decoration: none; display: block; transition: color 0.2s;
-        }
+        .footer-block h4 { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #D4AF37; margin-bottom: 16px; }
+        .footer-block p, .footer-block a { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 2; text-decoration: none; display: block; transition: color 0.2s; }
         .footer-block a:hover { color: #D4AF37; }
         .footer-block i { width: 20px; color: #D4AF37; margin-right: 8px; }
-
-        .footer-bottom {
-            text-align: center; padding-top: 32px; margin-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
+        .footer-bottom { text-align: center; padding-top: 32px; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
         .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
 
         .contact-float {
             position: fixed; bottom: 100px; right: 20px;
-            width: 56px; height: 56px; background: #D4AF37;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            width: 56px; height: 56px; background: #D4AF37; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             color: #1B3022; font-size: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             z-index: 150; cursor: pointer; transition: transform 0.2s;
+            text-decoration: none;
         }
         .contact-float:active { transform: scale(0.9); }
 
         .section-divider {
             height: 8px; background: linear-gradient(90deg, #D4AF37, #1B3022, #D4AF37);
-            margin: 0 auto; max-width: 100px; border-radius: 99px;
-            opacity: 0.3;
+            margin: 0 auto; max-width: 100px; border-radius: 99px; opacity: 0.3;
         }
 
-        /* ===== BREED MODAL (from File 2 logic, styled to match File 1) ===== */
+        /* Breed Modal */
         .breed-modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(8px); z-index: 400; display: none; opacity: 0;
-            transition: opacity 0.3s ease;
+            backdrop-filter: blur(8px); z-index: 400; display: none; opacity: 0; transition: opacity 0.3s ease;
         }
         .breed-modal-overlay.show { display: block; opacity: 1; }
-
         .breed-modal {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95);
             background: white; border-radius: 24px; z-index: 410;
             width: 92%; max-width: 480px; max-height: 85vh; overflow-y: auto;
             box-shadow: 0 25px 80px rgba(0,0,0,0.3);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: none;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: none;
         }
         .breed-modal.show { display: block; transform: translate(-50%, -50%) scale(1); }
-
-        .breed-modal-header {
-            position: relative; height: 200px; border-radius: 24px 24px 0 0; overflow: hidden;
-            background: linear-gradient(135deg, #1B3022, #2d4d38);
-        }
-        .breed-modal-header img {
-            width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
-        }
-        .breed-modal-header .header-content {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            padding: 24px; background: linear-gradient(transparent, rgba(27,48,34,0.9));
-            color: white;
-        }
-        .breed-modal-header .header-content h3 {
-            font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
-        }
-        .breed-modal-header .header-content span {
-            font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.15em; color: #D4AF37;
-        }
-        .breed-modal-close {
-            position: absolute; top: 16px; right: 16px;
-            width: 36px; height: 36px; background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 18px; cursor: pointer; border: none;
-        }
-
+        .breed-modal-header { position: relative; height: 200px; border-radius: 24px 24px 0 0; overflow: hidden; background: linear-gradient(135deg, #1B3022, #2d4d38); }
+        .breed-modal-header img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .breed-modal-header .header-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(transparent, rgba(27,48,34,0.9)); color: white; }
+        .breed-modal-header .header-content h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; }
+        .breed-modal-header .header-content span { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #D4AF37; }
+        .breed-modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; cursor: pointer; border: none; }
         .breed-modal-body { padding: 24px; }
-        .breed-desc {
-            font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 20px;
-        }
-        .breed-perks {
-            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
-        }
-        .breed-perk {
-            background: #f5f5f5; padding: 6px 14px; border-radius: 99px;
-            font-size: 11px; font-weight: 700; color: #1B3022;
-            display: flex; align-items: center; gap: 6px;
-        }
+        .breed-desc { font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 20px; }
+        .breed-perks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+        .breed-perk { background: #f5f5f5; padding: 6px 14px; border-radius: 99px; font-size: 11px; font-weight: 700; color: #1B3022; display: flex; align-items: center; gap: 6px; }
         .breed-perk i { color: #D4AF37; font-size: 10px; }
-
-        .cat-selector {
-            display: grid; gap: 8px; margin-bottom: 20px;
-        }
-        .cat-option {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 16px; border: 2px solid #eee; border-radius: 16px;
-            cursor: pointer; transition: all 0.2s;
-            background: white;
-        }
+        .cat-selector { display: grid; gap: 8px; margin-bottom: 20px; }
+        .cat-option { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border: 2px solid #eee; border-radius: 16px; cursor: pointer; transition: all 0.2s; background: white; }
         .cat-option:hover { border-color: #D4AF37; background: #fffdf5; }
-        .cat-option.active {
-            border-color: #D4AF37; background: linear-gradient(135deg, #fffdf5, #fff9e6);
-            box-shadow: 0 2px 12px rgba(212,175,55,0.15);
-        }
-        .cat-option .cat-label {
-            font-size: 14px; font-weight: 700; color: #1B3022;
-        }
-        .cat-option .cat-price {
-            font-size: 16px; font-weight: 800; color: #D4AF37;
-        }
-
-        .modal-qty-row {
-            display: flex; align-items: center; justify-content: space-between;
-            background: #f5f5f5; border-radius: 16px; padding: 12px 16px; margin-bottom: 20px;
-        }
+        .cat-option.active { border-color: #D4AF37; background: linear-gradient(135deg, #fffdf5, #fff9e6); box-shadow: 0 2px 12px rgba(212,175,55,0.15); }
+        .cat-option .cat-label { font-size: 14px; font-weight: 700; color: #1B3022; }
+        .cat-option .cat-price { font-size: 16px; font-weight: 800; color: #D4AF37; }
+        .modal-qty-row { display: flex; align-items: center; justify-content: space-between; background: #f5f5f5; border-radius: 16px; padding: 12px 16px; margin-bottom: 20px; }
         .modal-qty-row .qty-label { font-size: 13px; font-weight: 700; color: #888; }
-        .modal-qty-controls {
-            display: flex; align-items: center; gap: 12px;
-        }
-        .modal-qty-controls button {
-            width: 36px; height: 36px; border-radius: 10px; border: none;
-            background: white; font-size: 18px; font-weight: 700;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-        }
+        .modal-qty-controls { display: flex; align-items: center; gap: 12px; }
+        .modal-qty-controls button { width: 36px; height: 36px; border-radius: 10px; border: none; background: white; font-size: 18px; font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .modal-qty-controls button:active { background: #1B3022; color: white; }
-        .modal-qty-controls span {
-            font-size: 18px; font-weight: 800; min-width: 30px; text-align: center;
-        }
-
-        .modal-total-row {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 16px;
-        }
+        .modal-qty-controls span { font-size: 18px; font-weight: 800; min-width: 30px; text-align: center; }
+        .modal-total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .modal-total-row .total-label { font-size: 13px; font-weight: 700; color: #888; text-transform: uppercase; }
         .modal-total-row .total-price { font-size: 28px; font-weight: 800; color: #1B3022; font-family: 'Playfair Display', serif; }
-
-        .modal-add-btn {
-            width: 100%; padding: 16px;
-            background: linear-gradient(135deg, #1B3022, #2d4d38);
-            color: #D4AF37; border: none; border-radius: 16px;
-            font-size: 14px; font-weight: 800; text-transform: uppercase;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
-            letter-spacing: 0.05em;
-        }
+        .modal-add-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #1B3022, #2d4d38); color: #D4AF37; border: none; border-radius: 16px; font-size: 14px; font-weight: 800; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 0.05em; }
         .modal-add-btn:active { transform: scale(0.98); }
 
-        /* Hero section enhancements */
-        .hero-section {
-            background: linear-gradient(135deg, #1B3022 0%, #2d4d38 50%, #1B3022 100%);
-            position: relative; overflow: hidden;
-        }
-        .hero-section::before {
-            content: ''; position: absolute; inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 1;
-        }
+        /* Hero */
+        .hero-section { background: linear-gradient(135deg, #1B3022 0%, #2d4d38 50%, #1B3022 100%); position: relative; overflow: hidden; }
+        .hero-section::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 1; }
     </style>
-<base target="_blank">
 </head>
 <body>
 
-
     <!-- Toast -->
-    <div id="toast" class="toast">
-        <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
+    <div id="toast" class="toast" role="alert" aria-live="polite">
+        <div class="toast-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
         <span id="toast-msg">Added to cart</span>
     </div>
 
     <!-- Success Screen -->
-    <div id="success-screen" class="success-screen">
-        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+    <div id="success-screen" class="success-screen" role="dialog" aria-modal="true" aria-label="Order placed successfully">
+        <div class="success-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
         <h2 class="font-serif text-3xl font-bold mb-2">Order Placed!</h2>
         <p class="opacity-60 mb-2">Your order has been sent via WhatsApp</p>
         <p class="text-gold font-mono text-sm mb-8" id="success-order-id"></p>
@@ -433,28 +349,30 @@
     <div id="sheet-overlay" class="sheet-overlay" onclick="closeSheet()"></div>
 
     <!-- Bottom Sheet (Cart/Checkout) -->
-    <div id="bottom-sheet" class="bottom-sheet">
+    <div id="bottom-sheet" class="bottom-sheet" role="dialog" aria-modal="true" aria-label="Your cart">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
             <h3 class="font-serif text-xl font-bold">Your Order</h3>
-            <button onclick="closeSheet()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100">
-                <i class="fa-solid fa-xmark text-xl"></i>
+            <button onclick="closeSheet()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100" aria-label="Close cart">
+                <i class="fa-solid fa-xmark text-xl" aria-hidden="true"></i>
             </button>
         </div>
         <div class="p-5">
             <div id="sheet-items" class="mb-6"></div>
-            <form id="order-form" onsubmit="handleOrder(event)">
+            <form id="order-form" onsubmit="handleOrder(event)" novalidate>
                 <div class="form-field">
-                    <label>Full Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required autocomplete="name">
+                    <p class="field-error" id="name-error">Please enter your name</p>
                 </div>
                 <div class="form-field">
-                    <label>WhatsApp Number</label>
-                    <input type="tel" id="phone" placeholder="03XXXXXXXXX" required>
+                    <label for="phone">WhatsApp Number</label>
+                    <input type="tel" id="phone" placeholder="03XXXXXXXXX" required autocomplete="tel" maxlength="13">
+                    <p class="field-error" id="phone-error">Please enter a valid Pakistani number (e.g. 03115190548)</p>
                 </div>
                 <div class="form-field">
-                    <label>Delivery Area</label>
-                    <select id="area" onchange="updateDelivery()">
+                    <label for="area">Delivery Area</label>
+                    <select id="area" onchange="updateDelivery()" required>
                         <option value="" disabled selected>Select Delivery Area</option>
                         <option value="Pindorian Shareef">Pindorian Shareef (FREE)</option>
                         <option value="E-7/F-6/F-7/F-8">E-7 / F-6 / F-7 / F-8 (Islamabad)</option>
@@ -472,10 +390,12 @@
                         <option value="Murree Road">Murree Road Area (Rawalpindi)</option>
                         <option value="Other">Other Area</option>
                     </select>
+                    <p class="field-error" id="area-error">Please select your delivery area</p>
                 </div>
                 <div class="form-field">
-                    <label>Full Address</label>
-                    <textarea id="address" rows="2" placeholder="Enter your full address (House #, Street, Sector)" required></textarea>
+                    <label for="address">Full Address</label>
+                    <textarea id="address" rows="2" placeholder="House #, Street, Sector" required></textarea>
+                    <p class="field-error" id="address-error">Please enter your delivery address</p>
                 </div>
                 <div class="bg-gray-50 rounded-2xl p-5 mt-6">
                     <div class="summary-row"><span>Items Total</span><span id="summary-subtotal">Rs 0</span></div>
@@ -483,18 +403,18 @@
                     <div class="summary-row total"><span>Total</span><span class="price" id="summary-total">Rs 0</span></div>
                 </div>
                 <button type="submit" id="submit-btn" class="submit-btn">
-                    <span>Place Order</span><i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Place Order via WhatsApp</span><i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- ===== BREED MODAL (New - from File 2 logic) ===== -->
+    <!-- Breed Modal -->
     <div id="breed-modal-overlay" class="breed-modal-overlay" onclick="closeBreedModal()"></div>
-    <div id="breed-modal" class="breed-modal">
+    <div id="breed-modal" class="breed-modal" role="dialog" aria-modal="true">
         <div class="breed-modal-header">
-            <img id="modal-img" src="" alt="">
-            <button class="breed-modal-close" onclick="closeBreedModal()"><i class="fa-solid fa-xmark"></i></button>
+            <img id="modal-img" src="" alt="" loading="lazy">
+            <button class="breed-modal-close" onclick="closeBreedModal()" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
             <div class="header-content">
                 <span id="modal-subtitle">Heritage Breed</span>
                 <h3 id="modal-title">Breed Name</h3>
@@ -508,51 +428,49 @@
             <div class="modal-qty-row">
                 <span class="qty-label">Quantity</span>
                 <div class="modal-qty-controls">
-                    <button onclick="adjustModalQty(-1)">−</button>
-                    <span id="modal-qty">1</span>
-                    <button onclick="adjustModalQty(1)">+</button>
+                    <button onclick="adjustModalQty(-1)" aria-label="Decrease quantity">−</button>
+                    <span id="modal-qty" aria-live="polite">1</span>
+                    <button onclick="adjustModalQty(1)" aria-label="Increase quantity">+</button>
                 </div>
             </div>
             <div class="modal-total-row">
                 <span class="total-label">Total</span>
-                <span id="modal-total" class="total-price">Rs 0</span>
+                <span id="modal-total" class="total-price" aria-live="polite">Rs 0</span>
             </div>
             <button onclick="confirmModalAdd()" class="modal-add-btn">
-                <i class="fa-solid fa-plus"></i> Add to Cart
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add to Cart
             </button>
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- ===== HEADER ===== -->
     <header class="app-header text-white">
         <div class="px-5 pt-4 pb-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <img src="assets/logo.png" alt="Henzo Farm" class="w-12 h-12 rounded-full bg-white border-2 border-gold" onerror="this.style.display='none'">
+                    <img src="assets/logo.png" alt="Henzo Farm Logo" class="w-12 h-12 rounded-full bg-white border-2 border-gold" loading="eager" onerror="this.style.display='none'">
                     <div>
                         <h1 class="font-serif text-lg font-bold leading-tight">HENZO FARM</h1>
                         <p class="text-xs opacity-60">Premium Poultry • Islamabad</p>
                     </div>
                 </div>
-                <a href="tel:+923115190548" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                    <i class="fa-solid fa-phone text-gold"></i>
+                <a href="tel:+923115190548" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center" aria-label="Call Henzo Farm">
+                    <i class="fa-solid fa-phone text-gold" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
-
-        <!-- Top Navigation -->
-        <div class="top-nav">
+        <nav class="top-nav" aria-label="Page sections">
             <button class="nav-btn" onclick="scrollToSection('products')">Our Products</button>
             <button class="nav-btn" onclick="scrollToSection('about-henzo')">About</button>
             <button class="nav-btn" onclick="scrollToSection('why-henzo')">Why Us</button>
             <button class="nav-btn" onclick="scrollToSection('reviews')">Reviews</button>
             <button class="nav-btn" onclick="scrollToSection('faq')">FAQ</button>
             <button class="nav-btn" onclick="scrollToSection('contact-footer')">Contact</button>
-        </div>
+        </nav>
     </header>
 
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero-section text-white py-16 px-5 text-center relative">
+    <!-- ===== HERO ===== -->
+    <section class="hero-section text-white py-16 px-5 text-center relative" aria-label="Henzo Farm hero banner">
         <div class="relative z-10 max-w-xl mx-auto">
             <div class="mb-6">
                 <span class="inline-block px-4 py-1 bg-gold/20 border border-gold/30 rounded-full text-xs font-bold tracking-widest uppercase text-gold mb-4">Islamabad's Finest</span>
@@ -560,23 +478,21 @@
             <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">Heritage Poultry<br>& Organic Eggs</h2>
             <p class="text-white/70 text-sm mb-8 leading-relaxed">Pure-bred Australorp & Rhode Island Red. Farm-fresh organic eggs delivered to your doorstep in Islamabad & Rawalpindi.</p>
             <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-forest font-bold rounded-2xl text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer border-none">
-                Shop Now <i class="fa-solid fa-arrow-down"></i>
+                Shop Now <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
             </button>
         </div>
         <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F0E6] to-transparent"></div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 1. PRODUCTS -->
-    <!-- ============================================ -->
-    <section id="products">
+    <!-- ===== PRODUCTS ===== -->
+    <section id="products" aria-label="Our Products">
         <div class="text-center py-8">
             <h2 class="font-serif text-2xl font-bold text-forest">Our Products</h2>
             <p class="text-sm text-forest/50 mt-1">Fresh from our farm to your doorstep</p>
             <div class="section-divider mt-4"></div>
         </div>
 
-        <div class="category-scroll">
+        <div class="category-scroll" role="group" aria-label="Product categories">
             <button class="category-pill active" onclick="filterCategory('all', this)">All Items</button>
             <button class="category-pill" onclick="filterCategory('eggs', this)">🥚 Eggs</button>
             <button class="category-pill" onclick="filterCategory('australorp', this)">🐔 Australorp</button>
@@ -586,53 +502,59 @@
 
         <div class="product-grid" id="product-grid">
 
-            <!-- ===== EGGS ===== -->
-            <div class="product-card" data-category="eggs" onclick="openBreedModal('Eggs')">
+            <!-- EGGS -->
+            <div class="product-card" data-category="eggs" onclick="openBreedModal('Eggs')" role="button" aria-label="View Organic Pasture Eggs options" tabindex="0">
                 <div class="product-img-wrap">
-                    <img src="assets/pasture_raised_eggs.jpg" alt="Organic Eggs" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🥚</span>'">
+                    <img src="assets/pasture_raised_eggs.jpg" alt="Fresh organic pasture-raised eggs from Henzo Farm" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px role=img aria-label=Eggs>🥚</span>'">
                     <span class="product-badge">Fresh Daily</span>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Organic Pasture Eggs</h3>
                     <p class="product-desc">Golden yolk • Multiple sizes</p>
                     <span class="product-price">From Rs 450</span>
-                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Eggs')"><i class="fa-solid fa-plus"></i> Select Options</button>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Eggs')">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Select Options
+                    </button>
                 </div>
             </div>
 
-            <!-- ===== AUSTRALORP ===== -->
-            <div class="product-card" data-category="australorp" onclick="openBreedModal('Australorp')">
+            <!-- AUSTRALORP -->
+            <div class="product-card" data-category="australorp" onclick="openBreedModal('Australorp')" role="button" aria-label="View Black Australorp options" tabindex="0">
                 <div class="product-img-wrap">
-                    <img src="assets/australorp_hen.jpg" alt="Black Australorp" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐔</span>'">
+                    <img src="assets/australorp_hen.jpg" alt="Black Australorp hen from Henzo Farm" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px role=img aria-label=Australorp>🐔</span>'">
                     <span class="product-badge" style="background:#22c55e;">Record Layer</span>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Black Australorp</h3>
                     <p class="product-desc">Chicks • Hens • Roosters • Pairs</p>
                     <span class="product-price">From Rs 120</span>
-                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Australorp')"><i class="fa-solid fa-plus"></i> Select Options</button>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Australorp')">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Select Options
+                    </button>
                 </div>
             </div>
 
-            <!-- ===== RIR ===== -->
-            <div class="product-card" data-category="rir" onclick="openBreedModal('RIR')">
+            <!-- RIR -->
+            <div class="product-card" data-category="rir" onclick="openBreedModal('RIR')" role="button" aria-label="View Rhode Island Red options" tabindex="0">
                 <div class="product-img-wrap">
-                    <img src="assets/rir_rooster.jpg" alt="Rhode Island Red" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐓</span>'">
+                    <img src="assets/rir_rooster.jpg" alt="Rhode Island Red rooster from Henzo Farm" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px role=img aria-label=RIR>🐓</span>'">
                     <span class="product-badge" style="background:#e11d48;">Heritage</span>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Rhode Island Red</h3>
                     <p class="product-desc">Chicks • Hens • Roosters • Pairs</p>
                     <span class="product-price">From Rs 120</span>
-                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('RIR')"><i class="fa-solid fa-plus"></i> Select Options</button>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('RIR')">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Select Options
+                    </button>
                 </div>
             </div>
 
-            <!-- ===== COMBO DEALS ===== -->
+            <!-- COMBO DEALS -->
             <div class="product-card" data-category="combo" style="grid-column: 1 / -1;">
                 <div class="p-5 bg-gradient-to-r from-gold/10 to-gold/5 border-2 border-gold rounded-2xl">
                     <div class="flex items-center gap-4 mb-3">
-                        <span class="text-4xl">⭐</span>
+                        <span class="text-4xl" aria-hidden="true">⭐</span>
                         <div>
                             <h3 class="font-bold text-lg">Australorp Breeding Pair</h3>
                             <p class="text-sm text-gray-500">1 Rooster + 5 Hens • Save Rs 875</p>
@@ -643,7 +565,11 @@
                             <span class="text-2xl font-black text-forest">Rs 14,725</span>
                             <span class="text-sm text-gray-400 line-through ml-2">Rs 15,600</span>
                         </div>
-                        <div id="btn-combo-aus"><button onclick="addToCart('Australorp Pair (1R+5H)', 14725, 'combo-aus')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
+                        <div id="btn-combo-aus">
+                            <button onclick="addToCart('Australorp Pair (1R+5H)', 14725, 'combo-aus')" class="add-btn" style="width:auto; padding: 12px 24px;" aria-label="Add Australorp Breeding Pair to cart">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -651,7 +577,7 @@
             <div class="product-card" data-category="combo" style="grid-column: 1 / -1;">
                 <div class="p-5 bg-gradient-to-r from-gold/10 to-gold/5 border-2 border-gold rounded-2xl">
                     <div class="flex items-center gap-4 mb-3">
-                        <span class="text-4xl">⭐</span>
+                        <span class="text-4xl" aria-hidden="true">⭐</span>
                         <div>
                             <h3 class="font-bold text-lg">RIR Breeding Pair</h3>
                             <p class="text-sm text-gray-500">1 Rooster + 5 Hens • Save Rs 875</p>
@@ -662,17 +588,19 @@
                             <span class="text-2xl font-black text-forest">Rs 14,725</span>
                             <span class="text-sm text-gray-400 line-through ml-2">Rs 15,600</span>
                         </div>
-                        <div id="btn-combo-rir"><button onclick="addToCart('RIR Pair (1R+5H)', 14725, 'combo-rir')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
+                        <div id="btn-combo-rir">
+                            <button onclick="addToCart('RIR Pair (1R+5H)', 14725, 'combo-rir')" class="add-btn" style="width:auto; padding: 12px 24px;" aria-label="Add RIR Breeding Pair to cart">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 2. ABOUT HENZO FARM -->
-    <!-- ============================================ -->
-    <section id="about-henzo" class="info-section" style="background: white; margin: 20px; border-radius: 24px;">
+    <!-- ===== ABOUT ===== -->
+    <section id="about-henzo" class="info-section" style="background: white; margin: 20px; border-radius: 24px;" aria-label="About Henzo Farm">
         <h2>About Henzo Farm</h2>
         <p>Henzo Farm was founded by <strong>Maaz Mustafa Minhas</strong> with a simple mission: to bring back the tradition of pure, heritage poultry breeding in Islamabad.</p>
         <p>Located in the pristine foothills of <strong>Pindorian Shareef</strong>, our farm specializes in two world-class heritage breeds — the record-breaking <strong>Black Australorp</strong> and the resilient <strong>Rhode Island Red</strong>.</p>
@@ -680,108 +608,103 @@
         <p style="font-style: italic; color: #D4AF37; font-weight: 600; margin-top: 20px;">"Healthy Birds. Healthy Life."</p>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 3. WHY CHOOSE HENZO FARM -->
-    <!-- ============================================ -->
-    <section id="why-henzo" class="info-section">
+    <!-- ===== WHY US ===== -->
+    <section id="why-henzo" class="info-section" aria-label="Why Choose Henzo Farm">
         <h2>Why Choose Henzo Farm?</h2>
         <p>We are Islamabad's trusted source for premium heritage poultry and organic eggs. Every bird is raised with care, fed organic grain, and given open pasture access.</p>
         <div class="feature-grid">
             <div class="feature-card">
-                <i class="fa-solid fa-leaf"></i>
+                <i class="fa-solid fa-leaf" aria-hidden="true"></i>
                 <h4>100% Organic Feed</h4>
                 <p>No chemicals, no hormones, pure natural diet</p>
             </div>
             <div class="feature-card">
-                <i class="fa-solid fa-sun"></i>
+                <i class="fa-solid fa-sun" aria-hidden="true"></i>
                 <h4>Pasture Raised</h4>
                 <p>Open air freedom every day in Pindorian</p>
             </div>
             <div class="feature-card">
-                <i class="fa-solid fa-shield-heart"></i>
+                <i class="fa-solid fa-shield-heart" aria-hidden="true"></i>
                 <h4>Vaccinated & Healthy</h4>
                 <p>All chicks vaccinated, all birds health-checked</p>
             </div>
             <div class="feature-card">
-                <i class="fa-solid fa-truck-fast"></i>
+                <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
                 <h4>Free Delivery</h4>
                 <p>Free in Pindorian. Rs 200 for other areas under Rs 1,999</p>
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- REVIEWS SECTION -->
-    <!-- ============================================ -->
-    <section id="reviews" style="padding: 60px 20px; background: white;">
+    <!-- ===== REVIEWS ===== -->
+    <section id="reviews" style="padding: 60px 20px; background: white;" aria-label="Customer Reviews">
         <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #1B3022; margin-bottom: 12px;">What Customers Say</h2>
             <p style="color: #888; font-size: 15px; margin-bottom: 40px;">Real reviews from real customers across Islamabad & Rawalpindi</p>
-
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
-                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
-                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+
+                <article style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;" aria-label="5 stars">★★★★★</div>
                     <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Best eggs in Islamabad! The yolk is so golden and rich. My kids absolutely love them. Delivery was same day to Bahria Town."</p>
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">AR</div>
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;" aria-hidden="true">AR</div>
                         <div>
                             <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Ali Raza</p>
                             <p style="font-size: 12px; color: #888;">Bahria Town, Islamabad</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
-                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                <article style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;" aria-label="5 stars">★★★★★</div>
                     <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Bought 5 Australorp hens last month. All healthy, vaccinated, and already laying beautiful brown eggs! Maaz is very knowledgeable."</p>
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">SK</div>
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;" aria-hidden="true">SK</div>
                         <div>
                             <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Sarah Khan</p>
                             <p style="font-size: 12px; color: #888;">DHA Phase 2, Islamabad</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
-                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                <article style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;" aria-label="5 stars">★★★★★</div>
                     <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Fast delivery to Rawalpindi. Chickens were properly vaccinated and Maaz gave me a full feeding guide. Highly recommended!"</p>
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">UM</div>
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;" aria-hidden="true">UM</div>
                         <div>
                             <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Usman Malik</p>
                             <p style="font-size: 12px; color: #888;">Saddar, Rawalpindi</p>
                         </div>
                     </div>
-                </div>
+                </article>
+
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- HOW TO ORDER SECTION -->
-    <!-- ============================================ -->
-    <section id="how-to-order" style="padding: 60px 20px; background: linear-gradient(135deg, #1B3022, #2d4d38); color: white;">
+    <!-- ===== HOW TO ORDER ===== -->
+    <section id="how-to-order" style="padding: 60px 20px; background: linear-gradient(135deg, #1B3022, #2d4d38); color: white;" aria-label="How to Order">
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; margin-bottom: 40px;">How to Order</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
                 <div>
-                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">1</div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; font-weight: 800; color: #1B3022;" aria-hidden="true">1</div>
                     <h4 style="font-weight: 700; margin-bottom: 8px;">Browse Products</h4>
                     <p style="font-size: 14px; opacity: 0.7;">Select eggs, chicks, hens, or breeding pairs</p>
                 </div>
                 <div>
-                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">2</div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; font-weight: 800; color: #1B3022;" aria-hidden="true">2</div>
                     <h4 style="font-weight: 700; margin-bottom: 8px;">Add to Cart</h4>
                     <p style="font-size: 14px; opacity: 0.7;">Choose quantities and categories</p>
                 </div>
                 <div>
-                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">3</div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; font-weight: 800; color: #1B3022;" aria-hidden="true">3</div>
                     <h4 style="font-weight: 700; margin-bottom: 8px;">Enter Details</h4>
                     <p style="font-size: 14px; opacity: 0.7;">Fill your name, phone, and delivery address</p>
                 </div>
                 <div>
-                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">4</div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; font-weight: 800; color: #1B3022;" aria-hidden="true">4</div>
                     <h4 style="font-weight: 700; margin-bottom: 8px;">Confirm on WhatsApp</h4>
                     <p style="font-size: 14px; opacity: 0.7;">We confirm your order and delivery time</p>
                 </div>
@@ -789,18 +712,16 @@
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- FAQ SECTION -->
-    <!-- ============================================ -->
-    <section id="faq" style="padding: 60px 20px; background: #F5F0E6;">
+    <!-- ===== FAQ ===== -->
+    <section id="faq" style="padding: 60px 20px; background: #F5F0E6;" aria-label="Frequently Asked Questions">
         <div style="max-width: 800px; margin: 0 auto;">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #1B3022; text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
-
             <div style="display: flex; flex-direction: column; gap: 16px;">
+
                 <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
                     <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                         Do you deliver across Islamabad & Rawalpindi?
-                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;" aria-hidden="true"></i>
                     </summary>
                     <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Yes! We deliver to all sectors of Islamabad, Bahria Town, DHA, Gulberg Greens, PWD, and all areas of Rawalpindi including Saddar, Satellite Town, Adiala Road, and Westridge. Free delivery on orders over Rs 1,999.</p>
                 </details>
@@ -808,7 +729,7 @@
                 <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
                     <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                         Are your chickens vaccinated?
-                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;" aria-hidden="true"></i>
                     </summary>
                     <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Absolutely. All our chicks receive standard vaccinations (Newcastle, Infectious Bronchitis, Gumboro). We provide vaccination records with every purchase. Our mature hens and roosters are also health-checked before delivery.</p>
                 </details>
@@ -816,7 +737,7 @@
                 <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
                     <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                         What makes your eggs different from store-bought?
-                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;" aria-hidden="true"></i>
                     </summary>
                     <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Our hens are pasture-raised on organic feed with no chemicals or hormones. You will notice the deep golden yolk, richer flavor, and firmer whites. Many customers say our eggs taste like "eggs used to taste" — real farm freshness.</p>
                 </details>
@@ -824,7 +745,7 @@
                 <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
                     <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                         Can I visit the farm before buying?
-                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;" aria-hidden="true"></i>
                     </summary>
                     <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Yes! We welcome farm visits at Pindorian Shareef, Islamabad. Please call or WhatsApp us at +92 311 5190548 to schedule a visit. Best times are Saturday and Sunday mornings between 8 AM and 12 PM.</p>
                 </details>
@@ -832,35 +753,34 @@
                 <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
                     <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
                         What payment methods do you accept?
-                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;" aria-hidden="true"></i>
                     </summary>
                     <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">We accept Cash on Delivery (COD), JazzCash, EasyPaisa, and bank transfer. For large orders (breeding pairs), we require 50% advance payment to reserve your birds.</p>
                 </details>
+
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 4. FOOTER / CONTACT US -->
-    <!-- ============================================ -->
+    <!-- ===== FOOTER ===== -->
     <footer id="contact-footer" class="app-footer">
         <div class="footer-grid">
             <div class="footer-block">
-                <h4><i class="fa-solid fa-location-dot"></i>Address</h4>
+                <h4><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Address</h4>
                 <p><strong>Henzo Farm</strong></p>
                 <p>Shed No 1, Minhas Street</p>
                 <p>Pindorian Shareef</p>
                 <p>Islamabad, Pakistan</p>
             </div>
             <div class="footer-block">
-                <h4><i class="fa-solid fa-phone"></i>Contact</h4>
-                <a href="tel:+923115190548" target="_blank"><i class="fa-solid fa-mobile-screen"></i>+92 311 5190548</a>
-                <a href="https://wa.me/923115190548" target="_blank"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+                <h4><i class="fa-solid fa-phone" aria-hidden="true"></i>Contact</h4>
+                <a href="tel:+923115190548"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i>+92 311 5190548</a>
+                <a href="https://wa.me/923115190548" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp</a>
                 <p style="margin-top:8px; font-size:12px; opacity:0.5;">Mon-Sat: 7AM - 7PM</p>
                 <p style="font-size:12px; opacity:0.5;">Sunday: 8AM - 2PM</p>
             </div>
             <div class="footer-block">
-                <h4><i class="fa-solid fa-truck"></i>Delivery Areas</h4>
+                <h4><i class="fa-solid fa-truck" aria-hidden="true"></i>Delivery Areas</h4>
                 <p>✓ Pindorian Shareef (FREE)</p>
                 <p>✓ All Islamabad Sectors</p>
                 <p>✓ Bahria Town</p>
@@ -876,32 +796,31 @@
         </div>
     </footer>
 
-    <!-- Floating Contact Button -->
-    <a href="tel:+923115190548" target="_blank" class="contact-float" aria-label="Call Henzo Farm">
-        <i class="fa-solid fa-phone"></i>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923115190548" target="_blank" rel="noopener noreferrer" class="contact-float" aria-label="Chat on WhatsApp" style="background:#25D366;">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true" style="font-size:28px; color:white;"></i>
     </a>
 
     <!-- Cart Bar -->
-    <div id="cart-bar" class="cart-bar">
+    <div id="cart-bar" class="cart-bar" role="complementary" aria-label="Shopping cart summary">
         <div class="cart-bar-left">
-            <div class="cart-bar-count" id="cart-count">0</div>
+            <div class="cart-bar-count" id="cart-count" aria-live="polite">0</div>
             <div>
                 <div id="cart-items-text" style="font-size:13px;">0 items</div>
-                <div style="font-size:18px; font-weight:800; color:#D4AF37;" id="cart-total">Rs 0</div>
+                <div style="font-size:18px; font-weight:800; color:#D4AF37;" id="cart-total" aria-live="polite">Rs 0</div>
             </div>
         </div>
-        <button onclick="openSheet()" class="cart-bar-btn">View Cart <i class="fa-solid fa-arrow-right"></i></button>
+        <button onclick="openSheet()" class="cart-bar-btn">View Cart <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
     </div>
 
     <script>
-
         // ==================== CONFIG ====================
-       const CONFIG = {
-    SHEET_API: 'https://script.google.com/macros/s/AKfycbzFlBOgrHo4QM1o_UCHXAf43eKFAlM0q1OcjAwP6TmsghyF1H0pc8p_HxGCCtBtTupiGQ/exec',
-    WHATSAPP: '923115190548'
-};
+        const CONFIG = {
+            SHEET_API: 'https://script.google.com/macros/s/AKfycbzFlBOgrHo4QM1o_UCHXAf43eKFAlM0q1OcjAwP6TmsghyF1H0pc8p_HxGCCtBtTupiGQ/exec',
+            WHATSAPP: '923115190548'
+        };
 
-        // ==================== DATA REGISTRY (from File 2) ====================
+        // ==================== PRODUCT REGISTRY ====================
         const REGISTRY = {
             'Australorp': {
                 name: 'Black Australorp',
@@ -944,20 +863,38 @@
         };
 
         // ==================== STATE ====================
-        let cart = JSON.parse(localStorage.getItem('henzo_cart_v5')) || [];
+        let cart = [];
+        try { cart = JSON.parse(localStorage.getItem('henzo_cart_v5')) || []; } catch(e) { cart = []; }
         let modalState = { breed: '', category: '', price: 0, qty: 1 };
 
-        // ==================== NAVIGATION ====================
+        // ==================== UTILS ====================
         function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ==================== TOAST ====================
-        function showToast(msg) {
+        function showToast(msg, isError) {
             const toast = document.getElementById('toast');
+            const icon = toast.querySelector('.toast-icon');
             document.getElementById('toast-msg').innerText = msg;
+            toast.style.background = isError ? '#dc2626' : '#1B3022';
+            icon.style.display = isError ? 'none' : 'flex';
             toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
+            setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+
+        // ==================== VALIDATION ====================
+        function validatePhone(val) {
+            const clean = val.replace(/[\s\-\(\)]/g, '');
+            return /^(03\d{9}|923\d{9}|\+923\d{9})$/.test(clean);
+        }
+
+        function showFieldError(fieldId, show) {
+            const field = document.getElementById(fieldId);
+            const err = document.getElementById(fieldId + '-error');
+            if (!field || !err) return;
+            if (show) { field.classList.add('error'); err.classList.add('show'); }
+            else { field.classList.remove('error'); err.classList.remove('show'); }
         }
 
         // ==================== CATEGORY FILTER ====================
@@ -969,40 +906,32 @@
             });
         }
 
-        // ==================== BREED MODAL (from File 2 logic, File 1 styling) ====================
+        // ==================== BREED MODAL ====================
         function openBreedModal(breedKey) {
             const data = REGISTRY[breedKey];
             if (!data) return;
-
             modalState = { breed: breedKey, category: '', price: 0, qty: 1 };
-
-            // Header
             document.getElementById('modal-img').src = data.media;
+            document.getElementById('modal-img').alt = data.name + ' from Henzo Farm';
             document.getElementById('modal-title').innerText = data.name;
             document.getElementById('modal-subtitle').innerText = data.subtitle;
-
-            // Body
             document.getElementById('modal-desc').innerText = data.desc;
             document.getElementById('modal-perks').innerHTML = data.perks.map(p =>
-                `<div class="breed-perk"><i class="fa-solid fa-circle-check"></i>${p}</div>`
+                `<div class="breed-perk"><i class="fa-solid fa-circle-check" aria-hidden="true"></i>${p}</div>`
             ).join('');
 
-            // Categories
             const catContainer = document.getElementById('modal-categories');
             const cats = Object.entries(data.categories);
-            catContainer.innerHTML = cats.map(([label, price]) => `
-                <div class="cat-option" onclick="selectModalCat('${label.replace(/'/g, "\'")}', ${price}, this)">
+            catContainer.innerHTML = cats.map(([label, price], i) => `
+                <div class="cat-option" onclick="selectModalCat('${label.replace(/'/g, "\\'")}', ${price}, this)" role="radio" aria-checked="false" tabindex="0">
                     <span class="cat-label">${label}</span>
                     <span class="cat-price">Rs ${price.toLocaleString()}</span>
                 </div>
             `).join('');
 
-            // Auto-select first
             if (cats.length > 0) {
                 selectModalCat(cats[0][0], cats[0][1], catContainer.children[0]);
             }
-
-            // Show modal
             document.getElementById('breed-modal-overlay').classList.add('show');
             document.getElementById('breed-modal').classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -1018,10 +947,12 @@
             modalState.category = label;
             modalState.price = price;
             modalState.qty = 1;
-
-            document.querySelectorAll('.cat-option').forEach(opt => opt.classList.remove('active'));
+            document.querySelectorAll('.cat-option').forEach(opt => {
+                opt.classList.remove('active');
+                opt.setAttribute('aria-checked', 'false');
+            });
             el.classList.add('active');
-
+            el.setAttribute('aria-checked', 'true');
             updateModalTotal();
         }
 
@@ -1032,26 +963,25 @@
 
         function updateModalTotal() {
             document.getElementById('modal-qty').innerText = modalState.qty;
-            const total = modalState.price * modalState.qty;
-            document.getElementById('modal-total').innerText = 'Rs ' + total.toLocaleString();
+            document.getElementById('modal-total').innerText = 'Rs ' + (modalState.price * modalState.qty).toLocaleString();
         }
 
         function confirmModalAdd() {
             const breedData = REGISTRY[modalState.breed];
-            const itemName = `${breedData.name} — ${modalState.category}`;
-            addToCart(itemName, modalState.price, null, modalState.qty);
+            if (!modalState.category) { showToast('Please select a category', true); return; }
+            addToCart(`${breedData.name} — ${modalState.category}`, modalState.price, null, modalState.qty);
             closeBreedModal();
         }
 
-        // ==================== CART CORE ====================
+        // ==================== CART ====================
         function addToCart(name, price, btnId, qty = 1) {
             const existing = cart.find(i => i.name === name);
             if (existing) {
                 existing.qty += qty;
-                showToast(`${name} (${existing.qty}x)`);
+                showToast(`Updated: ${existing.qty}x in cart`);
             } else {
                 cart.push({ name, price, qty });
-                showToast(`${name} added`);
+                showToast('Added to cart ✓');
             }
             saveCart(); updateUI();
             if (btnId) updateButton(btnId, name);
@@ -1063,12 +993,7 @@
             item.qty += delta;
             if (item.qty < 1) cart = cart.filter(i => i.name !== name);
             saveCart(); updateUI(); updateSheet();
-
-            // Update combo buttons if needed
-            const btnMap = {
-                'Australorp Pair (1R+5H)': 'combo-aus',
-                'RIR Pair (1R+5H)': 'combo-rir'
-            };
+            const btnMap = { 'Australorp Pair (1R+5H)': 'combo-aus', 'RIR Pair (1R+5H)': 'combo-rir' };
             if (btnMap[name]) updateButton(btnMap[name], name);
         }
 
@@ -1076,16 +1001,12 @@
             cart = cart.filter(i => i.name !== name);
             saveCart(); updateUI(); updateSheet();
             showToast('Item removed');
-            // Reset combo buttons if needed
-            const btnMap = {
-                'Australorp Pair (1R+5H)': 'combo-aus',
-                'RIR Pair (1R+5H)': 'combo-rir'
-            };
+            const btnMap = { 'Australorp Pair (1R+5H)': 'combo-aus', 'RIR Pair (1R+5H)': 'combo-rir' };
             if (btnMap[name]) updateButton(btnMap[name], name);
         }
 
         function saveCart() {
-            localStorage.setItem('henzo_cart_v5', JSON.stringify(cart));
+            try { localStorage.setItem('henzo_cart_v5', JSON.stringify(cart)); } catch(e) {}
         }
 
         function updateButton(btnId, name) {
@@ -1094,19 +1015,17 @@
             if (!container) return;
             const item = cart.find(i => i.name === name);
             if (item) {
-                container.innerHTML = `<div class="qty-stepper"><button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\'")}', -1)">−</button><span>${item.qty}</span><button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\'")}', 1)">+</button></div>`;
+                container.innerHTML = `<div class="qty-stepper">
+                    <button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\\'")}', -1)" aria-label="Decrease">−</button>
+                    <span aria-live="polite">${item.qty}</span>
+                    <button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\\'")}', 1)" aria-label="Increase">+</button>
+                </div>`;
             } else {
-                const price = getPrice(name);
-                container.innerHTML = `<button onclick="event.stopPropagation(); addToCart('${name.replace(/'/g, "\'")}', ${price}, '${btnId}')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button>`;
+                const price = name.includes('Australorp') ? 14725 : 14725;
+                container.innerHTML = `<button onclick="event.stopPropagation(); addToCart('${name.replace(/'/g, "\\'")}', ${price}, '${btnId}')" class="add-btn" style="width:auto; padding:12px 24px;">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+                </button>`;
             }
-        }
-
-        function getPrice(name) {
-            const prices = {
-                'Australorp Pair (1R+5H)': 14725,
-                'RIR Pair (1R+5H)': 14725
-            };
-            return prices[name] || 0;
         }
 
         function updateUI() {
@@ -1118,16 +1037,18 @@
             document.getElementById('cart-bar').classList.toggle('show', count > 0);
         }
 
-        // ==================== BOTTOM SHEET ====================
+        // ==================== SHEET ====================
         function openSheet() {
             document.getElementById('sheet-overlay').classList.add('show');
             document.getElementById('bottom-sheet').classList.add('show');
+            document.body.style.overflow = 'hidden';
             updateSheet();
         }
 
         function closeSheet() {
             document.getElementById('sheet-overlay').classList.remove('show');
             document.getElementById('bottom-sheet').classList.remove('show');
+            document.body.style.overflow = '';
         }
 
         function updateSheet() {
@@ -1149,20 +1070,21 @@
 
             container.innerHTML = cart.map(item => {
                 const emoji = item.name.includes('Egg') ? '🥚' : item.name.includes('Chick') ? '🐣' : item.name.includes('Hen') ? '🐔' : '🐓';
+                const safeName = item.name.replace(/'/g, "\\'");
                 return `<div class="sheet-item">
-                    <div class="sheet-item-img">${emoji}</div>
+                    <div class="sheet-item-img" aria-hidden="true">${emoji}</div>
                     <div class="sheet-item-info">
                         <div class="sheet-item-name">${item.name}</div>
-                        <div class="sheet-item-price">Rs ${item.price.toLocaleString()} x ${item.qty}</div>
+                        <div class="sheet-item-price">Rs ${item.price.toLocaleString()} × ${item.qty}</div>
                     </div>
-                    <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
                         <div class="qty-stepper" style="width:auto;">
-                            <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', -1)">−</button>
-                            <span>${item.qty}</span>
-                            <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', 1)">+</button>
+                            <button onclick="updateQty('${safeName}', -1)" aria-label="Decrease quantity">−</button>
+                            <span aria-live="polite">${item.qty}</span>
+                            <button onclick="updateQty('${safeName}', 1)" aria-label="Increase quantity">+</button>
                         </div>
-                        <button onclick="deleteItem('${item.name.replace(/'/g, "\'")}')" style="width:36px;height:36px;border-radius:10px;border:none;background:#fee2e2;color:#dc2626;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Remove item">
-                            <i class="fa-solid fa-trash"></i>
+                        <button onclick="deleteItem('${safeName}')" style="width:36px;height:36px;border-radius:10px;border:none;background:#fee2e2;color:#dc2626;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;" aria-label="Remove ${item.name}">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>`;
@@ -1172,77 +1094,180 @@
         function updateDelivery() { updateSheet(); }
 
         // ==================== ORDER SUBMIT ====================
-function handleOrder(e) {
-    e.preventDefault();
-    if (cart.length === 0) { 
-        showToast('Cart is empty!'); 
-        return; 
-    }
+        function handleOrder(e) {
+            e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const area = document.getElementById('area').value;
-    const address = document.getElementById('address').value.trim();
-    const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
-    const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
-    const total = subtotal + delivery;
-    const orderId = 'HZ-' + Date.now();
+            if (cart.length === 0) { showToast('Cart is empty!', true); return; }
 
-    // Build WhatsApp message
-    const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
-    const msg = `🌾 *HENZO FARM ORDER*%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total}`;
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const area = document.getElementById('area').value;
+            const address = document.getElementById('address').value.trim();
 
-    // Send to Google Sheet
-    fetch(CONFIG.SHEET_API, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-            customer: name,
-            contact: phone,
-            area: area,
-            address: address,
-            cart: JSON.stringify(cart)
-        })
-    });
+            // Reset all errors
+            ['name', 'phone', 'area', 'address'].forEach(f => showFieldError(f, false));
 
-    // Open WhatsApp
-    window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
+            let hasError = false;
 
-    // Show success
-    document.getElementById('success-order-id').innerText = orderId;
-    document.getElementById('success-screen').classList.add('show');
+            if (!name || name.length < 2) {
+                showFieldError('name', true); hasError = true;
+            }
+            if (!validatePhone(phone)) {
+                showFieldError('phone', true); hasError = true;
+            }
+            if (!area) {
+                showFieldError('area', true); hasError = true;
+            }
+            if (!address || address.length < 5) {
+                showFieldError('address', true); hasError = true;
+            }
 
-    // Clear cart
-    cart = []; 
-    saveCart(); 
-    updateUI(); 
-    closeSheet();
-}
+            if (hasError) {
+                showToast('Please fix the errors above', true);
+                return;
+            }
 
-function closeSuccess() {
-    document.getElementById('success-screen').classList.remove('show');
-    document.getElementById('order-form').reset();
-    document.getElementById('address').value = 'Shed No 1, Minhas Street, Pindorian Shareef, Islamabad';
-    // Reset combo buttons
-    updateButton('combo-aus', 'Australorp Pair (1R+5H)');
-    updateButton('combo-rir', 'RIR Pair (1R+5H)');
-}
+            const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
+            const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
+            const total = subtotal + delivery;
+            const orderId = 'HZ-' + Date.now();
 
-// ==================== INIT ====================
+            // Disable button to prevent double-submit
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<span>Sending...</span>';
+
+            // WhatsApp message
+            const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
+            const msg = `🌾 *HENZO FARM ORDER*%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal.toLocaleString()}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*TOTAL:* Rs ${total.toLocaleString()}`;
+
+            // Log to Google Sheet (fire and forget)
+            fetch(CONFIG.SHEET_API, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    customer: name, contact: phone,
+                    area: area, address: address,
+                    cart: JSON.stringify(cart),
+                    orderId: orderId, total: total
+                })
+            }).catch(() => {});
+
+            // Open WhatsApp
+            window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
+
+            // Show success
+            document.getElementById('success-order-id').innerText = orderId;
+            document.getElementById('success-screen').classList.add('show');
+
+            // Clear cart
+            cart = []; saveCart(); updateUI(); closeSheet();
+
+            // Re-enable button
+            btn.disabled = false;
+            btn.innerHTML = '<span>Place Order via WhatsApp</span><i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>';
+        }
+
+        function closeSuccess() {
+            document.getElementById('success-screen').classList.remove('show');
+            document.getElementById('order-form').reset();
+            updateButton('combo-aus', 'Australorp Pair (1R+5H)');
+            updateButton('combo-rir', 'RIR Pair (1R+5H)');
+        }
+
+        // ==================== KEYBOARD NAV ====================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBreedModal();
+                closeSheet();
+            }
+        });
+
+        // Keyboard support for product cards
+        document.querySelectorAll('.product-card[role="button"]').forEach(card => {
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+        });
+
+        // ==================== INIT ====================
         window.addEventListener('DOMContentLoaded', () => {
             updateUI();
             updateButton('combo-aus', 'Australorp Pair (1R+5H)');
             updateButton('combo-rir', 'RIR Pair (1R+5H)');
         });
     </script>
-<!-- FORCE REFRESH IF CACHE STALE -->
-<script>
-    (function(){
-        if(document.querySelector('meta[name="version"]')?.content !== 'v2-2026-05-29'){
-            location.reload(true);
+
+    <!-- JSON-LD Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Henzo Farm",
+      "description": "Pasture-raised organic eggs and heritage poultry — Black Australorp and Rhode Island Red — delivered across Islamabad and Rawalpindi.",
+      "url": "https://maazminhas15.github.io/henzo-farm/",
+      "telephone": "+923115190548",
+      "image": "https://maazminhas15.github.io/henzo-farm/assets/pasture_raised_eggs.jpg",
+      "logo": "https://maazminhas15.github.io/henzo-farm/assets/logo.png",
+      "priceRange": "Rs 450 – Rs 15,600",
+      "currenciesAccepted": "PKR",
+      "paymentAccepted": "Cash, JazzCash, EasyPaisa, Bank Transfer",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Shed No 1, Minhas Street, Pindorian Shareef",
+        "addressLocality": "Islamabad",
+        "addressCountry": "PK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 33.6844,
+        "longitude": 73.0479
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "07:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "08:00",
+          "closes": "14:00"
         }
-    })();
-</script>
+      ],
+      "sameAs": ["https://wa.me/923115190548"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Henzo Farm Products",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Product", "name": "Organic Pasture Eggs", "description": "Farm-fresh pasture-raised eggs with golden yolks" },
+            "price": "450",
+            "priceCurrency": "PKR"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Product", "name": "Black Australorp Chicks", "description": "Pure-bred Black Australorp heritage breed" },
+            "price": "120",
+            "priceCurrency": "PKR"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Product", "name": "Rhode Island Red Chicks", "description": "Pure-bred Rhode Island Red heritage breed" },
+            "price": "120",
+            "priceCurrency": "PKR"
+          }
+        ]
+      }
+    }
+    </script>
+
 </body>
 </html>
