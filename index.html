@@ -1052,18 +1052,30 @@ function handleOrder(e) {
     const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
     const msg = `🌾 *HENZO FARM ORDER*%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total}`;
 
+    // ===== DEBUG: Show what's being sent =====
+    const debugData = {
+        customer: name,
+        contact: phone,
+        area: area,
+        address: address,
+        cart: JSON.stringify(cart)
+    };
+    console.log('=== SENDING TO SHEET ===');
+    console.log('URL:', CONFIG.SHEET_API);
+    console.log('Data:', debugData);
+
     // Send to Google Sheet
     fetch(CONFIG.SHEET_API, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-            customer: name,
-            contact: phone,
-            area: area,
-            address: address,
-            cart: JSON.stringify(cart)
-        })
+        body: new URLSearchParams(debugData)
+    }).then(() => {
+        console.log('Fetch completed (no-cors mode, response unreadable)');
+        showToast('Order sent to sheet!');
+    }).catch(err => {
+        console.error('Fetch FAILED:', err);
+        alert('Sheet error: ' + err.message);
     });
 
     // Open WhatsApp
