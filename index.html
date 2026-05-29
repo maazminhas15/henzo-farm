@@ -25,7 +25,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
-        body { background: #F5F0E6; color: #1B3022; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        body { background: #F5F0E6; color: #1B3022; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; padding-bottom: 80px; }
         ::-webkit-scrollbar { width: 0; height: 0; }
 
         .app-header {
@@ -36,13 +36,18 @@
         .top-nav {
             display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px;
             background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.1);
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
         }
         .top-nav::-webkit-scrollbar { display: none; }
         .nav-btn {
-            flex-shrink: 0; padding: 8px 16px; border-radius: 99px;
+            flex-shrink: 0; padding: 8px 14px; border-radius: 99px;
             background: rgba(255,255,255,0.1); color: white;
             font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
             white-space: nowrap; cursor: pointer; transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
         .nav-btn:active { background: #D4AF37; color: #1B3022; }
 
@@ -389,7 +394,6 @@
         }
     </style>
 <base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
@@ -434,6 +438,7 @@
                 <div class="form-field">
                     <label>Delivery Area</label>
                     <select id="area" onchange="updateDelivery()">
+                        <option value="" disabled selected>Select Delivery Area</option>
                         <option value="Pindorian Shareef">Pindorian Shareef (FREE)</option>
                         <option value="E-7/F-6/F-7/F-8">E-7 / F-6 / F-7 / F-8 (Islamabad)</option>
                         <option value="F-10/F-11/G-10/G-11">F-10 / F-11 / G-10 / G-11 (Islamabad)</option>
@@ -453,7 +458,7 @@
                 </div>
                 <div class="form-field">
                     <label>Full Address</label>
-                    <textarea id="address" rows="2" placeholder="House #, Street, Sector" required>Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</textarea>
+                    <textarea id="address" rows="2" placeholder="Enter your full address (House #, Street, Sector)" required></textarea>
                 </div>
                 <div class="bg-gray-50 rounded-2xl p-5 mt-6">
                     <div class="summary-row"><span>Items Total</span><span id="summary-subtotal">Rs 0</span></div>
@@ -512,7 +517,7 @@
                         <p class="text-xs opacity-60">Premium Poultry • Islamabad</p>
                     </div>
                 </div>
-                <a href="tel:+923115190548" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                <a href="tel:+923115190548" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
                     <i class="fa-solid fa-phone text-gold"></i>
                 </a>
             </div>
@@ -535,9 +540,9 @@
             </div>
             <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">Heritage Poultry<br>& Organic Eggs</h2>
             <p class="text-white/70 text-sm mb-8 leading-relaxed">Pure-bred Australorp & Rhode Island Red. Farm-fresh organic eggs delivered to your doorstep in Islamabad & Rawalpindi.</p>
-            <a href="#products" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-forest font-bold rounded-2xl text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all">
+            <button onclick="scrollToSection('products')" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-forest font-bold rounded-2xl text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer border-none">
                 Shop Now <i class="fa-solid fa-arrow-down"></i>
-            </a>
+            </button>
         </div>
         <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F0E6] to-transparent"></div>
     </section>
@@ -700,8 +705,8 @@
             </div>
             <div class="footer-block">
                 <h4><i class="fa-solid fa-phone"></i>Contact</h4>
-                <a href="tel:+923115190548"><i class="fa-solid fa-mobile-screen"></i>+92 311 5190548</a>
-                <a href="https://wa.me/923115190548"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+                <a href="tel:+923115190548" target="_blank"><i class="fa-solid fa-mobile-screen"></i>+92 311 5190548</a>
+                <a href="https://wa.me/923115190548" target="_blank"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
                 <p style="margin-top:8px; font-size:12px; opacity:0.5;">Mon-Sat: 7AM - 7PM</p>
                 <p style="font-size:12px; opacity:0.5;">Sunday: 8AM - 2PM</p>
             </div>
@@ -723,7 +728,7 @@
     </footer>
 
     <!-- Floating Contact Button -->
-    <a href="tel:+923115190548" class="contact-float" aria-label="Call Henzo Farm">
+    <a href="tel:+923115190548" target="_blank" class="contact-float" aria-label="Call Henzo Farm">
         <i class="fa-solid fa-phone"></i>
     </a>
 
@@ -918,6 +923,18 @@
             if (btnMap[name]) updateButton(btnMap[name], name);
         }
 
+        function deleteItem(name) {
+            cart = cart.filter(i => i.name !== name);
+            saveCart(); updateUI(); updateSheet();
+            showToast('Item removed');
+            // Reset combo buttons if needed
+            const btnMap = {
+                'Australorp Pair (1R+5H)': 'combo-aus',
+                'RIR Pair (1R+5H)': 'combo-rir'
+            };
+            if (btnMap[name]) updateButton(btnMap[name], name);
+        }
+
         function saveCart() {
             localStorage.setItem('henzo_cart_v5', JSON.stringify(cart));
         }
@@ -989,10 +1006,15 @@
                         <div class="sheet-item-name">${item.name}</div>
                         <div class="sheet-item-price">Rs ${item.price.toLocaleString()} x ${item.qty}</div>
                     </div>
-                    <div class="qty-stepper" style="width:auto;">
-                        <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', -1)">−</button>
-                        <span>${item.qty}</span>
-                        <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', 1)">+</button>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="qty-stepper" style="width:auto;">
+                            <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', 1)">+</button>
+                        </div>
+                        <button onclick="deleteItem('${item.name.replace(/'/g, "\'")}')" style="width:36px;height:36px;border-radius:10px;border:none;background:#fee2e2;color:#dc2626;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Remove item">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                     </div>
                 </div>`;
             }).join('');
