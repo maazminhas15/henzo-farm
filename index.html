@@ -1,222 +1,1248 @@
-You are an elite senior frontend engineer, luxury UI/UX designer, brand strategist, and premium ecommerce web architect.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) - Replace G-XXXXXXXXXX with your actual ID from analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PLACEHOLDER');
+    </script>
+    <!-- CACHE BUST -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="version" content="v2-2026-05-29">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1B3022">
+    <meta name="description" content="Henzo Farm - Fresh organic eggs and heritage poultry delivered in Islamabad & Rawalpindi">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Henzo Farm - Organic Eggs & Heritage Poultry</title>
 
-Your task is to redesign and upgrade my poultry farm website “Henzo Farm” into a PREMIUM world-class organic farm brand website.
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-IMPORTANT:
-Do NOT remove the breed selection system.
-Instead, transform it into a luxury premium poultry showcase experience.
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { forest: '#1B3022', silk: '#FDFCF8', gold: '#D4AF37', cream: '#F5F0E6' },
+                    fontFamily: { serif: ['"Playfair Display"', 'serif'], sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
 
-The website should feel:
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { background: #F5F0E6; color: #1B3022; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; padding-bottom: 80px; }
+        ::-webkit-scrollbar { width: 0; height: 0; }
 
-* cinematic
-* elegant
-* modern
-* emotional
-* premium
-* trustworthy
-* visually unforgettable
+        .app-header {
+            background: linear-gradient(180deg, #1B3022 0%, #2d4d38 100%);
+            position: sticky; top: 0; z-index: 100;
+        }
 
-It should NOT feel like:
+        .top-nav {
+            display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px;
+            background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.1);
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+        .top-nav::-webkit-scrollbar { display: none; }
+        .nav-btn {
+            flex-shrink: 0; padding: 8px 14px; border-radius: 99px;
+            background: rgba(255,255,255,0.1); color: white;
+            font-size: 12px; font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
+            white-space: nowrap; cursor: pointer; transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .nav-btn:active { background: #D4AF37; color: #1B3022; }
 
-* a simple student project
-* a cheap template
-* a normal local poultry website
+        .info-section {
+            padding: 40px 20px; max-width: 800px; margin: 0 auto;
+        }
+        .info-section h2 {
+            font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
+            margin-bottom: 20px; color: #1B3022;
+        }
+        .info-section p {
+            font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 16px;
+        }
+        .feature-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px;
+        }
+        .feature-card {
+            background: white; padding: 20px; border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .feature-card i {
+            font-size: 24px; color: #D4AF37; margin-bottom: 12px;
+        }
+        .feature-card h4 {
+            font-size: 14px; font-weight: 700; margin-bottom: 6px;
+        }
+        .feature-card p {
+            font-size: 12px; color: #888; margin: 0;
+        }
 
-It should feel like:
+        .category-scroll {
+            display: flex; gap: 12px; overflow-x: auto; padding: 16px;
+            scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        }
+        .category-scroll::-webkit-scrollbar { display: none; }
+        .category-pill {
+            flex-shrink: 0; padding: 10px 20px; border-radius: 99px;
+            background: white; border: 2px solid transparent;
+            font-size: 13px; font-weight: 700; white-space: nowrap;
+            scroll-snap-align: start; transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .category-pill.active { background: #1B3022; color: #D4AF37; border-color: #D4AF37; }
 
-* a funded startup
-* a premium organic food brand
-* a luxury poultry farm company
+        .product-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 16px 120px;
+        }
+        @media (min-width: 640px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; margin: 0 auto; } }
 
-BRAND DETAILS:
-Brand Name: Henzo Farm
+        .product-card {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06); position: relative; cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+        .product-img-wrap {
+            width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #faf8f0, #f0ebe0);
+            display: flex; align-items: center; justify-content: center; position: relative;
+        }
+        .product-img-wrap img { width: 85%; height: 85%; object-fit: contain; }
+        .product-badge {
+            position: absolute; top: 10px; left: 10px;
+            background: #D4AF37; color: #1B3022;
+            font-size: 10px; font-weight: 800; padding: 4px 10px;
+            border-radius: 99px; text-transform: uppercase;
+        }
 
-Products:
+        .product-info { padding: 14px; }
+        .product-name { font-size: 15px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+        .product-desc { font-size: 12px; color: #888; margin-bottom: 10px; }
+        .product-price { font-size: 20px; font-weight: 800; color: #1B3022; }
 
-* Pasture-raised eggs
-* Chicks
-* Hens
-* Roosters
-* Breeding pairs
+        .add-btn {
+            width: 100%; padding: 12px; margin-top: 10px;
+            background: #1B3022; color: white; border: none;
+            border-radius: 12px; font-size: 13px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.2s; cursor: pointer;
+        }
+        .add-btn:active { transform: scale(0.96); }
 
-Chicken Breeds:
+        .qty-stepper {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-top: 10px; background: #f5f5f5; border-radius: 12px; padding: 4px;
+        }
+        .qty-stepper button {
+            width: 36px; height: 36px; border-radius: 10px;
+            border: none; background: white; font-size: 18px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1); cursor: pointer;
+        }
+        .qty-stepper button:active { background: #1B3022; color: white; }
+        .qty-stepper span { font-size: 16px; font-weight: 800; min-width: 30px; text-align: center; }
 
-* Australorp
-* Rhode Island Red (RIR)
-* Misri
+        .cart-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: #1B3022; color: white; z-index: 200;
+            padding: 16px 20px; display: none;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+        }
+        .cart-bar.show { display: flex; align-items: center; justify-content: space-between; }
+        .cart-bar-left { display: flex; align-items: center; gap: 12px; }
+        .cart-bar-count {
+            width: 40px; height: 40px; background: #D4AF37; color: #1B3022;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 16px;
+        }
+        .cart-bar-btn {
+            background: #D4AF37; color: #1B3022; border: none;
+            padding: 12px 24px; border-radius: 12px;
+            font-size: 14px; font-weight: 800; cursor: pointer;
+        }
 
-TARGET STYLE:
-Create a modern luxury organic farm aesthetic with:
+        .sheet-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 300; display: none; opacity: 0; transition: opacity 0.3s;
+        }
+        .sheet-overlay.show { display: block; opacity: 1; }
+        .bottom-sheet {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; border-radius: 24px 24px 0 0;
+            z-index: 310; transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 85vh; overflow-y: auto;
+        }
+        .bottom-sheet.show { transform: translateY(0); }
+        .sheet-handle { width: 40px; height: 4px; background: #ddd; border-radius: 99px; margin: 12px auto 0; }
+        .sheet-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: white; z-index: 10; }
 
-* cinematic visuals
-* premium typography
-* emotional storytelling
-* beautiful animations
-* elegant product cards
-* immersive scrolling experience
+        .form-field { margin-bottom: 20px; }
+        .form-field label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 8px; }
+        .form-field input, .form-field select, .form-field textarea {
+            width: 100%; padding: 16px; border: 2px solid #eee; border-radius: 16px;
+            font-size: 16px; font-family: inherit; background: #fafafa; outline: none;
+        }
+        .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: #D4AF37; background: white; }
 
-HERO SECTION:
-Create a stunning cinematic hero section with:
+        .sheet-item { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+        .sheet-item-img { width: 60px; height: 60px; border-radius: 12px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+        .sheet-item-info { flex: 1; }
+        .sheet-item-name { font-weight: 700; font-size: 15px; }
+        .sheet-item-price { color: #D4AF37; font-weight: 700; font-size: 14px; }
 
-* green farm fields
-* sunrise or golden-hour lighting
-* chickens naturally walking on grass
-* premium eggs close-up
-* soft cinematic atmosphere
-* elegant luxury typography
-* smooth parallax motion
-* premium CTA buttons
+        .summary-row { display: flex; justify-content: space-between; padding: 12px 0; font-size: 15px; }
+        .summary-row.total { border-top: 2px solid #1B3022; padding-top: 16px; font-size: 22px; font-weight: 800; }
+        .summary-row.total .price { color: #D4AF37; }
 
-Example heading:
-“Pure Pasture-Raised Excellence”
+        .submit-btn {
+            width: 100%; padding: 18px;
+            background: linear-gradient(135deg, #1B3022, #2d4d38);
+            color: #D4AF37; border: none; border-radius: 16px;
+            font-size: 16px; font-weight: 800; text-transform: uppercase;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 20px;
+        }
+        .submit-btn:active { transform: scale(0.98); }
 
-Add:
+        .toast {
+            position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px);
+            background: #1B3022; color: white; padding: 14px 24px; border-radius: 99px;
+            font-size: 14px; font-weight: 700; z-index: 500; opacity: 0; transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast-icon { width: 24px; height: 24px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1B3022; font-size: 12px; }
 
-* “Explore Our Breeds”
-* “Order Fresh Eggs”
+        .success-screen {
+            position: fixed; inset: 0; background: #1B3022; z-index: 400;
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 40px; color: white;
+        }
+        .success-screen.show { display: flex; }
+        .success-icon { width: 100px; height: 100px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 50px; color: #1B3022; margin-bottom: 30px; animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
 
-BREED SECTION (VERY IMPORTANT):
-Do NOT use boring category boxes.
+        .app-footer {
+            background: #1B3022; color: white; padding: 48px 20px 100px;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 800px; margin: 0 auto;
+        }
+        @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
 
-Transform the breed system into a PREMIUM COLLECTION SHOWCASE.
+        .footer-block h4 {
+            font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+            color: #D4AF37; margin-bottom: 16px;
+        }
+        .footer-block p, .footer-block a {
+            font-size: 14px; color: rgba(255,255,255,0.7); line-height: 2;
+            text-decoration: none; display: block; transition: color 0.2s;
+        }
+        .footer-block a:hover { color: #D4AF37; }
+        .footer-block i { width: 20px; color: #D4AF37; margin-right: 8px; }
 
-For each breed:
+        .footer-bottom {
+            text-align: center; padding-top: 32px; margin-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
 
-* large cinematic image
-* luxury card design
-* elegant hover animations
-* smooth transitions
-* premium typography
-* soft shadows
-* rounded corners
-* modern layout
+        .contact-float {
+            position: fixed; bottom: 100px; right: 20px;
+            width: 56px; height: 56px; background: #D4AF37;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #1B3022; font-size: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 150; cursor: pointer; transition: transform 0.2s;
+        }
+        .contact-float:active { transform: scale(0.9); }
 
-Each breed card should include:
+        .section-divider {
+            height: 8px; background: linear-gradient(90deg, #D4AF37, #1B3022, #D4AF37);
+            margin: 0 auto; max-width: 100px; border-radius: 99px;
+            opacity: 0.3;
+        }
 
-* breed image
-* breed name
-* short elegant description
-* temperament
-* egg production quality
-* available products:
+        /* ===== BREED MODAL (from File 2 logic, styled to match File 1) ===== */
+        .breed-modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px); z-index: 400; display: none; opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .breed-modal-overlay.show { display: block; opacity: 1; }
 
-  * Chicks
-  * Hen
-  * Rooster
-  * Pair
+        .breed-modal {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95);
+            background: white; border-radius: 24px; z-index: 410;
+            width: 92%; max-width: 480px; max-height: 85vh; overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: none;
+        }
+        .breed-modal.show { display: block; transform: translate(-50%, -50%) scale(1); }
 
-Example:
+        .breed-modal-header {
+            position: relative; height: 200px; border-radius: 24px 24px 0 0; overflow: hidden;
+            background: linear-gradient(135deg, #1B3022, #2d4d38);
+        }
+        .breed-modal-header img {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.8;
+        }
+        .breed-modal-header .header-content {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 24px; background: linear-gradient(transparent, rgba(27,48,34,0.9));
+            color: white;
+        }
+        .breed-modal-header .header-content h3 {
+            font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
+        }
+        .breed-modal-header .header-content span {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: #D4AF37;
+        }
+        .breed-modal-close {
+            position: absolute; top: 16px; right: 16px;
+            width: 36px; height: 36px; background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 18px; cursor: pointer; border: none;
+        }
 
-“Australorp Collection”
-Elegant black-feather breed known for calm temperament and exceptional egg production.
+        .breed-modal-body { padding: 24px; }
+        .breed-desc {
+            font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 20px;
+        }
+        .breed-perks {
+            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+        }
+        .breed-perk {
+            background: #f5f5f5; padding: 6px 14px; border-radius: 99px;
+            font-size: 11px; font-weight: 700; color: #1B3022;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .breed-perk i { color: #D4AF37; font-size: 10px; }
 
-Available:
+        .cat-selector {
+            display: grid; gap: 8px; margin-bottom: 20px;
+        }
+        .cat-option {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 16px; border: 2px solid #eee; border-radius: 16px;
+            cursor: pointer; transition: all 0.2s;
+            background: white;
+        }
+        .cat-option:hover { border-color: #D4AF37; background: #fffdf5; }
+        .cat-option.active {
+            border-color: #D4AF37; background: linear-gradient(135deg, #fffdf5, #fff9e6);
+            box-shadow: 0 2px 12px rgba(212,175,55,0.15);
+        }
+        .cat-option .cat-label {
+            font-size: 14px; font-weight: 700; color: #1B3022;
+        }
+        .cat-option .cat-price {
+            font-size: 16px; font-weight: 800; color: #D4AF37;
+        }
 
-* Chicks
-* Hens
-* Roosters
-* Breeding Pairs
+        .modal-qty-row {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #f5f5f5; border-radius: 16px; padding: 12px 16px; margin-bottom: 20px;
+        }
+        .modal-qty-row .qty-label { font-size: 13px; font-weight: 700; color: #888; }
+        .modal-qty-controls {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .modal-qty-controls button {
+            width: 36px; height: 36px; border-radius: 10px; border: none;
+            background: white; font-size: 18px; font-weight: 700;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-qty-controls button:active { background: #1B3022; color: white; }
+        .modal-qty-controls span {
+            font-size: 18px; font-weight: 800; min-width: 30px; text-align: center;
+        }
 
-[ Explore Collection ]
+        .modal-total-row {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 16px;
+        }
+        .modal-total-row .total-label { font-size: 13px; font-weight: 700; color: #888; text-transform: uppercase; }
+        .modal-total-row .total-price { font-size: 28px; font-weight: 800; color: #1B3022; font-family: 'Playfair Display', serif; }
 
-VISUAL REQUIREMENTS:
-Use:
+        .modal-add-btn {
+            width: 100%; padding: 16px;
+            background: linear-gradient(135deg, #1B3022, #2d4d38);
+            color: #D4AF37; border: none; border-radius: 16px;
+            font-size: 14px; font-weight: 800; text-transform: uppercase;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            letter-spacing: 0.05em;
+        }
+        .modal-add-btn:active { transform: scale(0.98); }
 
-* earthy luxury colors
-* dark green
-* beige
-* off-white
-* wood-inspired tones
-* natural textures
-* premium shadows
-* glassmorphism where suitable
+        /* Hero section enhancements */
+        .hero-section {
+            background: linear-gradient(135deg, #1B3022 0%, #2d4d38 50%, #1B3022 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 1;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
 
-Avoid:
 
-* cheap gradients
-* clutter
-* generic layouts
-* outdated UI
-* excessive bright colors
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-icon"><i class="fa-solid fa-check"></i></div>
+        <span id="toast-msg">Added to cart</span>
+    </div>
 
-TYPOGRAPHY:
-Use premium font combinations:
+    <!-- Success Screen -->
+    <div id="success-screen" class="success-screen">
+        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+        <h2 class="font-serif text-3xl font-bold mb-2">Order Placed!</h2>
+        <p class="opacity-60 mb-2">Your order has been sent via WhatsApp</p>
+        <p class="text-gold font-mono text-sm mb-8" id="success-order-id"></p>
+        <button onclick="closeSuccess()" class="bg-gold text-forest px-8 py-4 rounded-2xl font-bold text-lg">Continue Shopping</button>
+    </div>
 
-* Inter
-* Poppins
-* Playfair Display
+    <!-- Sheet Overlay -->
+    <div id="sheet-overlay" class="sheet-overlay" onclick="closeSheet()"></div>
 
-Create:
+    <!-- Bottom Sheet (Cart/Checkout) -->
+    <div id="bottom-sheet" class="bottom-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+            <h3 class="font-serif text-xl font-bold">Your Order</h3>
+            <button onclick="closeSheet()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+        <div class="p-5">
+            <div id="sheet-items" class="mb-6"></div>
+            <form id="order-form" onsubmit="handleOrder(event)">
+                <div class="form-field">
+                    <label>Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-field">
+                    <label>WhatsApp Number</label>
+                    <input type="tel" id="phone" placeholder="03XXXXXXXXX" required>
+                </div>
+                <div class="form-field">
+                    <label>Delivery Area</label>
+                    <select id="area" onchange="updateDelivery()">
+                        <option value="" disabled selected>Select Delivery Area</option>
+                        <option value="Pindorian Shareef">Pindorian Shareef (FREE)</option>
+                        <option value="E-7/F-6/F-7/F-8">E-7 / F-6 / F-7 / F-8 (Islamabad)</option>
+                        <option value="F-10/F-11/G-10/G-11">F-10 / F-11 / G-10 / G-11 (Islamabad)</option>
+                        <option value="G-6/G-7/G-8/G-9">G-6 / G-7 / G-8 / G-9 (Islamabad)</option>
+                        <option value="I-8/I-9/I-10/I-11">I-8 / I-9 / I-10 / I-11 (Islamabad)</option>
+                        <option value="DHA Phase 1-5">DHA Phase 1-5 (Islamabad)</option>
+                        <option value="Bahria Phase 1-8">Bahria Town Phase 1-8</option>
+                        <option value="Gulberg Greens/PWD">Gulberg Greens / PWD</option>
+                        <option value="Bani Gala/Bhara Kahu">Bani Gala / Bhara Kahu</option>
+                        <option value="Saddar/Satellite Town">Saddar / Satellite Town (Rawalpindi)</option>
+                        <option value="Adiala Road">Adiala Road (Rawalpindi)</option>
+                        <option value="Chaklala Scheme">Chaklala Scheme (Rawalpindi)</option>
+                        <option value="Westridge">Westridge (Rawalpindi)</option>
+                        <option value="Murree Road">Murree Road Area (Rawalpindi)</option>
+                        <option value="Other">Other Area</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Full Address</label>
+                    <textarea id="address" rows="2" placeholder="Enter your full address (House #, Street, Sector)" required></textarea>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-5 mt-6">
+                    <div class="summary-row"><span>Items Total</span><span id="summary-subtotal">Rs 0</span></div>
+                    <div class="summary-row"><span>Delivery</span><span id="summary-delivery" class="text-green-600 font-bold">FREE</span></div>
+                    <div class="summary-row total"><span>Total</span><span class="price" id="summary-total">Rs 0</span></div>
+                </div>
+                <button type="submit" id="submit-btn" class="submit-btn">
+                    <span>Place Order</span><i class="fa-brands fa-whatsapp text-xl"></i>
+                </button>
+            </form>
+        </div>
+    </div>
 
-* luxury headings
-* clean spacing
-* strong visual hierarchy
-* modern readability
+    <!-- ===== BREED MODAL (New - from File 2 logic) ===== -->
+    <div id="breed-modal-overlay" class="breed-modal-overlay" onclick="closeBreedModal()"></div>
+    <div id="breed-modal" class="breed-modal">
+        <div class="breed-modal-header">
+            <img id="modal-img" src="" alt="">
+            <button class="breed-modal-close" onclick="closeBreedModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="header-content">
+                <span id="modal-subtitle">Heritage Breed</span>
+                <h3 id="modal-title">Breed Name</h3>
+            </div>
+        </div>
+        <div class="breed-modal-body">
+            <p id="modal-desc" class="breed-desc">Description goes here.</p>
+            <div id="modal-perks" class="breed-perks"></div>
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 12px;">Select Category</div>
+            <div id="modal-categories" class="cat-selector"></div>
+            <div class="modal-qty-row">
+                <span class="qty-label">Quantity</span>
+                <div class="modal-qty-controls">
+                    <button onclick="adjustModalQty(-1)">−</button>
+                    <span id="modal-qty">1</span>
+                    <button onclick="adjustModalQty(1)">+</button>
+                </div>
+            </div>
+            <div class="modal-total-row">
+                <span class="total-label">Total</span>
+                <span id="modal-total" class="total-price">Rs 0</span>
+            </div>
+            <button onclick="confirmModalAdd()" class="modal-add-btn">
+                <i class="fa-solid fa-plus"></i> Add to Cart
+            </button>
+        </div>
+    </div>
 
-SECTIONS TO INCLUDE:
+    <!-- Header -->
+    <header class="app-header text-white">
+        <div class="px-5 pt-4 pb-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="assets/logo.png" alt="Henzo Farm" class="w-12 h-12 rounded-full bg-white border-2 border-gold" onerror="this.style.display='none'">
+                    <div>
+                        <h1 class="font-serif text-lg font-bold leading-tight">HENZO FARM</h1>
+                        <p class="text-xs opacity-60">Premium Poultry • Islamabad</p>
+                    </div>
+                </div>
+                <a href="tel:+923115190548" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-phone text-gold"></i>
+                </a>
+            </div>
+        </div>
 
-1. Cinematic Hero
-2. About Henzo Farm
-3. Premium Breed Collections
-4. Product Categories
-5. Pasture-Raised Egg Showcase
-6. Farm Gallery
-7. Why Choose Henzo Farm
-8. Healthy Feeding & Farm Process
-9. Testimonials
-10. WhatsApp Order Section
-11. Elegant Footer
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <button class="nav-btn" onclick="scrollToSection('products')">Our Products</button>
+            <button class="nav-btn" onclick="scrollToSection('about-henzo')">About</button>
+            <button class="nav-btn" onclick="scrollToSection('why-henzo')">Why Us</button>
+            <button class="nav-btn" onclick="scrollToSection('reviews')">Reviews</button>
+            <button class="nav-btn" onclick="scrollToSection('faq')">FAQ</button>
+            <button class="nav-btn" onclick="scrollToSection('contact-footer')">Contact</button>
+        </div>
+    </header>
 
-USER EXPERIENCE:
-The website should make visitors instantly feel:
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-section text-white py-16 px-5 text-center relative">
+        <div class="relative z-10 max-w-xl mx-auto">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-1 bg-gold/20 border border-gold/30 rounded-full text-xs font-bold tracking-widest uppercase text-gold mb-4">Islamabad's Finest</span>
+            </div>
+            <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 leading-tight">Heritage Poultry<br>& Organic Eggs</h2>
+            <p class="text-white/70 text-sm mb-8 leading-relaxed">Pure-bred Australorp & Rhode Island Red. Farm-fresh organic eggs delivered to your doorstep in Islamabad & Rawalpindi.</p>
+            <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="inline-flex items-center gap-2 px-8 py-4 bg-gold text-forest font-bold rounded-2xl text-sm uppercase tracking-wider shadow-lg hover:shadow-xl transition-all cursor-pointer border-none">
+                Shop Now <i class="fa-solid fa-arrow-down"></i>
+            </button>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F0E6] to-transparent"></div>
+    </section>
 
-* trust
-* quality
-* freshness
-* authenticity
-* premium farming standards
+    <!-- ============================================ -->
+    <!-- 1. PRODUCTS -->
+    <!-- ============================================ -->
+    <section id="products">
+        <div class="text-center py-8">
+            <h2 class="font-serif text-2xl font-bold text-forest">Our Products</h2>
+            <p class="text-sm text-forest/50 mt-1">Fresh from our farm to your doorstep</p>
+            <div class="section-divider mt-4"></div>
+        </div>
 
-INTERACTIONS:
-Add:
+        <div class="category-scroll">
+            <button class="category-pill active" onclick="filterCategory('all', this)">All Items</button>
+            <button class="category-pill" onclick="filterCategory('eggs', this)">🥚 Eggs</button>
+            <button class="category-pill" onclick="filterCategory('australorp', this)">🐔 Australorp</button>
+            <button class="category-pill" onclick="filterCategory('rir', this)">🐓 RIR</button>
+            <button class="category-pill" onclick="filterCategory('combo', this)">⭐ Deals</button>
+        </div>
 
-* smooth scrolling
-* fade-in animations
-* hover effects
-* subtle motion
-* image zoom effects
-* modern transitions
-* sticky navbar
-* responsive mobile design
+        <div class="product-grid" id="product-grid">
 
-MOBILE EXPERIENCE:
-The website MUST look premium on mobile devices.
+            <!-- ===== EGGS ===== -->
+            <div class="product-card" data-category="eggs" onclick="openBreedModal('Eggs')">
+                <div class="product-img-wrap">
+                    <img src="assets/pasture_raised_eggs.jpg" alt="Organic Eggs" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🥚</span>'">
+                    <span class="product-badge">Fresh Daily</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Organic Pasture Eggs</h3>
+                    <p class="product-desc">Golden yolk • Multiple sizes</p>
+                    <span class="product-price">From Rs 450</span>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Eggs')"><i class="fa-solid fa-plus"></i> Select Options</button>
+                </div>
+            </div>
 
-Optimize:
+            <!-- ===== AUSTRALORP ===== -->
+            <div class="product-card" data-category="australorp" onclick="openBreedModal('Australorp')">
+                <div class="product-img-wrap">
+                    <img src="assets/australorp_hen.jpg" alt="Black Australorp" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐔</span>'">
+                    <span class="product-badge" style="background:#22c55e;">Record Layer</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Black Australorp</h3>
+                    <p class="product-desc">Chicks • Hens • Roosters • Pairs</p>
+                    <span class="product-price">From Rs 120</span>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('Australorp')"><i class="fa-solid fa-plus"></i> Select Options</button>
+                </div>
+            </div>
 
-* spacing
-* typography
-* touch interactions
-* loading speed
-* responsiveness
+            <!-- ===== RIR ===== -->
+            <div class="product-card" data-category="rir" onclick="openBreedModal('RIR')">
+                <div class="product-img-wrap">
+                    <img src="assets/rir_rooster.jpg" alt="Rhode Island Red" loading="lazy" onerror="this.parentElement.innerHTML='<span style=font-size:60px>🐓</span>'">
+                    <span class="product-badge" style="background:#e11d48;">Heritage</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Rhode Island Red</h3>
+                    <p class="product-desc">Chicks • Hens • Roosters • Pairs</p>
+                    <span class="product-price">From Rs 120</span>
+                    <button class="add-btn" onclick="event.stopPropagation(); openBreedModal('RIR')"><i class="fa-solid fa-plus"></i> Select Options</button>
+                </div>
+            </div>
 
-TECH STACK:
-Use:
+            <!-- ===== COMBO DEALS ===== -->
+            <div class="product-card" data-category="combo" style="grid-column: 1 / -1;">
+                <div class="p-5 bg-gradient-to-r from-gold/10 to-gold/5 border-2 border-gold rounded-2xl">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="text-4xl">⭐</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Australorp Breeding Pair</h3>
+                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens • Save Rs 875</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-2xl font-black text-forest">Rs 14,725</span>
+                            <span class="text-sm text-gray-400 line-through ml-2">Rs 15,600</span>
+                        </div>
+                        <div id="btn-combo-aus"><button onclick="addToCart('Australorp Pair (1R+5H)', 14725, 'combo-aus')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
+                    </div>
+                </div>
+            </div>
 
-* React
-* Next.js
-* Tailwind CSS
-* Framer Motion
+            <div class="product-card" data-category="combo" style="grid-column: 1 / -1;">
+                <div class="p-5 bg-gradient-to-r from-gold/10 to-gold/5 border-2 border-gold rounded-2xl">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="text-4xl">⭐</span>
+                        <div>
+                            <h3 class="font-bold text-lg">RIR Breeding Pair</h3>
+                            <p class="text-sm text-gray-500">1 Rooster + 5 Hens • Save Rs 875</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-2xl font-black text-forest">Rs 14,725</span>
+                            <span class="text-sm text-gray-400 line-through ml-2">Rs 15,600</span>
+                        </div>
+                        <div id="btn-combo-rir"><button onclick="addToCart('RIR Pair (1R+5H)', 14725, 'combo-rir')" class="add-btn" style="width:auto; padding: 12px 24px;"><i class="fa-solid fa-plus"></i> Add</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-CODE QUALITY:
+    <!-- ============================================ -->
+    <!-- 2. ABOUT HENZO FARM -->
+    <!-- ============================================ -->
+    <section id="about-henzo" class="info-section" style="background: white; margin: 20px; border-radius: 24px;">
+        <h2>About Henzo Farm</h2>
+        <p>Henzo Farm was founded by <strong>Maaz Mustafa Minhas</strong> with a simple mission: to bring back the tradition of pure, heritage poultry breeding in Islamabad.</p>
+        <p>Located in the pristine foothills of <strong>Pindorian Shareef</strong>, our farm specializes in two world-class heritage breeds — the record-breaking <strong>Black Australorp</strong> and the resilient <strong>Rhode Island Red</strong>.</p>
+        <p>From day-old chicks to mature laying hens, from breeding pairs to farm-fresh organic eggs, we deliver quality you can taste and trust. Every egg has a golden yolk. Every bird is raised with integrity.</p>
+        <p style="font-style: italic; color: #D4AF37; font-weight: 600; margin-top: 20px;">"Healthy Birds. Healthy Life."</p>
+    </section>
 
-* production-level code
-* reusable components
-* scalable architecture
-* clean folder structure
-* optimized performance
-* SEO-friendly
-* accessible design
+    <!-- ============================================ -->
+    <!-- 3. WHY CHOOSE HENZO FARM -->
+    <!-- ============================================ -->
+    <section id="why-henzo" class="info-section">
+        <h2>Why Choose Henzo Farm?</h2>
+        <p>We are Islamabad's trusted source for premium heritage poultry and organic eggs. Every bird is raised with care, fed organic grain, and given open pasture access.</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-leaf"></i>
+                <h4>100% Organic Feed</h4>
+                <p>No chemicals, no hormones, pure natural diet</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-sun"></i>
+                <h4>Pasture Raised</h4>
+                <p>Open air freedom every day in Pindorian</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-shield-heart"></i>
+                <h4>Vaccinated & Healthy</h4>
+                <p>All chicks vaccinated, all birds health-checked</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h4>Free Delivery</h4>
+                <p>Free in Pindorian. Rs 200 for other areas under Rs 1,999</p>
+            </div>
+        </div>
+    </section>
 
-IMPORTANT FINAL INSTRUCTION:
-The final website should emotionally feel like:
-a luxury organic poultry startup brand with premium farm storytelling and cinematic presentation.
+    <!-- ============================================ -->
+    <!-- REVIEWS SECTION -->
+    <!-- ============================================ -->
+    <section id="reviews" style="padding: 60px 20px; background: white;">
+        <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #1B3022; margin-bottom: 12px;">What Customers Say</h2>
+            <p style="color: #888; font-size: 15px; margin-bottom: 40px;">Real reviews from real customers across Islamabad & Rawalpindi</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                    <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Best eggs in Islamabad! The yolk is so golden and rich. My kids absolutely love them. Delivery was same day to Bahria Town."</p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">AR</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Ali Raza</p>
+                            <p style="font-size: 12px; color: #888;">Bahria Town, Islamabad</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                    <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Bought 5 Australorp hens last month. All healthy, vaccinated, and already laying beautiful brown eggs! Maaz is very knowledgeable."</p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">SK</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Sarah Khan</p>
+                            <p style="font-size: 12px; color: #888;">DHA Phase 2, Islamabad</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #F5F0E6; padding: 28px; border-radius: 20px; text-align: left;">
+                    <div style="color: #D4AF37; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
+                    <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 16px;">"Fast delivery to Rawalpindi. Chickens were properly vaccinated and Maaz gave me a full feeding guide. Highly recommended!"</p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 40px; height: 40px; background: #1B3022; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; font-weight: 700; font-size: 14px;">UM</div>
+                        <div>
+                            <p style="font-weight: 700; color: #1B3022; font-size: 14px;">Usman Malik</p>
+                            <p style="font-size: 12px; color: #888;">Saddar, Rawalpindi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- HOW TO ORDER SECTION -->
+    <!-- ============================================ -->
+    <section id="how-to-order" style="padding: 60px 20px; background: linear-gradient(135deg, #1B3022, #2d4d38); color: white;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; margin-bottom: 40px;">How to Order</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">1</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Browse Products</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">Select eggs, chicks, hens, or breeding pairs</p>
+                </div>
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">2</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Add to Cart</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">Choose quantities and categories</p>
+                </div>
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">3</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Enter Details</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">Fill your name, phone, and delivery address</p>
+                </div>
+                <div>
+                    <div style="width: 60px; height: 60px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: #1B3022;">4</div>
+                    <h4 style="font-weight: 700; margin-bottom: 8px;">Confirm on WhatsApp</h4>
+                    <p style="font-size: 14px; opacity: 0.7;">We confirm your order and delivery time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FAQ SECTION -->
+    <!-- ============================================ -->
+    <section id="faq" style="padding: 60px 20px; background: #F5F0E6;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #1B3022; text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Do you deliver across Islamabad & Rawalpindi?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Yes! We deliver to all sectors of Islamabad, Bahria Town, DHA, Gulberg Greens, PWD, and all areas of Rawalpindi including Saddar, Satellite Town, Adiala Road, and Westridge. Free delivery on orders over Rs 1,999.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Are your chickens vaccinated?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Absolutely. All our chicks receive standard vaccinations (Newcastle, Infectious Bronchitis, Gumboro). We provide vaccination records with every purchase. Our mature hens and roosters are also health-checked before delivery.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        What makes your eggs different from store-bought?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Our hens are pasture-raised on organic feed with no chemicals or hormones. You will notice the deep golden yolk, richer flavor, and firmer whites. Many customers say our eggs taste like "eggs used to taste" — real farm freshness.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        Can I visit the farm before buying?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">Yes! We welcome farm visits at Pindorian Shareef, Islamabad. Please call or WhatsApp us at +92 311 5190548 to schedule a visit. Best times are Saturday and Sunday mornings between 8 AM and 12 PM.</p>
+                </details>
+
+                <details style="background: white; padding: 20px 24px; border-radius: 16px; cursor: pointer;">
+                    <summary style="font-weight: 700; color: #1B3022; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                        What payment methods do you accept?
+                        <i class="fa-solid fa-chevron-down" style="color: #D4AF37;"></i>
+                    </summary>
+                    <p style="margin-top: 12px; color: #555; line-height: 1.7; font-size: 14px;">We accept Cash on Delivery (COD), JazzCash, EasyPaisa, and bank transfer. For large orders (breeding pairs), we require 50% advance payment to reserve your birds.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 4. FOOTER / CONTACT US -->
+    <!-- ============================================ -->
+    <footer id="contact-footer" class="app-footer">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <h4><i class="fa-solid fa-location-dot"></i>Address</h4>
+                <p><strong>Henzo Farm</strong></p>
+                <p>Shed No 1, Minhas Street</p>
+                <p>Pindorian Shareef</p>
+                <p>Islamabad, Pakistan</p>
+            </div>
+            <div class="footer-block">
+                <h4><i class="fa-solid fa-phone"></i>Contact</h4>
+                <a href="tel:+923115190548" target="_blank"><i class="fa-solid fa-mobile-screen"></i>+92 311 5190548</a>
+                <a href="https://wa.me/923115190548" target="_blank"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+                <p style="margin-top:8px; font-size:12px; opacity:0.5;">Mon-Sat: 7AM - 7PM</p>
+                <p style="font-size:12px; opacity:0.5;">Sunday: 8AM - 2PM</p>
+            </div>
+            <div class="footer-block">
+                <h4><i class="fa-solid fa-truck"></i>Delivery Areas</h4>
+                <p>✓ Pindorian Shareef (FREE)</p>
+                <p>✓ All Islamabad Sectors</p>
+                <p>✓ Bahria Town</p>
+                <p>✓ DHA Islamabad</p>
+                <p>✓ Rawalpindi City</p>
+                <p>✓ Adiala Road</p>
+                <p>✓ Westridge</p>
+                <p style="margin-top:8px; font-size:11px; color:#D4AF37;">Free delivery on orders over Rs 1,999</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 HENZO FARM ISLAMABAD • PREMIUM HERITAGE POULTRY</p>
+        </div>
+    </footer>
+
+    <!-- Floating Contact Button -->
+    <a href="tel:+923115190548" target="_blank" class="contact-float" aria-label="Call Henzo Farm">
+        <i class="fa-solid fa-phone"></i>
+    </a>
+
+    <!-- Cart Bar -->
+    <div id="cart-bar" class="cart-bar">
+        <div class="cart-bar-left">
+            <div class="cart-bar-count" id="cart-count">0</div>
+            <div>
+                <div id="cart-items-text" style="font-size:13px;">0 items</div>
+                <div style="font-size:18px; font-weight:800; color:#D4AF37;" id="cart-total">Rs 0</div>
+            </div>
+        </div>
+        <button onclick="openSheet()" class="cart-bar-btn">View Cart <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+    <script>
+
+        // ==================== CONFIG ====================
+       const CONFIG = {
+    SHEET_API: 'https://script.google.com/macros/s/AKfycbzFlBOgrHo4QM1o_UCHXAf43eKFAlM0q1OcjAwP6TmsghyF1H0pc8p_HxGCCtBtTupiGQ/exec',
+    WHATSAPP: '923115190548'
+};
+
+        // ==================== DATA REGISTRY (from File 2) ====================
+        const REGISTRY = {
+            'Australorp': {
+                name: 'Black Australorp',
+                subtitle: 'The Record Layer',
+                desc: 'World-record holder for egg productivity. Renowned for their beetle-green sheen and gentle temperament. Perfect for both backyard and commercial setups in Islamabad climate.',
+                perks: ['Record Egg Yield', 'Gentle Nature', 'Islamabad Hardy', 'Genetically Pure'],
+                media: 'assets/australorp_hen.jpg',
+                categories: {
+                    'Baby Chick (Day-Old)': 120,
+                    'Mature Hen (Ready to Lay)': 2500,
+                    'Breeding Rooster': 3000,
+                    'Breeding Pair (1R + 5H)': 14725
+                }
+            },
+            'RIR': {
+                name: 'Rhode Island Red',
+                subtitle: 'The Resilient Classic',
+                desc: 'The ultimate dual-purpose heritage breed. Historically unmatched resilience and excellent brown egg production. Thrives in Pakistani climate with minimal care.',
+                perks: ['Climate Immune', 'Mahogany Plumage', 'Steady Laying', 'Low Maintenance'],
+                media: 'assets/rir_rooster.jpg',
+                categories: {
+                    'Baby Chick (Day-Old)': 120,
+                    'Mature Hen (Ready to Lay)': 2500,
+                    'Breeding Rooster': 3000,
+                    'Breeding Pair (1R + 5H)': 14725
+                }
+            },
+            'Eggs': {
+                name: 'Organic Pasture Eggs',
+                subtitle: 'Golden Harvest Daily',
+                desc: 'Golden yolk eggs harvested fresh every morning from our free-range heritage flocks. Rich in organic nutrients, omega-3, and premium protein. No chemicals, no hormones.',
+                perks: ['Daily Fresh Harvest', 'High Omega-3', 'Zero Chemicals', 'Islamabad Local'],
+                media: 'assets/pasture_raised_eggs.jpg',
+                categories: {
+                    '1 Dozen (12 Eggs)': 450,
+                    '2 Dozen (24 Eggs)': 900,
+                    '5 Dozen (60 Eggs)': 2250
+                }
+            }
+        };
+
+        // ==================== STATE ====================
+        let cart = JSON.parse(localStorage.getItem('henzo_cart_v5')) || [];
+        let modalState = { breed: '', category: '', price: 0, qty: 1 };
+
+        // ==================== NAVIGATION ====================
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==================== TOAST ====================
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // ==================== CATEGORY FILTER ====================
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+            });
+        }
+
+        // ==================== BREED MODAL (from File 2 logic, File 1 styling) ====================
+        function openBreedModal(breedKey) {
+            const data = REGISTRY[breedKey];
+            if (!data) return;
+
+            modalState = { breed: breedKey, category: '', price: 0, qty: 1 };
+
+            // Header
+            document.getElementById('modal-img').src = data.media;
+            document.getElementById('modal-title').innerText = data.name;
+            document.getElementById('modal-subtitle').innerText = data.subtitle;
+
+            // Body
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-perks').innerHTML = data.perks.map(p =>
+                `<div class="breed-perk"><i class="fa-solid fa-circle-check"></i>${p}</div>`
+            ).join('');
+
+            // Categories
+            const catContainer = document.getElementById('modal-categories');
+            const cats = Object.entries(data.categories);
+            catContainer.innerHTML = cats.map(([label, price]) => `
+                <div class="cat-option" onclick="selectModalCat('${label.replace(/'/g, "\'")}', ${price}, this)">
+                    <span class="cat-label">${label}</span>
+                    <span class="cat-price">Rs ${price.toLocaleString()}</span>
+                </div>
+            `).join('');
+
+            // Auto-select first
+            if (cats.length > 0) {
+                selectModalCat(cats[0][0], cats[0][1], catContainer.children[0]);
+            }
+
+            // Show modal
+            document.getElementById('breed-modal-overlay').classList.add('show');
+            document.getElementById('breed-modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBreedModal() {
+            document.getElementById('breed-modal-overlay').classList.remove('show');
+            document.getElementById('breed-modal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function selectModalCat(label, price, el) {
+            modalState.category = label;
+            modalState.price = price;
+            modalState.qty = 1;
+
+            document.querySelectorAll('.cat-option').forEach(opt => opt.classList.remove('active'));
+            el.classList.add('active');
+
+            updateModalTotal();
+        }
+
+        function adjustModalQty(delta) {
+            modalState.qty = Math.max(1, modalState.qty + delta);
+            updateModalTotal();
+        }
+
+        function updateModalTotal() {
+            document.getElementById('modal-qty').innerText = modalState.qty;
+            const total = modalState.price * modalState.qty;
+            document.getElementById('modal-total').innerText = 'Rs ' + total.toLocaleString();
+        }
+
+        function confirmModalAdd() {
+            const breedData = REGISTRY[modalState.breed];
+            const itemName = `${breedData.name} — ${modalState.category}`;
+            addToCart(itemName, modalState.price, null, modalState.qty);
+            closeBreedModal();
+        }
+
+        // ==================== CART CORE ====================
+        function addToCart(name, price, btnId, qty = 1) {
+            const existing = cart.find(i => i.name === name);
+            if (existing) {
+                existing.qty += qty;
+                showToast(`${name} (${existing.qty}x)`);
+            } else {
+                cart.push({ name, price, qty });
+                showToast(`${name} added`);
+            }
+            saveCart(); updateUI();
+            if (btnId) updateButton(btnId, name);
+        }
+
+        function updateQty(name, delta) {
+            const item = cart.find(i => i.name === name);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty < 1) cart = cart.filter(i => i.name !== name);
+            saveCart(); updateUI(); updateSheet();
+
+            // Update combo buttons if needed
+            const btnMap = {
+                'Australorp Pair (1R+5H)': 'combo-aus',
+                'RIR Pair (1R+5H)': 'combo-rir'
+            };
+            if (btnMap[name]) updateButton(btnMap[name], name);
+        }
+
+        function deleteItem(name) {
+            cart = cart.filter(i => i.name !== name);
+            saveCart(); updateUI(); updateSheet();
+            showToast('Item removed');
+            // Reset combo buttons if needed
+            const btnMap = {
+                'Australorp Pair (1R+5H)': 'combo-aus',
+                'RIR Pair (1R+5H)': 'combo-rir'
+            };
+            if (btnMap[name]) updateButton(btnMap[name], name);
+        }
+
+        function saveCart() {
+            localStorage.setItem('henzo_cart_v5', JSON.stringify(cart));
+        }
+
+        function updateButton(btnId, name) {
+            if (!btnId) return;
+            const container = document.getElementById('btn-' + btnId);
+            if (!container) return;
+            const item = cart.find(i => i.name === name);
+            if (item) {
+                container.innerHTML = `<div class="qty-stepper"><button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\'")}', -1)">−</button><span>${item.qty}</span><button onclick="event.stopPropagation(); updateQty('${name.replace(/'/g, "\'")}', 1)">+</button></div>`;
+            } else {
+                const price = getPrice(name);
+                container.innerHTML = `<button onclick="event.stopPropagation(); addToCart('${name.replace(/'/g, "\'")}', ${price}, '${btnId}')" class="add-btn"><i class="fa-solid fa-plus"></i> Add</button>`;
+            }
+        }
+
+        function getPrice(name) {
+            const prices = {
+                'Australorp Pair (1R+5H)': 14725,
+                'RIR Pair (1R+5H)': 14725
+            };
+            return prices[name] || 0;
+        }
+
+        function updateUI() {
+            const count = cart.reduce((a, i) => a + i.qty, 0);
+            const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
+            document.getElementById('cart-count').innerText = count;
+            document.getElementById('cart-items-text').innerText = count + ' item' + (count !== 1 ? 's' : '');
+            document.getElementById('cart-total').innerText = 'Rs ' + subtotal.toLocaleString();
+            document.getElementById('cart-bar').classList.toggle('show', count > 0);
+        }
+
+        // ==================== BOTTOM SHEET ====================
+        function openSheet() {
+            document.getElementById('sheet-overlay').classList.add('show');
+            document.getElementById('bottom-sheet').classList.add('show');
+            updateSheet();
+        }
+
+        function closeSheet() {
+            document.getElementById('sheet-overlay').classList.remove('show');
+            document.getElementById('bottom-sheet').classList.remove('show');
+        }
+
+        function updateSheet() {
+            const container = document.getElementById('sheet-items');
+            const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
+            const area = document.getElementById('area').value;
+            const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
+            const total = subtotal + delivery;
+
+            document.getElementById('summary-subtotal').innerText = 'Rs ' + subtotal.toLocaleString();
+            document.getElementById('summary-delivery').innerText = delivery === 0 ? 'FREE' : 'Rs ' + delivery;
+            document.getElementById('summary-delivery').className = delivery === 0 ? 'text-green-600 font-bold' : 'font-bold';
+            document.getElementById('summary-total').innerText = 'Rs ' + total.toLocaleString();
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400 py-8">Your cart is empty</p>';
+                return;
+            }
+
+            container.innerHTML = cart.map(item => {
+                const emoji = item.name.includes('Egg') ? '🥚' : item.name.includes('Chick') ? '🐣' : item.name.includes('Hen') ? '🐔' : '🐓';
+                return `<div class="sheet-item">
+                    <div class="sheet-item-img">${emoji}</div>
+                    <div class="sheet-item-info">
+                        <div class="sheet-item-name">${item.name}</div>
+                        <div class="sheet-item-price">Rs ${item.price.toLocaleString()} x ${item.qty}</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="qty-stepper" style="width:auto;">
+                            <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button onclick="updateQty('${item.name.replace(/'/g, "\'")}', 1)">+</button>
+                        </div>
+                        <button onclick="deleteItem('${item.name.replace(/'/g, "\'")}')" style="width:36px;height:36px;border-radius:10px;border:none;background:#fee2e2;color:#dc2626;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Remove item">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function updateDelivery() { updateSheet(); }
+
+        // ==================== ORDER SUBMIT ====================
+function handleOrder(e) {
+    e.preventDefault();
+    if (cart.length === 0) { 
+        showToast('Cart is empty!'); 
+        return; 
+    }
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const area = document.getElementById('area').value;
+    const address = document.getElementById('address').value.trim();
+    const subtotal = cart.reduce((a, i) => a + (i.price * i.qty), 0);
+    const delivery = (area === 'Pindorian Shareef' || subtotal >= 1999) ? 0 : 200;
+    const total = subtotal + delivery;
+    const orderId = 'HZ-' + Date.now();
+
+    // Build WhatsApp message
+    const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
+    const msg = `🌾 *HENZO FARM ORDER*%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal}%0A*Delivery:* ${delivery === 0 ? 'FREE' : 'Rs ' + delivery}%0A*Total:* Rs ${total}`;
+
+    // Send to Google Sheet
+    fetch(CONFIG.SHEET_API, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            customer: name,
+            contact: phone,
+            area: area,
+            address: address,
+            cart: JSON.stringify(cart)
+        })
+    });
+
+    // Open WhatsApp
+    window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${msg}`, '_blank');
+
+    // Show success
+    document.getElementById('success-order-id').innerText = orderId;
+    document.getElementById('success-screen').classList.add('show');
+
+    // Clear cart
+    cart = []; 
+    saveCart(); 
+    updateUI(); 
+    closeSheet();
+}
+
+function closeSuccess() {
+    document.getElementById('success-screen').classList.remove('show');
+    document.getElementById('order-form').reset();
+    document.getElementById('address').value = 'Shed No 1, Minhas Street, Pindorian Shareef, Islamabad';
+    // Reset combo buttons
+    updateButton('combo-aus', 'Australorp Pair (1R+5H)');
+    updateButton('combo-rir', 'RIR Pair (1R+5H)');
+}
+
+// ==================== INIT ====================
+        window.addEventListener('DOMContentLoaded', () => {
+            updateUI();
+            updateButton('combo-aus', 'Australorp Pair (1R+5H)');
+            updateButton('combo-rir', 'RIR Pair (1R+5H)');
+        });
+    </script>
+<!-- FORCE REFRESH IF CACHE STALE -->
+<script>
+    (function(){
+        if(document.querySelector('meta[name="version"]')?.content !== 'v2-2026-05-29'){
+            location.reload(true);
+        }
+    })();
+</script>
+</body>
+</html>
