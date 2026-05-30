@@ -1,1720 +1,384 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#1B3022">
-<title>Henzo Farm | Premium Heritage Poultry & Organic Eggs</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-// ==================== GOOGLE SCRIPT CONFIG ====================
-// Your Google Apps Script URL - connects to your Google Sheet
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFlBOgrHo4QM1o_UCHXAf43eKFAlM0q1OcjAwP6TmsghyF1H0pc8p_HxGCCtBtTupiGQ/exec";
-// To verify: Open this URL in browser. If it shows "Success" or your web app, it's connected.
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        forest: { 50:"#f0f5f0",100:"#dce8dc",200:"#b8d1b8",300:"#8eb48e",400:"#6a966a",500:"#4a7a4a",600:"#3a613a",700:"#2d4d2d",800:"#1B3022",900:"#0f1a12",950:"#070d08" },
-        gold: { 50:"#fdf9ed",100:"#f9f0c8",200:"#f3e19a",300:"#ebd06a",400:"#e0c045",500:"#D4AF37",600:"#b8962f",700:"#967828",800:"#7a6322",900:"#5c4a1a" },
-        cream: { 50:"#FFFBF5",100:"#FDFCF8",200:"#F5F0E6",300:"#EDE6D6",400:"#E5DCC6",500:"#DDD2B6" },
-      },
-      fontFamily: { serif:['"Playfair Display"','Georgia','serif'], sans:['"Inter"','system-ui','sans-serif'], display:['"Poppins"','Inter','sans-serif'] }
-    }
-  }
-}
-</script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:'Inter',system-ui,sans-serif;background:#FFFBF5;color:#1B3022;overflow-x:hidden}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:#F5F0E6}
-::-webkit-scrollbar-thumb{background:#3a613a;border-radius:99px}
-::selection{background:#D4AF37;color:#0f1a12}
-.font-serif{font-family:'Playfair Display',Georgia,serif}
-.font-display{font-family:'Poppins',Inter,sans-serif}
-.text-gradient-gold{background:linear-gradient(135deg,#D4AF37 0%,#e0c045 50%,#b8962f 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.text-gradient-forest{background:linear-gradient(135deg,#1B3022 0%,#2d4d2d 50%,#3a613a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.glass-dark{background:rgba(27,48,34,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
-.btn-premium{position:relative;overflow:hidden;background:linear-gradient(135deg,#1B3022 0%,#2d4d2d 100%);color:#D4AF37;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;border:none;border-radius:16px;padding:16px 32px;cursor:pointer;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);display:inline-flex;align-items:center;gap:10px;font-size:14px}
-.btn-premium:hover{box-shadow:0 10px 40px rgba(27,48,34,0.3);transform:translateY(-2px)}
-.btn-premium::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.15),transparent);transition:left 0.6s ease}
-.btn-premium:hover::before{left:100%}
-.btn-gold{background:linear-gradient(135deg,#D4AF37 0%,#e0c045 100%);color:#0f1a12}
-.btn-gold:hover{box-shadow:0 10px 40px rgba(212,175,55,0.4)}
-.btn-outline{background:transparent;border:2px solid #D4AF37;color:#D4AF37}
-.btn-outline:hover{background:#D4AF37;color:#0f1a12}
-.section-divider{width:80px;height:3px;background:linear-gradient(90deg,#D4AF37,#1B3022,#D4AF37);border-radius:99px;margin:0 auto}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
-.animate-fade-in-up{animation:fadeInUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;opacity:0}
-.animate-fade-in{animation:fadeIn 0.6s ease forwards;opacity:0}
-.delay-100{animation-delay:0.1s}
-.delay-200{animation-delay:0.2s}
-.delay-300{animation-delay:0.3s}
-.delay-400{animation-delay:0.4s}
-.delay-500{animation-delay:0.5s}
-.delay-600{animation-delay:0.6s}
-.delay-700{animation-delay:0.7s}
-.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
-.reveal.active{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-60px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
-.reveal-left.active{opacity:1;transform:translateX(0)}
-.product-card{background:white;border-radius:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);overflow:hidden}
-.product-card:hover{box-shadow:0 20px 60px rgba(0,0,0,0.12);transform:translateY(-8px)}
-.breed-card{background:rgba(27,48,34,0.5);border-radius:24px;border:1px solid rgba(255,255,255,0.05);overflow:hidden;transition:all 0.7s cubic-bezier(0.16,1,0.3,1);cursor:pointer}
-.breed-card:hover{border-color:rgba(212,175,55,0.3);box-shadow:0 25px 80px rgba(0,0,0,0.3)}
-.breed-card img{transition:transform 0.7s cubic-bezier(0.16,1,0.3,1)}
-.breed-card:hover img{transform:scale(1.1)}
-.cart-bar{position:fixed;bottom:0;left:0;right:0;background:#1B3022;color:white;z-index:200;padding:16px 20px;display:none;box-shadow:0 -10px 40px rgba(0,0,0,0.2)}
-.cart-bar.show{display:flex;align-items:center;justify-content:space-between}
-/* ===== MODAL SYSTEM - Clean & Responsive ===== */
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  z-index:300;
-  display:none;
-}
-.modal-overlay.show{
-  display:block;
-  animation:fadeIn 0.2s ease;
-}
-
-/* Breed Modal */
-.breed-modal{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.95);
-  background:#fff;
-  border-radius:20px;
-  z-index:310;
-  width:92%;
-  max-width:480px;
-  max-height:90vh;
-  overflow-y:auto;
-  box-shadow:0 20px 60px rgba(0,0,0,0.3);
-  display:none;
-}
-.breed-modal.show{
-  display:block;
-  animation:modalPop 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-
-/* Checkout Modal - Desktop */
-.checkout-modal{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.95);
-  background:#fff;
-  border-radius:20px;
-  z-index:310;
-  width:92%;
-  max-width:460px;
-  max-height:85vh;
-  overflow-y:auto;
-  box-shadow:0 25px 80px rgba(0,0,0,0.4);
-  display:none;
-}
-.checkout-modal.show{
-  display:block;
-  animation:modalPop 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-
-/* Cart Sidebar */
-.cart-sidebar{
-  position:fixed;
-  top:0;
-  right:0;
-  bottom:0;
-  width:100%;
-  max-width:400px;
-  background:#fff;
-  z-index:310;
-  box-shadow:-10px 0 40px rgba(0,0,0,0.3);
-  transform:translateX(100%);
-  transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);
-  display:flex;
-  flex-direction:column;
-}
-.cart-sidebar.show{
-  transform:translateX(0);
-}
-
-/* Mobile adjustments */
-@media(max-width:480px){
-  .breed-modal{
-    width:95%;
-    max-height:95vh;
-    border-radius:16px;
-  }
-  .checkout-modal{
-    width:95%;
-    max-height:95vh;
-    border-radius:16px;
-  }
-  .cart-sidebar{
-    max-width:100%;
-  }
-}
-
-@keyframes modalPop{
-  from{opacity:0;transform:translate(-50%,-50%) scale(0.9)}
-  to{opacity:1;transform:translate(-50%,-50%) scale(1)}
-}
-.success-screen{position:fixed;inset:0;background:#0f1a12;z-index:400;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;color:white}
-.success-screen.show{display:flex;animation:fadeIn 0.5s ease}
-input,select,textarea{width:100%;padding:14px 16px;border:2px solid #eee;border-radius:14px;font-size:15px;font-family:'Inter',sans-serif;background:#fafafa;outline:none;transition:all 0.3s}
-input:focus,select:focus,textarea:focus{border-color:#D4AF37;background:white;box-shadow:0 0 0 4px rgba(212,175,55,0.1)}
-.mobile-nav{position:fixed;inset:0;z-index:40;background:#0f1a12;display:none;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px 24px}
-.mobile-nav.show{display:flex;animation:fadeIn 0.3s ease}
-.lightbox{position:fixed;inset:0;z-index:400;background:#000;display:none;align-items:center;justify-content:center}
-.lightbox.show{display:flex;animation:fadeIn 0.3s ease}
-.toast{position:fixed;top:100px;left:50%;transform:translateX(-50%) translateY(-20px);background:#1B3022;color:white;padding:14px 24px;border-radius:99px;font-size:14px;font-weight:700;z-index:500;opacity:0;transition:all 0.3s;box-shadow:0 10px 30px rgba(0,0,0,0.2);display:flex;align-items:center;gap:10px;pointer-events:none}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.contact-float{position:fixed;bottom:100px;right:20px;width:56px;height:56px;background:#D4AF37;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1B3022;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:150;cursor:pointer;transition:all 0.3s;text-decoration:none}
-.contact-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(0,0,0,0.3)}
-.scroll-bounce{animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
-.gallery-item{overflow:hidden;border-radius:16px;cursor:pointer}
-.gallery-item img{transition:transform 0.7s cubic-bezier(0.16,1,0.3,1)}
-.gallery-item:hover img{transform:scale(1.08)}
-.testimonial-card{background:#F5F0E6;padding:28px;border-radius:20px;transition:all 0.5s cubic-bezier(0.16,1,0.3,1)}
-.testimonial-card:hover{box-shadow:0 10px 40px rgba(0,0,0,0.08);transform:translateY(-4px)}
-.cat-pill{padding:10px 20px;border-radius:99px;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;transition:all 0.3s;border:2px solid transparent}
-.cat-pill.active{background:#1B3022;color:#D4AF37;border-color:#D4AF37}
-.cat-pill:not(.active){background:white;color:#1B3022;border-color:#e5e5e5}
-.cat-pill:not(.active):hover{border-color:#D4AF37}
-.qty-stepper{display:flex;align-items:center;gap:8px;background:#f5f5f5;border-radius:12px;padding:4px}
-.qty-stepper button{width:36px;height:36px;border-radius:10px;border:none;background:white;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,0.1);cursor:pointer;transition:all 0.2s}
-.qty-stepper button:hover{background:#1B3022;color:white}
-.qty-stepper span{font-size:16px;font-weight:800;min-width:30px;text-align:center}
-.timeline-line{position:absolute;left:32px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(212,175,55,0.5),rgba(212,175,55,0.1))}
-@media(min-width:768px){.timeline-line{left:50%;transform:translateX(-50%)}}
-@media(max-width:768px){.product-card:hover{transform:translateY(-4px)}.btn-premium{padding:14px 24px;font-size:13px}}
-</style>
-<base target="_blank">
+  <style>
+    :root { --primary: #2c3e50; --success: #27ae60; --danger: #e74c3c; --bg: #f4f7f9; --warning: #f39c12; --info: #2980b9; }
+    body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+    .sidebar { width: 340px; background: white; border-right: 1px solid #e0e6ed; padding: 20px; box-sizing: border-box; overflow-y: auto; }
+    .main { flex: 1; padding: 25px; overflow-y: auto; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+    .stat-card { background: white; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .stat-card h4 { margin: 0; color: #7f8c8d; font-size: 11px; text-transform: uppercase; }
+    .stat-card div { font-size: 18px; font-weight: bold; margin-top: 8px; color: var(--primary); }
+    .field { margin-bottom: 12px; }
+    .live-alert { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 8px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; font-weight: bold; text-align: center;}
+    label { font-size: 11px; font-weight: bold; color: #34495e; display: block; margin-bottom: 4px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #dcdfe6; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+    .btn-save { background: var(--success); color: white; width: 100%; padding: 14px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .table-container { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 15px; background: #f8f9fa; color: #7f8c8d; font-size: 11px; }
+    td { padding: 15px; font-size: 13px; border-bottom: 1px solid #f1f1f1; }
+    .hidden { display: none !important; }
+    .btn-act { padding: 5px 8px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 11px; margin-right: 2px; color: white; }
+    .btn-edit { background: var(--warning); }
+    .btn-del { background: var(--danger); }
+    .btn-inv { background: var(--info); }
+    
+    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 100; }
+    .modal-content { background: white; padding: 30px; border-radius: 12px; width: 520px; max-height: 80%; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .inv-title { font-size: 20px; font-weight: bold; color: var(--primary); border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px;}
+  </style>
 </head>
 <body>
 
-<!-- Toast -->
-<div id="toast" class="toast">
-  <div style="width:24px;height:24px;background:#D4AF37;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1B3022;font-size:12px;">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+<div class="sidebar">
+  <label>System Mode</label>
+  <select id="cat" onchange="toggleForm()">
+    <option value="Revenue">Sales & History</option>
+    <option value="Expense">Expense Entry</option>
+    <option value="NewClient">Register New Client</option>
+    <option value="PivotDashboard">📊 Monthly Dashboard</option>
+  </select>
+  <button style="background:var(--primary); color:white; width:100%; padding:10px; margin:15px 0; border:none; border-radius:6px; cursor:pointer;" onclick="refresh()">🔄 SYNC DATA</button>
+
+  <div id="formRevenue">
+    <div class="field"><label>Customer</label><select id="cust" onchange="autoFillAndFetchBalance()"></select></div>
+    <div id="balanceAlert" class="live-alert hidden">Previous Balance: Rs. <span id="lblPrevBal">0</span></div>
+    <input type="hidden" id="hiddenPrevBal" value="0">
+
+    <div class="field">
+      <label>Product Size</label>
+      <select id="prod">
+        <option value="19 Liter">19 Liter</option>
+        <option value="1500 ml">1500 ml (PET)</option>
+        <option value="500 ml">500 ml (PET)</option>
+      </select>
+    </div>
+    
+    <div class="field"><label>Quantity</label><input type="number" id="qty" value="1" oninput="calculateLiveBill()"></div>
+    <div class="field"><label>Price</label><input type="number" id="rate" oninput="calculateLiveBill()"></div>
+    <div class="field"><label>Received Amount</label><input type="number" id="paid" value="0" oninput="calculateLiveBill()"></div>
+    <div id="closingAlert" class="live-alert hidden" style="background:#d4edda; border-color:#c3e6cb; color:#155724;">Closing Balance: Rs. <span id="lblClosingBal">0</span></div>
   </div>
-  <span id="toast-msg">Added to cart</span>
+
+  <div id="formExpense" class="hidden">
+    <div class="field"><label>Fuel Cost</label><input type="number" id="fuel" value="0"></div>
+    <div class="field"><label>Tax</label><input type="number" id="tax" value="0"></div>
+    <div class="field"><label>Other Expense</label><input type="number" id="other" value="0"></div>
+    <div class="field"><label>Bottles Filled</label><input type="number" id="fillingQty" value="0"></div>
+    <div class="field">
+      <label>Paid By</label>
+      <select id="exp_paid_by"><option value="Office Cash">Office Cash</option><option value="Maaz">Maaz</option><option value="Rider">Rider</option></select>
+    </div>
+    <div class="field"><label>Remarks</label><input type="text" id="exp_remarks"></div>
+  </div>
+
+  <div id="formNewClient" class="hidden">
+    <div class="field"><label>Full Name</label><input type="text" id="nc_name"></div>
+    <div class="field"><label>Area</label><input type="text" id="nc_area"></div>
+    <div class="field"><label>Type</label><select id="nc_type"><option>Daily</option><option>Monthly</option></select></div>
+    <div class="field"><label>Rate</label><input type="number" id="nc_rate" value="200"></div>
+    <div class="field">
+      <label>Default Size</label>
+      <select id="nc_product"><option value="19 Liter">19 Liter</option><option value="1500 ml">1500 ml</option><option value="500 ml">500 ml</option></select>
+    </div>
+  </div>
+
+  <div id="formPivotDashboard" class="hidden">
+    <div class="live-alert" style="background:#e8f4fd; border-color:#bce0fd; color:#0d3c61;">
+      📊 Viewing aggregated monthly database pivot calculations. Entries are locked in this mode.
+    </div>
+  </div>
+
+  <div id="dateField" class="field"><label>Date</label><input type="date" id="date"></div>
+  <button class="btn-save" id="saveBtn" onclick="save()">SAVE RECORD</button>
 </div>
 
-<!-- Success Screen -->
-<div id="success-screen" class="success-screen">
-  <div style="width:100px;height:100px;background:#D4AF37;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:30px;animation:fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1)">
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+<div class="main">
+  <div class="stats">
+    <div class="stat-card"><h4>Sales</h4><div id="s_sales">0</div></div>
+    <div class="stat-card"><h4>Paid</h4><div id="s_paid">0</div></div>
+    <div class="stat-card"><h4>Expenses</h4><div id="s_exp">0</div></div>
+    <div class="stat-card"><h4>Net Profit</h4><div id="s_profit">0</div></div>
   </div>
-  <h2 class="font-serif text-3xl font-bold mb-2">Order Placed!</h2>
-  <p class="opacity-60 mb-2">Your order has been sent via WhatsApp</p>
-  <p class="text-gold-400 font-mono text-sm mb-8" id="success-order-id"></p>
-  <button onclick="closeSuccess()" class="btn-premium btn-gold" style="font-size:16px">Continue Shopping</button>
-</div>
 
-<!-- Breed Modal Overlay -->
-<div id="breed-overlay" class="modal-overlay" onclick="closeBreedModal()"></div>
-<div id="breed-modal" class="breed-modal">
-  <div style="position:relative;height:200px;overflow:hidden;border-radius:24px 24px 0 0">
-    <img id="modal-img" src="" alt="" style="width:100%;height:100%;object-fit:cover">
-    <div style="position:absolute;inset:0;background:linear-gradient(transparent,rgba(27,48,34,0.9))"></div>
-    <button onclick="closeBreedModal()" style="position:absolute;top:16px;right:16px;width:36px;height:36px;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;cursor:pointer;border:none">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-    <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;color:white">
-      <span id="modal-subtitle" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#D4AF37">Heritage Breed</span>
-      <h3 id="modal-title" class="font-serif" style="font-size:28px;font-weight:700">Breed Name</h3>
-    </div>
+  <div id="filterControls" style="display:flex; gap:10px; margin-bottom:15px;">
+    <select id="fMonth" style="width:140px; padding:10px; border-radius:6px; border:1px solid #ddd" onchange="loadHistory()">
+        <option value="All">All Months</option>
+        <option value="January">January</option><option value="February">February</option><option value="March">March</option>
+        <option value="April">April</option><option value="May">May</option><option value="June">June</option>
+        <option value="July">July</option><option value="August">August</option><option value="September">September</option>
+        <option value="October">October</option><option value="November">November</option><option value="December">December</option>
+    </select>
+    <select id="fType" style="width:150px; padding:10px; border-radius:6px; border:1px solid #ddd" onchange="loadHistory()">
+        <option value="All">All Types</option><option value="Monthly">Monthly Clients</option><option value="Daily">Daily Clients</option>
+    </select>
+    <input type="text" id="search" style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd" placeholder="Search name..." oninput="loadHistory()">
   </div>
-  <div style="padding:24px">
-    <p id="modal-desc" style="font-size:14px;line-height:1.7;color:#555;margin-bottom:20px">Description</p>
-    <div id="modal-perks" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px"></div>
-    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#888;margin-bottom:12px">SELECT CATEGORY</div>
-    <div id="modal-categories" style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;background:#f5f5f5;border-radius:16px;padding:12px 16px;margin-bottom:20px">
-      <span style="font-size:13px;font-weight:700;color:#888">Quantity</span>
-      <div class="qty-stepper" style="width:auto">
-        <button onclick="adjustModalQty(-1)">−</button>
-        <span id="modal-qty">1</span>
-        <button onclick="adjustModalQty(1)">+</button>
-      </div>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-      <span style="font-size:13px;font-weight:700;color:#888;text-transform:uppercase">TOTAL</span>
-      <span id="modal-total" class="font-serif" style="font-size:28px;font-weight:800;color:#1B3022">Rs 0</span>
-    </div>
-    <button onclick="confirmModalAdd()" class="btn-premium" style="width:100%;justify-content:center">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-      ADD TO CART
-    </button>
-  </div>
-</div>
 
-<!-- Cart Sidebar Overlay -->
-<div id="cart-overlay" class="modal-overlay" onclick="closeCart()" style="z-index:300"></div>
-<div id="cart-sidebar" class="cart-sidebar">
-  <div style="padding:16px 20px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:white;z-index:10">
-    <h3 class="font-serif" style="font-size:18px;font-weight:700;color:#1B3022">Your Cart</h3>
-    <button onclick="closeCart()" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;border:none;background:transparent">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-  </div>
-  <div id="cart-items-container" style="flex:1;overflow-y:auto;padding:20px"></div>
-  <div id="cart-footer" style="padding:20px;border-top:1px solid #eee;background:#fafafa;display:none">
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-      <span style="color:#888">Subtotal</span>
-      <span id="cart-subtotal" style="font-weight:600">Rs 0</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-bottom:12px">
-      <span style="color:#888">Delivery</span>
-      <span id="cart-delivery" style="font-weight:600">FREE</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:2px solid #1B3022;margin-bottom:16px">
-      <span style="font-weight:700;color:#1B3022">Total</span>
-      <span id="cart-total" class="font-serif" style="font-size:22px;font-weight:800;color:#1B3022">Rs 0</span>
-    </div>
-    <button onclick="openCheckout()" class="btn-premium" style="width:100%;justify-content:center">
-      Proceed to Checkout
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-    </button>
-  </div>
-</div>
-
-<!-- Checkout Modal -->
-<div id="checkout-overlay" class="modal-overlay" onclick="closeCheckout()" style="z-index:300"></div>
-<div id="checkout-modal" class="checkout-modal">
-  <div style="padding:16px 20px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:white;z-index:10;border-radius:20px 20px 0 0">
-    <h3 class="font-serif" style="font-size:18px;font-weight:700;color:#1B3022">Checkout</h3>
-    <button onclick="closeCheckout()" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;border:none;background:transparent">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-  </div>
-  <div style="padding:24px;overflow-y:auto">
-    <div style="background:#f8f8f8;border-radius:16px;padding:20px;margin-bottom:24px">
-      <p style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:16px">ORDER SUMMARY</p>
-      <div id="checkout-items" style="margin-bottom:16px"></div>
-      <div style="border-top:1px solid #e0e0e0;padding-top:16px">
-        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-          <span style="font-size:13px;color:#666">Subtotal</span>
-          <span id="checkout-subtotal" style="font-size:13px;font-weight:600;color:#1B3022">Rs 0</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:12px">
-          <span style="font-size:13px;color:#666">Delivery</span>
-          <span id="checkout-delivery" style="font-size:13px;font-weight:600;color:#22c55e">FREE</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:2px solid #1B3022">
-          <span style="font-weight:700;color:#1B3022;font-size:14px">Total</span>
-          <span id="checkout-total" class="font-serif" style="font-size:22px;font-weight:800;color:#1B3022">Rs 0</span>
-        </div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:10px 14px;background:#f0fdf4;border-radius:12px;border:1px solid #86efac">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-      <span style="font-size:12px;font-weight:700;color:#166534">Connected to Google Sheets — Order will be saved automatically</span>
-    </div>
-    <form id="order-form" onsubmit="handleOrder(event)">
-      <div style="margin-bottom:16px">
-        <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#888;margin-bottom:6px">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          Full Name
-        </label>
-        <input type="text" id="name" placeholder="Enter your full name" required>
-      </div>
-      <div style="margin-bottom:16px">
-        <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#888;margin-bottom:6px">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          WhatsApp Number
-        </label>
-        <input type="tel" id="phone" placeholder="03XXXXXXXXX" required>
-      </div>
-      <div style="margin-bottom:16px">
-        <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#888;margin-bottom:6px">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          Delivery Area
-        </label>
-        <select id="area" onchange="updateDelivery()" required>
-          <option value="" disabled selected>Select Delivery Area</option>
-          <option value="Pindorian Shareef">Pindorian Shareef (FREE)</option>
-          <option value="E-7/F-6/F-7/F-8">E-7 / F-6 / F-7 / F-8 (Islamabad)</option>
-          <option value="F-10/F-11/G-10/G-11">F-10 / F-11 / G-10 / G-11 (Islamabad)</option>
-          <option value="G-6/G-7/G-8/G-9">G-6 / G-7 / G-8 / G-9 (Islamabad)</option>
-          <option value="I-8/I-9/I-10/I-11">I-8 / I-9 / I-10 / I-11 (Islamabad)</option>
-          <option value="DHA Phase 1-5">DHA Phase 1-5 (Islamabad)</option>
-          <option value="Bahria Phase 1-8">Bahria Town Phase 1-8</option>
-          <option value="Gulberg Greens/PWD">Gulberg Greens / PWD</option>
-          <option value="Bani Gala/Bhara Kahu">Bani Gala / Bhara Kahu</option>
-          <option value="Saddar/Satellite Town">Saddar / Satellite Town (Rawalpindi)</option>
-          <option value="Adiala Road">Adiala Road (Rawalpindi)</option>
-          <option value="Chaklala Scheme">Chaklala Scheme (Rawalpindi)</option>
-          <option value="Westridge">Westridge (Rawalpindi)</option>
-          <option value="Murree Road">Murree Road Area (Rawalpindi)</option>
-          <option value="Other">Other Area</option>
-        </select>
-      </div>
-      <div style="margin-bottom:20px">
-        <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#888;margin-bottom:6px">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          Full Address
-        </label>
-        <textarea id="address" rows="2" placeholder="House #, Street, Sector" required style="resize:none"></textarea>
-      </div>
-      <button type="submit" class="btn-premium" style="width:100%;justify-content:center">
-        <span>Place Order via WhatsApp</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
-    </form>
+  <div class="table-container">
+    <table id="mainTableLayout">
+      <thead id="hTableHead">
+        <tr><th>Date</th><th>Client Name</th><th>Detail Ledger</th><th>Bill</th><th>Recv Amount</th><th>Balance Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="hTable"></tbody>
+    </table>
   </div>
 </div>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <button style="position:absolute;top:20px;right:20px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:white;cursor:pointer;border:none;z-index:10" onclick="event.stopPropagation();closeLightbox()">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-  </button>
-  <button style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:white;cursor:pointer;border:none" onclick="event.stopPropagation();prevLightbox()">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-  </button>
-  <button style="position:absolute;right:20px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:white;cursor:pointer;border:none" onclick="event.stopPropagation();nextLightbox()">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-  </button>
-  <img id="lightbox-img" src="" alt="" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px">
-  <div id="lightbox-caption" style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.7);font-size:14px;text-align:center"></div>
-</div>
-
-<!-- Mobile Nav -->
-<div id="mobile-nav" class="mobile-nav">
-  <button onclick="closeMobileNav()" style="position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:white;cursor:pointer;border:none">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-  </button>
-  <div id="mobile-nav-links" style="display:flex;flex-direction:column;align-items:center;gap:0;width:100%;max-width:300px"></div>
-</div>
-
-<!-- Navbar -->
-<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:50;transition:all 0.5s;padding:20px 0">
-  <div style="max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between">
-    <a href="#hero" onclick="scrollToSection('hero');return false" style="display:flex;align-items:center;gap:12px;text-decoration:none">
-      <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#e0c045,#b8962f);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(212,175,55,0.3)">
-        <span class="font-serif" style="color:#0f1a12;font-weight:700;font-size:18px">H</span>
-      </div>
-      <div>
-        <h1 class="font-serif" style="color:white;font-size:18px;font-weight:700;letter-spacing:0.5px">HENZO FARM</h1>
-        <p style="color:rgba(255,255,255,0.5);font-size:10px;letter-spacing:0.2em;text-transform:uppercase">Heritage Poultry</p>
-      </div>
-    </a>
-    <div style="display:none;lg:flex;align-items:center;gap:4px">
-      <button onclick="scrollToSection('hero')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Home</button>
-      <button onclick="scrollToSection('about')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Our Story</button>
-      <button onclick="scrollToSection('collections')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Collections</button>
-      <button onclick="scrollToSection('products')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Products</button>
-      <button onclick="scrollToSection('gallery')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Gallery</button>
-      <button onclick="scrollToSection('why-us')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Why Us</button>
-      <button onclick="scrollToSection('reviews')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Reviews</button>
-      <button onclick="scrollToSection('contact')" class="nav-link" style="padding:8px 16px;color:rgba(255,255,255,0.7);font-size:14px;font-weight:500;border-radius:8px;background:transparent;border:none;cursor:pointer;transition:all 0.3s">Contact</button>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px">
-      <a href="tel:+923115190548" style="display:none;md:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:99px;color:#D4AF37;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.3s">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        +92 311 5190548
-      </a>
-      <button onclick="scrollToSection('products')" style="display:flex;align-items:center;gap:8px;padding:10px 20px;background:#D4AF37;color:#0f1a12;border-radius:99px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 15px rgba(212,175,55,0.3)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <span style="display:none;sm:inline">Order Now</span>
-      </button>
-      <button onclick="openMobileNav()" style="display:flex;lg:none;width:40px;height:40px;align-items:center;justify-content:center;color:white;border-radius:8px;background:rgba(255,255,255,0.1);border:none;cursor:pointer">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section id="hero" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1B3022">
-  <div style="position:absolute;inset:0">
-    <div style="position:absolute;inset:0;background:url('images/hero_chickens.png') center/cover no-repeat"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,48,34,0.7) 0%,rgba(27,48,34,0.5) 50%,rgba(27,48,34,0.9) 100%)"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(27,48,34,0.6) 0%,transparent 100%)"></div>
-  </div>
-  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
-    <div class="animate-fade-in" style="position:absolute;width:8px;height:8px;background:rgba(212,175,55,0.3);border-radius:50%;left:15%;top:20%;animation:float 6s ease-in-out infinite"></div>
-    <div class="animate-fade-in delay-200" style="position:absolute;width:6px;height:6px;background:rgba(212,175,55,0.2);border-radius:50%;left:30%;top:40%;animation:float 5s ease-in-out infinite 1s"></div>
-    <div class="animate-fade-in delay-400" style="position:absolute;width:10px;height:10px;background:rgba(212,175,55,0.25);border-radius:50%;left:70%;top:25%;animation:float 7s ease-in-out infinite 0.5s"></div>
-    <div class="animate-fade-in delay-300" style="position:absolute;width:5px;height:5px;background:rgba(212,175,55,0.3);border-radius:50%;left:85%;top:55%;animation:float 4s ease-in-out infinite 2s"></div>
-    <div class="animate-fade-in delay-500" style="position:absolute;width:7px;height:7px;background:rgba(212,175,55,0.2);border-radius:50%;left:50%;top:70%;animation:float 6s ease-in-out infinite 1.5s"></div>
-  </div>
-  <div style="position:relative;z-index:10;max-width:900px;margin:0 auto;padding:0 24px;text-align:center;padding-top:80px">
-    <div class="animate-fade-in-up" style="display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:99px;margin-bottom:32px">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
-      <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Islamabad's Finest Heritage Farm</span>
-    </div>
-    <h1 class="animate-fade-in-up delay-200 font-serif" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;color:white;line-height:1.1;margin-bottom:24px">
-      Pure Pasture-Raised<br><span class="text-gradient-gold">Excellence</span>
-    </h1>
-    <p class="animate-fade-in-up delay-300" style="color:rgba(255,255,255,0.6);font-size:clamp(1rem,2vw,1.25rem);max-width:600px;margin:0 auto 32px;line-height:1.7">
-      Heritage poultry raised with integrity. From our pastures in Pindorian Shareef to your table — delivering the finest organic eggs and pure-bred heritage chickens.
-    </p>
-    <div class="animate-fade-in-up delay-400" style="display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(212,175,55,0.8);font-size:14px;margin-bottom:40px">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a7 7 0 0 1 0 14 7 7 0 0 1 0-14z"></path><path d="M12 2v20"></path></svg>
-      <span>Pindorian Shareef, Islamabad</span>
-    </div>
-    <div class="animate-fade-in-up delay-500" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px">
-      <button onclick="scrollToSection('collections')" class="btn-premium group">
-        <span>Explore Our Breeds</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.3s"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </button>
-      <button onclick="scrollToSection('products')" class="btn-premium btn-outline">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a7 7 0 0 1 0 14 7 7 0 0 1 0-14z"></path><path d="M12 2v20"></path></svg>
-        <span>Order Fresh Eggs</span>
-      </button>
-    </div>
-    <div class="animate-fade-in-up delay-600" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:500px;margin:80px auto 0">
-      <div style="text-align:center">
-        <div class="font-serif" style="font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#D4AF37">3</div>
-        <div style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:4px">Heritage Breeds</div>
-      </div>
-      <div style="text-align:center">
-        <div class="font-serif" style="font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#D4AF37">100%</div>
-        <div style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:4px">Organic Feed</div>
-      </div>
-      <div style="text-align:center">
-        <div class="font-serif" style="font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#D4AF37">5K+</div>
-        <div style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:4px">Happy Customers</div>
-      </div>
-    </div>
-  </div>
-  <div class="animate-fade-in delay-700" style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.3)">
-    <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase">Scroll</span>
-    <div class="scroll-bounce">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </div>
-  </div>
-  <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,#FFFBF5,transparent)"></div>
-</section>
-
-<!-- About Section -->
-<section id="about" style="position:relative;padding:96px 0;background:#FFFBF5;overflow:hidden">
-  <div style="position:absolute;top:0;right:0;width:400px;height:400px;background:rgba(212,175,55,0.05);border-radius:50%;filter:blur(80px)"></div>
-  <div style="position:absolute;bottom:0;left:0;width:300px;height:300px;background:rgba(27,48,34,0.05);border-radius:50%;filter:blur(80px)"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="display:grid;lg:grid-cols-2;gap:64px;align-items:center">
-      <div class="reveal-left" style="position:relative">
-        <div style="position:relative;border-radius:24px;overflow:hidden;box-shadow:0 25px 80px rgba(27,48,34,0.15)">
-          <div style="aspect-ratio:4/5;background:#1B3022">
-            <img src="images/farm_pasture.png" alt="Henzo Farm - Heritage poultry in green pastures" style="width:100%;height:100%;object-fit:cover">
-          </div>
-          <div style="position:absolute;bottom:24px;left:24px;right:24px;padding:20px;background:rgba(27,48,34,0.8);backdrop-filter:blur(20px);border-radius:16px;border:1px solid rgba(255,255,255,0.1)">
-            <div style="display:flex;align-items:center;gap:16px">
-              <div style="width:48px;height:48px;border-radius:50%;background:#D4AF37;display:flex;align-items:center;justify-content:center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B3022" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-              </div>
-              <div>
-                <p style="color:white;font-weight:700;font-size:14px">Established 2020</p>
-                <p style="color:rgba(255,255,255,0.5);font-size:12px">Pindorian Shareef, Islamabad</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="reveal" style="position:absolute;bottom:-32px;right:-16px;sm:right:32px;background:white;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.1);padding:20px;max-width:200px">
-          <div class="font-serif" style="font-size:32px;font-weight:700;color:#1B3022">6+</div>
-          <p style="color:#4a7a4a;font-size:13px;margin-top:4px">Years of Heritage Breeding Excellence</p>
-        </div>
-      </div>
-      <div>
-        <div class="reveal">
-          <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Our Story</span>
-          <h2 class="font-serif" style="font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#1B3022;margin-top:12px;line-height:1.2">
-            Where Heritage<br><span class="text-gradient-forest">Meets Excellence</span>
-          </h2>
-        </div>
-        <div class="reveal" style="margin-top:32px">
-          <p style="color:#4a7a4a;font-size:16px;line-height:1.8;margin-bottom:16px">
-            Founded by <strong style="color:#1B3022">Maaz Mustafa Minhas</strong>, Henzo Farm was born from a vision to restore the tradition of pure heritage poultry breeding in the heart of Islamabad.
-          </p>
-          <p style="color:#4a7a4a;font-size:16px;line-height:1.8;margin-bottom:16px">
-            Nestled in the pristine foothills of <strong>Pindorian Shareef</strong>, our farm specializes in three world-class heritage breeds — the record-breaking <strong>Black Australorp</strong>, the resilient <strong>Rhode Island Red</strong>, and the beloved <strong>Misri</strong>.
-          </p>
-          <p style="color:#1B3022;font-style:italic;font-weight:600;border-left:3px solid #D4AF37;padding-left:16px">
-            "Healthy Birds. Healthy Life."
-          </p>
-        </div>
-        <div class="reveal" style="margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
-          <div style="padding:20px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
-            <h4 style="font-weight:700;color:#1B3022;font-size:14px;margin-bottom:4px">100% Organic</h4>
-            <p style="color:#888;font-size:12px">No chemicals, no hormones, pure natural diet</p>
-          </div>
-          <div style="padding:20px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg>
-            <h4 style="font-weight:700;color:#1B3022;font-size:14px;margin-bottom:4px">Pasture Raised</h4>
-            <p style="color:#888;font-size:12px">Open air freedom every day in Pindorian</p>
-          </div>
-          <div style="padding:20px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            <h4 style="font-weight:700;color:#1B3022;font-size:14px;margin-bottom:4px">Vaccinated</h4>
-            <p style="color:#888;font-size:12px">All chicks vaccinated, health-checked</p>
-          </div>
-          <div style="padding:20px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-            <h4 style="font-weight:700;color:#1B3022;font-size:14px;margin-bottom:4px">Free Delivery</h4>
-            <p style="color:#888;font-size:12px">Free in Pindorian. Rs 200 for others</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Breed Collections -->
-<section id="collections" style="position:relative;padding:96px 0;background:#1B3022;overflow:hidden">
-  <div style="position:absolute;inset:0;opacity:0.03;background-image:url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="text-align:center;margin-bottom:64px">
-      <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Premium Collections</span>
-      <h2 class="font-serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:white;margin-top:16px;line-height:1.1">
-        Heritage Breed<br><span class="text-gradient-gold">Collections</span>
-      </h2>
-      <p style="color:rgba(255,255,255,0.4);margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto">
-        Each breed is a masterpiece of selective breeding, raised with care and delivered with pride.
-      </p>
-      <div class="section-divider" style="margin-top:32px"></div>
-    </div>
-    <div style="display:grid;md:grid-cols-3;gap:32px">
-      <!-- Australorp -->
-      <div class="breed-card reveal" onclick="openBreedModal('australorp')">
-        <div style="position:relative;height:320px;overflow:hidden">
-          <img src="images/australorp_hen.jpg" alt="Black Australorp Hen" style="width:100%;height:100%;object-fit:cover">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,#1B3022,transparent 60%)"></div>
-          <span style="position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:99px;font-size:11px;font-weight:700;color:white;background:#22c55e">Record Layer</span>
-        </div>
-        <div style="padding:24px">
-          <h3 class="font-serif" style="font-size:24px;font-weight:700;color:white;margin-bottom:8px">Black Australorp</h3>
-          <p style="color:rgba(255,255,255,0.5);font-size:14px;line-height:1.6;margin-bottom:16px">World-record holder for egg productivity with a stunning beetle-green sheen.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Record Egg Yield</span>
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Gentle Nature</span>
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Climate Hardy</span>
-          </div>
-          <button style="width:100%;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#D4AF37;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="this.style.background='rgba(212,175,55,0.1');this.style.borderColor='rgba(212,175,55,0.3')" onmouseout="this.style.background='rgba(255,255,255,0.05');this.style.borderColor='rgba(255,255,255,0.1')">
-            Explore Collection
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
-        </div>
-      </div>
-      <!-- RIR -->
-      <div class="breed-card reveal" onclick="openBreedModal('rir')">
-        <div style="position:relative;height:320px;overflow:hidden">
-          <img src="images/rir_hen.jpg" alt="Rhode Island Red Hen" style="width:100%;height:100%;object-fit:cover">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,#1B3022,transparent 60%)"></div>
-          <span style="position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:99px;font-size:11px;font-weight:700;color:white;background:#e11d48">Heritage Classic</span>
-        </div>
-        <div style="padding:24px">
-          <h3 class="font-serif" style="font-size:24px;font-weight:700;color:white;margin-bottom:8px">Rhode Island Red</h3>
-          <p style="color:rgba(255,255,255,0.5);font-size:14px;line-height:1.6;margin-bottom:16px">The ultimate dual-purpose heritage breed with unmatched resilience.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Climate Immune</span>
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Mahogany Plumage</span>
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Steady Laying</span>
-          </div>
-          <button style="width:100%;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#D4AF37;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="this.style.background='rgba(212,175,55,0.1');this.style.borderColor='rgba(212,175,55,0.3')" onmouseout="this.style.background='rgba(255,255,255,0.05');this.style.borderColor='rgba(255,255,255,0.1')">
-            Explore Collection
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
-        </div>
-      </div>
-      <!-- Misri -->
-      <div class="breed-card reveal" onclick="openBreedModal('misri')">
-        <div style="position:relative;height:320px;overflow:hidden">
-          <img src="images/fayoumi_chick.jpg" alt="Misri Chick" style="width:100%;height:100%;object-fit:cover">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,#1B3022,transparent 60%)"></div>
-          <span style="position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:99px;font-size:11px;font-weight:700;color:white;background:#f59e0b">Local Favorite</span>
-        </div>
-        <div style="padding:24px">
-          <h3 class="font-serif" style="font-size:24px;font-weight:700;color:white;margin-bottom:8px">Misri</h3>
-          <p style="color:rgba(255,255,255,0.5);font-size:14px;line-height:1.6;margin-bottom:16px">Pakistan's favorite backyard breed — hardy, productive, and deeply traditional.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Local Adapted</span>
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Heat Resistant</span>
-            <span style="padding:4px 12px;background:rgba(255,255,255,0.05);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1)">Low Cost</span>
-          </div>
-          <button style="width:100%;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#D4AF37;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="this.style.background='rgba(212,175,55,0.1');this.style.borderColor='rgba(212,175,55,0.3')" onmouseout="this.style.background='rgba(255,255,255,0.05');this.style.borderColor='rgba(255,255,255,0.1')">
-            Explore Collection
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Egg Showcase -->
-<section id="egg-showcase" style="position:relative;padding:96px 0;background:#FFFBF5;overflow:hidden">
-  <div style="position:absolute;top:20px;left:0;width:300px;height:300px;background:rgba(212,175,55,0.05);border-radius:50%;filter:blur(80px)"></div>
-  <div style="position:absolute;bottom:20px;right:0;width:400px;height:400px;background:rgba(27,48,34,0.05);border-radius:50%;filter:blur(80px)"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="display:grid;lg:grid-cols-2;gap:64px;align-items:center">
-      <div>
-        <div class="reveal">
-          <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Golden Harvest</span>
-          <h2 class="font-serif" style="font-size:clamp(2rem,4vw,3.5rem);font-weight:700;color:#1B3022;margin-top:16px;line-height:1.2">
-            Pasture-Raised<br><span class="text-gradient-forest">Organic Eggs</span>
-          </h2>
-        </div>
-        <p class="reveal" style="color:#4a7a4a;font-size:18px;line-height:1.8;margin-top:24px">
-          Harvested fresh every morning from our free-range heritage flocks. Rich in organic nutrients, omega-3 fatty acids, and premium protein.
-        </p>
-        <div class="reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px">
-          <div style="display:flex;align-items:start;gap:12px;padding:16px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg>
-            </div>
-            <div>
-              <h4 style="font-weight:700;color:#1B3022;font-size:14px">Pasture Raised</h4>
-              <p style="color:#888;font-size:12px;margin-top:2px">Free-range on open green fields daily</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:start;gap:12px;padding:16px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
-            </div>
-            <div>
-              <h4 style="font-weight:700;color:#1B3022;font-size:14px">Golden Yolk</h4>
-              <p style="color:#888;font-size:12px;margin-top:2px">Rich, deep golden color from natural diet</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:start;gap:12px;padding:16px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
-            </div>
-            <div>
-              <h4 style="font-weight:700;color:#1B3022;font-size:14px">Zero Chemicals</h4>
-              <p style="color:#888;font-size:12px;margin-top:2px">No hormones, no antibiotics, no additives</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:start;gap:12px;padding:16px;border-radius:16px;background:white;border:1px solid #e5e5e5;transition:all 0.3s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-            <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            </div>
-            <div>
-              <h4 style="font-weight:700;color:#1B3022;font-size:14px">Daily Fresh</h4>
-              <p style="color:#888;font-size:12px;margin-top:2px">Collected every morning before sunrise</p>
-            </div>
-          </div>
-        </div>
-        <div class="reveal" style="margin-top:32px">
-          <button onclick="scrollToSection('products')" class="btn-premium group">
-            <span>Order Fresh Eggs</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.3s"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </button>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative">
-        <div style="border-radius:24px;overflow:hidden;box-shadow:0 25px 80px rgba(27,48,34,0.15)">
-          <img src="images/golden_eggs.png" alt="Fresh organic pasture-raised eggs" style="width:100%;aspect-ratio:4/3;object-fit:cover">
-        </div>
-        <div class="reveal" style="position:absolute;bottom:-24px;left:-16px;sm:left:16px;background:white;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.1);padding:20px;max-width:220px">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a7 7 0 0 1 0 14 7 7 0 0 1 0-14z"></path><path d="M12 2v20"></path></svg>
-            <span style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.05em">Best Value</span>
-          </div>
-          <div class="font-serif" style="font-size:24px;font-weight:700;color:#1B3022">5 Dozen Pack</div>
-          <div style="color:#D4AF37;font-weight:700">Rs 2,250</div>
-          <div style="color:#888;font-size:12px;margin-top:2px">Rs 37.5 per egg</div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(2,1fr);sm:grid-cols-4;gap:12px;margin-top:80px">
-      <div style="padding:20px;border-radius:16px;border:2px solid #e5e5e5;background:white;text-align:center;transition:all 0.3s;cursor:pointer" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div class="font-serif" style="font-size:20px;font-weight:700;color:#1B3022">1 Dozen</div>
-        <div style="color:#888;font-size:12px;margin-top:4px">12 Eggs</div>
-        <div style="color:#D4AF37;font-weight:700;margin-top:8px">Rs 450</div>
-      </div>
-      <div style="padding:20px;border-radius:16px;border:2px solid #e5e5e5;background:white;text-align:center;transition:all 0.3s;cursor:pointer" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div class="font-serif" style="font-size:20px;font-weight:700;color:#1B3022">2 Dozen</div>
-        <div style="color:#888;font-size:12px;margin-top:4px">24 Eggs</div>
-        <div style="color:#D4AF37;font-weight:700;margin-top:8px">Rs 900</div>
-      </div>
-      <div style="padding:20px;border-radius:16px;border:2px solid #D4AF37;background:rgba(212,175,55,0.05);text-align:center;transition:all 0.3s;cursor:pointer;position:relative" onmouseover="this.style.boxShadow='0 10px 40px rgba(212,175,55,0.2')" onmouseout="this.style.boxShadow='none'">
-        <span style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);padding:2px 10px;background:#D4AF37;color:#0f1a12;font-size:10px;font-weight:700;border-radius:99px;text-transform:uppercase;letter-spacing:0.05em">Popular</span>
-        <div class="font-serif" style="font-size:20px;font-weight:700;color:#1B3022">5 Dozen</div>
-        <div style="color:#888;font-size:12px;margin-top:4px">60 Eggs</div>
-        <div style="color:#D4AF37;font-weight:700;margin-top:8px">Rs 2,250</div>
-      </div>
-      <div style="padding:20px;border-radius:16px;border:2px solid #e5e5e5;background:white;text-align:center;transition:all 0.3s;cursor:pointer" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 10px 40px rgba(0,0,0,0.08')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div class="font-serif" style="font-size:20px;font-weight:700;color:#1B3022">10 Dozen</div>
-        <div style="color:#888;font-size:12px;margin-top:4px">120 Eggs</div>
-        <div style="color:#D4AF37;font-weight:700;margin-top:8px">Rs 4,400</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Products Section -->
-<section id="products" style="position:relative;padding:96px 0;background:#FFFBF5">
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="text-align:center;margin-bottom:48px">
-      <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Farm Fresh</span>
-      <h2 class="font-serif" style="font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#1B3022;margin-top:16px">
-        Our <span class="text-gradient-forest">Products</span>
-      </h2>
-      <p style="color:#4a7a4a;margin-top:16px;max-width:500px;margin-left:auto;margin-right:auto">
-        Select from our premium range of organic eggs and heritage poultry.
-      </p>
-    </div>
-    <div class="reveal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:48px">
-      <button onclick="filterProducts('all', this)" class="cat-pill active">All Products</button>
-      <button onclick="filterProducts('eggs', this)" class="cat-pill">🥚 Eggs</button>
-      <button onclick="filterProducts('australorp', this)" class="cat-pill">🐔 Australorp</button>
-      <button onclick="filterProducts('rir', this)" class="cat-pill">🐓 RIR</button>
-      <button onclick="filterProducts('misri', this)" class="cat-pill">🐤 Misri</button>
-    </div>
-    <div id="products-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px"></div>
-  </div>
-</section>
-
-<!-- Gallery Section -->
-<section id="gallery" style="position:relative;padding:96px 0;background:#1B3022;overflow:hidden">
-  <div style="position:absolute;inset:0;opacity:0.03;background-image:url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="text-align:center;margin-bottom:64px">
-      <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Farm Life</span>
-      <h2 class="font-serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:white;margin-top:16px;line-height:1.1">
-        A Glimpse Into<br><span class="text-gradient-gold">Our World</span>
-      </h2>
-      <p style="color:rgba(255,255,255,0.4);margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto">
-        Every sunrise brings a new harvest. Every bird is raised with intention.
-      </p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);md:grid-cols-3;gap:16px">
-      <div class="gallery-item reveal" style="grid-row:span 2" onclick="openLightbox(0)">
-        <img src="images/hero_chickens.png" alt="Heritage chickens in pasture" style="width:100%;height:100%;object-fit:cover;aspect-ratio:3/4">
-      </div>
-      <div class="gallery-item reveal" onclick="openLightbox(1)">
-        <img src="images/australorp_rooster.jpg" alt="Australorp Rooster" style="width:100%;aspect-ratio:1;object-fit:cover">
-      </div>
-      <div class="gallery-item reveal" onclick="openLightbox(2)">
-        <img src="images/pasture_raised_eggs.jpg" alt="Pasture Raised Eggs" style="width:100%;aspect-ratio:1;object-fit:cover">
-      </div>
-      <div class="gallery-item reveal" onclick="openLightbox(3)">
-        <img src="images/rir_rooster.jpg" alt="RIR Rooster" style="width:100%;aspect-ratio:1;object-fit:cover">
-      </div>
-      <div class="gallery-item reveal" style="grid-row:span 2" onclick="openLightbox(4)">
-        <img src="images/farm_pasture.png" alt="Farm Pasture" style="width:100%;height:100%;object-fit:cover;aspect-ratio:3/4">
-      </div>
-      <div class="gallery-item reveal" onclick="openLightbox(5)">
-        <img src="images/organic_feed.png" alt="Organic Feed" style="width:100%;aspect-ratio:1;object-fit:cover">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Why Choose Us -->
-<section id="why-us" style="position:relative;padding:96px 0;background:#FFFBF5;overflow:hidden">
-  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:rgba(212,175,55,0.05);border-radius:50%;filter:blur(100px)"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="text-align:center;margin-bottom:64px">
-      <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Our Promise</span>
-      <h2 class="font-serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:#1B3022;margin-top:16px;line-height:1.1">
-        Why Choose<br><span class="text-gradient-forest">Henzo Farm?</span>
-      </h2>
-      <p style="color:#4a7a4a;margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto;font-size:18px">
-        We don't just sell poultry. We deliver a commitment to quality, ethics, and heritage.
-      </p>
-    </div>
-    <div style="display:grid;sm:grid-cols-2;lg:grid-cols-4;gap:24px">
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">100% Organic Feed</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">No chemicals, no hormones. Only pure, natural feed for our heritage flock.</p>
-      </div>
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#fefce8;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">Pasture Raised Daily</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">Every bird enjoys open-air freedom on our lush green pastures daily.</p>
-      </div>
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#eff6ff;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">Vaccinated & Certified</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">All chicks receive standard vaccinations. Complete records provided.</p>
-      </div>
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#fff7ed;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">Free Delivery</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">Free in Pindorian. Free over Rs 1,999 across Islamabad & Rawalpindi.</p>
-      </div>
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#fef2f2;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">Ethical Husbandry</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">Raised with dignity. Ample space, natural nesting, stress-free environments.</p>
-      </div>
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#faf5ff;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">Heritage Bloodlines</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">Pure-bred bloodlines maintained through generations of selective breeding.</p>
-      </div>
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#ecfeff;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">Same-Day Freshness</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">Eggs collected every morning and delivered same day. Under 12 hours.</p>
-      </div>
-      <div class="reveal" style="padding:24px;border-radius:20px;background:white;border:1px solid #e5e5e5;transition:all 0.5s" onmouseover="this.style.borderColor='#D4AF37';this.style.boxShadow='0 20px 60px rgba(0,0,0,0.1')" onmouseout="this.style.borderColor='#e5e5e5';this.style.boxShadow='none'">
-        <div style="width:56px;height:56px;border-radius:16px;background:#eef2ff;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
-        </div>
-        <h3 style="font-weight:700;color:#1B3022;font-size:16px;margin-bottom:8px">Clean Water & Sanitation</h3>
-        <p style="color:#888;font-size:13px;line-height:1.6">Fresh filtered water always. Coops cleaned daily with natural disinfectants.</p>
-      </div>
-    </div>
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(2,1fr);md:grid-cols-4;gap:24px;margin-top:80px">
-      <div style="text-align:center;padding:24px;border-radius:20px;background:#1B3022;color:white">
-        <div class="font-serif" style="font-size:36px;font-weight:700;color:#D4AF37">6+</div>
-        <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px">Years of Excellence</div>
-      </div>
-      <div style="text-align:center;padding:24px;border-radius:20px;background:#1B3022;color:white">
-        <div class="font-serif" style="font-size:36px;font-weight:700;color:#D4AF37">3</div>
-        <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px">Heritage Breeds</div>
-      </div>
-      <div style="text-align:center;padding:24px;border-radius:20px;background:#1B3022;color:white">
-        <div class="font-serif" style="font-size:36px;font-weight:700;color:#D4AF37">5,000+</div>
-        <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px">Happy Customers</div>
-      </div>
-      <div style="text-align:center;padding:24px;border-radius:20px;background:#1B3022;color:white">
-        <div class="font-serif" style="font-size:36px;font-weight:700;color:#D4AF37">100%</div>
-        <div style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px">Organic Feed</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Process Section -->
-<section id="process" style="position:relative;padding:96px 0;background:#1B3022;overflow:hidden">
-  <div style="position:absolute;inset:0;opacity:0.02;background-image:url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="text-align:center;margin-bottom:80px">
-      <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">From Farm to Table</span>
-      <h2 class="font-serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:white;margin-top:16px;line-height:1.1">
-        Our Farm<br><span class="text-gradient-gold">Process</span>
-      </h2>
-      <p style="color:rgba(255,255,255,0.4);margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto">
-        Transparency is our policy. Every step is designed with care and precision.
-      </p>
-    </div>
-    <div style="position:relative;max-width:800px;margin:0 auto">
-      <div class="timeline-line"></div>
-      <div class="reveal" style="position:relative;padding-left:80px;md:padding-left:0;margin-bottom:48px">
-        <div style="position:absolute;left:16px;md:left:50%;md:transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:#1B3022;border:2px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 20px rgba(212,175,55,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg>
-        </div>
-        <div style="md:text-center;md:px-12">
-          <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">5:00 AM</span>
-          <h3 class="font-serif" style="font-size:20px;font-weight:700;color:white;margin-top:4px">Morning Harvest</h3>
-          <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.6;margin-top:8px;max-width:400px;md:mx-auto">Every day begins before sunrise. Our team collects fresh eggs from naturally nesting hens.</p>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative;padding-left:80px;md:padding-left:0;margin-bottom:48px">
-        <div style="position:absolute;left:16px;md:left:50%;md:transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:#1B3022;border:2px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 20px rgba(212,175,55,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"></path><path d="M10 20c5.5-2.5.8-6.4 3-10"></path><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7"></path><path d="M14.1 6.7c.8.8 2.1 1.6 2.9 1.9"></path><path d="M17 4c-1.1 1.1-2.8 2.4-3.5 3.5"></path><path d="M14.5 2c-1.1 1.1-2.8 2.4-3.5 3.5"></path></svg>
-        </div>
-        <div style="md:text-center;md:px-12">
-          <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">7:00 AM</span>
-          <h3 class="font-serif" style="font-size:20px;font-weight:700;color:white;margin-top:4px">Organic Feeding</h3>
-          <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.6;margin-top:8px;max-width:400px;md:mx-auto">Birds are fed organic grains, fresh greens, and clean water. No chemicals, no hormones.</p>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative;padding-left:80px;md:padding-left:0;margin-bottom:48px">
-        <div style="position:absolute;left:16px;md:left:50%;md:transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:#1B3022;border:2px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 20px rgba(212,175,55,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        </div>
-        <div style="md:text-center;md:px-12">
-          <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">9:00 AM</span>
-          <h3 class="font-serif" style="font-size:20px;font-weight:700;color:white;margin-top:4px">Health Check</h3>
-          <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.6;margin-top:8px;max-width:400px;md:mx-auto">Each bird undergoes daily wellness inspection by our veterinary partner.</p>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative;padding-left:80px;md:padding-left:0;margin-bottom:48px">
-        <div style="position:absolute;left:16px;md:left:50%;md:transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:#1B3022;border:2px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 20px rgba(212,175,55,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-        </div>
-        <div style="md:text-center;md:px-12">
-          <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">10:00 AM</span>
-          <h3 class="font-serif" style="font-size:20px;font-weight:700;color:white;margin-top:4px">Quality Grading</h3>
-          <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.6;margin-top:8px;max-width:400px;md:mx-auto">Eggs are graded by size, shell quality, and yolk color. Only the finest make it.</p>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative;padding-left:80px;md:padding-left:0;margin-bottom:48px">
-        <div style="position:absolute;left:16px;md:left:50%;md:transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:#1B3022;border:2px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 20px rgba(212,175,55,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-        </div>
-        <div style="md:text-center;md:px-12">
-          <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">11:00 AM</span>
-          <h3 class="font-serif" style="font-size:20px;font-weight:700;color:white;margin-top:4px">Careful Packing</h3>
-          <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.6;margin-top:8px;max-width:400px;md:mx-auto">Each egg is individually cushioned in biodegradable packaging.</p>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative;padding-left:80px;md:padding-left:0;margin-bottom:48px">
-        <div style="position:absolute;left:16px;md:left:50%;md:transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:#1B3022;border:2px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 20px rgba(212,175,55,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-        </div>
-        <div style="md:text-center;md:px-12">
-          <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">12:00 PM</span>
-          <h3 class="font-serif" style="font-size:20px;font-weight:700;color:white;margin-top:4px">Same-Day Delivery</h3>
-          <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.6;margin-top:8px;max-width:400px;md:mx-auto">Orders dispatched within hours. Covers all of Islamabad and Rawalpindi.</p>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative;padding-left:80px;md:padding-left:0">
-        <div style="position:absolute;left:16px;md:left:50%;md:transform:translateX(-50%);width:48px;height:48px;border-radius:50%;background:#1B3022;border:2px solid rgba(212,175,55,0.5);display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 0 20px rgba(212,175,55,0.2)">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-        </div>
-        <div style="md:text-center;md:px-12">
-          <span style="color:#D4AF37;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">Next Day</span>
-          <h3 class="font-serif" style="font-size:20px;font-weight:700;color:white;margin-top:4px">Customer Follow-Up</h3>
-          <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.6;margin-top:8px;max-width:400px;md:mx-auto">We follow up within 24 hours to ensure perfect delivery.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonials -->
-<section id="reviews" style="position:relative;padding:96px 0;background:#FFFBF5;overflow:hidden">
-  <div style="position:absolute;top:0;right:0;width:400px;height:400px;background:rgba(212,175,55,0.05);border-radius:50%;filter:blur(80px)"></div>
-  <div style="position:absolute;bottom:0;left:0;width:300px;height:300px;background:rgba(27,48,34,0.05);border-radius:50%;filter:blur(80px)"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="text-align:center;margin-bottom:64px">
-      <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Testimonials</span>
-      <h2 class="font-serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:#1B3022;margin-top:16px;line-height:1.1">
-        What Our<br><span class="text-gradient-forest">Customers Say</span>
-      </h2>
-      <p style="color:#4a7a4a;margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto">
-        Real reviews from real customers across Islamabad and Rawalpindi.
-      </p>
-    </div>
-    <div style="display:grid;md:grid-cols-2;lg:grid-cols-3;gap:24px">
-      <div class="testimonial-card reveal">
-        <div style="color:#D4AF37;font-size:18px;margin-bottom:12px">★★★★★</div>
-        <p style="font-size:15px;line-height:1.7;color:#555;margin-bottom:16px">"Best eggs in Islamabad! The yolk is so golden and rich. My kids absolutely love them. Delivery was same day to Bahria Town."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#1B3022;display:flex;align-items:center;justify-content:center;color:#D4AF37;font-weight:700;font-size:14px">AR</div>
-          <div>
-            <p style="font-weight:700;color:#1B3022;font-size:14px">Ali Raza</p>
-            <p style="font-size:12px;color:#888">Bahria Town, Islamabad</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal">
-        <div style="color:#D4AF37;font-size:18px;margin-bottom:12px">★★★★★</div>
-        <p style="font-size:15px;line-height:1.7;color:#555;margin-bottom:16px">"Bought 5 Australorp hens last month. All healthy, vaccinated, and already laying beautiful brown eggs! Maaz is very knowledgeable."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#1B3022;display:flex;align-items:center;justify-content:center;color:#D4AF37;font-weight:700;font-size:14px">SK</div>
-          <div>
-            <p style="font-weight:700;color:#1B3022;font-size:14px">Sarah Khan</p>
-            <p style="font-size:12px;color:#888">DHA Phase 2, Islamabad</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal">
-        <div style="color:#D4AF37;font-size:18px;margin-bottom:12px">★★★★★</div>
-        <p style="font-size:15px;line-height:1.7;color:#555;margin-bottom:16px">"Fast delivery to Rawalpindi. Chickens were properly vaccinated and Maaz gave me a full feeding guide. Highly recommended!"</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#1B3022;display:flex;align-items:center;justify-content:center;color:#D4AF37;font-weight:700;font-size:14px">UM</div>
-          <div>
-            <p style="font-weight:700;color:#1B3022;font-size:14px">Usman Malik</p>
-            <p style="font-size:12px;color:#888">Saddar, Rawalpindi</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal">
-        <div style="color:#D4AF37;font-size:18px;margin-bottom:12px">★★★★★</div>
-        <p style="font-size:15px;line-height:1.7;color:#555;margin-bottom:16px">"I've been ordering from Henzo Farm for over a year now. The consistency in quality is remarkable. Every egg has that deep golden yolk."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#1B3022;display:flex;align-items:center;justify-content:center;color:#D4AF37;font-weight:700;font-size:14px">FH</div>
-          <div>
-            <p style="font-weight:700;color:#1B3022;font-size:14px">Fatima Hassan</p>
-            <p style="font-size:12px;color:#888">F-11, Islamabad</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal">
-        <div style="color:#D4AF37;font-size:18px;margin-bottom:12px">★★★★★</div>
-        <p style="font-size:15px;line-height:1.7;color:#555;margin-bottom:16px">"Purchased a RIR breeding pair and the results have been outstanding. The rooster is magnificent and the hens are laying consistently."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#1B3022;display:flex;align-items:center;justify-content:center;color:#D4AF37;font-weight:700;font-size:14px">IQ</div>
-          <div>
-            <p style="font-weight:700;color:#1B3022;font-size:14px">Imran Qureshi</p>
-            <p style="font-size:12px;color:#888">Gulberg Greens, Islamabad</p>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card reveal">
-        <div style="color:#D4AF37;font-size:18px;margin-bottom:12px">★★★★★</div>
-        <p style="font-size:15px;line-height:1.7;color:#555;margin-bottom:16px">"As a nutritionist, I can tell the difference in quality immediately. These eggs have significantly higher omega-3 content."</p>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="width:44px;height:44px;border-radius:50%;background:#1B3022;display:flex;align-items:center;justify-content:center;color:#D4AF37;font-weight:700;font-size:14px">AS</div>
-          <div>
-            <p style="font-weight:700;color:#1B3022;font-size:14px">Ayesha Siddiqui</p>
-            <p style="font-size:12px;color:#888">PWD, Islamabad</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" style="position:relative;padding:96px 0;background:#1B3022;overflow:hidden">
-  <div style="position:absolute;inset:0;opacity:0.02;background-image:url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
-  <div class="reveal" style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="display:grid;lg:grid-cols-2;gap:64px;align-items:center">
-      <div>
-        <div class="reveal">
-          <span style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase">Get In Touch</span>
-          <h2 class="font-serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:white;margin-top:16px;line-height:1.1">
-            Ready to<br><span class="text-gradient-gold">Order?</span>
-          </h2>
-        </div>
-        <p class="reveal" style="color:rgba(255,255,255,0.5);margin-top:24px;font-size:18px;line-height:1.7">
-          Whether you are looking for fresh organic eggs, heritage chicks, or breeding pairs — we are just a message away.
-        </p>
-        <div class="reveal" style="margin-top:40px">
-          <a href="tel:+923115190548" style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);text-decoration:none;transition:all 0.3s;margin-bottom:16px" onmouseover="this.style.borderColor='rgba(212,175,55,0.3');this.style.background='rgba(255,255,255,0.1')" onmouseout="this.style.borderColor='rgba(255,255,255,0.1');this.style.background='rgba(255,255,255,0.05')">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            </div>
-            <div>
-              <p style="color:rgba(255,255,255,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.05em">Call Us</p>
-              <p style="color:white;font-weight:600;font-size:16px">+92 311 5190548</p>
-            </div>
-          </a>
-          <a href="https://wa.me/923115190548" target="_blank" style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);text-decoration:none;transition:all 0.3s;margin-bottom:16px" onmouseover="this.style.borderColor='rgba(34,197,94,0.3');this.style.background='rgba(255,255,255,0.1')" onmouseout="this.style.borderColor='rgba(255,255,255,0.1');this.style.background='rgba(255,255,255,0.05')">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(34,197,94,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-            </div>
-            <div>
-              <p style="color:rgba(255,255,255,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.05em">WhatsApp</p>
-              <p style="color:white;font-weight:600;font-size:16px">+92 311 5190548</p>
-            </div>
-          </a>
-          <div style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:16px">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            </div>
-            <div>
-              <p style="color:rgba(255,255,255,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.05em">Farm Address</p>
-              <p style="color:white;font-weight:600;font-size:16px">Shed No 1, Minhas Street, Pindorian Shareef, Islamabad</p>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:16px;padding:20px;border-radius:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1)">
-            <div style="width:48px;height:48px;border-radius:12px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            </div>
-            <div>
-              <p style="color:rgba(255,255,255,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.05em">Working Hours</p>
-              <p style="color:white;font-weight:600;font-size:16px">Mon-Sat: 7AM - 7PM | Sun: 8AM - 2PM</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal" style="position:relative">
-        <div style="border-radius:24px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.3)">
-          <img src="images/pasture_raised_eggs.jpg" alt="Henzo Farm Pasture Raised Eggs" style="width:100%;aspect-ratio:4/5;object-fit:cover">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,#1B3022,transparent 60%)"></div>
-          <div style="position:absolute;bottom:0;left:0;right:0;padding:32px">
-            <h3 class="font-serif" style="font-size:24px;font-weight:700;color:white;margin-bottom:12px">Visit Our Farm</h3>
-            <p style="color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:24px;line-height:1.6">Experience the Henzo Farm difference firsthand. Schedule a visit to see our heritage breeds in their natural pasture environment.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:12px">
-              <button onclick="scrollToSection('products')" class="btn-premium btn-gold">
-                <span>Order Now</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
-              <a href="https://wa.me/923115190548" target="_blank" class="btn-premium btn-outline" style="text-decoration:none">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                <span>WhatsApp Us</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer style="position:relative;background:#0f1a12;padding:80px 0 32px;overflow:hidden">
-  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,0.3),transparent)"></div>
-  <div style="max-width:1280px;margin:0 auto;padding:0 24px">
-    <div style="display:grid;md:grid-cols-2;lg:grid-cols-4;gap:48px;margin-bottom:64px">
-      <div>
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#e0c045,#b8962f);display:flex;align-items:center;justify-content:center">
-            <span class="font-serif" style="color:#0f1a12;font-weight:700;font-size:18px">H</span>
-          </div>
-          <div>
-            <h3 class="font-serif" style="color:white;font-size:18px;font-weight:700">HENZO FARM</h3>
-            <p style="color:rgba(255,255,255,0.3);font-size:10px;letter-spacing:0.2em;text-transform:uppercase">Heritage Poultry</p>
-          </div>
-        </div>
-        <p style="color:rgba(255,255,255,0.4);font-size:14px;line-height:1.7;margin-bottom:24px">
-          Islamabad's premier heritage poultry farm. Pure-bred Australorp, Rhode Island Red & Misri. Pasture-raised organic eggs delivered fresh.
-        </p>
-        <div style="display:flex;gap:12px">
-          <a href="tel:+923115190548" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);text-decoration:none;transition:all 0.3s" onmouseover="this.style.color='#D4AF37';this.style.background='rgba(255,255,255,0.1')" onmouseout="this.style.color='rgba(255,255,255,0.4)';this.style.background='rgba(255,255,255,0.05')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          </a>
-          <a href="https://wa.me/923115190548" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);text-decoration:none;transition:all 0.3s" onmouseover="this.style.color='#22c55e';this.style.background='rgba(255,255,255,0.1')" onmouseout="this.style.color='rgba(255,255,255,0.4)';this.style.background='rgba(255,255,255,0.05')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-          </a>
-          <a href="#" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);text-decoration:none;transition:all 0.3s" onmouseover="this.style.color='#D4AF37';this.style.background='rgba(255,255,255,0.1')" onmouseout="this.style.color='rgba(255,255,255,0.4)';this.style.background='rgba(255,255,255,0.05')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          </a>
-        </div>
-      </div>
-      <div>
-        <h4 style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:24px">Quick Links</h4>
-        <ul style="list-style:none">
-          <li style="margin-bottom:12px"><a href="#hero" onclick="scrollToSection('hero');return false" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color 0.3s" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Home</a></li>
-          <li style="margin-bottom:12px"><a href="#about" onclick="scrollToSection('about');return false" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color 0.3s" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Our Story</a></li>
-          <li style="margin-bottom:12px"><a href="#collections" onclick="scrollToSection('collections');return false" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color 0.3s" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Breed Collections</a></li>
-          <li style="margin-bottom:12px"><a href="#products" onclick="scrollToSection('products');return false" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color 0.3s" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Products</a></li>
-          <li style="margin-bottom:12px"><a href="#gallery" onclick="scrollToSection('gallery');return false" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color 0.3s" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Gallery</a></li>
-          <li style="margin-bottom:12px"><a href="#why-us" onclick="scrollToSection('why-us');return false" style="color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color 0.3s" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Why Choose Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:24px">Our Products</h4>
-        <ul style="list-style:none">
-          <li style="margin-bottom:12px"><span style="color:rgba(255,255,255,0.4);font-size:14px">Organic Pasture Eggs</span></li>
-          <li style="margin-bottom:12px"><span style="color:rgba(255,255,255,0.4);font-size:14px">Australorp Chicks & Hens</span></li>
-          <li style="margin-bottom:12px"><span style="color:rgba(255,255,255,0.4);font-size:14px">Rhode Island Red Poultry</span></li>
-          <li style="margin-bottom:12px"><span style="color:rgba(255,255,255,0.4);font-size:14px">Misri Heritage Breed</span></li>
-          <li style="margin-bottom:12px"><span style="color:rgba(255,255,255,0.4);font-size:14px">Breeding Pairs</span></li>
-          <li style="margin-bottom:12px"><span style="color:rgba(255,255,255,0.4);font-size:14px">Day-Old Chicks</span></li>
-        </ul>
-      </div>
-      <div>
-        <h4 style="color:#D4AF37;font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:24px">Delivery Areas</h4>
-        <ul style="list-style:none">
-          <li style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span style="color:rgba(255,255,255,0.4);font-size:14px">Pindorian Shareef (FREE)</span></li>
-          <li style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span style="color:rgba(255,255,255,0.4);font-size:14px">All Islamabad Sectors</span></li>
-          <li style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span style="color:rgba(255,255,255,0.4);font-size:14px">Bahria Town</span></li>
-          <li style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span style="color:rgba(255,255,255,0.4);font-size:14px">DHA Islamabad</span></li>
-          <li style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span style="color:rgba(255,255,255,0.4);font-size:14px">Rawalpindi City</span></li>
-          <li style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span style="color:rgba(255,255,255,0.4);font-size:14px">Adiala Road</span></li>
-        </ul>
-        <p style="color:rgba(212,175,55,0.6);font-size:12px;margin-top:16px">Free delivery on orders over Rs 1,999</p>
-      </div>
-    </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:32px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
-      <p style="color:rgba(255,255,255,0.2);font-size:12px;letter-spacing:0.1em">© 2026 HENZO FARM ISLAMABAD • PREMIUM HERITAGE POULTRY</p>
-      <p style="color:rgba(255,255,255,0.2);font-size:12px;display:flex;align-items:center;gap:4px">
-        Made with <svg width="12" height="12" viewBox="0 0 24 24" fill="#ef4444" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> in Pindorian Shareef
-      </p>
-      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.3s" onmouseover="this.style.color='#D4AF37';this.style.borderColor='rgba(212,175,55,0.3')" onmouseout="this.style.color='rgba(255,255,255,0.4)';this.style.borderColor='rgba(255,255,255,0.1')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-      </button>
-    </div>
-  </div>
-</footer>
-
-<!-- Floating Contact Button -->
-<a href="https://wa.me/923115190548" target="_blank" class="contact-float" aria-label="Order via WhatsApp" style="width:64px;height:64px;background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,0.4)">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.13 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<!-- Cart Bar -->
-<div id="cart-bar" class="cart-bar">
-  <div style="display:flex;align-items:center;gap:16px">
-    <div id="cart-bar-count" style="width:48px;height:48px;border-radius:50%;background:#D4AF37;color:#1B3022;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px">0</div>
-    <div>
-      <div id="cart-bar-items" style="font-size:13px;color:rgba(255,255,255,0.6)">0 items</div>
-      <div id="cart-bar-total" style="font-size:20px;font-weight:800;color:#D4AF37">Rs 0</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:12px">
-    <button onclick="openCart()" style="padding:12px 24px;background:rgba(255,255,255,0.1);border-radius:12px;color:white;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all 0.3s" onmouseover="this.style.background='rgba(255,255,255,0.2')" onmouseout="this.style.background='rgba(255,255,255,0.1')">View Cart</button>
-    <button onclick="openCheckout()" style="padding:12px 24px;background:#D4AF37;color:#0f1a12;border-radius:12px;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:8px" onmouseover="this.style.background='#e0c045'" onmouseout="this.style.background='#D4AF37'">
-      Checkout
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-    </button>
+<div id="invoiceModal" class="modal hidden" style="display: none;">
+  <div class="modal-content">
+    <div class="inv-title">Statement / Unpaid Invoice</div>
+    <p><strong>Customer:</strong> <span id="invClientName"></span></p>
+    <table style="width:100%; font-size:12px; margin-bottom:15px;">
+      <thead style="background:#f8f9fa;"><tr><th>Date</th><th>Delivery Detail</th><th>Bill</th><th>Recv</th></tr></thead>
+      <tbody id="invTableBody"></tbody>
+    </table>
+    <div style="text-align:right; font-size:16px; font-weight:bold; color:var(--danger);" id="invTotalDue"></div>
+    <button class="btn-save" style="background:#7f8c8d; margin-top:20px;" onclick="document.getElementById('invoiceModal').style.display='none'; document.getElementById('invoiceModal').classList.add('hidden');">Close Invoice</button>
   </div>
 </div>
 
 <script>
+  let clients = [];
+  window.onload = () => { document.getElementById('date').valueAsDate = new Date(); refresh(); };
 
-// ==================== DATA ====================
-const BREEDS = {
-  australorp: {
-    name: "Black Australorp",
-    subtitle: "The Record Layer",
-    desc: "The Black Australorp holds the world record for egg production — a single hen once laid 364 eggs in 365 days. Renowned for their lustrous beetle-green sheen and exceptionally gentle temperament, these birds are perfect for both backyard enthusiasts and commercial setups in the Islamabad climate.",
-    temperament: "Calm, Gentle, Docile",
-    eggProduction: "250-300 eggs/year — World Record Class",
-    perks: ["Record Egg Yield", "Gentle Nature", "Climate Hardy", "Genetically Pure", "Family Friendly"],
-    image: "images/australorp_hen.jpg",
-    products: [
-      { label: "Baby Chick (Day-Old)", price: 120, icon: "🐣" },
-      { label: "Mature Hen (Ready to Lay)", price: 2500, icon: "🐔" },
-      { label: "Breeding Rooster", price: 3000, icon: "🐓" },
-      { label: "Breeding Pair (1R + 5H)", price: 14725, icon: "⭐" },
-    ]
-  },
-  rir: {
-    name: "Rhode Island Red",
-    subtitle: "The Resilient Classic",
-    desc: "The Rhode Island Red is the ultimate dual-purpose heritage breed, historically unmatched for its resilience and excellent brown egg production. With their distinctive mahogany plumage and hardy constitution, they thrive in the Pakistani climate with minimal care requirements.",
-    temperament: "Active, Hardy, Alert",
-    eggProduction: "200-280 brown eggs/year",
-    perks: ["Climate Immune", "Mahogany Plumage", "Steady Laying", "Low Maintenance", "Dual Purpose"],
-    image: "images/rir_hen.jpg",
-    products: [
-      { label: "Baby Chick (Day-Old)", price: 120, icon: "🐣" },
-      { label: "Mature Hen (Ready to Lay)", price: 2500, icon: "🐔" },
-      { label: "Breeding Rooster", price: 3000, icon: "🐓" },
-      { label: "Breeding Pair (1R + 5H)", price: 14725, icon: "⭐" },
-    ]
-  },
-  misri: {
-    name: "Misri",
-    subtitle: "The Beloved Local",
-    desc: "The Misri is Pakistan's most beloved backyard chicken breed, cherished for generations for its exceptional hardiness and reliable egg production. These birds are perfectly adapted to local conditions, requiring minimal intervention while delivering consistent results.",
-    temperament: "Hardy, Adaptable, Friendly",
-    eggProduction: "180-220 eggs/year — Local Champion",
-    perks: ["Local Adapted", "Heat Resistant", "Low Cost", "Proven Track Record", "Cultural Heritage"],
-    image: "images/fayoumi_chick.jpg",
-    products: [
-      { label: "Baby Chick (Day-Old)", price: 100, icon: "🐣" },
-      { label: "Mature Hen (Ready to Lay)", price: 2200, icon: "🐔" },
-      { label: "Breeding Rooster", price: 2500, icon: "🐓" },
-      { label: "Breeding Pair (1R + 5H)", price: 13500, icon: "⭐" },
-    ]
+  function toggleForm() {
+    const v = document.getElementById('cat').value;
+    document.getElementById('formRevenue').classList.toggle('hidden', v !== 'Revenue');
+    document.getElementById('formExpense').classList.toggle('hidden', v !== 'Expense');
+    document.getElementById('formNewClient').classList.toggle('hidden', v !== 'NewClient');
+    document.getElementById('formPivotDashboard').classList.toggle('hidden', v !== 'PivotDashboard');
+    
+    // Manage sidebar primary buttons states
+    document.getElementById('saveBtn').classList.toggle('hidden', v === 'PivotDashboard');
+    document.getElementById('dateField').classList.toggle('hidden', v === 'PivotDashboard');
+    document.getElementById('filterControls').classList.toggle('hidden', v === 'PivotDashboard');
+    
+    if (v === "PivotDashboard") {
+      loadMonthlyPivotView();
+    } else {
+      loadHistory();
+    }
   }
-};
 
-const ALL_PRODUCTS = [
-  { id: "eggs-1", name: "1 Dozen Organic Eggs", price: 450, desc: "12 fresh pasture-raised eggs", category: "eggs", icon: "🥚" },
-  { id: "eggs-2", name: "2 Dozen Organic Eggs", price: 900, desc: "24 fresh pasture-raised eggs", category: "eggs", icon: "🥚" },
-  { id: "eggs-3", name: "5 Dozen Organic Eggs", price: 2250, desc: "60 fresh eggs — Best Value", category: "eggs", icon: "🥚" },
-  { id: "eggs-4", name: "10 Dozen Organic Eggs", price: 4400, desc: "120 fresh eggs — Bulk", category: "eggs", icon: "🥚" },
-  { id: "aus-1", name: "Australorp Chick (Day-Old)", price: 120, desc: "Pure-bred day-old chick", category: "australorp", icon: "🐣" },
-  { id: "aus-2", name: "Australorp Mature Hen", price: 2500, desc: "Ready to lay, vaccinated", category: "australorp", icon: "🐔" },
-  { id: "aus-3", name: "Australorp Breeding Rooster", price: 3000, desc: "Premium breeding stock", category: "australorp", icon: "🐓" },
-  { id: "aus-4", name: "Australorp Pair (1R+5H)", price: 14725, desc: "Save Rs 875 — Breeding pair", category: "australorp", icon: "⭐" },
-  { id: "rir-1", name: "RIR Chick (Day-Old)", price: 120, desc: "Pure-bred day-old chick", category: "rir", icon: "🐣" },
-  { id: "rir-2", name: "RIR Mature Hen", price: 2500, desc: "Ready to lay, vaccinated", category: "rir", icon: "🐔" },
-  { id: "rir-3", name: "RIR Breeding Rooster", price: 3000, desc: "Premium breeding stock", category: "rir", icon: "🐓" },
-  { id: "rir-4", name: "RIR Pair (1R+5H)", price: 14725, desc: "Save Rs 875 — Breeding pair", category: "rir", icon: "⭐" },
-  { id: "mis-1", name: "Misri Chick (Day-Old)", price: 100, desc: "Local hardy day-old chick", category: "misri", icon: "🐣" },
-  { id: "mis-2", name: "Misri Mature Hen", price: 2200, desc: "Ready to lay, vaccinated", category: "misri", icon: "🐔" },
-  { id: "mis-3", name: "Misri Breeding Rooster", price: 2500, desc: "Premium breeding stock", category: "misri", icon: "🐓" },
-  { id: "mis-4", name: "Misri Pair (1R+5H)", price: 13500, desc: "Save Rs 700 — Breeding pair", category: "misri", icon: "⭐" },
-];
+  function refresh() {
+    google.script.run.withSuccessHandler(s => {
+      document.getElementById('s_sales').innerText = s.sales;
+      document.getElementById('s_paid').innerText = s.paid;
+      document.getElementById('s_exp').innerText = s.expenses;
+      document.getElementById('s_profit').innerText = s.profit;
+    }).getDashboardStats();
 
-const DELIVERY_AREAS = {
-  "Pindorian Shareef": 0,
-  "E-7/F-6/F-7/F-8": 200,
-  "F-10/F-11/G-10/G-11": 200,
-  "G-6/G-7/G-8/G-9": 200,
-  "I-8/I-9/I-10/I-11": 200,
-  "DHA Phase 1-5": 200,
-  "Bahria Phase 1-8": 200,
-  "Gulberg Greens/PWD": 200,
-  "Bani Gala/Bhara Kahu": 200,
-  "Saddar/Satellite Town": 200,
-  "Adiala Road": 200,
-  "Chaklala Scheme": 200,
-  "Westridge": 200,
-  "Murree Road": 200,
-  "Other": 300,
-};
-
-const GALLERY_IMAGES = [
-  { src: "images/hero_chickens.png", caption: "Free-Range Pasture Life" },
-  { src: "images/australorp_rooster.jpg", caption: "Black Australorp Rooster" },
-  { src: "images/pasture_raised_eggs.jpg", caption: "Pasture Raised Eggs" },
-  { src: "images/rir_rooster.jpg", caption: "Rhode Island Red Rooster" },
-  { src: "images/farm_pasture.png", caption: "Pindorian Shareef Farm" },
-  { src: "images/organic_feed.png", caption: "100% Organic Feed" },
-];
-
-// ==================== STATE ====================
-let cart = JSON.parse(localStorage.getItem('henzo_cart_v2')) || [];
-let modalState = { breed: '', product: '', price: 0, qty: 1 };
-let lightboxIndex = 0;
-let currentProductFilter = 'all';
-
-// ==================== NAVBAR ====================
-function updateNavbar() {
-  const navbar = document.getElementById('navbar');
-  if (window.scrollY > 80) {
-    navbar.classList.add('glass-dark');
-    navbar.style.padding = '12px 0';
-  } else {
-    navbar.classList.remove('glass-dark');
-    navbar.style.padding = '20px 0';
+    google.script.run.withSuccessHandler(data => {
+      clients = data;
+      const sel = document.getElementById('cust');
+      sel.innerHTML = '<option value="">-- Choose Customer --</option>';
+      data.forEach(r => {
+        let opt = document.createElement('option');
+        opt.value = r[0]; opt.text = r[1];
+        opt.setAttribute('data-rate', r[4]); opt.setAttribute('data-area', r[2]); 
+        opt.setAttribute('data-type', r[3]); opt.setAttribute('data-product', r[7] || '19 Liter');
+        sel.add(opt);
+      });
+    }).getClients();
+    
+    toggleForm();
   }
-}
-window.addEventListener('scroll', updateNavbar, { passive: true });
 
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-  closeMobileNav();
-}
-
-// ==================== MOBILE NAV ====================
-function openMobileNav() {
-  const nav = document.getElementById('mobile-nav');
-  const links = document.getElementById('mobile-nav-links');
-  const items = ['Home', 'Our Story', 'Collections', 'Products', 'Gallery', 'Why Us', 'Process', 'Reviews', 'Contact'];
-  const ids = ['hero', 'about', 'collections', 'products', 'gallery', 'why-us', 'process', 'reviews', 'contact'];
-  links.innerHTML = items.map((item, i) => `
-    <button onclick="scrollToSection('${ids[i]}')" style="width:100%;padding:16px 0;text-align:center;color:white;font-size:18px;font-weight:500;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.1);cursor:pointer;transition:color 0.3s" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='white'">${item}</button>
-  `).join('');
-  nav.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeMobileNav() {
-  document.getElementById('mobile-nav').classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-// ==================== SCROLL REVEAL ====================
-function initScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target);
+  // NEW FUNCTION: RENDERS MONTHLY FINANCIAL OVERVIEW PIVOT TABLE
+  function loadMonthlyPivotView() {
+    document.getElementById('hTableHead').innerHTML = `
+      <tr><th>Month Year</th><th>Total Sales</th><th>Total Received</th><th>Total Expenses</th><th>Net Cash Outstanding</th><th>Net Profit Margins</th></tr>
+    `;
+    document.getElementById('hTable').innerHTML = '<tr><td colspan="6" style="text-align:center">Processing summaries directly from sheets...</td></tr>';
+    
+    google.script.run.withSuccessHandler(summaryRows => {
+      let html = '';
+      if(!summaryRows || summaryRows.length === 0) {
+        document.getElementById('hTable').innerHTML = '<tr><td colspan="6" style="text-align:center">No transaction logs available</td></tr>';
+        return;
       }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
-}
-
-// ==================== BREED MODAL ====================
-function openBreedModal(breedKey) {
-  const breed = BREEDS[breedKey];
-  if (!breed) return;
-  modalState = { breed: breedKey, product: breed.products[0].label, price: breed.products[0].price, qty: 1 };
-  document.getElementById('modal-img').src = breed.image;
-  document.getElementById('modal-title').textContent = breed.name;
-  document.getElementById('modal-subtitle').textContent = breed.subtitle;
-  document.getElementById('modal-desc').textContent = breed.desc;
-  document.getElementById('modal-perks').innerHTML = breed.perks.map(p => `
-    <span style="display:flex;align-items:center;gap:6px;padding:6px 14px;background:#f5f5f5;border-radius:99px;font-size:11px;font-weight:700;color:#1B3022">
-      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      ${p}
-    </span>
-  `).join('');
-  renderModalCategories();
-  updateModalTotal();
-  document.getElementById('breed-overlay').classList.add('show');
-  document.getElementById('breed-modal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeBreedModal() {
-  document.getElementById('breed-overlay').classList.remove('show');
-  document.getElementById('breed-modal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-function renderModalCategories() {
-  const breed = BREEDS[modalState.breed];
-  const container = document.getElementById('modal-categories');
-  container.innerHTML = breed.products.map(p => `
-    <div onclick="selectModalProduct('${p.label.replace(/'/g, "\'")}', ${p.price})" 
-         style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:2px solid ${modalState.product === p.label ? '#D4AF37' : '#eee'};border-radius:16px;cursor:pointer;transition:all 0.3s;background:${modalState.product === p.label ? 'linear-gradient(135deg,#fffdf5,#fff9e6)' : 'white'};box-shadow:${modalState.product === p.label ? '0 2px 12px rgba(212,175,55,0.15)' : 'none'}">
-      <div style="display:flex;align-items:center;gap:12px">
-        <span style="font-size:20px">${p.icon}</span>
-        <span style="font-size:14px;font-weight:700;color:#1B3022">${p.label}</span>
-      </div>
-      <span style="font-size:16px;font-weight:800;color:#D4AF37">Rs ${p.price.toLocaleString()}</span>
-    </div>
-  `).join('');
-}
-function selectModalProduct(label, price) {
-  modalState.product = label;
-  modalState.price = price;
-  modalState.qty = 1;
-  renderModalCategories();
-  updateModalTotal();
-}
-function adjustModalQty(delta) {
-  modalState.qty = Math.max(1, modalState.qty + delta);
-  updateModalTotal();
-}
-function updateModalTotal() {
-  document.getElementById('modal-qty').textContent = modalState.qty;
-  document.getElementById('modal-total').textContent = 'Rs ' + (modalState.price * modalState.qty).toLocaleString();
-}
-function confirmModalAdd() {
-  const breed = BREEDS[modalState.breed];
-  const itemName = `${breed.name} — ${modalState.product}`;
-  addToCart(itemName, modalState.price, modalState.qty);
-  closeBreedModal();
-}
-
-// ==================== PRODUCTS ====================
-function renderProducts(filter = 'all') {
-  currentProductFilter = filter;
-  const grid = document.getElementById('products-grid');
-  const items = filter === 'all' ? ALL_PRODUCTS : ALL_PRODUCTS.filter(p => p.category === filter);
-  grid.innerHTML = items.map(item => `
-    <div class="product-card" style="padding:20px">
-      <div style="display:flex;align-items:start;justify-content:space-between;margin-bottom:12px">
-        <div style="width:48px;height:48px;border-radius:12px;background:#F5F0E6;display:flex;align-items:center;justify-content:center;font-size:28px">${item.icon}</div>
-        ${item.name.includes('Pair') ? '<span style="padding:2px 8px;background:rgba(212,175,55,0.1);color:#D4AF37;font-size:10px;font-weight:700;border-radius:99px;text-transform:uppercase">Deal</span>' : ''}
-      </div>
-      <h3 style="font-weight:700;color:#1B3022;font-size:14px;line-height:1.4;margin-bottom:4px">${item.name}</h3>
-      <p style="color:#888;font-size:12px;margin-bottom:16px">${item.desc}</p>
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <span class="font-serif" style="font-size:22px;font-weight:700;color:#1B3022">Rs ${item.price.toLocaleString()}</span>
-        <button onclick="addToCart('${item.name.replace(/'/g, "\'")}', ${item.price})" style="width:40px;height:40px;border-radius:12px;background:#1B3022;color:#D4AF37;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 12px rgba(27,48,34,0.2)" onmouseover="this.style.background='#2d4d2d'" onmouseout="this.style.background='#1B3022'">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-        </button>
-      </div>
-    </div>
-  `).join('');
-}
-function filterProducts(category, btn) {
-  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  renderProducts(category);
-}
-
-// ==================== CART ====================
-function addToCart(name, price, qty = 1) {
-  const existing = cart.find(i => i.name === name);
-  if (existing) {
-    existing.qty += qty;
-    showToast(`${name} (${existing.qty}x)`);
-  } else {
-    cart.push({ name, price, qty });
-    showToast(`${name} added`);
+      summaryRows.forEach(row => {
+        let profitNum = parseFloat(row.profit.replace(/,/g, ''));
+        let profitStyle = profitNum >= 0 ? "color:green; font-weight:bold;" : "color:red; font-weight:bold;";
+        
+        html += `<tr>
+          <td><strong>📁 ${row.month}</strong></td>
+          <td>Rs. ${row.sales}</td>
+          <td style="color:var(--success)">Rs. ${row.paid}</td>
+          <td style="color:var(--danger)">Rs. ${row.expenses}</td>
+          <td style="color:var(--warning); font-weight:bold;">Rs. ${row.outstanding}</td>
+          <td style="${profitStyle}">Rs. ${row.profit}</td>
+        </tr>`;
+      });
+      document.getElementById('hTable').innerHTML = html;
+    }).getMonthlyPivotData();
   }
-  saveCart();
-  updateCartUI();
-}
-function updateCartQty(name, delta) {
-  const item = cart.find(i => i.name === name);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty < 1) cart = cart.filter(i => i.name !== name);
-  saveCart();
-  updateCartUI();
-  renderCartItems();
-}
-function removeCartItem(name) {
-  cart = cart.filter(i => i.name !== name);
-  saveCart();
-  updateCartUI();
-  renderCartItems();
-  showToast('Item removed');
-}
-function saveCart() {
-  localStorage.setItem('henzo_cart_v2', JSON.stringify(cart));
-}
-function updateCartUI() {
-  const count = cart.reduce((a, i) => a + i.qty, 0);
-  const subtotal = cart.reduce((a, i) => a + i.price * i.qty, 0);
-  document.getElementById('cart-bar-count').textContent = count;
-  document.getElementById('cart-bar-items').textContent = count + ' item' + (count !== 1 ? 's' : '');
-  document.getElementById('cart-bar-total').textContent = 'Rs ' + subtotal.toLocaleString();
-  document.getElementById('cart-bar').classList.toggle('show', count > 0);
-}
-function renderCartItems() {
-  const container = document.getElementById('cart-items-container');
-  const footer = document.getElementById('cart-footer');
-  if (cart.length === 0) {
-    container.innerHTML = `
-      <div style="text-align:center;padding:48px 0;color:#aaa">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 16px;opacity:0.3"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <p>Your cart is empty</p>
-      </div>
+
+  function loadHistory() {
+    // Reset table header structure back to default transaction logs format
+    document.getElementById('hTableHead').innerHTML = `
+      <tr><th>Date</th><th>Client Name</th><th>Detail Ledger</th><th>Bill</th><th>Recv Amount</th><th>Balance Status</th><th>Actions</th></tr>
     `;
-    footer.style.display = 'none';
-    return;
+    
+    const q = document.getElementById('search').value;
+    const t = document.getElementById('fType').value;
+    const m = document.getElementById('fMonth').value;
+    const cat = document.getElementById('cat').value === "Expense" ? "Expense" : "Revenue";
+    
+    google.script.run.withSuccessHandler(rows => {
+      let html = '';
+      if(!rows || rows.length === 0) {
+        document.getElementById('hTable').innerHTML = '<tr><td colspan="7" style="text-align:center">No records found</td></tr>';
+        return;
+      }
+      rows.forEach(r => {
+        let bVal = Number(r.c6);
+        let bText = bVal > 0 ? "Rs. " + bVal.toLocaleString() : (bVal < 0 ? "Adv: " + Math.abs(bVal).toLocaleString() : "CLEARED ✓");
+        let bStyle = bVal > 0 ? "color:red; font-weight:bold" : "color:green; font-weight:bold";
+        
+        let actionButtons = `
+          <button class="btn-act btn-edit" onclick="editRow(${r.rowId}, ${r.c4/parseFloat(r.c3.split(' ')[2])||0}, ${r.c5})">✏️</button>
+          <button class="btn-act btn-del" onclick="deleteRow(${r.rowId})">❌</button>
+        `;
+        
+        if(cat === "Revenue" && r.custType.toLowerCase() === "monthly") {
+          actionButtons += `<button class="btn-act btn-inv" onclick="triggerInvoiceGeneration('${r.c2.replace(/'/g, "\\'")}')">📄 Invoice</button>`;
+        }
+
+        if(cat === "Expense") {
+          actionButtons = `<button class="btn-act btn-del" onclick="deleteRow(${r.rowId})">❌</button>`;
+        }
+
+        html += `<tr>
+          <td>${r.c1}</td>
+          <td><strong>${r.c2}</strong></td>
+          <td style="color:#7f8c8d">${r.c3}</td>
+          <td>${Number(r.c4).toLocaleString()}</td>
+          <td>${Number(r.c5).toLocaleString()}</td>
+          <td style="${bStyle}">${bText}</td>
+          <td>${actionButtons}</td>
+        </tr>`;
+      });
+      document.getElementById('hTable').innerHTML = html;
+    }).getHistory(q, t, cat, m);
   }
-  const subtotal = cart.reduce((a, i) => a + i.price * i.qty, 0);
-  const area = document.getElementById('area')?.value || '';
-  const deliveryFee = area === 'Pindorian Shareef' || subtotal >= 1999 ? 0 : (DELIVERY_AREAS[area] || 0);
-  const total = subtotal + deliveryFee;
-  container.innerHTML = cart.map(item => {
-    const emoji = item.name.includes('Egg') ? '🥚' : item.name.includes('Chick') ? '🐣' : item.name.includes('Hen') ? '🐔' : '🐓';
-    return `
-      <div style="display:flex;align-items:center;gap:16px;padding:16px;background:#f5f5f5;border-radius:12px;margin-bottom:12px">
-        <div style="width:48px;height:48px;border-radius:10px;background:white;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">${emoji}</div>
-        <div style="flex:1;min-width:0">
-          <p style="font-weight:600;color:#1B3022;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${item.name}</p>
-          <p style="color:#D4AF37;font-size:14px;font-weight:600">Rs ${(item.price * item.qty).toLocaleString()}</p>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <div class="qty-stepper" style="width:auto">
-            <button onclick="updateCartQty('${item.name.replace(/'/g, "\'")}', -1)">−</button>
-            <span>${item.qty}</span>
-            <button onclick="updateCartQty('${item.name.replace(/'/g, "\'")}', 1)">+</button>
-          </div>
-          <button onclick="removeCartItem('${item.name.replace(/'/g, "\'")}')" style="width:32px;height:32px;border-radius:8px;background:#fee2e2;color:#dc2626;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center" title="Remove">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-          </button>
-        </div>
-      </div>
-    `;
-  }).join('');
-  document.getElementById('cart-subtotal').textContent = 'Rs ' + subtotal.toLocaleString();
-  document.getElementById('cart-delivery').textContent = deliveryFee === 0 ? 'FREE' : 'Rs ' + deliveryFee;
-  document.getElementById('cart-delivery').style.color = deliveryFee === 0 ? '#22c55e' : '#1B3022';
-  document.getElementById('cart-total').textContent = 'Rs ' + total.toLocaleString();
-  footer.style.display = 'block';
-}
-function openCart() {
-  renderCartItems();
-  document.getElementById('cart-overlay').classList.add('show');
-  document.getElementById('cart-sidebar').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeCart() {
-  document.getElementById('cart-overlay').classList.remove('show');
-  document.getElementById('cart-sidebar').classList.remove('show');
-  document.body.style.overflow = '';
-}
 
-// ==================== CHECKOUT ====================
-function openCheckout() {
-  closeCart();
-  const subtotal = cart.reduce((a, i) => a + i.price * i.qty, 0);
-  const area = document.getElementById('area')?.value || '';
-  const deliveryFee = area === 'Pindorian Shareef' || subtotal >= 1999 ? 0 : (DELIVERY_AREAS[area] || 0);
-  const total = subtotal + deliveryFee;
-  document.getElementById('checkout-items').innerHTML = cart.map(item => `
-    <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px">
-      <span style="color:#666">${item.qty}x ${item.name}</span>
-      <span style="font-weight:600">Rs ${(item.price * item.qty).toLocaleString()}</span>
-    </div>
-  `).join('');
-  document.getElementById('checkout-subtotal').textContent = 'Rs ' + subtotal.toLocaleString();
-  document.getElementById('checkout-delivery').textContent = deliveryFee === 0 ? 'FREE' : 'Rs ' + deliveryFee;
-  document.getElementById('checkout-total').textContent = 'Rs ' + total.toLocaleString();
-  document.getElementById('checkout-overlay').classList.add('show');
-  document.getElementById('checkout-modal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeCheckout() {
-  document.getElementById('checkout-overlay').classList.remove('show');
-  document.getElementById('checkout-modal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-function updateDelivery() {
-  const subtotal = cart.reduce((a, i) => a + i.price * i.qty, 0);
-  const area = document.getElementById('area').value;
-  const deliveryFee = area === 'Pindorian Shareef' || subtotal >= 1999 ? 0 : (DELIVERY_AREAS[area] || 0);
-  const total = subtotal + deliveryFee;
-  document.getElementById('checkout-delivery').textContent = deliveryFee === 0 ? 'FREE' : 'Rs ' + deliveryFee;
-  document.getElementById('checkout-total').textContent = 'Rs ' + total.toLocaleString();
-}
-function handleOrder(e) {
-  e.preventDefault();
-  if (cart.length === 0) { showToast('Cart is empty!'); return; }
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const area = document.getElementById('area').value;
-  const address = document.getElementById('address').value.trim();
-  const subtotal = cart.reduce((a, i) => a + i.price * i.qty, 0);
-  const deliveryFee = area === 'Pindorian Shareef' || subtotal >= 1999 ? 0 : (DELIVERY_AREAS[area] || 0);
-  const total = subtotal + deliveryFee;
-  const orderId = 'HZ-' + Date.now().toString(36).toUpperCase();
-  const items = cart.map(i => `• ${i.qty}x ${i.name}`).join('%0A');
-  const msg = `🌾 *HENZO FARM ORDER*%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Area:* ${area}%0A*Address:* ${address}%0A%0A*Items:*%0A${items}%0A%0A*Subtotal:* Rs ${subtotal}%0A*Delivery:* ${deliveryFee === 0 ? 'FREE' : 'Rs ' + deliveryFee}%0A*Total:* Rs ${total}`;
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ customer: name, contact: phone, area: area, address: address, cart: JSON.stringify(cart) })
-  });
-  window.open(`https://wa.me/923115190548?text=${msg}`, '_blank');
-  document.getElementById('success-order-id').textContent = orderId;
-  document.getElementById('success-screen').classList.add('show');
-  cart = [];
-  saveCart();
-  updateCartUI();
-  closeCheckout();
-}
-function closeSuccess() {
-  document.getElementById('success-screen').classList.remove('show');
-  document.getElementById('order-form').reset();
-}
-
-// ==================== LIGHTBOX ====================
-function openLightbox(index) {
-  lightboxIndex = index;
-  updateLightbox();
-  document.getElementById('lightbox').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('show');
-  document.body.style.overflow = '';
-}
-function prevLightbox() {
-  lightboxIndex = lightboxIndex === 0 ? GALLERY_IMAGES.length - 1 : lightboxIndex - 1;
-  updateLightbox();
-}
-function nextLightbox() {
-  lightboxIndex = lightboxIndex === GALLERY_IMAGES.length - 1 ? 0 : lightboxIndex + 1;
-  updateLightbox();
-}
-function updateLightbox() {
-  document.getElementById('lightbox-img').src = GALLERY_IMAGES[lightboxIndex].src;
-  document.getElementById('lightbox-caption').textContent = GALLERY_IMAGES[lightboxIndex].caption;
-}
-
-// ==================== TOAST ====================
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  document.getElementById('toast-msg').textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2500);
-}
-
-// ==================== INIT ====================
-document.addEventListener('DOMContentLoaded', () => {
-  initScrollReveal();
-  renderProducts();
-  updateCartUI();
-  updateNavbar();
-});
-
-// Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeBreedModal();
-    closeCart();
-    closeCheckout();
-    closeLightbox();
-    closeMobileNav();
+  function autoFillAndFetchBalance() {
+    const sel = document.getElementById('cust');
+    const opt = sel.options[sel.selectedIndex];
+    if (!sel.value) {
+      document.getElementById('balanceAlert').classList.add('hidden');
+      return;
+    }
+    if (opt.getAttribute('data-rate')) document.getElementById('rate').value = opt.getAttribute('data-rate');
+    if (opt.getAttribute('data-product')) document.getElementById('prod').value = opt.getAttribute('data-product');
+    
+    document.getElementById('lblPrevBal').innerText = "Loading Summary...";
+    document.getElementById('balanceAlert').classList.remove('hidden');
+    
+    google.script.run.withSuccessHandler(res => {
+      document.getElementById('lblPrevBal').innerText = res.lastBalance.toLocaleString();
+      document.getElementById('hiddenPrevBal').value = res.lastBalance;
+      calculateLiveBill();
+    }).getLastBalanceAndRate(opt.text);
   }
-});
+
+  function calculateLiveBill() {
+    const prevBal = Number(document.getElementById('hiddenPrevBal').value || 0);
+    const qty = Number(document.getElementById('qty').value || 0);
+    const rate = Number(document.getElementById('rate').value || 0);
+    const paid = Number(document.getElementById('paid').value || 0);
+    const todayBill = qty * rate;
+    document.getElementById('lblClosingBal').innerText = ((prevBal + todayBill) - paid).toLocaleString();
+    document.getElementById('closingAlert').classList.remove('hidden');
+  }
+
+  function triggerInvoiceGeneration(selectedName) {
+    const targetModal = document.getElementById('invoiceModal');
+    document.getElementById('invClientName').innerText = "Loading data for " + selectedName + "...";
+    document.getElementById('invTableBody').innerHTML = '<tr><td colspan="4" style="text-align:center">Fetching ledger records...</td></tr>';
+    document.getElementById('invTotalDue').innerText = "";
+    
+    targetModal.classList.remove('hidden');
+    targetModal.style.display = 'flex';
+    
+    google.script.run.withSuccessHandler(res => {
+      if (res.error) {
+        document.getElementById('invTableBody').innerHTML = `<tr><td colspan="4" style="text-align:center; color:red;">Error: ${res.error}</td></tr>`;
+        return;
+      }
+      document.getElementById('invClientName').innerText = res.client;
+      let rowsHtml = '';
+      if (res.deliveries && res.deliveries.length > 0) {
+        res.deliveries.forEach(d => {
+          rowsHtml += `<tr><td>${d.date}</td><td>${d.item}</td><td>Rs. ${Number(d.bill).toLocaleString()}</td><td>Rs. ${Number(d.received).toLocaleString()}</td></tr>`;
+        });
+      }
+      document.getElementById('invTableBody').innerHTML = rowsHtml || '<tr><td colspan="4" style="text-align:center; color:green; font-weight:bold;">✓ No unpaid deliveries found!</td></tr>';
+      document.getElementById('invTotalDue').innerText = "Total Unpaid Outstanding: Rs. " + Number(res.totalOutstanding || 0).toLocaleString();
+    }).generateInvoiceData(selectedName);
+  }
+
+  function editRow(rowId, oldQty, oldPaid) {
+    let newQty = prompt("Enter New Bottle Quantity:", oldQty);
+    if(newQty == null) return;
+    let newRate = prompt("Enter Rate per Bottle:", 200);
+    if(newRate == null) return;
+    let newPaid = prompt("Enter Payment Received Amount:", oldPaid);
+    if(newPaid == null) return;
+
+    google.script.run.withSuccessHandler(msg => { alert(msg); refresh(); }).updateEntry(rowId, Number(newQty), Number(newRate), Number(newPaid));
+  }
+
+  function deleteRow(rowId) {
+    if(confirm("Are you sure you want to permanently delete this row record?")) {
+      google.script.run.withSuccessHandler(msg => { alert(msg); refresh(); }).deleteEntry(rowId);
+    }
+  }
+
+  function save() {
+    const btn = document.getElementById('saveBtn');
+    btn.disabled = true; btn.innerText = "SAVING...";
+    const mode = document.getElementById('cat').value;
+    
+    if (mode === "Revenue") {
+      const sel = document.getElementById('cust');
+      const opt = sel.options[sel.selectedIndex];
+      if(!sel.value) { alert("Select a customer first!"); resetBtn(); return; }
+      
+      const data = { 
+        date: document.getElementById('date').value, serial: sel.value, name: opt.text, 
+        area: opt.getAttribute('data-area'), type: opt.getAttribute('data-type'), 
+        qty: document.getElementById('qty').value, product: document.getElementById('prod').value, 
+        rate: document.getElementById('rate').value, received: document.getElementById('paid').value,
+        prevBalance: document.getElementById('hiddenPrevBal').value
+      };
+      google.script.run.withSuccessHandler(() => { 
+        alert("Transaction Recorded Successfully!"); 
+        document.getElementById('qty').value = "1"; document.getElementById('paid').value = "0";
+        resetBtn(); refresh(); 
+      }).saveEntry(data);
+    } else if (mode === "Expense") {
+      const data = { 
+        date: document.getElementById('date').value, fuel: document.getElementById('fuel').value, 
+        tax: document.getElementById('tax').value, other: document.getElementById('other').value, 
+        bottles: document.getElementById('fillingQty').value, paidBy: document.getElementById('exp_paid_by').value,
+        remarks: document.getElementById('exp_remarks').value
+      };
+      google.script.run.withSuccessHandler(() => { alert("Expense Saved!"); resetBtn(); refresh(); }).saveExpense(data);
+    } else {
+      const data = { 
+        name: document.getElementById('nc_name').value, area: document.getElementById('nc_area').value, 
+        type: document.getElementById('nc_type').value, rate: document.getElementById('nc_rate').value,
+        productSize: document.getElementById('nc_product').value
+      };
+      google.script.run.withSuccessHandler(msg => { alert(msg); resetBtn(); refresh(); }).saveClient(data);
+    }
+  }
+  function resetBtn() { const btn = document.getElementById('saveBtn'); btn.disabled = false; btn.innerText = "SAVE RECORD"; }
 </script>
 </body>
 </html>
